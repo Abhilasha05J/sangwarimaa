@@ -1,0 +1,798 @@
+{
+  "@@locale": "en",
+  "@@last_modified": "2026-05-11",
+
+  "appName": "Sangwari Maa",
+  "@appName": { "description": "Application name" },
+
+  "appTagline": "Your Maternal Health Companion",
+  "@appTagline": { "description": "App tagline shown on splash/welcome" },
+
+  "languageEnglish": "English",
+  "@languageEnglish": {},
+
+  "languageHindi": "हिंदी",
+  "@languageHindi": {},
+
+  "selectLanguage": "Select Language",
+  "@selectLanguage": {},
+
+  "continueLabel": "Continue",
+  "@continueLabel": {},
+
+  "cancel": "Cancel",
+  "@cancel": {},
+
+  "save": "Save",
+  "@save": {},
+
+  "submit": "Submit",
+  "@submit": {},
+
+  "edit": "Edit",
+  "@edit": {},
+
+  "delete": "Delete",
+  "@delete": {},
+
+  "back": "Back",
+  "@back": {},
+
+  "next": "Next",
+  "@next": {},
+
+  "loading": "Loading…",
+  "@loading": {},
+
+  "retry": "Retry",
+  "@retry": {},
+
+  "ok": "OK",
+  "@ok": {},
+
+  "yes": "Yes",
+  "@yes": {},
+
+  "no": "No",
+  "@no": {},
+
+  "search": "Search",
+  "@search": {},
+
+  "filter": "Filter",
+  "@filter": {},
+
+  "all": "All",
+  "@all": {},
+
+  "noDataFound": "No data found",
+  "@noDataFound": {},
+
+  "errorGeneric": "Something went wrong. Please try again.",
+  "@errorGeneric": {},
+
+  "errorNetwork": "No internet connection. Working offline.",
+  "@errorNetwork": {},
+
+  "errorSessionExpired": "Session expired. Please log in again.",
+  "@errorSessionExpired": {},
+
+  "successLabel": "Success",
+  "@successLabel": {},
+
+
+  "welcomeGreeting": "Namaste, I am Sangwari Maa",
+  "@welcomeGreeting": { "description": "Welcome screen hero greeting" },
+
+  "welcomeSubtitle": "Your trusted companion for a safe pregnancy journey",
+  "@welcomeSubtitle": {},
+
+  "startRegistration": "Start Registration",
+  "@startRegistration": {},
+
+  "alreadyHaveAccount": "Already have an account?",
+  "@alreadyHaveAccount": {},
+
+  "loginLabel": "Login",
+  "@loginLabel": {},
+
+
+  "mobileNumber": "Mobile Number",
+  "@mobileNumber": {},
+
+  "enterMobileNumber": "Enter 10-digit mobile number",
+  "@enterMobileNumber": {},
+
+  "sendOtp": "Send OTP",
+  "@sendOtp": {},
+
+  "enterOtp": "Enter OTP",
+  "@enterOtp": {},
+
+  "otpSentTo": "OTP sent to {mobile}",
+  "@otpSentTo": {
+    "placeholders": { "mobile": { "type": "String" } }
+  },
+
+  "verifyOtp": "Verify OTP",
+  "@verifyOtp": {},
+
+  "resendOtp": "Resend OTP",
+  "@resendOtp": {},
+
+  "resendOtpIn": "Resend in {seconds}s",
+  "@resendOtpIn": {
+    "placeholders": { "seconds": { "type": "int" } }
+  },
+
+  "invalidOtp": "Invalid OTP. Please try again.",
+  "@invalidOtp": {},
+
+  "otpExpired": "OTP expired. Please request a new one.",
+  "@otpExpired": {},
+
+  "loginWithEmail": "Login with Email",
+  "@loginWithEmail": {},
+
+  "email": "Email",
+  "@email": {},
+
+  "password": "Password",
+  "@password": {},
+
+  "twoFactorOtp": "Two-Factor OTP",
+  "@twoFactorOtp": { "description": "Admin 2FA label" },
+
+
+  "registrationTitle": "New Registration",
+  "@registrationTitle": {},
+
+  "fullName": "Full Name",
+  "@fullName": {},
+
+  "age": "Age",
+  "@age": {},
+
+  "dateOfBirth": "Date of Birth",
+  "@dateOfBirth": {},
+
+  "husbandName": "Husband's Name",
+  "@husbandName": {},
+
+  "husbandMobile": "Husband's Mobile",
+  "@husbandMobile": {},
+
+  "lmpDate": "Last Menstrual Period (LMP)",
+  "@lmpDate": {},
+
+  "expectedDeliveryDate": "Expected Delivery Date",
+  "@expectedDeliveryDate": {},
+
+  "bloodGroup": "Blood Group",
+  "@bloodGroup": {},
+
+  "address": "Address",
+  "@address": {},
+
+  "village": "Village",
+  "@village": {},
+
+  "block": "Block",
+  "@block": {},
+
+  "district": "District",
+  "@district": {},
+
+  "subcentre": "Sub-centre",
+  "@subcentre": {},
+
+  "ashaName": "ASHA Name",
+  "@ashaName": {},
+
+  "consentTitle": "Consent",
+  "@consentTitle": {},
+
+  "consentBody": "I agree to share my health information for maternal care services under this program.",
+  "@consentBody": {},
+
+  "consentRequired": "Please accept consent to proceed.",
+  "@consentRequired": {},
+
+  "registrationSuccess": "Registration successful!",
+  "@registrationSuccess": {},
+
+
+  "homeDashboard": "Home",
+  "@homeDashboard": {},
+
+  "myProfile": "My Profile",
+  "@myProfile": {},
+
+  "bpcrModule": "BPCR Module",
+  "@bpcrModule": { "description": "Birth Preparedness & Complication Readiness module" },
+
+  "maternalSchemes": "Maternal Schemes",
+  "@maternalSchemes": {},
+
+  "ancServices": "ANC Services",
+  "@ancServices": { "description": "Antenatal Care Services" },
+
+  "faqs": "FAQs",
+  "@faqs": {},
+
+  "reminders": "Reminders",
+  "@reminders": {},
+
+  "emergency": "Emergency",
+  "@emergency": {},
+
+  "notifications": "Notifications",
+  "@notifications": {},
+
+  "logout": "Logout",
+  "@logout": {},
+
+  "logoutConfirm": "Are you sure you want to logout?",
+  "@logoutConfirm": {},
+
+
+  "bpcrTitle": "Birth Preparedness",
+  "@bpcrTitle": {},
+
+  "bpcrSubtitle": "Complete all 10 components for a safe delivery",
+  "@bpcrSubtitle": {},
+
+  "bpcrScore": "BPCR Score",
+  "@bpcrScore": {},
+
+  "bpcrScoreValue": "{score}/10",
+  "@bpcrScoreValue": {
+    "placeholders": { "score": { "type": "int" } }
+  },
+
+  "bpcrRiskHigh": "High Risk",
+  "@bpcrRiskHigh": {},
+
+  "bpcrRiskMedium": "Medium Risk",
+  "@bpcrRiskMedium": {},
+
+  "bpcrRiskLow": "Low Risk",
+  "@bpcrRiskLow": {},
+
+  "bpcrComponent1": "Identified skilled birth attendant",
+  "@bpcrComponent1": {},
+
+  "bpcrComponent2": "Identified delivery place",
+  "@bpcrComponent2": {},
+
+  "bpcrComponent3": "Identified transport",
+  "@bpcrComponent3": {},
+
+  "bpcrComponent4": "Saved money for delivery",
+  "@bpcrComponent4": {},
+
+  "bpcrComponent5": "Identified blood donor",
+  "@bpcrComponent5": {},
+
+  "bpcrComponent6": "Made arrangements for other children",
+  "@bpcrComponent6": {},
+
+  "bpcrComponent7": "Aware of danger signs",
+  "@bpcrComponent7": {},
+
+  "bpcrComponent8": "ANC visits completed",
+  "@bpcrComponent8": {},
+
+  "bpcrComponent9": "Iron-folic acid tablets taken",
+  "@bpcrComponent9": {},
+
+  "bpcrComponent10": "TT vaccination done",
+  "@bpcrComponent10": {},
+
+  "bpcrCompleted": "Completed",
+  "@bpcrCompleted": {},
+
+  "bpcrPending": "Pending",
+  "@bpcrPending": {},
+
+  "bpcrIncomplete": "Incomplete",
+  "@bpcrIncomplete": {},
+
+  "bpcrUpdateSuccess": "BPCR checklist updated.",
+  "@bpcrUpdateSuccess": {},
+
+
+  "schemesTitle": "Maternal Schemes",
+  "@schemesTitle": {},
+
+  "schemeJsy": "Janani Suraksha Yojana (JSY)",
+  "@schemeJsy": {},
+
+  "schemeJssk": "Janani-Shishu Suraksha Karyakram (JSSK)",
+  "@schemeJssk": {},
+
+  "schemePmsma": "Pradhan Mantri Surakshit Matritva Abhiyan (PMSMA)",
+  "@schemePmsma": {},
+
+  "schemePmmvy": "Pradhan Mantri Matru Vandana Yojana (PMMVY)",
+  "@schemePmmvy": {},
+
+  "schemeMinimata": "Minimata Mahtari Jatan Yojana",
+  "@schemeMinimata": {},
+
+  "eligibility": "Eligibility",
+  "@eligibility": {},
+
+  "howToApply": "How to Apply",
+  "@howToApply": {},
+
+  "benefits": "Benefits",
+  "@benefits": {},
+
+  "applyNow": "Apply Now",
+  "@applyNow": {},
+
+  "learnMore": "Learn More",
+  "@learnMore": {},
+
+
+  "ancTitle": "ANC Services",
+  "@ancTitle": {},
+
+  "ancVisitManager": "Visit Manager",
+  "@ancVisitManager": {},
+
+  "ancHighRiskScreening": "High-Risk Screening",
+  "@ancHighRiskScreening": {},
+
+  "ancSymptomChecker": "Symptom Checker",
+  "@ancSymptomChecker": {},
+
+  "ancWeekByWeek": "Week-by-Week Guide",
+  "@ancWeekByWeek": {},
+
+  "ancNutrition": "Nutrition & Diet",
+  "@ancNutrition": {},
+
+  "ancVisitDue": "ANC Visit Due",
+  "@ancVisitDue": {},
+
+  "ancVisitOverdue": "ANC visit overdue by {days} days",
+  "@ancVisitOverdue": {
+    "placeholders": { "days": { "type": "int" } }
+  },
+
+  "ancVisitScheduled": "Next visit: {date}",
+  "@ancVisitScheduled": {
+    "placeholders": { "date": { "type": "String" } }
+  },
+
+  "ancVisit1": "1st ANC Visit",
+  "@ancVisit1": {},
+
+  "ancVisit2": "2nd ANC Visit",
+  "@ancVisit2": {},
+
+  "ancVisit3": "3rd ANC Visit",
+  "@ancVisit3": {},
+
+  "ancVisit4": "4th ANC Visit",
+  "@ancVisit4": {},
+
+  "ancVisitCompleted": "Visit completed on {date}",
+  "@ancVisitCompleted": {
+    "placeholders": { "date": { "type": "String" } }
+  },
+
+  "trimester1": "1st Trimester",
+  "@trimester1": {},
+
+  "trimester2": "2nd Trimester",
+  "@trimester2": {},
+
+  "trimester3": "3rd Trimester",
+  "@trimester3": {},
+
+  "weekLabel": "Week {week}",
+  "@weekLabel": {
+    "placeholders": { "week": { "type": "int" } }
+  },
+
+
+  "chatbotTitle": "Ask Sangwari Maa",
+  "@chatbotTitle": {},
+
+  "chatbotPlaceholder": "Type your question…",
+  "@chatbotPlaceholder": {},
+
+  "chatbotSend": "Send",
+  "@chatbotSend": {},
+
+  "chatbotTyping": "Sangwari Maa is typing…",
+  "@chatbotTyping": {},
+
+  "faqTitle": "Frequently Asked Questions",
+  "@faqTitle": {},
+
+  "faqEmpty": "No FAQs available at the moment.",
+  "@faqEmpty": {},
+
+
+  "remindersTitle": "My Reminders",
+  "@remindersTitle": {},
+
+  "reminderAncVisit": "ANC Visit Reminder",
+  "@reminderAncVisit": {},
+
+  "reminderMedicine": "Medicine Reminder",
+  "@reminderMedicine": {},
+
+  "reminderFollowUp": "Follow-up Reminder",
+  "@reminderFollowUp": {},
+
+  "reminderSetFor": "Set for {time}",
+  "@reminderSetFor": {
+    "placeholders": { "time": { "type": "String" } }
+  },
+
+  "reminderAddNew": "Add Reminder",
+  "@reminderAddNew": {},
+
+  "reminderDeleteConfirm": "Delete this reminder?",
+  "@reminderDeleteConfirm": {},
+
+
+  "emergencyTitle": "Emergency Help",
+  "@emergencyTitle": {},
+
+  "emergencyDangerSigns": "Danger Signs",
+  "@emergencyDangerSigns": {},
+
+  "emergencyCallAmbulance": "Call Ambulance (102/108)",
+  "@emergencyCallAmbulance": {},
+
+  "emergencyCallAsha": "Notify My ASHA",
+  "@emergencyCallAsha": {},
+
+  "emergencySafetyConfirm": "Are you safe now?",
+  "@emergencySafetyConfirm": {},
+
+  "emergencySafetyYes": "Yes, I am safe",
+  "@emergencySafetyYes": {},
+
+  "emergencySafetyNo": "No, I still need help",
+  "@emergencySafetyNo": {},
+
+  "dangerSign1": "Heavy bleeding",
+  "@dangerSign1": {},
+
+  "dangerSign2": "Severe headache or blurred vision",
+  "@dangerSign2": {},
+
+  "dangerSign3": "High fever",
+  "@dangerSign3": {},
+
+  "dangerSign4": "Fits or convulsions",
+  "@dangerSign4": {},
+
+  "dangerSign5": "Reduced or no fetal movement",
+  "@dangerSign5": {},
+
+  "dangerSign6": "Severe abdominal pain",
+  "@dangerSign6": {},
+
+  "dangerSign7": "Swelling of hands, face, or feet",
+  "@dangerSign7": {},
+
+  "dangerSign8": "Difficulty breathing",
+  "@dangerSign8": {},
+
+
+  "ashaHomeTitle": "ASHA / ANM Dashboard",
+  "@ashaHomeTitle": {},
+
+  "activeAlerts": "Active Alerts",
+  "@activeAlerts": {},
+
+  "hrpCount": "High-Risk Pregnancies",
+  "@hrpCount": {},
+
+  "dueAncVisits": "ANC Visits Due Today",
+  "@dueAncVisits": {},
+
+  "totalRegistered": "Total Registered",
+  "@totalRegistered": {},
+
+  "viewAll": "View All",
+  "@viewAll": {},
+
+
+  "alertsTitle": "Alerts",
+  "@alertsTitle": {},
+
+  "alertRiskRed": "Red Alert",
+  "@alertRiskRed": {},
+
+  "alertRiskYellow": "Yellow Alert",
+  "@alertRiskYellow": {},
+
+  "alertTimeAgo": "{time} ago",
+  "@alertTimeAgo": {
+    "placeholders": { "time": { "type": "String" } }
+  },
+
+  "alertSymptoms": "Symptoms",
+  "@alertSymptoms": {},
+
+  "alertStatus": "Status",
+  "@alertStatus": {},
+
+  "alertStatusNotContacted": "Not Contacted",
+  "@alertStatusNotContacted": {},
+
+  "alertStatusContacted": "Contacted",
+  "@alertStatusContacted": {},
+
+  "alertStatusReferred": "Referred to Facility",
+  "@alertStatusReferred": {},
+
+  "alertStatusResolved": "Resolved",
+  "@alertStatusResolved": {},
+
+  "alertUpdateStatus": "Update Status",
+  "@alertUpdateStatus": {},
+
+  "alertCallBeneficiary": "Call Beneficiary",
+  "@alertCallBeneficiary": {},
+
+  "alertCallAmbulance": "Call Ambulance (102/108)",
+  "@alertCallAmbulance": {},
+
+  "alertNavigate": "Navigate to Location",
+  "@alertNavigate": {},
+
+  "alertOpenVisitForm": "Open Visit Form",
+  "@alertOpenVisitForm": {},
+
+  "alertDetailTitle": "Alert Details",
+  "@alertDetailTitle": {},
+
+  "alertBeneficiaryInfo": "Beneficiary Information",
+  "@alertBeneficiaryInfo": {},
+
+
+  "beneficiaryListTitle": "Beneficiaries",
+  "@beneficiaryListTitle": {},
+
+  "beneficiarySearch": "Search by name or ID",
+  "@beneficiarySearch": {},
+
+  "filterHighRisk": "High Risk",
+  "@filterHighRisk": {},
+
+  "filterBpcrIncomplete": "BPCR Incomplete",
+  "@filterBpcrIncomplete": {},
+
+  "beneficiaryDetailTitle": "Beneficiary Details",
+  "@beneficiaryDetailTitle": {},
+
+  "ancHistory": "ANC History",
+  "@ancHistory": {},
+
+  "visitLog": "Visit Log",
+  "@visitLog": {},
+
+  "activityTracker": "Activity Tracker",
+  "@activityTracker": {},
+
+
+  "facilityTitle": "Nearby Facilities",
+  "@facilityTitle": {},
+
+  "facilityDistance": "{distance} km away",
+  "@facilityDistance": {
+    "placeholders": { "distance": { "type": "String" } }
+  },
+
+  "facilityGetDirections": "Get Directions",
+  "@facilityGetDirections": {},
+
+  "currentLocation": "Current Location",
+  "@currentLocation": {},
+
+
+  "responseTimeTitle": "Response Time",
+  "@responseTimeTitle": {},
+
+  "responseAvgMinutes": "Avg. Response Time",
+  "@responseAvgMinutes": {},
+
+  "responseWithin1hr": "Within 1 Hour",
+  "@responseWithin1hr": {},
+
+  "responseDelayed": "Delayed Cases (>72hr)",
+  "@responseDelayed": {},
+
+  "actionInProgress": "In Progress",
+  "@actionInProgress": {},
+
+  "actionClosed": "Closed",
+  "@actionClosed": {},
+
+
+  "adminDashboardTitle": "Admin Dashboard",
+  "@adminDashboardTitle": {},
+
+  "panelOverview": "Overview",
+  "@panelOverview": {},
+
+  "panelBpcrAnalytics": "BPCR Analytics",
+  "@panelBpcrAnalytics": {},
+
+  "panelAlertMonitoring": "Alert Monitoring",
+  "@panelAlertMonitoring": {},
+
+  "panelResponseTime": "Response Time",
+  "@panelResponseTime": {},
+
+  "panelUserEngagement": "User Engagement",
+  "@panelUserEngagement": {},
+
+  "panelGisMap": "GIS Map",
+  "@panelGisMap": {},
+
+  "panelDataExport": "Data Export",
+  "@panelDataExport": {},
+
+  "panelSettings": "Settings",
+  "@panelSettings": {},
+
+  "statTotalRegistered": "Total Registered",
+  "@statTotalRegistered": {},
+
+  "statActiveUsers": "Active Users",
+  "@statActiveUsers": {},
+
+  "statDropOffPercent": "Drop-off Rate",
+  "@statDropOffPercent": {},
+
+  "statAvgBpcr": "Avg. BPCR Score",
+  "@statAvgBpcr": {},
+
+  "statActiveAlerts": "Active Alerts",
+  "@statActiveAlerts": {},
+
+  "statDau": "Daily Active Users",
+  "@statDau": {},
+
+  "statRemindersPerUser": "Reminders / User",
+  "@statRemindersPerUser": {},
+
+  "statMostUsedModule": "Most Used Module",
+  "@statMostUsedModule": {},
+
+  "analyticsScoreDistribution": "Score Distribution",
+  "@analyticsScoreDistribution": {},
+
+  "analyticsTrendLine": "Trend",
+  "@analyticsTrendLine": {},
+
+  "analyticsBlockWise": "Block-wise Comparison",
+  "@analyticsBlockWise": {},
+
+  "mapHighRiskPins": "High-Risk Pregnancies",
+  "@mapHighRiskPins": {},
+
+  "mapAlertLocations": "Alert Locations",
+  "@mapAlertLocations": {},
+
+  "mapFacilityOverlay": "Facilities",
+  "@mapFacilityOverlay": {},
+
+  "exportTitle": "Export Data",
+  "@exportTitle": {},
+
+  "exportFilterBlock": "Block",
+  "@exportFilterBlock": {},
+
+  "exportFilterTrimester": "Trimester",
+  "@exportFilterTrimester": {},
+
+  "exportFilterRisk": "Risk Level",
+  "@exportFilterRisk": {},
+
+  "exportFilterDateRange": "Date Range",
+  "@exportFilterDateRange": {},
+
+  "exportDownloadExcel": "Download Excel",
+  "@exportDownloadExcel": {},
+
+  "exportDownloadCsv": "Download CSV",
+  "@exportDownloadCsv": {},
+
+  "exportGenerating": "Generating export…",
+  "@exportGenerating": {},
+
+
+  "settingsTitle": "Settings",
+  "@settingsTitle": {},
+
+  "settingsLanguage": "Language",
+  "@settingsLanguage": {},
+
+  "settingsNotifications": "Notifications",
+  "@settingsNotifications": {},
+
+  "settingsAlertThreshold": "Alert Threshold",
+  "@settingsAlertThreshold": {},
+
+  "settingsAddAdmin": "Add Block Admin / BMO",
+  "@settingsAddAdmin": {},
+
+  "settingsRoleLabel": "Role",
+  "@settingsRoleLabel": {},
+
+  "roleWoman": "Pregnant Woman",
+  "@roleWoman": {},
+
+  "roleAsha": "ASHA",
+  "@roleAsha": {},
+
+  "roleAnm": "ANM",
+  "@roleAnm": {},
+
+  "roleBlockAdmin": "Block Admin",
+  "@roleBlockAdmin": {},
+
+  "roleBmo": "BMO",
+  "@roleBmo": {},
+
+  "rolePi": "Programme Investigator",
+  "@rolePi": {},
+
+  "roleSuperAdmin": "Super Admin",
+  "@roleSuperAdmin": {},
+
+  "uniqueId": "Unique ID",
+  "@uniqueId": {},
+
+  "area": "Area",
+  "@area": {},
+
+  "profileConfirmation": "Please confirm your profile details",
+  "@profileConfirmation": {},
+
+  "profileName": "Name",
+  "@profileName": {},
+
+  "profileRole": "Role",
+  "@profileRole": {},
+
+  "profileArea": "Area",
+  "@profileArea": {},
+
+  "profileSubcentre": "Sub-centre",
+  "@profileSubcentre": {},
+
+  "profileUniqueId": "Unique ID",
+  "@profileUniqueId": {},
+
+  "confirmDetails": "Confirm Details",
+  "@confirmDetails": {},
+
+  "offlineBannerMessage": "You are offline. Data will sync when connected.",
+  "@offlineBannerMessage": {},
+
+  "syncingData": "Syncing data…",
+  "@syncingData": {},
+
+  "lastSynced": "Last synced: {time}",
+  "@lastSynced": {
+    "placeholders": { "time": { "type": "String" } }
+  },
+
+  "versionLabel": "Version {version}",
+  "@versionLabel": {
+    "placeholders": { "version": { "type": "String" } }
+  }
+}

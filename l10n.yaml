@@ -1,0 +1,12 @@
+# l10n.yaml — place this at the Flutter project root (same level as pubspec.yaml)
+# Flutter reads this automatically when `flutter: generate: true` is set.
+
+arb-dir: lib/core/l10n          # folder containing app_en.arb, app_hi.arb
+template-arb-file: app_en.arb   # English is the source of truth
+output-localization-file: app_localizations.dart
+output-class: AppLocalizations
+output-dir: lib/core/l10n/generated   # generated dart files land here     # output in lib/ tree, not a hidden package
+nullable-getter: false           # AppLocalizations.of(ctx)! — no nulls needed
+
+# Uncomment to suppress output noise during builds:
+# suppress-warnings: true
