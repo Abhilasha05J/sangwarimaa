@@ -134,6 +134,186 @@ abstract class AppLocalizations {
   /// **'Continue'**
   String get continueLabel;
 
+  /// Splash screen CTA button
+  ///
+  /// In en, this message translates to:
+  /// **'Let\'s Start'**
+  String get splashStart;
+
+  /// Splash screen English tagline
+  ///
+  /// In en, this message translates to:
+  /// **'Sangwari MAA is a reliable pregnancy companion, providing timely guidance, reminders, and alerts to support informed decisions and ensure a safe, confident maternal journey.'**
+  String get splashTaglineEn;
+
+  /// Splash screen Hindi tagline
+  ///
+  /// In en, this message translates to:
+  /// **'संगवारी MAA एक भरोसेमंद गर्भावस्था साथी है, जो समय पर मार्गदर्शन, रिमाइंडर और चेतावनी देकर सुरक्षित और जागरूक मातृत्व यात्रा सुनिश्चित करती है'**
+  String get splashTaglineHi;
+
+  /// Language select screen title
+  ///
+  /// In en, this message translates to:
+  /// **'Welcome to Sangwari MAA'**
+  String get languageTitle;
+
+  /// Language select subtitle
+  ///
+  /// In en, this message translates to:
+  /// **'Choose your preferred language.'**
+  String get chooseLanguage;
+
+  /// No description provided for @registerHere.
+  ///
+  /// In en, this message translates to:
+  /// **'Register here'**
+  String get registerHere;
+
+  /// No description provided for @identityVerification.
+  ///
+  /// In en, this message translates to:
+  /// **'Identity Verification'**
+  String get identityVerification;
+
+  /// No description provided for @loginTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Login'**
+  String get loginTitle;
+
+  /// No description provided for @noAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Don\'t have an account?'**
+  String get noAccount;
+
+  /// No description provided for @registerTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Register to create account'**
+  String get registerTitle;
+
+  /// No description provided for @mobileOtp.
+  ///
+  /// In en, this message translates to:
+  /// **'Mobile OTP'**
+  String get mobileOtp;
+
+  /// No description provided for @mothersProfile.
+  ///
+  /// In en, this message translates to:
+  /// **'Mother\'s Profile'**
+  String get mothersProfile;
+
+  /// No description provided for @fullNameHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter Your Full Name'**
+  String get fullNameHint;
+
+  /// No description provided for @ageHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Years'**
+  String get ageHint;
+
+  /// No description provided for @husbandsAge.
+  ///
+  /// In en, this message translates to:
+  /// **'Husband\'s Age'**
+  String get husbandsAge;
+
+  /// No description provided for @dateHint.
+  ///
+  /// In en, this message translates to:
+  /// **'dd-mm-yyyy'**
+  String get dateHint;
+
+  /// No description provided for @currentAddress.
+  ///
+  /// In en, this message translates to:
+  /// **'Current Address'**
+  String get currentAddress;
+
+  /// No description provided for @addressHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter Residential Address'**
+  String get addressHint;
+
+  /// No description provided for @bloodGroupHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Select'**
+  String get bloodGroupHint;
+
+  /// No description provided for @gestationalAge.
+  ///
+  /// In en, this message translates to:
+  /// **'Gestational Age'**
+  String get gestationalAge;
+
+  /// No description provided for @gestationalAgeHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Weeks'**
+  String get gestationalAgeHint;
+
+  /// No description provided for @lmpDetails.
+  ///
+  /// In en, this message translates to:
+  /// **'LMP Details'**
+  String get lmpDetails;
+
+  /// No description provided for @eddHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Calculated Delivery Date'**
+  String get eddHint;
+
+  /// No description provided for @healthCenter.
+  ///
+  /// In en, this message translates to:
+  /// **'Health Center Selection'**
+  String get healthCenter;
+
+  /// No description provided for @selectVillage.
+  ///
+  /// In en, this message translates to:
+  /// **'Select Village'**
+  String get selectVillage;
+
+  /// No description provided for @selectVillageHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Select Village'**
+  String get selectVillageHint;
+
+  /// No description provided for @phc.
+  ///
+  /// In en, this message translates to:
+  /// **'Primary Health Center (PHC)'**
+  String get phc;
+
+  /// No description provided for @phcHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Select Nearest PHC'**
+  String get phcHint;
+
+  /// No description provided for @completeReg.
+  ///
+  /// In en, this message translates to:
+  /// **'Complete Registration'**
+  String get completeReg;
+
+  /// No description provided for @invalidMobile.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter a valid 10-digit mobile number'**
+  String get invalidMobile;
+
   /// No description provided for @cancel.
   ///
   /// In en, this message translates to:
@@ -305,13 +485,13 @@ abstract class AppLocalizations {
   /// No description provided for @enterOtp.
   ///
   /// In en, this message translates to:
-  /// **'Enter OTP'**
+  /// **'Enter 6-digit OTP'**
   String get enterOtp;
 
   /// No description provided for @otpSentTo.
   ///
   /// In en, this message translates to:
-  /// **'OTP sent to {mobile}'**
+  /// **'An OTP has been sent on {mobile}'**
   String otpSentTo(String mobile);
 
   /// No description provided for @verifyOtp.
@@ -461,13 +641,13 @@ abstract class AppLocalizations {
   /// No description provided for @consentTitle.
   ///
   /// In en, this message translates to:
-  /// **'Consent'**
+  /// **'Digital Health Consent'**
   String get consentTitle;
 
   /// No description provided for @consentBody.
   ///
   /// In en, this message translates to:
-  /// **'I agree to share my health information for maternal care services under this program.'**
+  /// **'I hereby give my consent to store and process my medical records for prenatal care. I understand that my data will be used to provide me the personalized health alerts and AI assistance.'**
   String get consentBody;
 
   /// No description provided for @consentRequired.
@@ -1043,7 +1223,7 @@ abstract class AppLocalizations {
   /// No description provided for @totalRegistered.
   ///
   /// In en, this message translates to:
-  /// **'Total Registered'**
+  /// **'Total Rloegistered'**
   String get totalRegistered;
 
   /// No description provided for @viewAll.

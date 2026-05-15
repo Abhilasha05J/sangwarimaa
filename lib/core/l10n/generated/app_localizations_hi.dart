@@ -27,6 +27,98 @@ class AppLocalizationsHi extends AppLocalizations {
   String get continueLabel => 'जारी रखें';
 
   @override
+  String get splashStart => 'चलिए शुरू करें';
+
+  @override
+  String get splashTaglineEn =>
+      'Sangwari MAA is a reliable pregnancy companion, providing timely guidance, reminders, and alerts to support informed decisions and ensure a safe, confident maternal journey.';
+
+  @override
+  String get splashTaglineHi =>
+      'संगवारी MAA एक भरोसेमंद गर्भावस्था साथी है, जो समय पर मार्गदर्शन, रिमाइंडर और चेतावनी देकर सुरक्षित और जागरूक मातृत्व यात्रा सुनिश्चित करती है';
+
+  @override
+  String get languageTitle => 'संगवारी MAA में आपका स्वागत है';
+
+  @override
+  String get chooseLanguage => 'अपनी पसंदीदा भाषा चुनें।';
+
+  @override
+  String get registerHere => 'यहाँ पंजीकरण करें';
+
+  @override
+  String get identityVerification => 'पहचान सत्यापन';
+
+  @override
+  String get loginTitle => 'अपने खाते में लॉग इन करें';
+
+  @override
+  String get noAccount => 'खाता नहीं है?';
+
+  @override
+  String get registerTitle => 'खाता बनाने के लिए पंजीकरण करें';
+
+  @override
+  String get mobileOtp => 'मोबाइल OTP';
+
+  @override
+  String get mothersProfile => 'माँ की प्रोफ़ाइल';
+
+  @override
+  String get fullNameHint => 'अपना पूरा नाम दर्ज करें';
+
+  @override
+  String get ageHint => 'वर्ष';
+
+  @override
+  String get husbandsAge => 'पति की आयु';
+
+  @override
+  String get dateHint => 'दिन-माह-वर्ष';
+
+  @override
+  String get currentAddress => 'वर्तमान पता';
+
+  @override
+  String get addressHint => 'आवासीय पता दर्ज करें';
+
+  @override
+  String get bloodGroupHint => 'चुनें';
+
+  @override
+  String get gestationalAge => 'गर्भकालीन आयु';
+
+  @override
+  String get gestationalAgeHint => 'सप्ताह';
+
+  @override
+  String get lmpDetails => 'LMP विवरण';
+
+  @override
+  String get eddHint => 'अनुमानित प्रसव तिथि';
+
+  @override
+  String get healthCenter => 'स्वास्थ्य केंद्र चयन';
+
+  @override
+  String get selectVillage => 'गाँव चुनें';
+
+  @override
+  String get selectVillageHint => 'गाँव चुनें';
+
+  @override
+  String get phc => 'प्राथमिक स्वास्थ्य केंद्र (PHC)';
+
+  @override
+  String get phcHint => 'निकटतम PHC चुनें';
+
+  @override
+  String get completeReg => 'पंजीकरण पूरा करें';
+
+  @override
+  String get invalidMobile => 'कृपया 10 अंकों का वैध मोबाइल नंबर दर्ज करें';
+
+  @override
   String get cancel => 'रद्द करें';
 
   @override

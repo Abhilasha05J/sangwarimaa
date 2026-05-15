@@ -19,6 +19,95 @@
 
   "continueLabel": "Continue",
   "@continueLabel": {},
+"splashStart": "Let's Start",
+  "@splashStart": { "description": "Splash screen CTA button" },
+
+  "splashTaglineEn": "Sangwari MAA is a reliable pregnancy companion, providing timely guidance, reminders, and alerts to support informed decisions and ensure a safe, confident maternal journey.",
+  "@splashTaglineEn": { "description": "Splash screen English tagline" },
+
+  "splashTaglineHi": "संगवारी MAA एक भरोसेमंद गर्भावस्था साथी है, जो समय पर मार्गदर्शन, रिमाइंडर और चेतावनी देकर सुरक्षित और जागरूक मातृत्व यात्रा सुनिश्चित करती है",
+  "@splashTaglineHi": { "description": "Splash screen Hindi tagline" },
+
+  "languageTitle": "Welcome to Sangwari MAA",
+  "@languageTitle": { "description": "Language select screen title" },
+
+  "chooseLanguage": "Choose your preferred language.",
+  "@chooseLanguage": { "description": "Language select subtitle" },
+
+  "registerHere": "Register here",
+  "@registerHere": {},
+
+  "identityVerification": "Identity Verification",
+  "@identityVerification": {},
+
+  "loginTitle": "Login",
+  "@loginTitle": {},
+
+  "noAccount": "Don't have an account?",
+  "@noAccount": {},
+
+  "registerTitle": "Register to create account",
+  "@registerTitle": {},
+
+  "mobileOtp": "Mobile OTP",
+  "@mobileOtp": {},
+
+  "mothersProfile": "Mother's Profile",
+  "@mothersProfile": {},
+
+  "fullNameHint": "Enter Your Full Name",
+  "@fullNameHint": {},
+
+  "ageHint": "Years",
+  "@ageHint": {},
+
+  "husbandsAge": "Husband's Age",
+  "@husbandsAge": {},
+
+  "dateHint": "dd-mm-yyyy",
+  "@dateHint": {},
+
+  "currentAddress": "Current Address",
+  "@currentAddress": {},
+
+  "addressHint": "Enter Residential Address",
+  "@addressHint": {},
+
+  "bloodGroupHint": "Select",
+  "@bloodGroupHint": {},
+
+  "gestationalAge": "Gestational Age",
+  "@gestationalAge": {},
+
+  "gestationalAgeHint": "Weeks",
+  "@gestationalAgeHint": {},
+
+  "lmpDetails": "LMP Details",
+  "@lmpDetails": {},
+
+  "eddHint": "Calculated Delivery Date",
+  "@eddHint": {},
+
+  "healthCenter": "Health Center Selection",
+  "@healthCenter": {},
+
+  "selectVillage": "Select Village",
+  "@selectVillage": {},
+
+  "selectVillageHint": "Select Village",
+  "@selectVillageHint": {},
+
+  "phc": "Primary Health Center (PHC)",
+  "@phc": {},
+
+  "phcHint": "Select Nearest PHC",
+  "@phcHint": {},
+
+  "completeReg": "Complete Registration",
+  "@completeReg": {},
+
+  "invalidMobile": "Please enter a valid 10-digit mobile number",
+  "@invalidMobile": {},
 
   "cancel": "Cancel",
   "@cancel": {},
@@ -106,10 +195,10 @@
   "sendOtp": "Send OTP",
   "@sendOtp": {},
 
-  "enterOtp": "Enter OTP",
+  "enterOtp": "Enter 6-digit OTP",
   "@enterOtp": {},
 
-  "otpSentTo": "OTP sent to {mobile}",
+  "otpSentTo": "An OTP has been sent on {mobile}",
   "@otpSentTo": {
     "placeholders": { "mobile": { "type": "String" } }
   },
@@ -142,7 +231,6 @@
 
   "twoFactorOtp": "Two-Factor OTP",
   "@twoFactorOtp": { "description": "Admin 2FA label" },
-
 
   "registrationTitle": "New Registration",
   "@registrationTitle": {},
@@ -189,10 +277,10 @@
   "ashaName": "ASHA Name",
   "@ashaName": {},
 
-  "consentTitle": "Consent",
+  "consentTitle": "Digital Health Consent",
   "@consentTitle": {},
 
-  "consentBody": "I agree to share my health information for maternal care services under this program.",
+  "consentBody": "I hereby give my consent to store and process my medical records for prenatal care. I understand that my data will be used to provide me the personalized health alerts and AI assistance.",
   "@consentBody": {},
 
   "consentRequired": "Please accept consent to proceed.",
@@ -500,7 +588,7 @@
   "dueAncVisits": "ANC Visits Due Today",
   "@dueAncVisits": {},
 
-  "totalRegistered": "Total Registered",
+  "totalRegistered": "Total Rloegistered",
   "@totalRegistered": {},
 
   "viewAll": "View All",

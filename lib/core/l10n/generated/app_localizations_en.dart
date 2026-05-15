@@ -27,6 +27,98 @@ class AppLocalizationsEn extends AppLocalizations {
   String get continueLabel => 'Continue';
 
   @override
+  String get splashStart => 'Let\'s Start';
+
+  @override
+  String get splashTaglineEn =>
+      'Sangwari MAA is a reliable pregnancy companion, providing timely guidance, reminders, and alerts to support informed decisions and ensure a safe, confident maternal journey.';
+
+  @override
+  String get splashTaglineHi =>
+      'संगवारी MAA एक भरोसेमंद गर्भावस्था साथी है, जो समय पर मार्गदर्शन, रिमाइंडर और चेतावनी देकर सुरक्षित और जागरूक मातृत्व यात्रा सुनिश्चित करती है';
+
+  @override
+  String get languageTitle => 'Welcome to Sangwari MAA';
+
+  @override
+  String get chooseLanguage => 'Choose your preferred language.';
+
+  @override
+  String get registerHere => 'Register here';
+
+  @override
+  String get identityVerification => 'Identity Verification';
+
+  @override
+  String get loginTitle => 'Login';
+
+  @override
+  String get noAccount => 'Don\'t have an account?';
+
+  @override
+  String get registerTitle => 'Register to create account';
+
+  @override
+  String get mobileOtp => 'Mobile OTP';
+
+  @override
+  String get mothersProfile => 'Mother\'s Profile';
+
+  @override
+  String get fullNameHint => 'Enter Your Full Name';
+
+  @override
+  String get ageHint => 'Years';
+
+  @override
+  String get husbandsAge => 'Husband\'s Age';
+
+  @override
+  String get dateHint => 'dd-mm-yyyy';
+
+  @override
+  String get currentAddress => 'Current Address';
+
+  @override
+  String get addressHint => 'Enter Residential Address';
+
+  @override
+  String get bloodGroupHint => 'Select';
+
+  @override
+  String get gestationalAge => 'Gestational Age';
+
+  @override
+  String get gestationalAgeHint => 'Weeks';
+
+  @override
+  String get lmpDetails => 'LMP Details';
+
+  @override
+  String get eddHint => 'Calculated Delivery Date';
+
+  @override
+  String get healthCenter => 'Health Center Selection';
+
+  @override
+  String get selectVillage => 'Select Village';
+
+  @override
+  String get selectVillageHint => 'Select Village';
+
+  @override
+  String get phc => 'Primary Health Center (PHC)';
+
+  @override
+  String get phcHint => 'Select Nearest PHC';
+
+  @override
+  String get completeReg => 'Complete Registration';
+
+  @override
+  String get invalidMobile => 'Please enter a valid 10-digit mobile number';
+
+  @override
   String get cancel => 'Cancel';
 
   @override
@@ -112,11 +204,11 @@ class AppLocalizationsEn extends AppLocalizations {
   String get sendOtp => 'Send OTP';
 
   @override
-  String get enterOtp => 'Enter OTP';
+  String get enterOtp => 'Enter 6-digit OTP';
 
   @override
   String otpSentTo(String mobile) {
-    return 'OTP sent to $mobile';
+    return 'An OTP has been sent on $mobile';
   }
 
   @override
@@ -194,11 +286,11 @@ class AppLocalizationsEn extends AppLocalizations {
   String get ashaName => 'ASHA Name';
 
   @override
-  String get consentTitle => 'Consent';
+  String get consentTitle => 'Digital Health Consent';
 
   @override
   String get consentBody =>
-      'I agree to share my health information for maternal care services under this program.';
+      'I hereby give my consent to store and process my medical records for prenatal care. I understand that my data will be used to provide me the personalized health alerts and AI assistance.';
 
   @override
   String get consentRequired => 'Please accept consent to proceed.';
@@ -498,7 +590,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get dueAncVisits => 'ANC Visits Due Today';
 
   @override
-  String get totalRegistered => 'Total Registered';
+  String get totalRegistered => 'Total Rloegistered';
 
   @override
   String get viewAll => 'View All';
