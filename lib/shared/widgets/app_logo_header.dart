@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 /// The Sangwari Maa logo — used on Splash, Language, and Login screens.
-/// Shows assets/images/logo.png in a fixed size.
+/// Shows assets/images/app_logo.png in a fixed size.
 class AppLogoHeader extends StatelessWidget {
   final double width;
   final double height;

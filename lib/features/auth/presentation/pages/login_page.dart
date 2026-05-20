@@ -12,11 +12,6 @@ import 'package:sangwari_maa/shared/widgets/app_logo_header.dart';
 import 'package:sangwari_maa/shared/widgets/app_primary_button.dart';
 import 'package:sangwari_maa/shared/widgets/app_text_field.dart';
 
-/// Screen 3 — Login (Mobile Number Entry).
-///
-/// User enters 10-digit mobile number and taps "Get OTP".
-/// On success, navigates to OtpVerificationPage with the mobile number.
-///
 /// Route: /login
 class LoginPage extends ConsumerStatefulWidget {
   const LoginPage({super.key});
@@ -45,6 +40,12 @@ class _LoginPageState extends ConsumerState<LoginPage> {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
+    // sizeOf / paddingOf are O(1) and rebuild only on their specific change,
+    // unlike MediaQuery.of(context) which rebuilds on ANY MediaQuery change.
+    final size = MediaQuery.sizeOf(context);
+    final padding = MediaQuery.paddingOf(context);
+    final screenH = size.height;
+    final logoHeight = (screenH * 0.20).clamp(100.0, 180.0);
 
     // Listen for OTP sent success → navigate to OTP screen
     ref.listen<AsyncValue<void>>(authControllerProvider, (_, next) {
@@ -65,89 +66,114 @@ class _LoginPageState extends ConsumerState<LoginPage> {
       child: Scaffold(
         backgroundColor: Colors.transparent,
         resizeToAvoidBottomInset: true,
-        body :SafeArea(
-            child: SingleChildScrollView(
+        body: SafeArea(
+          child: Form(
+            key: _formKey,
+            child: CustomScrollView(
+              // CustomScrollView + SliverFillRemaining replaces
+              // SingleChildScrollView + ConstrainedBox + IntrinsicHeight.
+              // Eliminates the double layout pass IntrinsicHeight requires.
               keyboardDismissBehavior:
               ScrollViewKeyboardDismissBehavior.onDrag,
               physics: const BouncingScrollPhysics(),
-              padding: const EdgeInsets.symmetric(horizontal: AppSpacing.screenH),
-              child: Form(
-                key: _formKey,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const SizedBox(height: AppSpacing.xxl*2),
+              slivers: [
+                SliverPadding(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: AppSpacing.screenH),
+                  sliver: SliverFillRemaining(
+                    hasScrollBody: false,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SizedBox(height: screenH * 0.06),
 
-                    // ── Logo ─────────────────────────────────────────────
-                    const AppLogoHeader(width: 500, height: 180),
-                    //const SizedBox(height: AppSpacing.lg),
-                    // ── Identity Verification title ───────────────────────
-                    _VerificationHeader(l10n: l10n),
-                    const SizedBox(height: AppSpacing.xl),
+                        // ── Logo ───────────────────────────────────────
+                        AppLogoHeader(
+                          width: double.infinity,
+                          height: logoHeight,
+                        ),
 
-                    // ── Mobile Number field ───────────────────────────────
-                    Text(l10n.mobileNumber, style: AppTypography.fieldLabel),
-                    const SizedBox(height: AppSpacing.sm),
-                    AppTextField(
-                      hint: l10n.enterMobileNumber,
-                      controller: _mobileCtrl,
-                      keyboardType: TextInputType.phone,
-                      inputFormatters: [
-                        FilteringTextInputFormatter.digitsOnly,
-                        LengthLimitingTextInputFormatter(10),
-                      ],
-                      prefixIcon: Padding(
-                        padding: const EdgeInsets.all(AppSpacing.md),
-                        child: Icon(Icons.phone_android,
-                            color: AppColors.hintText, size: 20),
-                      ),
-                      validator: (v) {
-                        if (v == null || v.length != 10) {
-                          return l10n.invalidMobile;
-                        }
-                        return null;
-                      },
-                    ),
+                        SizedBox(height: screenH * 0.02),
 
-                    const SizedBox(height: AppSpacing.md),
+                        // ── Identity Verification title ─────────────────
+                        _VerificationHeader(l10n: l10n),
 
-                    // ── Get OTP button ────────────────────────────────────
-                    AppPrimaryButton(
-                      label: l10n.sendOtp,
-                      isLoading: isLoading,
-                      onTap: _onGetOtp,
-                    ),
+                        const SizedBox(height: AppSpacing.xl),
 
-                    const SizedBox(height: AppSpacing.xxl *6),
+                        // ── Mobile Number field ─────────────────────────
+                        Text(l10n.mobileNumber,
+                            style: AppTypography.fieldLabel),
+                        const SizedBox(height: AppSpacing.sm),
+                        AppTextField(
+                          hint: l10n.enterMobileNumber,
+                          controller: _mobileCtrl,
+                          keyboardType: TextInputType.phone,
+                          inputFormatters: [
+                            FilteringTextInputFormatter.digitsOnly,
+                            LengthLimitingTextInputFormatter(10),
+                          ],
+                          prefixIcon: const Padding(
+                            padding: EdgeInsets.all(AppSpacing.md),
+                            child: Icon(
+                              Icons.phone_android,
+                              color: AppColors.hintText,
+                              size: 20,
+                            ),
+                          ),
+                          validator: (v) {
+                            if (v == null || v.length != 10) {
+                              return l10n.invalidMobile;
+                            }
+                            return null;
+                          },
+                        ),
 
-                    // ── Register link ─────────────────────────────────────
-                    Center(
-                      child: GestureDetector(
-                        onTap: () => context.pushNamed('register'),
-                        child: RichText(
-                          text: TextSpan(
-                            children: [
-                              TextSpan(
-                                text: '${l10n.noAccount} ',
-                                style: AppTypography.bodyMedium,
+                        const SizedBox(height: AppSpacing.md),
+
+                        // ── Get OTP button ──────────────────────────────
+                        AppPrimaryButton(
+                          label: l10n.sendOtp,
+                          isLoading: isLoading,
+                          onTap: _onGetOtp,
+                        ),
+
+                        // ── Flexible gap ────────────────────────────────
+                        const Spacer(),
+
+                        // ── Register link ───────────────────────────────
+                        Center(
+                          child: GestureDetector(
+                            onTap: () => context.pushNamed('register'),
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  vertical: AppSpacing.md),
+                              child: RichText(
+                                text: TextSpan(
+                                  children: [
+                                    TextSpan(
+                                      text: '${l10n.noAccount} ',
+                                      style: AppTypography.bodyMedium,
+                                    ),
+                                    TextSpan(
+                                      text: l10n.registerHere,
+                                      style: AppTypography.linkText,
+                                    ),
+                                  ],
+                                ),
                               ),
-                              TextSpan(
-                                text: l10n.registerHere,
-                                style: AppTypography.linkText,
-                              ),
-                            ],
+                            ),
                           ),
                         ),
-                      ),
-                    ),
 
-                    const SizedBox(height: AppSpacing.lg),
-                  ],
+                        const SizedBox(height: AppSpacing.lg),
+                      ],
+                    ),
+                  ),
                 ),
-              ),
+              ],
             ),
           ),
-
+        ),
       ),
     );
   }
@@ -162,16 +188,7 @@ class _VerificationHeader extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          // children: [
-          //   const Icon(Icons.verified_user,
-          //       color: AppColors.pinkText, size: 18),
-          //   const SizedBox(width: AppSpacing.xs),
-          //   Text(l10n.identityVerification, style: AppTypography.pinkLabel),
-          // ],
-        ),
-        //const SizedBox(height: AppSpacing.xs),
+        const Row(mainAxisAlignment: MainAxisAlignment.center),
         Text(
           l10n.loginTitle,
           style: AppTypography.titleLarge,

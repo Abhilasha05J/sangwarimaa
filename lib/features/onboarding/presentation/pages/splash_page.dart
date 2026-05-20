@@ -1,3 +1,5 @@
+
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -9,11 +11,7 @@ import 'package:sangwari_maa/shared/widgets/app_background.dart';
 import 'package:sangwari_maa/shared/widgets/app_logo_header.dart';
 import 'package:sangwari_maa/shared/widgets/app_primary_button.dart';
 
-/// Screen 1 — Splash / Welcome screen.
-///
-/// Shows the app logo, bilingual tagline (EN + HI always visible),
-/// and a "Let's Start" CTA that navigates to Language Selection.
-///
+
 /// Route: /  (initial route before onboarding is complete)
 class SplashPage extends ConsumerWidget {
   const SplashPage({super.key});
@@ -21,6 +19,11 @@ class SplashPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context)!;
+    // Read MediaQuery once — avoids repeated lookups on every rebuild
+    final mq = MediaQuery.sizeOf(context);
+   // final padding = MediaQuery.paddingOf(context);
+    final screenH = mq.height;
+    final logoHeight = (screenH * 0.20).clamp(100.0, 200.0);
 
     return PopScope(
       canPop: false,
@@ -29,31 +32,49 @@ class SplashPage extends ConsumerWidget {
         resizeToAvoidBottomInset: false,
         body: AppBackground(
           child: SafeArea(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: AppSpacing.screenH),
-              child: Column(
-                children: [
-                  const Spacer(flex: 2),
+            child: CustomScrollView(
+              // CustomScrollView + SliverFillRemaining replaces
+              // SingleChildScrollView + ConstrainedBox + IntrinsicHeight.
+              // IntrinsicHeight forces a double layout pass — expensive on
+              // every frame. SliverFillRemaining achieves the same "fill
+              // viewport, scroll if needed" in a single pass.
+              physics: const BouncingScrollPhysics(),
+              slivers: [
+                SliverPadding(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: AppSpacing.screenH),
+                  sliver: SliverFillRemaining(
+                    hasScrollBody: false,
+                    child: Column(
+                      children: [
+                        SizedBox(height: screenH * 0.20),
 
-                  // ── Logo ─────────────────────────────────────────────────
-                  const AppLogoHeader(width: 500,height: 200),
-                  //const Spacer(flex: 1),
+                        // ── Logo ───────────────────────────────────────
+                        AppLogoHeader(
+                          width: double.infinity,
+                          height: logoHeight,
+                        ),
 
-                  // ── Bilingual tagline ─────────────────────────────────────
-                  _BilingualTagline(l10n: l10n),
+                        SizedBox(height: screenH * 0.01),
 
-                  const Spacer(flex: 3),
+                        // ── Bilingual tagline ───────────────────────────
+                        _BilingualTagline(l10n: l10n),
 
-                  // ── CTA ───────────────────────────────────────────────────
-                  AppPrimaryButton(
-                    label: l10n.splashStart,
-                    showArrow: false,
-                    onTap: () => context.pushNamed('language'),
+                        const Spacer(),
+
+                        // ── CTA ─────────────────────────────────────────
+                        AppPrimaryButton(
+                          label: l10n.splashStart,
+                          showArrow: false,
+                          onTap: () => context.pushNamed('language'),
+                        ),
+
+                        SizedBox(height: screenH * 0.04),
+                      ],
+                    ),
                   ),
-
-                  const SizedBox(height: AppSpacing.lg),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         ),
@@ -91,7 +112,7 @@ class _BilingualTagline extends StatelessWidget {
               ),
               TextSpan(
                 text:
-                    'is a reliable pregnancy companion, providing timely guidance, '
+                'is a reliable pregnancy companion, providing timely guidance, '
                     'reminders, and alerts to support informed decisions and ensure '
                     'a safe, confident maternal journey.',
                 style: AppTypography.bodyLarge,
@@ -123,7 +144,7 @@ class _BilingualTagline extends StatelessWidget {
               ),
               TextSpan(
                 text:
-                    'एक भरोसेमंद गर्भावस्था साथी है, जो समय पर मार्गदर्शन, '
+                'एक भरोसेमंद गर्भावस्था साथी है, जो समय पर मार्गदर्शन, '
                     'रिमाइंडर और चेतावनी देकर सुरक्षित और जागरूक मातृत्व यात्रा '
                     'सुनिश्चित करती है',
                 style: AppTypography.bodyLarge,

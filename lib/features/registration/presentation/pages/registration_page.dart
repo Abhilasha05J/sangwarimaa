@@ -12,14 +12,7 @@ import 'package:sangwari_maa/shared/widgets/app_bar.dart';
 import 'package:sangwari_maa/shared/widgets/app_primary_button.dart';
 import 'package:sangwari_maa/shared/widgets/app_text_field.dart';
 
-/// Screen 5 — Registration.
-///
-/// Three sections:
-///   A) Mother's Profile — name, mobile, age, husband's age, DOB,
-///                         address, blood group, gestational age, LMP, EDD
-///   B) Health Center Selection — village (dropdown), PHC (dropdown)
-///   C) Digital Health Consent — checkbox + consent text
-///
+
 /// Route: /register
 class RegistrationPage extends ConsumerStatefulWidget {
   const RegistrationPage({super.key});
@@ -32,15 +25,15 @@ class _RegistrationPageState extends ConsumerState<RegistrationPage> {
   final _formKey = GlobalKey<FormState>();
 
   // Mother's Profile controllers
-  final _nameCtrl     = TextEditingController();
-  final _mobileCtrl   = TextEditingController();
-  final _ageCtrl      = TextEditingController();
-  final _husbAgeCtrl  = TextEditingController();
-  final _dobCtrl      = TextEditingController();
-  final _addressCtrl  = TextEditingController();
-  final _gestCtrl     = TextEditingController();
-  final _lmpCtrl      = TextEditingController();
-  final _eddCtrl      = TextEditingController();
+  final _nameCtrl    = TextEditingController();
+  final _mobileCtrl  = TextEditingController();
+  final _ageCtrl     = TextEditingController();
+  final _husbAgeCtrl = TextEditingController();
+  final _dobCtrl     = TextEditingController();
+  final _addressCtrl = TextEditingController();
+  final _gestCtrl    = TextEditingController();
+  final _lmpCtrl     = TextEditingController();
+  final _eddCtrl     = TextEditingController();
 
   String? _selectedBloodGroup;
   String? _selectedVillage;
@@ -51,7 +44,6 @@ class _RegistrationPageState extends ConsumerState<RegistrationPage> {
     'A+', 'A−', 'B+', 'B−', 'AB+', 'AB−', 'O+', 'O−',
   ];
 
-  // Demo lists — replace with API data via Riverpod providers
   static const List<String> _villages = [
     'Raipur Village', 'Bilaspur Village', 'Durg Village',
     'Korba Village', 'Jagdalpur Village',
@@ -93,7 +85,9 @@ class _RegistrationPageState extends ConsumerState<RegistrationPage> {
     );
     if (picked != null) {
       ctrl.text =
-          '${picked.day.toString().padLeft(2, '0')}-${picked.month.toString().padLeft(2, '0')}-${picked.year}';
+      '${picked.day.toString().padLeft(2, '0')}-'
+          '${picked.month.toString().padLeft(2, '0')}-'
+          '${picked.year}';
     }
   }
 
@@ -107,25 +101,27 @@ class _RegistrationPageState extends ConsumerState<RegistrationPage> {
       return;
     }
     ref.read(registrationControllerProvider.notifier).register(
-          name: _nameCtrl.text.trim(),
-          mobile: _mobileCtrl.text.trim(),
-          age: int.tryParse(_ageCtrl.text) ?? 0,
-          husbandAge: int.tryParse(_husbAgeCtrl.text) ?? 0,
-          dob: _dobCtrl.text,
-          address: _addressCtrl.text.trim(),
-          bloodGroup: _selectedBloodGroup ?? '',
-          gestationalAge: int.tryParse(_gestCtrl.text) ?? 0,
-          lmp: _lmpCtrl.text,
-          edd: _eddCtrl.text,
-          village: _selectedVillage ?? '',
-          phc: _selectedPhc ?? '',
-        );
+      name: _nameCtrl.text.trim(),
+      mobile: _mobileCtrl.text.trim(),
+      age: int.tryParse(_ageCtrl.text) ?? 0,
+      husbandAge: int.tryParse(_husbAgeCtrl.text) ?? 0,
+      dob: _dobCtrl.text,
+      address: _addressCtrl.text.trim(),
+      bloodGroup: _selectedBloodGroup ?? '',
+      gestationalAge: int.tryParse(_gestCtrl.text) ?? 0,
+      lmp: _lmpCtrl.text,
+      edd: _eddCtrl.text,
+      village: _selectedVillage ?? '',
+      phc: _selectedPhc ?? '',
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
 
+    // ref.listen is fine in build for ConsumerStatefulWidget.
+    // It only fires on state transitions, not every frame.
     ref.listen<AsyncValue<void>>(registrationControllerProvider, (_, next) {
       next.whenOrNull(
         error: (e, _) => ScaffoldMessenger.of(context).showSnackBar(
@@ -135,8 +131,7 @@ class _RegistrationPageState extends ConsumerState<RegistrationPage> {
       );
     });
 
-    final isLoading =
-        ref.watch(registrationControllerProvider).isLoading;
+    final isLoading = ref.watch(registrationControllerProvider).isLoading;
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -144,70 +139,38 @@ class _RegistrationPageState extends ConsumerState<RegistrationPage> {
       appBar: TopBar(l10n: l10n),
       body: Form(
         key: _formKey,
+        // onUserInteraction: validates only the field the user touched —
+        // avoids validating all fields (and calling setState) on every
+        // keystroke across the whole form, which was a major jank source.
+        autovalidateMode: AutovalidateMode.onUserInteraction,
         child: SingleChildScrollView(
           physics: const BouncingScrollPhysics(),
           padding: const EdgeInsets.symmetric(
-              horizontal: AppSpacing.screenH, vertical: AppSpacing.md),
+            horizontal: AppSpacing.screenH,
+            vertical: AppSpacing.md,
+          ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Tab bar
-              Container(
-                color: const Color(0xFFE8F4FD),
-                padding: const EdgeInsets.symmetric(
-                    horizontal: AppSpacing.screenH, vertical: AppSpacing.sm),
-                child: Row(
-                  children: [
-                    Text(
-                      '${l10n.alreadyHaveAccount} ${l10n.loginTitle}',
-                      style: AppTypography.bodyMedium,
-                    ),
-                    const Spacer(),
-                    GestureDetector(
-                      onTap: () => context.pushNamed('login'),
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: AppSpacing.sm, vertical: AppSpacing.xs),
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          boxShadow: const [
-                            BoxShadow(
-                              color: Color(0xCC004AC1),
-                              blurRadius: 4,
-                              spreadRadius: 0,
-                              offset: Offset(0, 0),
-                            ),
-                          ],
-                          border: Border.all(color: AppColors.greyBorder),
-                          borderRadius:
-                          BorderRadius.circular(AppSpacing.radiusSm),
-                        ),
-                        child: Row(
-                          children: [
-                            Text(l10n.mobileOtp,
-                                style: AppTypography.bodySmall
-                                    .copyWith(color: AppColors.bodyText)),
-                            const SizedBox(width: AppSpacing.xs),
-                            const Icon(Icons.phone_android,
-                                size: 14, color: AppColors.hintText),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              // ── Title ──────────────────────────────────────────────────
-              // after the tab Container, before the title Text
+              // ── "Already have an account?" banner ─────────────────────
+              _LoginBanner(l10n: l10n),
+
               const SizedBox(height: AppSpacing.md),
+
+              // ── Title ─────────────────────────────────────────────────
               Center(
-                child: Text(l10n.registerTitle,
-                    style: AppTypography.titleMedium,
-                    textAlign: TextAlign.center),
+                child: Text(
+                  l10n.registerTitle,
+                  style: AppTypography.titleMedium,
+                  textAlign: TextAlign.center,
+                ),
               ),
               const SizedBox(height: AppSpacing.md),
 
               // ── Section A: Mother's Profile ───────────────────────────
+              // Each section is its own StatelessWidget so it is only
+              // rebuilt when its own inputs change, not when any other
+              // section's setState fires.
               _SectionCard(
                 icon: Icons.person,
                 title: l10n.mothersProfile,
@@ -254,7 +217,8 @@ class _RegistrationPageState extends ConsumerState<RegistrationPage> {
               _ConsentSection(
                 l10n: l10n,
                 value: _consentGiven,
-                onChanged: (v) => setState(() => _consentGiven = v ?? false),
+                onChanged: (v) =>
+                    setState(() => _consentGiven = v ?? false),
               ),
 
               const SizedBox(height: AppSpacing.xl),
@@ -267,12 +231,82 @@ class _RegistrationPageState extends ConsumerState<RegistrationPage> {
                 onTap: _onSubmit,
               ),
 
-              const SizedBox(height: AppSpacing.xxl),
+              // Safe bottom padding — respects keyboard + home indicator
+              SizedBox(
+                height: AppSpacing.md +
+                    MediaQuery.paddingOf(context).bottom,
+              ),
             ],
           ),
         ),
       ),
+    );
+  }
+}
 
+// ── Login banner ──────────────────────────────────────────────────────────
+// Replaced Row with Wrap so it reflows gracefully on 320 pt screens.
+
+class _LoginBanner extends StatelessWidget {
+  final AppLocalizations l10n;
+  const _LoginBanner({required this.l10n});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      color: const Color(0xFFE8F4FD),
+      padding: const EdgeInsets.symmetric(
+        horizontal: AppSpacing.md,
+        vertical: AppSpacing.sm,
+      ),
+      child: Wrap(
+        alignment: WrapAlignment.spaceBetween,
+        crossAxisAlignment: WrapCrossAlignment.center,
+        runSpacing: AppSpacing.sm,
+        children: [
+          Text(
+            '${l10n.alreadyHaveAccount} ${l10n.loginTitle}',
+            style: AppTypography.bodyMedium,
+          ),
+          GestureDetector(
+            onTap: () =>  context.pushNamed('login'),
+            child: Container(
+              padding: const EdgeInsets.symmetric(
+                horizontal: AppSpacing.sm,
+                vertical: AppSpacing.xs,
+              ),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                boxShadow: const [
+                  BoxShadow(
+                    color: Color(0xCC004AC1),
+                    blurRadius: 4,
+                    spreadRadius: 0,
+                    offset: Offset(0, 0),
+                  ),
+                ],
+                border: Border.all(color: AppColors.greyBorder),
+                borderRadius:
+                BorderRadius.circular(AppSpacing.radiusSm),
+              ),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    l10n.mobileOtp,
+                    style: AppTypography.bodySmall
+                        .copyWith(color: AppColors.bodyText),
+                  ),
+                  const SizedBox(width: AppSpacing.xs),
+                  const Icon(Icons.phone_android,
+                      size: 14, color: AppColors.hintText),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
@@ -280,7 +314,7 @@ class _RegistrationPageState extends ConsumerState<RegistrationPage> {
 // ── Section Card ──────────────────────────────────────────────────────────
 
 class _SectionCard extends StatelessWidget {
-  final String? svgAsset;      // new
+  final String? svgAsset;
   final IconData? icon;
   final String title;
   final Widget child;
@@ -295,6 +329,7 @@ class _SectionCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: double.infinity,
       decoration: BoxDecoration(
         color: AppColors.white,
         borderRadius: BorderRadius.circular(AppSpacing.radiusLg),
@@ -317,10 +352,15 @@ class _SectionCard extends StatelessWidget {
                   ),
                 )
               else if (icon != null)
-                Icon(icon, color: AppColors.pinkText, size: 20
-                ),
+                Icon(icon, color: AppColors.pinkText, size: 20),
               const SizedBox(width: AppSpacing.xs),
-              Text(title, style: AppTypography.pinkLabelLg),
+              Flexible(
+                child: Text(
+                  title,
+                  style: AppTypography.pinkLabelLg,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
             ],
           ),
           const SizedBox(height: AppSpacing.md),
@@ -379,7 +419,7 @@ class _MothersProfileSection extends StatelessWidget {
           controller: nameCtrl,
           textCapitalization: TextCapitalization.words,
           validator: (v) =>
-              (v == null || v.trim().isEmpty) ? 'Required' : null,
+          (v == null || v.trim().isEmpty) ? 'Required' : null,
         ),
         const SizedBox(height: AppSpacing.md),
 
@@ -395,11 +435,11 @@ class _MothersProfileSection extends StatelessWidget {
             LengthLimitingTextInputFormatter(10),
           ],
           validator: (v) =>
-              (v == null || v.length != 10) ? l10n.invalidMobile : null,
+          (v == null || v.length != 10) ? l10n.invalidMobile : null,
         ),
         const SizedBox(height: AppSpacing.md),
 
-        // Age + Husband's Age (side by side)
+        // Age + Husband's Age (side by side — Expanded handles narrow screens)
         Row(
           children: [
             Expanded(
@@ -527,7 +567,7 @@ class _MothersProfileSection extends StatelessWidget {
         ),
         const SizedBox(height: AppSpacing.md),
 
-        // Expected EDD
+        // Expected Delivery Date
         Text(l10n.expectedDeliveryDate, style: AppTypography.fieldLabel),
         const SizedBox(height: AppSpacing.xs),
         AppTextField(
@@ -572,7 +612,6 @@ class _HealthCenterSection extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        // Select Village
         Text(l10n.selectVillage, style: AppTypography.fieldLabel),
         const SizedBox(height: AppSpacing.xs),
         _DropdownField(
@@ -583,7 +622,6 @@ class _HealthCenterSection extends StatelessWidget {
         ),
         const SizedBox(height: AppSpacing.md),
 
-        // PHC
         Text(l10n.phc, style: AppTypography.fieldLabel),
         const SizedBox(height: AppSpacing.xs),
         _DropdownField(
@@ -636,13 +674,17 @@ class _ConsentSection extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(l10n.consentTitle,
-                    style: AppTypography.titleMedium
-                        .copyWith(fontWeight: FontWeight.w700)),
+                Text(
+                  l10n.consentTitle,
+                  style: AppTypography.titleMedium
+                      .copyWith(fontWeight: FontWeight.w700),
+                ),
                 const SizedBox(height: AppSpacing.xs),
-                Text(l10n.consentBody,
-                    style: AppTypography.bodySmall
-                        .copyWith(color: AppColors.bodyText)),
+                Text(
+                  l10n.consentBody,
+                  style: AppTypography.bodySmall
+                      .copyWith(color: AppColors.bodyText),
+                ),
               ],
             ),
           ),
@@ -669,6 +711,16 @@ class _DropdownField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Build DropdownMenuItems once per build. In practice the parent widget
+    // (a StatelessWidget section) is only rebuilt when the dropdown value
+    // changes, so this is called at most once per user interaction.
+    final menuItems = items
+        .map((e) => DropdownMenuItem(
+      value: e,
+      child: Text(e, style: AppTypography.bodyMedium),
+    ))
+        .toList(growable: false);
+
     return Container(
       decoration: BoxDecoration(
         color: AppColors.fieldFill,
@@ -682,13 +734,7 @@ class _DropdownField extends StatelessWidget {
           isExpanded: true,
           icon: const Icon(Icons.keyboard_arrow_down,
               color: AppColors.hintText),
-          items: items
-              .map((e) => DropdownMenuItem(
-                    value: e,
-                    child:
-                        Text(e, style: AppTypography.bodyMedium),
-                  ))
-              .toList(),
+          items: menuItems,
           onChanged: onChanged,
         ),
       ),

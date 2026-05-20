@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:sangwari_maa/core/constants/app_colors.dart';
 import 'package:sangwari_maa/core/constants/app_spacing.dart';
 
 ThemeData buildLightTheme() => ThemeData(
       useMaterial3: true,
-      fontFamily: GoogleFonts.roboto().fontFamily,
+      fontFamily: 'Roboto',
       scaffoldBackgroundColor: Colors.transparent,
       colorScheme: ColorScheme.fromSeed(
         seedColor: AppColors.gradStart,

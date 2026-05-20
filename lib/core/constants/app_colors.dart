@@ -45,4 +45,10 @@ abstract final class AppColors {
     end: Alignment.bottomCenter,
     colors: [bgTop, bgBottom],
   );
+
+  static const LinearGradient backgroundGradientBottomPink = LinearGradient(
+    begin: Alignment.topCenter,
+    end: Alignment.bottomCenter,
+    colors: [bgBottom, bgTop],
+  );
 }
