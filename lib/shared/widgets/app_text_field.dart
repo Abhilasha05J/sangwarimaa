@@ -14,6 +14,7 @@ class AppTextField extends StatefulWidget {
   final List<TextInputFormatter>? inputFormatters;
   final Widget? prefixIcon;
   final Widget? suffixIcon;
+  final Widget? suffix;
   final bool obscureText;
   final bool readOnly;
   final int maxLines;
@@ -33,6 +34,7 @@ class AppTextField extends StatefulWidget {
     this.inputFormatters,
     this.prefixIcon,
     this.suffixIcon,
+    this.suffix,
     this.obscureText = false,
     this.readOnly = false,
     this.maxLines = 1,
@@ -99,6 +101,7 @@ class _AppTextFieldState extends State<AppTextField> {
             fillColor: AppColors.fieldFill,
             prefixIcon: widget.prefixIcon,
             suffixIcon: widget.suffixIcon,
+            suffix: widget.suffix,
             contentPadding: const EdgeInsets.symmetric(
                 horizontal: AppSpacing.md, vertical: AppSpacing.md),
             border: OutlineInputBorder(
@@ -106,7 +109,7 @@ class _AppTextFieldState extends State<AppTextField> {
               borderSide: BorderSide.none,
             ),
             enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(AppSpacing.radiusLg),
+              borderRadius: BorderRadius.circular(AppSpacing.radiusSm),
               borderSide: BorderSide.none,
             ),
             focusedBorder: OutlineInputBorder(

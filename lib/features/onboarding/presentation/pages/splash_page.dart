@@ -1,5 +1,4 @@
 
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -31,52 +30,63 @@ class SplashPage extends ConsumerWidget {
         backgroundColor: Colors.transparent,
         resizeToAvoidBottomInset: false,
         body: AppBackground(
-          child: SafeArea(
-            child: CustomScrollView(
-              // CustomScrollView + SliverFillRemaining replaces
-              // SingleChildScrollView + ConstrainedBox + IntrinsicHeight.
-              // IntrinsicHeight forces a double layout pass — expensive on
-              // every frame. SliverFillRemaining achieves the same "fill
-              // viewport, scroll if needed" in a single pass.
-              physics: const BouncingScrollPhysics(),
-              slivers: [
-                SliverPadding(
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: AppSpacing.screenH),
-                  sliver: SliverFillRemaining(
-                    hasScrollBody: false,
-                    child: Column(
-                      children: [
-                        SizedBox(height: screenH * 0.20),
-
-                        // ── Logo ───────────────────────────────────────
-                        AppLogoHeader(
-                          width: double.infinity,
-                          height: logoHeight,
-                        ),
-
-                        SizedBox(height: screenH * 0.01),
-
-                        // ── Bilingual tagline ───────────────────────────
-                        _BilingualTagline(l10n: l10n),
-
-                        const Spacer(),
-
-                        // ── CTA ─────────────────────────────────────────
-                        AppPrimaryButton(
-                          label: l10n.splashStart,
-                          showArrow: false,
-                          onTap: () => context.pushNamed('language'),
-                        ),
-
-                        SizedBox(height: screenH * 0.04),
-                      ],
-                    ),
+          child:Stack(
+            children: [
+              // ── Watermark Background ─────────────────────────
+              Positioned.fill(
+                child: Opacity(
+                  opacity: 0.20,
+                  child: Image.asset(
+                    'assets/images/bg1.png',
+                    width: double.infinity,
+                    fit: BoxFit.cover,
                   ),
                 ),
-              ],
-            ),
-          ),
+              ),
+              SafeArea(
+                child: CustomScrollView(
+                  physics: const BouncingScrollPhysics(),
+                  slivers: [
+                    SliverPadding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: AppSpacing.screenH),
+                      sliver: SliverFillRemaining(
+                        hasScrollBody: false,
+                        child: Column(
+                          children: [
+                            SizedBox(height: screenH * 0.20),
+
+                            // ── Logo ───────────────────────────────────────
+                            AppLogoHeader(
+                              width: double.infinity,
+                              height: logoHeight,
+                            ),
+
+                            SizedBox(height: screenH * 0.01),
+
+                            // ── Bilingual tagline ───────────────────────────
+                            _BilingualTagline(l10n: l10n),
+
+                            const Spacer(),
+
+                            // ── CTA ─────────────────────────────────────────
+                            AppPrimaryButton(
+                              label: l10n.splashStart,
+                              showArrow: false,
+                              onTap: () => context.pushNamed('language'),
+                            ),
+
+                            SizedBox(height: screenH * 0.04),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          )
+
         ),
       ),
     );

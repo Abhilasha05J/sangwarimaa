@@ -60,7 +60,7 @@ final class RegistrationControllerProvider
 }
 
 String _$registrationControllerHash() =>
-    r'eb2a14902f05e9fd461554041bda1c965a8988aa';
+    r'1a04ad7adfddec3a114c7e2bdf5212036b83f98c';
 
 /// Registration controller — handles women self-registration form submission.
 ///

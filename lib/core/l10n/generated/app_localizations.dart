@@ -554,6 +554,66 @@ abstract class AppLocalizations {
   /// **'New Registration'**
   String get registrationTitle;
 
+  /// No description provided for @newUserCompleteRegistration.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'re new here! Please complete your registration to continue.'**
+  String get newUserCompleteRegistration;
+
+  /// No description provided for @welcomeBackLoggedIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Welcome back! You\'re already registered.'**
+  String get welcomeBackLoggedIn;
+
+  /// No description provided for @accountExistsPleaseLogin.
+  ///
+  /// In en, this message translates to:
+  /// **'An account already exists for this number. Please login.'**
+  String get accountExistsPleaseLogin;
+
+  /// No description provided for @dobFutureError.
+  ///
+  /// In en, this message translates to:
+  /// **'Date of birth cannot be in the future'**
+  String get dobFutureError;
+
+  /// No description provided for @ageRangeError.
+  ///
+  /// In en, this message translates to:
+  /// **'Age must be between 14 and 55'**
+  String get ageRangeError;
+
+  /// No description provided for @ageDobMismatch.
+  ///
+  /// In en, this message translates to:
+  /// **'Age does not match the date of birth entered'**
+  String get ageDobMismatch;
+
+  /// No description provided for @lmpFutureError.
+  ///
+  /// In en, this message translates to:
+  /// **'LMP date cannot be in the future'**
+  String get lmpFutureError;
+
+  /// No description provided for @lmpTooOldError.
+  ///
+  /// In en, this message translates to:
+  /// **'LMP date seems too far in the past'**
+  String get lmpTooOldError;
+
+  /// No description provided for @required.
+  ///
+  /// In en, this message translates to:
+  /// **'Required'**
+  String get required;
+
+  /// No description provided for @invalidValue.
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid value'**
+  String get invalidValue;
+
   /// No description provided for @fullName.
   ///
   /// In en, this message translates to:
@@ -671,20 +731,20 @@ abstract class AppLocalizations {
   /// No description provided for @myProfile.
   ///
   /// In en, this message translates to:
-  /// **'My Profile'**
+  /// **'Profile'**
   String get myProfile;
 
   /// Birth Preparedness & Complication Readiness module
   ///
   /// In en, this message translates to:
-  /// **'BPCR Module'**
+  /// **'BPCR'**
   String get bpcrModule;
 
-  /// No description provided for @maternalSchemes.
+  /// No description provided for @bpcrdesc.
   ///
   /// In en, this message translates to:
-  /// **'Maternal Schemes'**
-  String get maternalSchemes;
+  /// **'Track your birth preparedness and complications readiness milestones.'**
+  String get bpcrdesc;
 
   /// Antenatal Care Services
   ///
@@ -728,6 +788,18 @@ abstract class AppLocalizations {
   /// **'Are you sure you want to logout?'**
   String get logoutConfirm;
 
+  /// No description provided for @videomodule.
+  ///
+  /// In en, this message translates to:
+  /// **'Video Modules'**
+  String get videomodule;
+
+  /// No description provided for @videomoduledesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Educational content for safe motherhood'**
+  String get videomoduledesc;
+
   /// No description provided for @bpcrTitle.
   ///
   /// In en, this message translates to:
@@ -770,65 +842,101 @@ abstract class AppLocalizations {
   /// **'Low Risk'**
   String get bpcrRiskLow;
 
-  /// No description provided for @bpcrComponent1.
+  /// No description provided for @bpcr_danger_pregnancy_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Danger signs during pregnancy'**
+  String get bpcr_danger_pregnancy_title;
+
+  /// No description provided for @bpcr_danger_pregnancy_desc.
+  ///
+  /// In en, this message translates to:
+  /// **'Severe headaches, blurred vision, swelling.'**
+  String get bpcr_danger_pregnancy_desc;
+
+  /// No description provided for @bpcr_danger_labor_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Danger signs during labor & childbirth'**
+  String get bpcr_danger_labor_title;
+
+  /// No description provided for @bpcr_danger_labor_desc.
+  ///
+  /// In en, this message translates to:
+  /// **'Danger signs during labor and childbirth.'**
+  String get bpcr_danger_labor_desc;
+
+  /// No description provided for @bpcr_postnatal_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Danger signs during postnatal period'**
+  String get bpcr_postnatal_title;
+
+  /// No description provided for @bpcr_postnatal_desc.
+  ///
+  /// In en, this message translates to:
+  /// **'Foul smelling discharge, severe pain, depression.'**
+  String get bpcr_postnatal_desc;
+
+  /// No description provided for @bpcr_newborn_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Danger signs in the newborn period'**
+  String get bpcr_newborn_title;
+
+  /// No description provided for @bpcr_newborn_desc.
+  ///
+  /// In en, this message translates to:
+  /// **'Difficulty breathing, fits, cold to touch.'**
+  String get bpcr_newborn_desc;
+
+  /// No description provided for @bpcr_health_facility_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Health facility identification'**
+  String get bpcr_health_facility_title;
+
+  /// No description provided for @bpcr_skill_birth_attendant_title.
   ///
   /// In en, this message translates to:
   /// **'Identified skilled birth attendant'**
-  String get bpcrComponent1;
+  String get bpcr_skill_birth_attendant_title;
 
-  /// No description provided for @bpcrComponent2.
+  /// No description provided for @bpcr_transport_title.
   ///
   /// In en, this message translates to:
-  /// **'Identified delivery place'**
-  String get bpcrComponent2;
+  /// **'Planned to earmark transport modality to health facility'**
+  String get bpcr_transport_title;
 
-  /// No description provided for @bpcrComponent3.
+  /// No description provided for @bpcr_transport_desc.
   ///
   /// In en, this message translates to:
-  /// **'Identified transport'**
-  String get bpcrComponent3;
+  /// **'108/102 Emergency call'**
+  String get bpcr_transport_desc;
 
-  /// No description provided for @bpcrComponent4.
+  /// No description provided for @bpcr_save_money_title.
   ///
   /// In en, this message translates to:
-  /// **'Saved money for delivery'**
-  String get bpcrComponent4;
+  /// **'Planned to save money for delivery'**
+  String get bpcr_save_money_title;
 
-  /// No description provided for @bpcrComponent5.
+  /// No description provided for @bpcr_financial_support_title.
   ///
   /// In en, this message translates to:
-  /// **'Identified blood donor'**
-  String get bpcrComponent5;
+  /// **'Identified presence of community financial support system'**
+  String get bpcr_financial_support_title;
 
-  /// No description provided for @bpcrComponent6.
+  /// No description provided for @bpcr_financial_support_desc.
   ///
   /// In en, this message translates to:
-  /// **'Made arrangements for other children'**
-  String get bpcrComponent6;
+  /// **'Local helpers verified'**
+  String get bpcr_financial_support_desc;
 
-  /// No description provided for @bpcrComponent7.
+  /// No description provided for @bpcr_blood_donor_title.
   ///
   /// In en, this message translates to:
-  /// **'Aware of danger signs'**
-  String get bpcrComponent7;
-
-  /// No description provided for @bpcrComponent8.
-  ///
-  /// In en, this message translates to:
-  /// **'ANC visits completed'**
-  String get bpcrComponent8;
-
-  /// No description provided for @bpcrComponent9.
-  ///
-  /// In en, this message translates to:
-  /// **'Iron-folic acid tablets taken'**
-  String get bpcrComponent9;
-
-  /// No description provided for @bpcrComponent10.
-  ///
-  /// In en, this message translates to:
-  /// **'TT vaccination done'**
-  String get bpcrComponent10;
+  /// **'Identify the presence of community blood donor'**
+  String get bpcr_blood_donor_title;
 
   /// No description provided for @bpcrCompleted.
   ///
@@ -854,17 +962,95 @@ abstract class AppLocalizations {
   /// **'BPCR checklist updated.'**
   String get bpcrUpdateSuccess;
 
+  /// No description provided for @maternalSchemesdesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Explore Government schemes & check eligibility'**
+  String get maternalSchemesdesc;
+
   /// No description provided for @schemesTitle.
   ///
   /// In en, this message translates to:
-  /// **'Maternal Schemes'**
+  /// **'Maternal Benefit Program'**
   String get schemesTitle;
 
-  /// No description provided for @schemeJsy.
+  /// No description provided for @schemes_explore.
+  ///
+  /// In en, this message translates to:
+  /// **'Explore Schemes'**
+  String get schemes_explore;
+
+  /// No description provided for @schemes_details.
+  ///
+  /// In en, this message translates to:
+  /// **'Scheme Details'**
+  String get schemes_details;
+
+  /// No description provided for @jsy_name.
   ///
   /// In en, this message translates to:
   /// **'Janani Suraksha Yojana (JSY)'**
-  String get schemeJsy;
+  String get jsy_name;
+
+  /// No description provided for @jsy_eligibility_1.
+  ///
+  /// In en, this message translates to:
+  /// **'All pregnant women delivering in Government health centres like Sub-centre, PHC/CHC/FRU/ general wards of District and state Hospitals or accredited private institutions'**
+  String get jsy_eligibility_1;
+
+  /// No description provided for @jsy_eligibility_2.
+  ///
+  /// In en, this message translates to:
+  /// **'All SC and ST women delivering in a government health centre like Sub-centre, PHC/CHC/ FRU / general ward of District and state Hospitals or accredited private institutions'**
+  String get jsy_eligibility_2;
+
+  /// No description provided for @jsy_cash_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Cash Assistance'**
+  String get jsy_cash_title;
+
+  /// No description provided for @jsy_cash_desc.
+  ///
+  /// In en, this message translates to:
+  /// **'given to all births, delivered in a health centre – Government or Accredited Private health institutions'**
+  String get jsy_cash_desc;
+
+  /// No description provided for @jsy_table_category.
+  ///
+  /// In en, this message translates to:
+  /// **'Category'**
+  String get jsy_table_category;
+
+  /// No description provided for @jsy_table_rural.
+  ///
+  /// In en, this message translates to:
+  /// **'Rural'**
+  String get jsy_table_rural;
+
+  /// No description provided for @jsy_table_urban.
+  ///
+  /// In en, this message translates to:
+  /// **'Urban'**
+  String get jsy_table_urban;
+
+  /// No description provided for @jsy_table_total.
+  ///
+  /// In en, this message translates to:
+  /// **'Total'**
+  String get jsy_table_total;
+
+  /// No description provided for @jsy_table_mother_package.
+  ///
+  /// In en, this message translates to:
+  /// **'Mother\'s Package'**
+  String get jsy_table_mother_package;
+
+  /// No description provided for @jsy_table_mitanin_package.
+  ///
+  /// In en, this message translates to:
+  /// **'Mitanin\'s Package'**
+  String get jsy_table_mitanin_package;
 
   /// No description provided for @schemeJssk.
   ///
@@ -872,11 +1058,161 @@ abstract class AppLocalizations {
   /// **'Janani-Shishu Suraksha Karyakram (JSSK)'**
   String get schemeJssk;
 
+  /// No description provided for @jssk_eligibility_desc.
+  ///
+  /// In en, this message translates to:
+  /// **'All pregnant mothers and sick newborns accessing public health institutions for healthcare.'**
+  String get jssk_eligibility_desc;
+
+  /// No description provided for @jssk_women_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Entitlements for Pregnant Women'**
+  String get jssk_women_title;
+
+  /// No description provided for @jssk_women_1.
+  ///
+  /// In en, this message translates to:
+  /// **'Free and zero expense delivery and Caesarean section'**
+  String get jssk_women_1;
+
+  /// No description provided for @jssk_women_2.
+  ///
+  /// In en, this message translates to:
+  /// **'Free drugs and consumables'**
+  String get jssk_women_2;
+
+  /// No description provided for @jssk_women_3.
+  ///
+  /// In en, this message translates to:
+  /// **'Free essential diagnostics including blood, urine tests and ultrasonography'**
+  String get jssk_women_3;
+
+  /// No description provided for @jssk_women_4.
+  ///
+  /// In en, this message translates to:
+  /// **'Free diet during stay in health institutions'**
+  String get jssk_women_4;
+
+  /// No description provided for @jssk_women_5.
+  ///
+  /// In en, this message translates to:
+  /// **'Free provision of blood'**
+  String get jssk_women_5;
+
+  /// No description provided for @jssk_women_6.
+  ///
+  /// In en, this message translates to:
+  /// **'Free transport from home to health institution and referral transport'**
+  String get jssk_women_6;
+
+  /// No description provided for @jssk_women_7.
+  ///
+  /// In en, this message translates to:
+  /// **'Exemption from all user charges'**
+  String get jssk_women_7;
+
+  /// No description provided for @jssk_newborn_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Entitlements for Sick Newborns till One Year after Birth'**
+  String get jssk_newborn_title;
+
+  /// No description provided for @jssk_newborn_1.
+  ///
+  /// In en, this message translates to:
+  /// **'Free and zero expense treatment'**
+  String get jssk_newborn_1;
+
+  /// No description provided for @jssk_newborn_2.
+  ///
+  /// In en, this message translates to:
+  /// **'Free drugs and consumables'**
+  String get jssk_newborn_2;
+
+  /// No description provided for @jssk_newborn_3.
+  ///
+  /// In en, this message translates to:
+  /// **'Free diagnostics'**
+  String get jssk_newborn_3;
+
+  /// No description provided for @jssk_newborn_4.
+  ///
+  /// In en, this message translates to:
+  /// **'Free provision of blood'**
+  String get jssk_newborn_4;
+
+  /// No description provided for @jssk_newborn_5.
+  ///
+  /// In en, this message translates to:
+  /// **'Free transport and referral transport'**
+  String get jssk_newborn_5;
+
+  /// No description provided for @jssk_newborn_6.
+  ///
+  /// In en, this message translates to:
+  /// **'Exemption from all user charges'**
+  String get jssk_newborn_6;
+
   /// No description provided for @schemePmsma.
   ///
   /// In en, this message translates to:
   /// **'Pradhan Mantri Surakshit Matritva Abhiyan (PMSMA)'**
   String get schemePmsma;
+
+  /// No description provided for @pmsma_desc_1.
+  ///
+  /// In en, this message translates to:
+  /// **'A special ANC check-up day is held on the 9th of every month across the country at identified public health facilities.'**
+  String get pmsma_desc_1;
+
+  /// No description provided for @pmsma_desc_2.
+  ///
+  /// In en, this message translates to:
+  /// **'Services are provided at Pradhan Mantri Surakshit Matritva Clinics in addition to routine ANC.'**
+  String get pmsma_desc_2;
+
+  /// No description provided for @pmsma_desc_3.
+  ///
+  /// In en, this message translates to:
+  /// **'Every pregnant woman gets at least one free check-up by a doctor in the 2nd or 3rd trimester.'**
+  String get pmsma_desc_3;
+
+  /// No description provided for @pmsma_desc_4.
+  ///
+  /// In en, this message translates to:
+  /// **'All pregnant women in the 2nd or 3rd trimester are eligible.'**
+  String get pmsma_desc_4;
+
+  /// No description provided for @pmsma_services_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Package of Services'**
+  String get pmsma_services_title;
+
+  /// No description provided for @pmsma_service_1.
+  ///
+  /// In en, this message translates to:
+  /// **'Routine antenatal care check-up'**
+  String get pmsma_service_1;
+
+  /// No description provided for @pmsma_service_2.
+  ///
+  /// In en, this message translates to:
+  /// **'Diagnostic services'**
+  String get pmsma_service_2;
+
+  /// No description provided for @pmsma_service_3.
+  ///
+  /// In en, this message translates to:
+  /// **'Identification and management of high-risk pregnant women'**
+  String get pmsma_service_3;
+
+  /// No description provided for @pmsma_service_4.
+  ///
+  /// In en, this message translates to:
+  /// **'Counselling on nutrition, family planning, birth preparedness, newborn and postnatal care'**
+  String get pmsma_service_4;
 
   /// No description provided for @schemePmmvy.
   ///
@@ -884,11 +1220,293 @@ abstract class AppLocalizations {
   /// **'Pradhan Mantri Matru Vandana Yojana (PMMVY)'**
   String get schemePmmvy;
 
+  /// No description provided for @pmmvy_des.
+  ///
+  /// In en, this message translates to:
+  /// **'Cash incentive to provide financial support for pregnant and lactating mothers'**
+  String get pmmvy_des;
+
+  /// No description provided for @pmmvy_eligibility_1.
+  ///
+  /// In en, this message translates to:
+  /// **'Women belonging to Scheduled Castes and Scheduled Tribes'**
+  String get pmmvy_eligibility_1;
+
+  /// No description provided for @pmmvy_eligibility_2.
+  ///
+  /// In en, this message translates to:
+  /// **'Women who are partially (40%) or fully disabled (Divyang Jan)'**
+  String get pmmvy_eligibility_2;
+
+  /// No description provided for @pmmvy_eligibility_3.
+  ///
+  /// In en, this message translates to:
+  /// **'Women holding BPL Ration Card'**
+  String get pmmvy_eligibility_3;
+
+  /// No description provided for @pmmvy_eligibility_4.
+  ///
+  /// In en, this message translates to:
+  /// **'Women beneficiaries under Pradhan Mantri Jan Arogya Yojana (PMJAY) under Ayushman Bharat'**
+  String get pmmvy_eligibility_4;
+
+  /// No description provided for @pmmvy_eligibility_5.
+  ///
+  /// In en, this message translates to:
+  /// **'Women holding E-Shram Card'**
+  String get pmmvy_eligibility_5;
+
+  /// No description provided for @pmmvy_eligibility_6.
+  ///
+  /// In en, this message translates to:
+  /// **'Women farmers who are beneficiaries under Kisan Samman Nidhi'**
+  String get pmmvy_eligibility_6;
+
+  /// No description provided for @pmmvy_eligibility_7.
+  ///
+  /// In en, this message translates to:
+  /// **'Women holding MGNREGA Job Card'**
+  String get pmmvy_eligibility_7;
+
+  /// No description provided for @pmmvy_eligibility_8.
+  ///
+  /// In en, this message translates to:
+  /// **'Women whose net family income is less than Rs. 8 lakh per annum'**
+  String get pmmvy_eligibility_8;
+
+  /// No description provided for @pmmvy_eligibility_9.
+  ///
+  /// In en, this message translates to:
+  /// **'Pregnant and Lactating AWWs/AWHs/ASHAs'**
+  String get pmmvy_eligibility_9;
+
+  /// No description provided for @pmmvy_eligibility_10.
+  ///
+  /// In en, this message translates to:
+  /// **'Any other category as may be prescribed by the Central Government'**
+  String get pmmvy_eligibility_10;
+
+  /// No description provided for @pmmvy_exclusion_note.
+  ///
+  /// In en, this message translates to:
+  /// **'Further, all pregnant women and lactating mothers in regular employment with the Central Government, State Government, Public Sector Undertakings, or those receiving similar benefits under any law currently in force shall not be entitled to benefits under PMMVY.'**
+  String get pmmvy_exclusion_note;
+
+  /// No description provided for @pmmvy_installment_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Conditionalities and Installments'**
+  String get pmmvy_installment_title;
+
+  /// No description provided for @pmmvy_table_installment.
+  ///
+  /// In en, this message translates to:
+  /// **'Installment'**
+  String get pmmvy_table_installment;
+
+  /// No description provided for @pmmvy_table_conditions.
+  ///
+  /// In en, this message translates to:
+  /// **'Conditions'**
+  String get pmmvy_table_conditions;
+
+  /// No description provided for @pmmvy_table_amount.
+  ///
+  /// In en, this message translates to:
+  /// **'Amount'**
+  String get pmmvy_table_amount;
+
+  /// No description provided for @pmmvy_first_installment_title.
+  ///
+  /// In en, this message translates to:
+  /// **'First Installment'**
+  String get pmmvy_first_installment_title;
+
+  /// No description provided for @pmmvy_first_installment_condition.
+  ///
+  /// In en, this message translates to:
+  /// **'On registration of pregnancy and at least one Ante-natal check-up within 6 months from LMP date at the Anganwadi Centre (AWC) or approved health facility as identified by the respective State/UT.'**
+  String get pmmvy_first_installment_condition;
+
+  /// No description provided for @pmmvy_first_installment_amount.
+  ///
+  /// In en, this message translates to:
+  /// **'₹ 3000/-'**
+  String get pmmvy_first_installment_amount;
+
+  /// No description provided for @pmmvy_second_installment_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Second Installment'**
+  String get pmmvy_second_installment_title;
+
+  /// No description provided for @pmmvy_second_installment_condition_1.
+  ///
+  /// In en, this message translates to:
+  /// **'Child birth is registered.'**
+  String get pmmvy_second_installment_condition_1;
+
+  /// No description provided for @pmmvy_second_installment_condition_2.
+  ///
+  /// In en, this message translates to:
+  /// **'Child has received first cycle of BCG, OPV, DPT and Hepatitis-B or its equivalent/substitute.'**
+  String get pmmvy_second_installment_condition_2;
+
+  /// No description provided for @pmmvy_second_installment_amount.
+  ///
+  /// In en, this message translates to:
+  /// **'₹ 2000/-'**
+  String get pmmvy_second_installment_amount;
+
+  /// No description provided for @pmmvy_benefit_desc.
+  ///
+  /// In en, this message translates to:
+  /// **'Benefit is available to a woman for the first two living children provided the second child is a girl.In case of the first child the amount of ₹5000 in 2 installments and for the second child, the benefit of ₹6000 will be provided subject to second child is a girl child in one installment after the birth.'**
+  String get pmmvy_benefit_desc;
+
+  /// No description provided for @anganwadi_name.
+  ///
+  /// In en, this message translates to:
+  /// **'Services at Anganwadi Centre to Pregnant Mothers and Children'**
+  String get anganwadi_name;
+
+  /// No description provided for @anganwadi_table_service.
+  ///
+  /// In en, this message translates to:
+  /// **'Services'**
+  String get anganwadi_table_service;
+
+  /// No description provided for @anganwadi_table_target_group.
+  ///
+  /// In en, this message translates to:
+  /// **'Target Group'**
+  String get anganwadi_table_target_group;
+
+  /// No description provided for @anganwadi_table_provider.
+  ///
+  /// In en, this message translates to:
+  /// **'Services Provided By'**
+  String get anganwadi_table_provider;
+
+  /// No description provided for @anganwadi_service_1.
+  ///
+  /// In en, this message translates to:
+  /// **'Supplementary Nutrition'**
+  String get anganwadi_service_1;
+
+  /// No description provided for @anganwadi_service_1_target.
+  ///
+  /// In en, this message translates to:
+  /// **'Children below 3 years and Pregnant & Lactating Mothers - Take Home Ration (THR); Children 3-6 years - Hot Cooked Meal and THR'**
+  String get anganwadi_service_1_target;
+
+  /// No description provided for @anganwadi_service_1_provider.
+  ///
+  /// In en, this message translates to:
+  /// **'Anganwadi Worker (AWW) & Anganwadi Helper (AWH)'**
+  String get anganwadi_service_1_provider;
+
+  /// No description provided for @anganwadi_service_2.
+  ///
+  /// In en, this message translates to:
+  /// **'Immunization'**
+  String get anganwadi_service_2;
+
+  /// No description provided for @anganwadi_service_2_target.
+  ///
+  /// In en, this message translates to:
+  /// **'Children below 6 years; Pregnant & Lactating Mothers'**
+  String get anganwadi_service_2_target;
+
+  /// No description provided for @anganwadi_service_2_provider.
+  ///
+  /// In en, this message translates to:
+  /// **'ANM / Medical Officer (MO)'**
+  String get anganwadi_service_2_provider;
+
+  /// No description provided for @anganwadi_service_3.
+  ///
+  /// In en, this message translates to:
+  /// **'Health Check-up'**
+  String get anganwadi_service_3;
+
+  /// No description provided for @anganwadi_service_3_target.
+  ///
+  /// In en, this message translates to:
+  /// **'Children below 6 years; Pregnant Women & Lactating Mothers'**
+  String get anganwadi_service_3_target;
+
+  /// No description provided for @anganwadi_service_3_provider.
+  ///
+  /// In en, this message translates to:
+  /// **'ANM / Medical Officer (MO) / Anganwadi Worker (AWW)'**
+  String get anganwadi_service_3_provider;
+
+  /// No description provided for @anganwadi_service_4.
+  ///
+  /// In en, this message translates to:
+  /// **'Referral Services'**
+  String get anganwadi_service_4;
+
+  /// No description provided for @anganwadi_service_4_target.
+  ///
+  /// In en, this message translates to:
+  /// **'Children below 6 years; Pregnant Women & Lactating Mothers'**
+  String get anganwadi_service_4_target;
+
+  /// No description provided for @anganwadi_service_4_provider.
+  ///
+  /// In en, this message translates to:
+  /// **'Anganwadi Worker (AWW) / ANM / Medical Officer (MO)'**
+  String get anganwadi_service_4_provider;
+
   /// No description provided for @schemeMinimata.
   ///
   /// In en, this message translates to:
-  /// **'Minimata Mahtari Jatan Yojana'**
+  /// **'Minimata Mahtari Jatan Yojana (formerly Bhagini Prasuti Sahayata Yojana)'**
   String get schemeMinimata;
+
+  /// No description provided for @minimata_desc.
+  ///
+  /// In en, this message translates to:
+  /// **'Under the scheme, a maternity benefit of ₹10,000 is provided, of which ₹5,000 is paid in the first trimester of pregnancy and the remaining ₹5,000 is paid in the third trimester (eighth month). The assistance amount is disbursed within 72 hours of receiving the notification.'**
+  String get minimata_desc;
+
+  /// No description provided for @minimata_eligibility_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Eligibility for Participation in the Scheme'**
+  String get minimata_eligibility_title;
+
+  /// No description provided for @minimata_eligibility_1.
+  ///
+  /// In en, this message translates to:
+  /// **'Registration of the beneficiary\'s spouse is required.'**
+  String get minimata_eligibility_1;
+
+  /// No description provided for @minimata_eligibility_2.
+  ///
+  /// In en, this message translates to:
+  /// **'A doctor, ANM, or Mitanin are required to verify the woman\'s pregnancy.'**
+  String get minimata_eligibility_2;
+
+  /// No description provided for @minimata_eligibility_3.
+  ///
+  /// In en, this message translates to:
+  /// **'Wives of construction workers working in public or government institutions will not be eligible for the scheme.'**
+  String get minimata_eligibility_3;
+
+  /// No description provided for @minimata_eligibility_4.
+  ///
+  /// In en, this message translates to:
+  /// **'The benefits of the maternity scheme will be payable only for a maximum of two deliveries.'**
+  String get minimata_eligibility_4;
+
+  /// No description provided for @minimata_eligibility_5.
+  ///
+  /// In en, this message translates to:
+  /// **'Eligibility for the benefits will be after 90 days of registration.'**
+  String get minimata_eligibility_5;
 
   /// No description provided for @eligibility.
   ///
@@ -925,6 +1543,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'ANC Services'**
   String get ancTitle;
+
+  /// No description provided for @ancdesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Services for the current pregnancy'**
+  String get ancdesc;
 
   /// No description provided for @ancVisitManager.
   ///
@@ -1028,6 +1652,12 @@ abstract class AppLocalizations {
   /// **'Week {week}'**
   String weekLabel(int week);
 
+  /// No description provided for @chatbot.
+  ///
+  /// In en, this message translates to:
+  /// **'Chatbot'**
+  String get chatbot;
+
   /// No description provided for @chatbotTitle.
   ///
   /// In en, this message translates to:
@@ -1063,6 +1693,96 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'No FAQs available at the moment.'**
   String get faqEmpty;
+
+  /// No description provided for @chatbotWelcome.
+  ///
+  /// In en, this message translates to:
+  /// **'Hi! I can help with maternal health questions. Pick a topic below, or type your own question anytime.'**
+  String get chatbotWelcome;
+
+  /// No description provided for @chatbotCategoryBpcr.
+  ///
+  /// In en, this message translates to:
+  /// **'Birth Preparedness (BPCR)'**
+  String get chatbotCategoryBpcr;
+
+  /// No description provided for @chatbotCategorySchemes.
+  ///
+  /// In en, this message translates to:
+  /// **'Maternal Health Schemes'**
+  String get chatbotCategorySchemes;
+
+  /// No description provided for @chatbotCategoryPnc.
+  ///
+  /// In en, this message translates to:
+  /// **'Postnatal & Newborn Care'**
+  String get chatbotCategoryPnc;
+
+  /// No description provided for @chatbotQuestionsIntro.
+  ///
+  /// In en, this message translates to:
+  /// **'Here are some common questions about {category}:'**
+  String chatbotQuestionsIntro(Object category);
+
+  /// No description provided for @chatbotNoFaqs.
+  ///
+  /// In en, this message translates to:
+  /// **'I don\'t have FAQs for this topic yet — try typing your question below.'**
+  String get chatbotNoFaqs;
+
+  /// No description provided for @chatbotCategoryLoadError.
+  ///
+  /// In en, this message translates to:
+  /// **'Sorry, I could not load that topic. Please try again.'**
+  String get chatbotCategoryLoadError;
+
+  /// No description provided for @chatbotSendError.
+  ///
+  /// In en, this message translates to:
+  /// **'Sorry, something went wrong. Please try again.'**
+  String get chatbotSendError;
+
+  /// No description provided for @chatbotBackToTopics.
+  ///
+  /// In en, this message translates to:
+  /// **'⬅ Back to topics'**
+  String get chatbotBackToTopics;
+
+  /// No description provided for @chatbotAnythingElse.
+  ///
+  /// In en, this message translates to:
+  /// **'Anything else on this topic?'**
+  String get chatbotAnythingElse;
+
+  /// No description provided for @chatbotNoAnswerYet.
+  ///
+  /// In en, this message translates to:
+  /// **'Sorry, I don\'t have an answer for that yet.'**
+  String get chatbotNoAnswerYet;
+
+  /// No description provided for @chatbotGeneralTopic.
+  ///
+  /// In en, this message translates to:
+  /// **'General'**
+  String get chatbotGeneralTopic;
+
+  /// No description provided for @chatbotYes.
+  ///
+  /// In en, this message translates to:
+  /// **'Yes'**
+  String get chatbotYes;
+
+  /// No description provided for @chatbotNo.
+  ///
+  /// In en, this message translates to:
+  /// **'No'**
+  String get chatbotNo;
+
+  /// No description provided for @chatbotPickAnother.
+  ///
+  /// In en, this message translates to:
+  /// **'Sure, pick another question:'**
+  String get chatbotPickAnother;
 
   /// No description provided for @remindersTitle.
   ///
@@ -1231,6 +1951,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'View All'**
   String get viewAll;
+
+  /// No description provided for @help.
+  ///
+  /// In en, this message translates to:
+  /// **'How Can I Help You !'**
+  String get help;
 
   /// No description provided for @alertsTitle.
   ///

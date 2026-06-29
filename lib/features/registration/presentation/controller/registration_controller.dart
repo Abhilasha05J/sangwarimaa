@@ -1,5 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:sangwari_maa/features/registration/data/model/women_register_request_model.dart';
+import 'package:sangwari_maa/features/registration/presentation/provider/registration_providers.dart';
 
 part 'registration_controller.g.dart';
 
@@ -14,24 +16,11 @@ class RegistrationController extends _$RegistrationController {
   @override
   AsyncValue<void> build() => const AsyncData(null);
 
-  Future<void> register({
-    required String name,
-    required String mobile,
-    required int age,
-    required int husbandAge,
-    required String dob,
-    required String address,
-    required String bloodGroup,
-    required int gestationalAge,
-    required String lmp,
-    required String edd,
-    required String village,
-    required String phc,
-  }) async {
+  Future<void> register(WomenRegisterRequestModel request) async {
     state = const AsyncLoading();
     state = await AsyncValue.guard(() async {
-      // TODO: await ref.read(registrationRepositoryProvider).register(...)
-      await Future.delayed(const Duration(seconds: 1)); // stub
+      final result = await ref.read(registrationRepositoryProvider).registerWoman(request);
+      result.fold((failure) => throw failure, (_) {});
     });
   }
 }

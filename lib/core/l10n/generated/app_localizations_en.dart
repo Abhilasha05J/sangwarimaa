@@ -244,6 +244,38 @@ class AppLocalizationsEn extends AppLocalizations {
   String get registrationTitle => 'New Registration';
 
   @override
+  String get newUserCompleteRegistration =>
+      'You\'re new here! Please complete your registration to continue.';
+
+  @override
+  String get welcomeBackLoggedIn => 'Welcome back! You\'re already registered.';
+
+  @override
+  String get accountExistsPleaseLogin =>
+      'An account already exists for this number. Please login.';
+
+  @override
+  String get dobFutureError => 'Date of birth cannot be in the future';
+
+  @override
+  String get ageRangeError => 'Age must be between 14 and 55';
+
+  @override
+  String get ageDobMismatch => 'Age does not match the date of birth entered';
+
+  @override
+  String get lmpFutureError => 'LMP date cannot be in the future';
+
+  @override
+  String get lmpTooOldError => 'LMP date seems too far in the past';
+
+  @override
+  String get required => 'Required';
+
+  @override
+  String get invalidValue => 'Invalid value';
+
+  @override
   String get fullName => 'Full Name';
 
   @override
@@ -302,13 +334,14 @@ class AppLocalizationsEn extends AppLocalizations {
   String get homeDashboard => 'Home';
 
   @override
-  String get myProfile => 'My Profile';
+  String get myProfile => 'Profile';
 
   @override
-  String get bpcrModule => 'BPCR Module';
+  String get bpcrModule => 'BPCR';
 
   @override
-  String get maternalSchemes => 'Maternal Schemes';
+  String get bpcrdesc =>
+      'Track your birth preparedness and complications readiness milestones.';
 
   @override
   String get ancServices => 'ANC Services';
@@ -330,6 +363,12 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get logoutConfirm => 'Are you sure you want to logout?';
+
+  @override
+  String get videomodule => 'Video Modules';
+
+  @override
+  String get videomoduledesc => 'Educational content for safe motherhood';
 
   @override
   String get bpcrTitle => 'Birth Preparedness';
@@ -355,34 +394,60 @@ class AppLocalizationsEn extends AppLocalizations {
   String get bpcrRiskLow => 'Low Risk';
 
   @override
-  String get bpcrComponent1 => 'Identified skilled birth attendant';
+  String get bpcr_danger_pregnancy_title => 'Danger signs during pregnancy';
 
   @override
-  String get bpcrComponent2 => 'Identified delivery place';
+  String get bpcr_danger_pregnancy_desc =>
+      'Severe headaches, blurred vision, swelling.';
 
   @override
-  String get bpcrComponent3 => 'Identified transport';
+  String get bpcr_danger_labor_title =>
+      'Danger signs during labor & childbirth';
 
   @override
-  String get bpcrComponent4 => 'Saved money for delivery';
+  String get bpcr_danger_labor_desc =>
+      'Danger signs during labor and childbirth.';
 
   @override
-  String get bpcrComponent5 => 'Identified blood donor';
+  String get bpcr_postnatal_title => 'Danger signs during postnatal period';
 
   @override
-  String get bpcrComponent6 => 'Made arrangements for other children';
+  String get bpcr_postnatal_desc =>
+      'Foul smelling discharge, severe pain, depression.';
 
   @override
-  String get bpcrComponent7 => 'Aware of danger signs';
+  String get bpcr_newborn_title => 'Danger signs in the newborn period';
 
   @override
-  String get bpcrComponent8 => 'ANC visits completed';
+  String get bpcr_newborn_desc => 'Difficulty breathing, fits, cold to touch.';
 
   @override
-  String get bpcrComponent9 => 'Iron-folic acid tablets taken';
+  String get bpcr_health_facility_title => 'Health facility identification';
 
   @override
-  String get bpcrComponent10 => 'TT vaccination done';
+  String get bpcr_skill_birth_attendant_title =>
+      'Identified skilled birth attendant';
+
+  @override
+  String get bpcr_transport_title =>
+      'Planned to earmark transport modality to health facility';
+
+  @override
+  String get bpcr_transport_desc => '108/102 Emergency call';
+
+  @override
+  String get bpcr_save_money_title => 'Planned to save money for delivery';
+
+  @override
+  String get bpcr_financial_support_title =>
+      'Identified presence of community financial support system';
+
+  @override
+  String get bpcr_financial_support_desc => 'Local helpers verified';
+
+  @override
+  String get bpcr_blood_donor_title =>
+      'Identify the presence of community blood donor';
 
   @override
   String get bpcrCompleted => 'Completed';
@@ -397,22 +462,320 @@ class AppLocalizationsEn extends AppLocalizations {
   String get bpcrUpdateSuccess => 'BPCR checklist updated.';
 
   @override
-  String get schemesTitle => 'Maternal Schemes';
+  String get maternalSchemesdesc =>
+      'Explore Government schemes & check eligibility';
 
   @override
-  String get schemeJsy => 'Janani Suraksha Yojana (JSY)';
+  String get schemesTitle => 'Maternal Benefit Program';
+
+  @override
+  String get schemes_explore => 'Explore Schemes';
+
+  @override
+  String get schemes_details => 'Scheme Details';
+
+  @override
+  String get jsy_name => 'Janani Suraksha Yojana (JSY)';
+
+  @override
+  String get jsy_eligibility_1 =>
+      'All pregnant women delivering in Government health centres like Sub-centre, PHC/CHC/FRU/ general wards of District and state Hospitals or accredited private institutions';
+
+  @override
+  String get jsy_eligibility_2 =>
+      'All SC and ST women delivering in a government health centre like Sub-centre, PHC/CHC/ FRU / general ward of District and state Hospitals or accredited private institutions';
+
+  @override
+  String get jsy_cash_title => 'Cash Assistance';
+
+  @override
+  String get jsy_cash_desc =>
+      'given to all births, delivered in a health centre – Government or Accredited Private health institutions';
+
+  @override
+  String get jsy_table_category => 'Category';
+
+  @override
+  String get jsy_table_rural => 'Rural';
+
+  @override
+  String get jsy_table_urban => 'Urban';
+
+  @override
+  String get jsy_table_total => 'Total';
+
+  @override
+  String get jsy_table_mother_package => 'Mother\'s Package';
+
+  @override
+  String get jsy_table_mitanin_package => 'Mitanin\'s Package';
 
   @override
   String get schemeJssk => 'Janani-Shishu Suraksha Karyakram (JSSK)';
 
   @override
+  String get jssk_eligibility_desc =>
+      'All pregnant mothers and sick newborns accessing public health institutions for healthcare.';
+
+  @override
+  String get jssk_women_title => 'Entitlements for Pregnant Women';
+
+  @override
+  String get jssk_women_1 =>
+      'Free and zero expense delivery and Caesarean section';
+
+  @override
+  String get jssk_women_2 => 'Free drugs and consumables';
+
+  @override
+  String get jssk_women_3 =>
+      'Free essential diagnostics including blood, urine tests and ultrasonography';
+
+  @override
+  String get jssk_women_4 => 'Free diet during stay in health institutions';
+
+  @override
+  String get jssk_women_5 => 'Free provision of blood';
+
+  @override
+  String get jssk_women_6 =>
+      'Free transport from home to health institution and referral transport';
+
+  @override
+  String get jssk_women_7 => 'Exemption from all user charges';
+
+  @override
+  String get jssk_newborn_title =>
+      'Entitlements for Sick Newborns till One Year after Birth';
+
+  @override
+  String get jssk_newborn_1 => 'Free and zero expense treatment';
+
+  @override
+  String get jssk_newborn_2 => 'Free drugs and consumables';
+
+  @override
+  String get jssk_newborn_3 => 'Free diagnostics';
+
+  @override
+  String get jssk_newborn_4 => 'Free provision of blood';
+
+  @override
+  String get jssk_newborn_5 => 'Free transport and referral transport';
+
+  @override
+  String get jssk_newborn_6 => 'Exemption from all user charges';
+
+  @override
   String get schemePmsma => 'Pradhan Mantri Surakshit Matritva Abhiyan (PMSMA)';
+
+  @override
+  String get pmsma_desc_1 =>
+      'A special ANC check-up day is held on the 9th of every month across the country at identified public health facilities.';
+
+  @override
+  String get pmsma_desc_2 =>
+      'Services are provided at Pradhan Mantri Surakshit Matritva Clinics in addition to routine ANC.';
+
+  @override
+  String get pmsma_desc_3 =>
+      'Every pregnant woman gets at least one free check-up by a doctor in the 2nd or 3rd trimester.';
+
+  @override
+  String get pmsma_desc_4 =>
+      'All pregnant women in the 2nd or 3rd trimester are eligible.';
+
+  @override
+  String get pmsma_services_title => 'Package of Services';
+
+  @override
+  String get pmsma_service_1 => 'Routine antenatal care check-up';
+
+  @override
+  String get pmsma_service_2 => 'Diagnostic services';
+
+  @override
+  String get pmsma_service_3 =>
+      'Identification and management of high-risk pregnant women';
+
+  @override
+  String get pmsma_service_4 =>
+      'Counselling on nutrition, family planning, birth preparedness, newborn and postnatal care';
 
   @override
   String get schemePmmvy => 'Pradhan Mantri Matru Vandana Yojana (PMMVY)';
 
   @override
-  String get schemeMinimata => 'Minimata Mahtari Jatan Yojana';
+  String get pmmvy_des =>
+      'Cash incentive to provide financial support for pregnant and lactating mothers';
+
+  @override
+  String get pmmvy_eligibility_1 =>
+      'Women belonging to Scheduled Castes and Scheduled Tribes';
+
+  @override
+  String get pmmvy_eligibility_2 =>
+      'Women who are partially (40%) or fully disabled (Divyang Jan)';
+
+  @override
+  String get pmmvy_eligibility_3 => 'Women holding BPL Ration Card';
+
+  @override
+  String get pmmvy_eligibility_4 =>
+      'Women beneficiaries under Pradhan Mantri Jan Arogya Yojana (PMJAY) under Ayushman Bharat';
+
+  @override
+  String get pmmvy_eligibility_5 => 'Women holding E-Shram Card';
+
+  @override
+  String get pmmvy_eligibility_6 =>
+      'Women farmers who are beneficiaries under Kisan Samman Nidhi';
+
+  @override
+  String get pmmvy_eligibility_7 => 'Women holding MGNREGA Job Card';
+
+  @override
+  String get pmmvy_eligibility_8 =>
+      'Women whose net family income is less than Rs. 8 lakh per annum';
+
+  @override
+  String get pmmvy_eligibility_9 => 'Pregnant and Lactating AWWs/AWHs/ASHAs';
+
+  @override
+  String get pmmvy_eligibility_10 =>
+      'Any other category as may be prescribed by the Central Government';
+
+  @override
+  String get pmmvy_exclusion_note =>
+      'Further, all pregnant women and lactating mothers in regular employment with the Central Government, State Government, Public Sector Undertakings, or those receiving similar benefits under any law currently in force shall not be entitled to benefits under PMMVY.';
+
+  @override
+  String get pmmvy_installment_title => 'Conditionalities and Installments';
+
+  @override
+  String get pmmvy_table_installment => 'Installment';
+
+  @override
+  String get pmmvy_table_conditions => 'Conditions';
+
+  @override
+  String get pmmvy_table_amount => 'Amount';
+
+  @override
+  String get pmmvy_first_installment_title => 'First Installment';
+
+  @override
+  String get pmmvy_first_installment_condition =>
+      'On registration of pregnancy and at least one Ante-natal check-up within 6 months from LMP date at the Anganwadi Centre (AWC) or approved health facility as identified by the respective State/UT.';
+
+  @override
+  String get pmmvy_first_installment_amount => '₹ 3000/-';
+
+  @override
+  String get pmmvy_second_installment_title => 'Second Installment';
+
+  @override
+  String get pmmvy_second_installment_condition_1 =>
+      'Child birth is registered.';
+
+  @override
+  String get pmmvy_second_installment_condition_2 =>
+      'Child has received first cycle of BCG, OPV, DPT and Hepatitis-B or its equivalent/substitute.';
+
+  @override
+  String get pmmvy_second_installment_amount => '₹ 2000/-';
+
+  @override
+  String get pmmvy_benefit_desc =>
+      'Benefit is available to a woman for the first two living children provided the second child is a girl.In case of the first child the amount of ₹5000 in 2 installments and for the second child, the benefit of ₹6000 will be provided subject to second child is a girl child in one installment after the birth.';
+
+  @override
+  String get anganwadi_name =>
+      'Services at Anganwadi Centre to Pregnant Mothers and Children';
+
+  @override
+  String get anganwadi_table_service => 'Services';
+
+  @override
+  String get anganwadi_table_target_group => 'Target Group';
+
+  @override
+  String get anganwadi_table_provider => 'Services Provided By';
+
+  @override
+  String get anganwadi_service_1 => 'Supplementary Nutrition';
+
+  @override
+  String get anganwadi_service_1_target =>
+      'Children below 3 years and Pregnant & Lactating Mothers - Take Home Ration (THR); Children 3-6 years - Hot Cooked Meal and THR';
+
+  @override
+  String get anganwadi_service_1_provider =>
+      'Anganwadi Worker (AWW) & Anganwadi Helper (AWH)';
+
+  @override
+  String get anganwadi_service_2 => 'Immunization';
+
+  @override
+  String get anganwadi_service_2_target =>
+      'Children below 6 years; Pregnant & Lactating Mothers';
+
+  @override
+  String get anganwadi_service_2_provider => 'ANM / Medical Officer (MO)';
+
+  @override
+  String get anganwadi_service_3 => 'Health Check-up';
+
+  @override
+  String get anganwadi_service_3_target =>
+      'Children below 6 years; Pregnant Women & Lactating Mothers';
+
+  @override
+  String get anganwadi_service_3_provider =>
+      'ANM / Medical Officer (MO) / Anganwadi Worker (AWW)';
+
+  @override
+  String get anganwadi_service_4 => 'Referral Services';
+
+  @override
+  String get anganwadi_service_4_target =>
+      'Children below 6 years; Pregnant Women & Lactating Mothers';
+
+  @override
+  String get anganwadi_service_4_provider =>
+      'Anganwadi Worker (AWW) / ANM / Medical Officer (MO)';
+
+  @override
+  String get schemeMinimata =>
+      'Minimata Mahtari Jatan Yojana (formerly Bhagini Prasuti Sahayata Yojana)';
+
+  @override
+  String get minimata_desc =>
+      'Under the scheme, a maternity benefit of ₹10,000 is provided, of which ₹5,000 is paid in the first trimester of pregnancy and the remaining ₹5,000 is paid in the third trimester (eighth month). The assistance amount is disbursed within 72 hours of receiving the notification.';
+
+  @override
+  String get minimata_eligibility_title =>
+      'Eligibility for Participation in the Scheme';
+
+  @override
+  String get minimata_eligibility_1 =>
+      'Registration of the beneficiary\'s spouse is required.';
+
+  @override
+  String get minimata_eligibility_2 =>
+      'A doctor, ANM, or Mitanin are required to verify the woman\'s pregnancy.';
+
+  @override
+  String get minimata_eligibility_3 =>
+      'Wives of construction workers working in public or government institutions will not be eligible for the scheme.';
+
+  @override
+  String get minimata_eligibility_4 =>
+      'The benefits of the maternity scheme will be payable only for a maximum of two deliveries.';
+
+  @override
+  String get minimata_eligibility_5 =>
+      'Eligibility for the benefits will be after 90 days of registration.';
 
   @override
   String get eligibility => 'Eligibility';
@@ -431,6 +794,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get ancTitle => 'ANC Services';
+
+  @override
+  String get ancdesc => 'Services for the current pregnancy';
 
   @override
   String get ancVisitManager => 'Visit Manager';
@@ -492,6 +858,9 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
+  String get chatbot => 'Chatbot';
+
+  @override
   String get chatbotTitle => 'Ask Sangwari Maa';
 
   @override
@@ -508,6 +877,58 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get faqEmpty => 'No FAQs available at the moment.';
+
+  @override
+  String get chatbotWelcome =>
+      'Hi! I can help with maternal health questions. Pick a topic below, or type your own question anytime.';
+
+  @override
+  String get chatbotCategoryBpcr => 'Birth Preparedness (BPCR)';
+
+  @override
+  String get chatbotCategorySchemes => 'Maternal Health Schemes';
+
+  @override
+  String get chatbotCategoryPnc => 'Postnatal & Newborn Care';
+
+  @override
+  String chatbotQuestionsIntro(Object category) {
+    return 'Here are some common questions about $category:';
+  }
+
+  @override
+  String get chatbotNoFaqs =>
+      'I don\'t have FAQs for this topic yet — try typing your question below.';
+
+  @override
+  String get chatbotCategoryLoadError =>
+      'Sorry, I could not load that topic. Please try again.';
+
+  @override
+  String get chatbotSendError =>
+      'Sorry, something went wrong. Please try again.';
+
+  @override
+  String get chatbotBackToTopics => '⬅ Back to topics';
+
+  @override
+  String get chatbotAnythingElse => 'Anything else on this topic?';
+
+  @override
+  String get chatbotNoAnswerYet =>
+      'Sorry, I don\'t have an answer for that yet.';
+
+  @override
+  String get chatbotGeneralTopic => 'General';
+
+  @override
+  String get chatbotYes => 'Yes';
+
+  @override
+  String get chatbotNo => 'No';
+
+  @override
+  String get chatbotPickAnother => 'Sure, pick another question:';
 
   @override
   String get remindersTitle => 'My Reminders';
@@ -594,6 +1015,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get viewAll => 'View All';
+
+  @override
+  String get help => 'How Can I Help You !';
 
   @override
   String get alertsTitle => 'Alerts';

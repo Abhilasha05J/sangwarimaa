@@ -10,7 +10,9 @@ abstract final class AppColors {
   static const Color gradEnd    = Color(0xFFFFCCC9);
 
   // ── App background gradient (top → bottom) ─────────────────────────────
-  static const Color bgTop      = Color(0xFFFFD1CF);
+  //static const Color bgTop      = Color(0xFFFFDCDB);
+  //static const Color bgTop      = Color(0xFFFFE8E7);
+  static const Color bgTop      = Color(0xFFFFD8D6);
   static const Color bgBottom   = Color(0xFFFFFFFF);
 
   // ── Surface / Fields ───────────────────────────────────────────────────
@@ -43,7 +45,8 @@ abstract final class AppColors {
   static const LinearGradient backgroundGradient = LinearGradient(
     begin: Alignment.topCenter,
     end: Alignment.bottomCenter,
-    colors: [bgTop, bgBottom],
+    colors: [bgTop, bgBottom, bgBottom],
+    stops: [0.0, 0.45, 0.1]
   );
 
   static const LinearGradient backgroundGradientBottomPink = LinearGradient(

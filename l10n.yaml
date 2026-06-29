@@ -1,6 +1,7 @@
 arb-dir: lib/core/l10n          # folder containing app_en.arb, app_hi.arb
 template-arb-file: app_en.arb   # English is the source of truth
 output-localization-file: app_localizations.dart
+untranslated-messages-file: untranslated.json
 output-class: AppLocalizations
 output-dir: lib/core/l10n/generated   # generated dart files land here     # output in lib/ tree, not a hidden package
 nullable-getter: false

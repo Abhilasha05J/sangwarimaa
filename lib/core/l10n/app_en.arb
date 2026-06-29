@@ -235,6 +235,19 @@
   "registrationTitle": "New Registration",
   "@registrationTitle": {},
 
+  "newUserCompleteRegistration": "You're new here! Please complete your registration to continue.",
+  "@newUserCompleteRegistration":{},
+
+  "welcomeBackLoggedIn": "Welcome back! You're already registered.",
+  "accountExistsPleaseLogin": "An account already exists for this number. Please login.",
+  "dobFutureError": "Date of birth cannot be in the future",
+  "ageRangeError": "Age must be between 14 and 55",
+  "ageDobMismatch": "Age does not match the date of birth entered",
+  "lmpFutureError": "LMP date cannot be in the future",
+  "lmpTooOldError": "LMP date seems too far in the past",
+  "required": "Required",
+  "invalidValue": "Invalid value",
+
   "fullName": "Full Name",
   "@fullName": {},
 
@@ -289,18 +302,17 @@
   "registrationSuccess": "Registration successful!",
   "@registrationSuccess": {},
 
-
   "homeDashboard": "Home",
   "@homeDashboard": {},
 
-  "myProfile": "My Profile",
+  "myProfile": "Profile",
   "@myProfile": {},
 
-  "bpcrModule": "BPCR Module",
+  "bpcrModule": "BPCR",
   "@bpcrModule": { "description": "Birth Preparedness & Complication Readiness module" },
 
-  "maternalSchemes": "Maternal Schemes",
-  "@maternalSchemes": {},
+  "bpcrdesc": "Track your birth preparedness and complications readiness milestones.",
+  "@bpcrdesc": { },
 
   "ancServices": "ANC Services",
   "@ancServices": { "description": "Antenatal Care Services" },
@@ -323,6 +335,11 @@
   "logoutConfirm": "Are you sure you want to logout?",
   "@logoutConfirm": {},
 
+  "videomodule":"Video Modules",
+  "@videomodule":{},
+
+  "videomoduledesc":"Educational content for safe motherhood",
+  "@videomoduledesc":{},
 
   "bpcrTitle": "Birth Preparedness",
   "@bpcrTitle": {},
@@ -347,35 +364,53 @@
   "bpcrRiskLow": "Low Risk",
   "@bpcrRiskLow": {},
 
-  "bpcrComponent1": "Identified skilled birth attendant",
-  "@bpcrComponent1": {},
+  "bpcr_danger_pregnancy_title": "Danger signs during pregnancy",
+  "@bpcr_danger_pregnancy_title": {},
 
-  "bpcrComponent2": "Identified delivery place",
-  "@bpcrComponent2": {},
+  "bpcr_danger_pregnancy_desc": "Severe headaches, blurred vision, swelling.",
+  "@bpcr_danger_pregnancy_desc": {},
 
-  "bpcrComponent3": "Identified transport",
-  "@bpcrComponent3": {},
+  "bpcr_danger_labor_title": "Danger signs during labor & childbirth",
+  "@bpcr_danger_labor_title": {},
 
-  "bpcrComponent4": "Saved money for delivery",
-  "@bpcrComponent4": {},
+  "bpcr_danger_labor_desc": "Danger signs during labor and childbirth.",
+  "@bpcr_danger_labor_desc": {},
 
-  "bpcrComponent5": "Identified blood donor",
-  "@bpcrComponent5": {},
+  "bpcr_postnatal_title": "Danger signs during postnatal period",
+  "@bpcr_postnatal_title": {},
 
-  "bpcrComponent6": "Made arrangements for other children",
-  "@bpcrComponent6": {},
+  "bpcr_postnatal_desc": "Foul smelling discharge, severe pain, depression.",
+  "@bpcr_postnatal_desc": {},
 
-  "bpcrComponent7": "Aware of danger signs",
-  "@bpcrComponent7": {},
+  "bpcr_newborn_title": "Danger signs in the newborn period",
+  "@bpcr_newborn_title": {},
 
-  "bpcrComponent8": "ANC visits completed",
-  "@bpcrComponent8": {},
+  "bpcr_newborn_desc": "Difficulty breathing, fits, cold to touch.",
+  "@bpcr_newborn_desc": {},
 
-  "bpcrComponent9": "Iron-folic acid tablets taken",
-  "@bpcrComponent9": {},
+  "bpcr_health_facility_title": "Health facility identification",
+  "@bpcr_health_facility_title": {},
 
-  "bpcrComponent10": "TT vaccination done",
-  "@bpcrComponent10": {},
+  "bpcr_skill_birth_attendant_title": "Identified skilled birth attendant",
+  "@bpcr_skill_birth_attendant_title": {},
+
+  "bpcr_transport_title": "Planned to earmark transport modality to health facility",
+  "@bpcr_transport_title": {},
+
+  "bpcr_transport_desc": "108/102 Emergency call",
+  "@bpcr_transport_desc": {},
+
+  "bpcr_save_money_title": "Planned to save money for delivery",
+  "@bpcr_save_money_title": {},
+
+  "bpcr_financial_support_title": "Identified presence of community financial support system",
+  "@bpcr_financial_support_title": {},
+
+  "bpcr_financial_support_desc": "Local helpers verified",
+  "@bpcr_financial_support_desc": {},
+
+  "bpcr_blood_donor_title": "Identify the presence of community blood donor",
+  "@bpcr_blood_donor_title": {},
 
   "bpcrCompleted": "Completed",
   "@bpcrCompleted": {},
@@ -389,24 +424,278 @@
   "bpcrUpdateSuccess": "BPCR checklist updated.",
   "@bpcrUpdateSuccess": {},
 
+  "maternalSchemesdesc": "Explore Government schemes & check eligibility",
+  "@maternalSchemesdesc": {},
 
-  "schemesTitle": "Maternal Schemes",
+  "schemesTitle": "Maternal Benefit Program",
   "@schemesTitle": {},
 
-  "schemeJsy": "Janani Suraksha Yojana (JSY)",
-  "@schemeJsy": {},
+  "schemes_explore": "Explore Schemes",
+  "@schemes_explore":{},
+
+  "schemes_details": "Scheme Details",
+  "@schemes_details":{},
+
+  "jsy_name": "Janani Suraksha Yojana (JSY)",
+  "@jsy_name": {},
+
+  "jsy_eligibility_1": "All pregnant women delivering in Government health centres like Sub-centre, PHC/CHC/FRU/ general wards of District and state Hospitals or accredited private institutions",
+  "@jsy_eligibility_1": {},
+
+  "jsy_eligibility_2": "All SC and ST women delivering in a government health centre like Sub-centre, PHC/CHC/ FRU / general ward of District and state Hospitals or accredited private institutions",
+  "@jsy_eligibility_2": {},
+
+  "jsy_cash_title": "Cash Assistance",
+  "@jsy_cash_title":{},
+
+  "jsy_cash_desc": "given to all births, delivered in a health centre – Government or Accredited Private health institutions",
+  "@jsy_cash_desc":{},
+
+  "jsy_table_category": "Category",
+  "@jsy_table_category": {},
+
+  "jsy_table_rural": "Rural",
+  "@jsy_table_rural": {},
+
+  "jsy_table_urban": "Urban",
+  "@jsy_table_urban": {},
+
+  "jsy_table_total": "Total",
+  "@jsy_table_total": {},
+
+  "jsy_table_mother_package": "Mother's Package",
+  "@jsy_table_mother_package": {},
+
+  "jsy_table_mitanin_package": "Mitanin's Package",
+  "@jsy_table_mitanin_package": {},
 
   "schemeJssk": "Janani-Shishu Suraksha Karyakram (JSSK)",
   "@schemeJssk": {},
 
+  "jssk_eligibility_desc": "All pregnant mothers and sick newborns accessing public health institutions for healthcare.",
+  "@jssk_eligibility_desc": {},
+
+  "jssk_women_title": "Entitlements for Pregnant Women",
+  "@jssk_women_title": {},
+
+  "jssk_women_1": "Free and zero expense delivery and Caesarean section",
+  "@jssk_women_1": {},
+
+  "jssk_women_2": "Free drugs and consumables",
+  "@jssk_women_2": {},
+
+  "jssk_women_3": "Free essential diagnostics including blood, urine tests and ultrasonography",
+  "@jssk_women_3": {},
+
+  "jssk_women_4": "Free diet during stay in health institutions",
+  "@jssk_women_4": {},
+
+  "jssk_women_5": "Free provision of blood",
+  "@jssk_women_5": {},
+
+  "jssk_women_6": "Free transport from home to health institution and referral transport",
+  "@jssk_women_6": {},
+
+  "jssk_women_7": "Exemption from all user charges",
+  "@jssk_women_7": {},
+
+  "jssk_newborn_title": "Entitlements for Sick Newborns till One Year after Birth",
+  "@jssk_newborn_title": {},
+
+  "jssk_newborn_1": "Free and zero expense treatment",
+  "@jssk_newborn_1": {},
+
+  "jssk_newborn_2": "Free drugs and consumables",
+  "@jssk_newborn_2": {},
+
+  "jssk_newborn_3": "Free diagnostics",
+  "@jssk_newborn_3": {},
+
+  "jssk_newborn_4": "Free provision of blood",
+  "@jssk_newborn_4": {},
+
+  "jssk_newborn_5": "Free transport and referral transport",
+  "@jssk_newborn_5": {},
+
+  "jssk_newborn_6": "Exemption from all user charges",
+  "@jssk_newborn_6": {},
+
   "schemePmsma": "Pradhan Mantri Surakshit Matritva Abhiyan (PMSMA)",
   "@schemePmsma": {},
+
+  "pmsma_desc_1": "A special ANC check-up day is held on the 9th of every month across the country at identified public health facilities.",
+  "@pmsma_desc_1": {},
+
+  "pmsma_desc_2": "Services are provided at Pradhan Mantri Surakshit Matritva Clinics in addition to routine ANC.",
+  "@pmsma_desc_2": {},
+
+  "pmsma_desc_3": "Every pregnant woman gets at least one free check-up by a doctor in the 2nd or 3rd trimester.",
+  "@pmsma_desc_3": {},
+
+  "pmsma_desc_4": "All pregnant women in the 2nd or 3rd trimester are eligible.",
+  "@pmsma_desc_4": {},
+
+  "pmsma_services_title": "Package of Services",
+  "@pmsma_services_title": {},
+
+  "pmsma_service_1": "Routine antenatal care check-up",
+  "@pmsma_service_1": {},
+
+  "pmsma_service_2": "Diagnostic services",
+  "@pmsma_service_2": {},
+
+  "pmsma_service_3": "Identification and management of high-risk pregnant women",
+  "@pmsma_service_3": {},
+
+  "pmsma_service_4": "Counselling on nutrition, family planning, birth preparedness, newborn and postnatal care",
+  "@pmsma_service_4": {},
 
   "schemePmmvy": "Pradhan Mantri Matru Vandana Yojana (PMMVY)",
   "@schemePmmvy": {},
 
-  "schemeMinimata": "Minimata Mahtari Jatan Yojana",
+  "pmmvy_des": "Cash incentive to provide financial support for pregnant and lactating mothers",
+  "@pmmvy_des": {},
+
+  "pmmvy_eligibility_1": "Women belonging to Scheduled Castes and Scheduled Tribes",
+  "@pmmvy_eligibility_1": {},
+
+  "pmmvy_eligibility_2": "Women who are partially (40%) or fully disabled (Divyang Jan)",
+  "@pmmvy_eligibility_2": {},
+
+  "pmmvy_eligibility_3": "Women holding BPL Ration Card",
+  "@pmmvy_eligibility_3": {},
+
+  "pmmvy_eligibility_4": "Women beneficiaries under Pradhan Mantri Jan Arogya Yojana (PMJAY) under Ayushman Bharat",
+  "@pmmvy_eligibility_4": {},
+
+  "pmmvy_eligibility_5": "Women holding E-Shram Card",
+  "@pmmvy_eligibility_5": {},
+
+  "pmmvy_eligibility_6": "Women farmers who are beneficiaries under Kisan Samman Nidhi",
+  "@pmmvy_eligibility_6": {},
+
+  "pmmvy_eligibility_7": "Women holding MGNREGA Job Card",
+  "@pmmvy_eligibility_7": {},
+
+  "pmmvy_eligibility_8": "Women whose net family income is less than Rs. 8 lakh per annum",
+  "@pmmvy_eligibility_8": {},
+
+  "pmmvy_eligibility_9": "Pregnant and Lactating AWWs/AWHs/ASHAs",
+  "@pmmvy_eligibility_9": {},
+
+  "pmmvy_eligibility_10": "Any other category as may be prescribed by the Central Government",
+  "@pmmvy_eligibility_10": {},
+
+  "pmmvy_exclusion_note": "Further, all pregnant women and lactating mothers in regular employment with the Central Government, State Government, Public Sector Undertakings, or those receiving similar benefits under any law currently in force shall not be entitled to benefits under PMMVY.",
+  "@pmmvy_exclusion_note": {},
+
+  "pmmvy_installment_title": "Conditionalities and Installments",
+  "@pmmvy_installment_title": {},
+
+  "pmmvy_table_installment": "Installment",
+  "@pmmvy_table_installment": {},
+
+  "pmmvy_table_conditions": "Conditions",
+  "@pmmvy_table_conditions": {},
+
+  "pmmvy_table_amount": "Amount",
+  "@pmmvy_table_amount": {},
+
+  "pmmvy_first_installment_title": "First Installment",
+  "@pmmvy_first_installment_title": {},
+
+  "pmmvy_first_installment_condition": "On registration of pregnancy and at least one Ante-natal check-up within 6 months from LMP date at the Anganwadi Centre (AWC) or approved health facility as identified by the respective State/UT.",
+  "@pmmvy_first_installment_condition": {},
+
+  "pmmvy_first_installment_amount": "₹ 3000/-",
+  "@pmmvy_first_installment_amount": {},
+
+  "pmmvy_second_installment_title": "Second Installment",
+  "@pmmvy_second_installment_title": {},
+
+  "pmmvy_second_installment_condition_1": "Child birth is registered.",
+  "@pmmvy_second_installment_condition_1": {},
+
+  "pmmvy_second_installment_condition_2": "Child has received first cycle of BCG, OPV, DPT and Hepatitis-B or its equivalent/substitute.",
+  "@pmmvy_second_installment_condition_2": {},
+
+  "pmmvy_second_installment_amount": "₹ 2000/-",
+  "@pmmvy_second_installment_amount": {},
+
+  "pmmvy_benefit_desc": "Benefit is available to a woman for the first two living children provided the second child is a girl.In case of the first child the amount of ₹5000 in 2 installments and for the second child, the benefit of ₹6000 will be provided subject to second child is a girl child in one installment after the birth.",
+  "@pmmvy_benefit_desc": {},
+
+  "anganwadi_name": "Services at Anganwadi Centre to Pregnant Mothers and Children",
+  "@anganwadi_name": {},
+
+  "anganwadi_table_service": "Services",
+  "@anganwadi_table_service": {},
+
+  "anganwadi_table_target_group": "Target Group",
+  "@anganwadi_table_target_group": {},
+
+  "anganwadi_table_provider": "Services Provided By",
+  "@anganwadi_table_provider": {},
+
+  "anganwadi_service_1": "Supplementary Nutrition",
+  "@anganwadi_service_1": {},
+
+  "anganwadi_service_1_target": "Children below 3 years and Pregnant & Lactating Mothers - Take Home Ration (THR); Children 3-6 years - Hot Cooked Meal and THR",
+  "@anganwadi_service_1_target": {},
+
+  "anganwadi_service_1_provider": "Anganwadi Worker (AWW) & Anganwadi Helper (AWH)",
+  "@anganwadi_service_1_provider": {},
+
+  "anganwadi_service_2": "Immunization",
+  "@anganwadi_service_2": {},
+
+  "anganwadi_service_2_target": "Children below 6 years; Pregnant & Lactating Mothers",
+  "@anganwadi_service_2_target": {},
+
+  "anganwadi_service_2_provider": "ANM / Medical Officer (MO)",
+  "@anganwadi_service_2_provider": {},
+
+  "anganwadi_service_3": "Health Check-up",
+  "@anganwadi_service_3": {},
+
+  "anganwadi_service_3_target": "Children below 6 years; Pregnant Women & Lactating Mothers",
+  "@anganwadi_service_3_target": {},
+
+  "anganwadi_service_3_provider": "ANM / Medical Officer (MO) / Anganwadi Worker (AWW)",
+  "@anganwadi_service_3_provider": {},
+
+  "anganwadi_service_4": "Referral Services",
+  "@anganwadi_service_4": {},
+
+  "anganwadi_service_4_target": "Children below 6 years; Pregnant Women & Lactating Mothers",
+  "@anganwadi_service_4_target": {},
+
+  "anganwadi_service_4_provider": "Anganwadi Worker (AWW) / ANM / Medical Officer (MO)",
+  "@anganwadi_service_4_provider": {},
+
+  "schemeMinimata": "Minimata Mahtari Jatan Yojana (formerly Bhagini Prasuti Sahayata Yojana)",
   "@schemeMinimata": {},
+
+  "minimata_desc": "Under the scheme, a maternity benefit of ₹10,000 is provided, of which ₹5,000 is paid in the first trimester of pregnancy and the remaining ₹5,000 is paid in the third trimester (eighth month). The assistance amount is disbursed within 72 hours of receiving the notification.",
+  "@minimata_desc": {},
+
+  "minimata_eligibility_title": "Eligibility for Participation in the Scheme",
+  "@minimata_eligibility_title": {},
+
+  "minimata_eligibility_1": "Registration of the beneficiary's spouse is required.",
+  "@minimata_eligibility_1": {},
+
+  "minimata_eligibility_2": "A doctor, ANM, or Mitanin are required to verify the woman's pregnancy.",
+  "@minimata_eligibility_2": {},
+
+  "minimata_eligibility_3": "Wives of construction workers working in public or government institutions will not be eligible for the scheme.",
+  "@minimata_eligibility_3": {},
+
+  "minimata_eligibility_4": "The benefits of the maternity scheme will be payable only for a maximum of two deliveries.",
+  "@minimata_eligibility_4": {},
+
+  "minimata_eligibility_5": "Eligibility for the benefits will be after 90 days of registration.",
+  "@minimata_eligibility_5": {},
 
   "eligibility": "Eligibility",
   "@eligibility": {},
@@ -423,9 +712,11 @@
   "learnMore": "Learn More",
   "@learnMore": {},
 
-
   "ancTitle": "ANC Services",
   "@ancTitle": {},
+
+  "ancdesc": "Services for the current pregnancy",
+  "@ancdesc": {},
 
   "ancVisitManager": "Visit Manager",
   "@ancVisitManager": {},
@@ -487,6 +778,9 @@
   },
 
 
+  "chatbot": "Chatbot",
+  "@chatbot": {},
+
   "chatbotTitle": "Ask Sangwari Maa",
   "@chatbotTitle": {},
 
@@ -504,7 +798,22 @@
 
   "faqEmpty": "No FAQs available at the moment.",
   "@faqEmpty": {},
-
+"chatbotWelcome": "Hi! I can help with maternal health questions. Pick a topic below, or type your own question anytime.",
+"chatbotCategoryBpcr": "Birth Preparedness (BPCR)",
+"chatbotCategorySchemes": "Maternal Health Schemes",
+"chatbotCategoryPnc": "Postnatal & Newborn Care",
+"chatbotQuestionsIntro": "Here are some common questions about {category}:",
+"@chatbotQuestionsIntro": { "placeholders": { "category": {} } },
+"chatbotNoFaqs": "I don't have FAQs for this topic yet — try typing your question below.",
+"chatbotCategoryLoadError": "Sorry, I could not load that topic. Please try again.",
+"chatbotSendError": "Sorry, something went wrong. Please try again.",
+"chatbotBackToTopics": "⬅ Back to topics",
+"chatbotAnythingElse": "Anything else on this topic?",
+"chatbotNoAnswerYet": "Sorry, I don't have an answer for that yet.",
+"chatbotGeneralTopic": "General",
+"chatbotYes": "Yes",
+"chatbotNo": "No",
+"chatbotPickAnother": "Sure, pick another question:",
 
   "remindersTitle": "My Reminders",
   "@remindersTitle": {},
@@ -594,6 +903,8 @@
   "viewAll": "View All",
   "@viewAll": {},
 
+  "help": "How Can I Help You !",
+  "@help": {},
 
   "alertsTitle": "Alerts",
   "@alertsTitle": {},

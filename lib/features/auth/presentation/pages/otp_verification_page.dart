@@ -8,6 +8,7 @@ import 'package:sangwari_maa/core/constants/app_colors.dart';
 import 'package:sangwari_maa/core/constants/app_spacing.dart';
 import 'package:sangwari_maa/core/constants/app_typography.dart';
 import 'package:sangwari_maa/core/l10n/generated/app_localizations.dart';
+import 'package:sangwari_maa/features/auth/data/model/user_model.dart';
 import 'package:sangwari_maa/features/auth/presentation/controller/auth_controller.dart';
 import 'package:sangwari_maa/shared/widgets/app_background.dart';
 import 'package:sangwari_maa/shared/widgets/app_logo_header.dart';
@@ -115,7 +116,28 @@ class _OtpVerificationPageState extends ConsumerState<OtpVerificationPage> {
           );
         },
         data: (_) {
-          if (_isVerifying) context.go('/womensdashboard');
+          if (!_isVerifying) return;
+          final controller = ref.read(authControllerProvider.notifier);
+          if (controller.isNewUser) {
+            context.pushNamed('register', extra: widget.mobile);
+            return;
+          }
+          switch (controller.role) {
+            case UserRole.pregnantWoman:
+              context.go('/womensdashboard');
+              break;
+            case UserRole.asha:
+            case UserRole.anm:
+              context.go('/mitanindashboard'); // ⚠️ route doesn't exist yet — see below
+              break;
+            case UserRole.blockAdmin:
+            case UserRole.pi:
+            case UserRole.superAdmin:
+              context.go('/admindashboard'); // ⚠️ route doesn't exist yet — see below
+              break;
+            case null:
+              context.go('/womensdashboard'); // fallback, shouldn't happen
+          }
         },
       );
     });

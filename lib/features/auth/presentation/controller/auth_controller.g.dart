@@ -14,8 +14,6 @@ part of 'auth_controller.dart';
 ///   - AsyncData(null)    → idle / success
 ///   - AsyncLoading()     → request in flight
 ///   - AsyncError(e, st)  → failure, message surfaced via SnackBar in UI
-///
-/// Replace the TODO stubs with your real AuthRepository calls.
 
 @ProviderFor(AuthController)
 const authControllerProvider = AuthControllerProvider._();
@@ -26,8 +24,6 @@ const authControllerProvider = AuthControllerProvider._();
 ///   - AsyncData(null)    → idle / success
 ///   - AsyncLoading()     → request in flight
 ///   - AsyncError(e, st)  → failure, message surfaced via SnackBar in UI
-///
-/// Replace the TODO stubs with your real AuthRepository calls.
 final class AuthControllerProvider
     extends $NotifierProvider<AuthController, AsyncValue<void>> {
   /// Auth controller — handles sendOtp and verifyOtp.
@@ -36,8 +32,6 @@ final class AuthControllerProvider
   ///   - AsyncData(null)    → idle / success
   ///   - AsyncLoading()     → request in flight
   ///   - AsyncError(e, st)  → failure, message surfaced via SnackBar in UI
-  ///
-  /// Replace the TODO stubs with your real AuthRepository calls.
   const AuthControllerProvider._()
     : super(
         from: null,
@@ -65,7 +59,7 @@ final class AuthControllerProvider
   }
 }
 
-String _$authControllerHash() => r'0eca37fa6a6273fd7f7b83a10beced9c334b4c20';
+String _$authControllerHash() => r'b7c1f13352b66686a22ac041a08c93d5b81da975';
 
 /// Auth controller — handles sendOtp and verifyOtp.
 ///
@@ -73,8 +67,6 @@ String _$authControllerHash() => r'0eca37fa6a6273fd7f7b83a10beced9c334b4c20';
 ///   - AsyncData(null)    → idle / success
 ///   - AsyncLoading()     → request in flight
 ///   - AsyncError(e, st)  → failure, message surfaced via SnackBar in UI
-///
-/// Replace the TODO stubs with your real AuthRepository calls.
 
 abstract class _$AuthController extends $Notifier<AsyncValue<void>> {
   AsyncValue<void> build();

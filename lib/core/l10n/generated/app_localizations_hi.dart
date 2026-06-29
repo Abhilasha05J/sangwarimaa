@@ -245,6 +245,39 @@ class AppLocalizationsHi extends AppLocalizations {
   String get registrationTitle => 'नया पंजीकरण';
 
   @override
+  String get newUserCompleteRegistration =>
+      'आप यहाँ नए हैं! जारी रखने के लिए कृपया अपना पंजीकरण पूरा करें।';
+
+  @override
+  String get welcomeBackLoggedIn =>
+      'वापसी पर स्वागत है! आप पहले से पंजीकृत हैं।';
+
+  @override
+  String get accountExistsPleaseLogin =>
+      'इस नंबर के लिए खाता पहले से मौजूद है। कृपया लॉगिन करें।';
+
+  @override
+  String get dobFutureError => 'जन्म तिथि भविष्य में नहीं हो सकती';
+
+  @override
+  String get ageRangeError => 'आयु 14 से 55 के बीच होनी चाहिए';
+
+  @override
+  String get ageDobMismatch => 'आयु दर्ज की गई जन्म तिथि से मेल नहीं खाती';
+
+  @override
+  String get lmpFutureError => 'LMP तिथि भविष्य में नहीं हो सकती';
+
+  @override
+  String get lmpTooOldError => 'LMP तिथि बहुत पुरानी लगती है';
+
+  @override
+  String get required => 'आवश्यक';
+
+  @override
+  String get invalidValue => 'अमान्य मूल्य';
+
+  @override
   String get fullName => 'पूरा नाम';
 
   @override
@@ -303,13 +336,14 @@ class AppLocalizationsHi extends AppLocalizations {
   String get homeDashboard => 'होम';
 
   @override
-  String get myProfile => 'मेरी प्रोफ़ाइल';
+  String get myProfile => 'प्रोफ़ाइल';
 
   @override
-  String get bpcrModule => 'BPCR मॉड्यूल';
+  String get bpcrModule => 'BPCR';
 
   @override
-  String get maternalSchemes => 'मातृत्व योजनाएं';
+  String get bpcrdesc =>
+      'जन्म तैयारी एवं जटिलता तत्परता (BPCR) के महत्वपूर्ण चरणों की प्रगति को ट्रैक करें।';
 
   @override
   String get ancServices => 'ANC सेवाएं';
@@ -331,6 +365,12 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get logoutConfirm => 'क्या आप लॉगआउट करना चाहती हैं?';
+
+  @override
+  String get videomodule => 'वीडियो अनुभाग';
+
+  @override
+  String get videomoduledesc => 'सुरक्षित मातृत्व के लिए शैक्षणिक सामग्री';
 
   @override
   String get bpcrTitle => 'प्रसव तैयारी';
@@ -356,37 +396,63 @@ class AppLocalizationsHi extends AppLocalizations {
   String get bpcrRiskLow => 'कम जोखिम';
 
   @override
-  String get bpcrComponent1 => 'प्रशिक्षित प्रसव सहायक की पहचान';
+  String get bpcr_danger_pregnancy_title => 'गर्भावस्था के दौरान खतरे के संकेत';
 
   @override
-  String get bpcrComponent2 => 'प्रसव स्थान की पहचान';
+  String get bpcr_danger_pregnancy_desc =>
+      'तेज़ सिरदर्द, धुंधला दिखाई देना, सूजन।';
 
   @override
-  String get bpcrComponent3 => 'वाहन की व्यवस्था';
+  String get bpcr_danger_labor_title =>
+      'प्रसव एवं बच्चे के जन्म के दौरान खतरे के संकेत';
 
   @override
-  String get bpcrComponent4 => 'प्रसव के लिए पैसे की बचत';
+  String get bpcr_danger_labor_desc =>
+      'प्रसव और बच्चे के जन्म के दौरान खतरे के संकेत।';
 
   @override
-  String get bpcrComponent5 => 'रक्तदाता की पहचान';
+  String get bpcr_postnatal_title => 'प्रसवोत्तर अवधि के दौरान खतरे के संकेत';
 
   @override
-  String get bpcrComponent6 => 'अन्य बच्चों की देखभाल की व्यवस्था';
+  String get bpcr_postnatal_desc => 'दुर्गंधयुक्त स्राव, तेज दर्द, अवसाद।';
 
   @override
-  String get bpcrComponent7 => 'खतरे के संकेतों की जानकारी';
+  String get bpcr_newborn_title => 'नवजात अवधि में खतरे के संकेत';
 
   @override
-  String get bpcrComponent8 => 'ANC विजिट पूरी';
+  String get bpcr_newborn_desc =>
+      'सांस लेने में कठिनाई, दौरे पड़ना, शरीर ठंडा होना।';
 
   @override
-  String get bpcrComponent9 => 'आयरन-फोलिक एसिड की गोलियां ली';
+  String get bpcr_health_facility_title => 'स्वास्थ्य सुविधा की पहचान';
 
   @override
-  String get bpcrComponent10 => 'TT टीकाकरण हो गया';
+  String get bpcr_skill_birth_attendant_title =>
+      'प्रशिक्षित प्रसव सहायक की पहचान';
 
   @override
-  String get bpcrCompleted => 'पूर्ण';
+  String get bpcr_transport_title =>
+      'स्वास्थ्य सुविधा तक पहुँचने के लिए परिवहन व्यवस्था की योजना';
+
+  @override
+  String get bpcr_transport_desc => '108/102 आपातकालीन कॉल';
+
+  @override
+  String get bpcr_save_money_title => 'प्रसव के लिए धन बचाने की योजना';
+
+  @override
+  String get bpcr_financial_support_title =>
+      'सामुदायिक वित्तीय सहायता प्रणाली की उपलब्धता की पहचान';
+
+  @override
+  String get bpcr_financial_support_desc => 'स्थानीय सहायता उपलब्ध';
+
+  @override
+  String get bpcr_blood_donor_title =>
+      'सामुदायिक रक्तदाता की उपलब्धता की पहचान';
+
+  @override
+  String get bpcrCompleted => 'Completed';
 
   @override
   String get bpcrPending => 'बाकी है';
@@ -398,22 +464,319 @@ class AppLocalizationsHi extends AppLocalizations {
   String get bpcrUpdateSuccess => 'BPCR चेकलिस्ट अपडेट हो गई।';
 
   @override
-  String get schemesTitle => 'मातृत्व योजनाएं';
+  String get maternalSchemesdesc =>
+      'सरकारी योजनाओं के बारे में जानें और पात्रता की जाँच करें।';
 
   @override
-  String get schemeJsy => 'जननी सुरक्षा योजना (JSY)';
+  String get schemesTitle => 'मातृत्व लाभ योजनाएं';
+
+  @override
+  String get schemes_explore => 'योजनाओं के बारे में जानें';
+
+  @override
+  String get schemes_details => 'योजना का विवरण';
+
+  @override
+  String get jsy_name => 'जननी सुरक्षा योजना (JSY)';
+
+  @override
+  String get jsy_eligibility_1 =>
+      'सरकारी स्वास्थ्य केंद्रों जैसे उप-केंद्र, PHC/CHC/FRU/जिला और राज्य अस्पतालों के सामान्य वार्डों या मान्यता प्राप्त निजी संस्थानों में प्रसव कराने वाली सभी गर्भवती महिलाएं';
+
+  @override
+  String get jsy_eligibility_2 =>
+      'सरकारी स्वास्थ्य केंद्र में प्रसव कराने वाली सभी SC और ST महिलाएं';
+
+  @override
+  String get jsy_cash_title => 'नकद सहायता';
+
+  @override
+  String get jsy_cash_desc =>
+      'सरकारी या मान्यता प्राप्त निजी स्वास्थ्य संस्थानों में प्रसव पर सभी को दी जाती है';
+
+  @override
+  String get jsy_table_category => 'श्रेणी';
+
+  @override
+  String get jsy_table_rural => 'ग्रामीण';
+
+  @override
+  String get jsy_table_urban => 'शहरी';
+
+  @override
+  String get jsy_table_total => 'कुल';
+
+  @override
+  String get jsy_table_mother_package => 'माता सहायता राशि';
+
+  @override
+  String get jsy_table_mitanin_package => 'मितानिन सहायता राशि';
 
   @override
   String get schemeJssk => 'जननी-शिशु सुरक्षा कार्यक्रम (JSSK)';
 
   @override
+  String get jssk_eligibility_desc =>
+      'सभी गर्भवती माताएँ एवं बीमार नवजात शिशु जो सार्वजनिक स्वास्थ्य संस्थानों में उपचार प्राप्त करते हैं।';
+
+  @override
+  String get jssk_women_title => 'गर्भवती महिलाओं हेतु लाभ';
+
+  @override
+  String get jssk_women_1 =>
+      'निःशुल्क एवं शून्य व्यय प्रसव तथा सिजेरियन सेक्शन';
+
+  @override
+  String get jssk_women_2 => 'निःशुल्क दवाइयाँ एवं उपभोग्य सामग्री';
+
+  @override
+  String get jssk_women_3 =>
+      'निःशुल्क आवश्यक जांचें (रक्त, मूत्र एवं अल्ट्रासोनोग्राफी)';
+
+  @override
+  String get jssk_women_4 =>
+      'स्वास्थ्य संस्थान में भर्ती अवधि के दौरान निःशुल्क भोजन';
+
+  @override
+  String get jssk_women_5 => 'निःशुल्क रक्त उपलब्धता';
+
+  @override
+  String get jssk_women_6 =>
+      'घर से स्वास्थ्य संस्थान तक तथा रेफरल हेतु निःशुल्क परिवहन';
+
+  @override
+  String get jssk_women_7 => 'सभी प्रकार के उपयोगकर्ता शुल्कों से छूट';
+
+  @override
+  String get jssk_newborn_title =>
+      'जन्म के एक वर्ष तक बीमार नवजात शिशुओं हेतु लाभ';
+
+  @override
+  String get jssk_newborn_1 => 'निःशुल्क एवं शून्य व्यय उपचार';
+
+  @override
+  String get jssk_newborn_2 => 'निःशुल्क दवाइयाँ एवं उपभोग्य सामग्री';
+
+  @override
+  String get jssk_newborn_3 => 'निःशुल्क जांच';
+
+  @override
+  String get jssk_newborn_4 => 'निःशुल्क रक्त उपलब्धता';
+
+  @override
+  String get jssk_newborn_5 => 'निःशुल्क परिवहन एवं रेफरल परिवहन';
+
+  @override
+  String get jssk_newborn_6 => 'सभी प्रकार के उपयोगकर्ता शुल्कों से छूट';
+
+  @override
   String get schemePmsma => 'प्रधानमंत्री सुरक्षित मातृत्व अभियान (PMSMA)';
+
+  @override
+  String get pmsma_desc_1 =>
+      'देशभर में प्रत्येक माह की 9 तारीख को चिन्हित सरकारी स्वास्थ्य संस्थानों में विशेष एएनसी जांच दिवस आयोजित किया जाता है।';
+
+  @override
+  String get pmsma_desc_2 =>
+      'नियमित एएनसी के अतिरिक्त प्रधानमंत्री सुरक्षित मातृत्व क्लीनिकों में सेवाएँ प्रदान की जाती हैं।';
+
+  @override
+  String get pmsma_desc_3 =>
+      'प्रत्येक गर्भवती महिला को दूसरी या तीसरी तिमाही में कम से कम एक निःशुल्क चिकित्सकीय जांच प्राप्त होती है।';
+
+  @override
+  String get pmsma_desc_4 =>
+      'दूसरी या तीसरी तिमाही की सभी गर्भवती महिलाएँ पात्र हैं।';
+
+  @override
+  String get pmsma_services_title => 'सेवाओं का पैकेज';
+
+  @override
+  String get pmsma_service_1 => 'नियमित प्रसवपूर्व जांच';
+
+  @override
+  String get pmsma_service_2 => 'नैदानिक सेवाएँ';
+
+  @override
+  String get pmsma_service_3 =>
+      'उच्च जोखिम वाली गर्भवती महिलाओं की पहचान एवं प्रबंधन';
+
+  @override
+  String get pmsma_service_4 =>
+      'पोषण, परिवार नियोजन, सुरक्षित प्रसव तैयारी, नवजात एवं प्रसवोत्तर देखभाल पर परामर्श';
 
   @override
   String get schemePmmvy => 'प्रधानमंत्री मातृ वंदना योजना (PMMVY)';
 
   @override
-  String get schemeMinimata => 'मिनीमाता महतारी जतन योजना';
+  String get pmmvy_des =>
+      'गर्भवती और स्तनपान कराने वाली माताओं को आर्थिक सहायता देने के लिए नकद प्रोत्साहन';
+
+  @override
+  String get pmmvy_eligibility_1 =>
+      'अनुसूचित जाति एवं अनुसूचित जनजाति की महिलाएँ';
+
+  @override
+  String get pmmvy_eligibility_2 =>
+      'आंशिक (40%) या पूर्ण रूप से दिव्यांग महिलाएँ';
+
+  @override
+  String get pmmvy_eligibility_3 => 'बीपीएल राशन कार्ड धारक महिलाएँ';
+
+  @override
+  String get pmmvy_eligibility_4 =>
+      'आयुष्मान भारत के अंतर्गत प्रधानमंत्री जन आरोग्य योजना (PMJAY) की लाभार्थी महिलाएँ';
+
+  @override
+  String get pmmvy_eligibility_5 => 'ई-श्रम कार्ड धारक महिलाएँ';
+
+  @override
+  String get pmmvy_eligibility_6 => 'किसान सम्मान निधि की लाभार्थी महिला किसान';
+
+  @override
+  String get pmmvy_eligibility_7 => 'मनरेगा जॉब कार्ड धारक महिलाएँ';
+
+  @override
+  String get pmmvy_eligibility_8 =>
+      'जिन महिलाओं की पारिवारिक वार्षिक आय 8 लाख रुपये से कम है';
+
+  @override
+  String get pmmvy_eligibility_9 =>
+      'गर्भवती एवं स्तनपान कराने वाली आंगनवाड़ी कार्यकर्ता, आंगनवाड़ी सहायिका एवं आशा कार्यकर्ता';
+
+  @override
+  String get pmmvy_eligibility_10 =>
+      'केंद्र सरकार द्वारा निर्धारित कोई अन्य श्रेणी';
+
+  @override
+  String get pmmvy_exclusion_note =>
+      'केंद्र सरकार, राज्य सरकार, सार्वजनिक उपक्रमों में नियमित रूप से कार्यरत गर्भवती एवं स्तनपान कराने वाली महिलाएँ अथवा वर्तमान में किसी अन्य कानून के अंतर्गत समान लाभ प्राप्त करने वाली महिलाएँ PMMVY के लाभ हेतु पात्र नहीं होंगी।';
+
+  @override
+  String get pmmvy_installment_title => 'शर्तें एवं किश्तें';
+
+  @override
+  String get pmmvy_table_installment => 'किश्त';
+
+  @override
+  String get pmmvy_table_conditions => 'शर्तें';
+
+  @override
+  String get pmmvy_table_amount => 'राशि';
+
+  @override
+  String get pmmvy_first_installment_title => 'प्रथम किश्त';
+
+  @override
+  String get pmmvy_first_installment_condition =>
+      'गर्भावस्था के पंजीकरण तथा LMP तिथि से 6 माह के भीतर कम से कम एक प्रसवपूर्व जांच (ANC) आंगनवाड़ी केन्द्र या राज्य/केंद्रशासित प्रदेश द्वारा अनुमोदित स्वास्थ्य संस्थान में करवाने पर।';
+
+  @override
+  String get pmmvy_first_installment_amount => '₹ 3000/-';
+
+  @override
+  String get pmmvy_second_installment_title => 'द्वितीय किश्त';
+
+  @override
+  String get pmmvy_second_installment_condition_1 =>
+      'बच्चे के जन्म का पंजीकरण किया गया हो।';
+
+  @override
+  String get pmmvy_second_installment_condition_2 =>
+      'बच्चे को BCG, OPV, DPT तथा हेपेटाइटिस-B अथवा उसके समकक्ष टीकों का प्रथम चक्र प्राप्त हुआ हो।';
+
+  @override
+  String get pmmvy_second_installment_amount => '₹ 2000/-';
+
+  @override
+  String get pmmvy_benefit_desc =>
+      'यह फ़ायदा महिला को उसके पहले दो जीवित बच्चों के लिए मिलता है, बशर्ते दूसरा बच्चा लड़की हो। पहले बच्चे के लिए ₹5,000 की राशि दो किश्तों में दी जाती है, और दूसरे बच्चे के लिए ₹6,000 का फ़ायदा एक ही किश्त में दिया जाता है (बच्चे के जन्म के बाद), बशर्ते दूसरा बच्चा लड़की हो।';
+
+  @override
+  String get anganwadi_name =>
+      'गर्भवती माताओं एवं बच्चों हेतु आंगनवाड़ी केन्द्र की सेवाएँ';
+
+  @override
+  String get anganwadi_table_service => 'सेवाएँ';
+
+  @override
+  String get anganwadi_table_target_group => 'लक्षित समूह';
+
+  @override
+  String get anganwadi_table_provider => 'सेवा प्रदाता';
+
+  @override
+  String get anganwadi_service_1 => 'पूरक पोषण';
+
+  @override
+  String get anganwadi_service_1_target =>
+      '3 वर्ष से कम आयु के बच्चे तथा गर्भवती एवं स्तनपान कराने वाली माताएँ - टेक होम राशन (THR); 3-6 वर्ष के बच्चों हेतु गर्म पका हुआ भोजन एवं THR';
+
+  @override
+  String get anganwadi_service_1_provider =>
+      'आंगनवाड़ी कार्यकर्ता (AWW) एवं आंगनवाड़ी सहायिका (AWH)';
+
+  @override
+  String get anganwadi_service_2 => 'टीकाकरण';
+
+  @override
+  String get anganwadi_service_2_target =>
+      '6 वर्ष से कम आयु के बच्चे; गर्भवती एवं स्तनपान कराने वाली माताएँ';
+
+  @override
+  String get anganwadi_service_2_provider => 'एएनएम / चिकित्सा अधिकारी (MO)';
+
+  @override
+  String get anganwadi_service_3 => 'स्वास्थ्य जांच';
+
+  @override
+  String get anganwadi_service_3_target =>
+      '6 वर्ष से कम आयु के बच्चे; गर्भवती एवं स्तनपान कराने वाली माताएँ';
+
+  @override
+  String get anganwadi_service_3_provider =>
+      'एएनएम / चिकित्सा अधिकारी (MO) / आंगनवाड़ी कार्यकर्ता (AWW)';
+
+  @override
+  String get anganwadi_service_4 => 'रेफरल सेवाएँ';
+
+  @override
+  String get anganwadi_service_4_target =>
+      '6 वर्ष से कम आयु के बच्चे; गर्भवती एवं स्तनपान कराने वाली माताएँ';
+
+  @override
+  String get anganwadi_service_4_provider =>
+      'आंगनवाड़ी कार्यकर्ता (AWW) / एएनएम / चिकित्सा अधिकारी (MO)';
+
+  @override
+  String get schemeMinimata =>
+      'मिनीमाता महतारी जतन योजना (पूर्व में भगिनी प्रसूति सहायता योजना)';
+
+  @override
+  String get minimata_desc =>
+      'इस योजना के अंतर्गत ₹10,000 की मातृत्व सहायता प्रदान की जाती है, जिसमें से ₹5,000 गर्भावस्था की प्रथम तिमाही में तथा शेष ₹5,000 तृतीय तिमाही (आठवें माह) में दिए जाते हैं। सूचना प्राप्त होने के 72 घंटे के भीतर सहायता राशि का भुगतान कर दिया जाता है।';
+
+  @override
+  String get minimata_eligibility_title => 'योजना में भागीदारी हेतु पात्रता';
+
+  @override
+  String get minimata_eligibility_1 => 'लाभार्थी के पति का पंजीकरण आवश्यक है।';
+
+  @override
+  String get minimata_eligibility_2 =>
+      'महिला की गर्भावस्था का सत्यापन डॉक्टर, एएनएम या मितानिन द्वारा किया जाना आवश्यक है।';
+
+  @override
+  String get minimata_eligibility_3 =>
+      'सार्वजनिक या शासकीय संस्थानों में कार्यरत निर्माण श्रमिकों की पत्नियाँ इस योजना के लिए पात्र नहीं होंगी।';
+
+  @override
+  String get minimata_eligibility_4 =>
+      'मातृत्व योजना का लाभ अधिकतम दो प्रसवों तक ही देय होगा।';
+
+  @override
+  String get minimata_eligibility_5 =>
+      'पंजीकरण के 90 दिनों बाद लाभ हेतु पात्रता प्राप्त होगी।';
 
   @override
   String get eligibility => 'पात्रता';
@@ -432,6 +795,9 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get ancTitle => 'ANC सेवाएं';
+
+  @override
+  String get ancdesc => 'वर्तमान गर्भावस्था के लिए उपलब्ध सेवाएँ';
 
   @override
   String get ancVisitManager => 'विजिट मैनेजर';
@@ -493,6 +859,9 @@ class AppLocalizationsHi extends AppLocalizations {
   }
 
   @override
+  String get chatbot => 'चैटबॉट';
+
+  @override
   String get chatbotTitle => 'संगवारी माँ से पूछें';
 
   @override
@@ -509,6 +878,58 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get faqEmpty => 'अभी कोई FAQ उपलब्ध नहीं है।';
+
+  @override
+  String get chatbotWelcome =>
+      'नमस्ते! मैं मातृ स्वास्थ्य संबंधी सवालों में मदद कर सकती हूं। नीचे एक विषय चुनें, या कभी भी अपना सवाल टाइप करें।';
+
+  @override
+  String get chatbotCategoryBpcr => 'प्रसव की तैयारी (BPCR)';
+
+  @override
+  String get chatbotCategorySchemes => 'मातृ स्वास्थ्य योजनाएं';
+
+  @override
+  String get chatbotCategoryPnc => 'प्रसवोत्तर और नवजात देखभाल';
+
+  @override
+  String chatbotQuestionsIntro(Object category) {
+    return '$category के बारे में कुछ सामान्य सवाल यहां हैं:';
+  }
+
+  @override
+  String get chatbotNoFaqs =>
+      'इस विषय पर अभी मेरे पास सवाल-जवाब नहीं हैं — कृपया नीचे अपना सवाल टाइप करें।';
+
+  @override
+  String get chatbotCategoryLoadError =>
+      'क्षमा करें, यह विषय लोड नहीं हो सका। कृपया फिर से प्रयास करें।';
+
+  @override
+  String get chatbotSendError =>
+      'क्षमा करें, कुछ गड़बड़ हो गई। कृपया फिर से प्रयास करें।';
+
+  @override
+  String get chatbotBackToTopics => '⬅ विषयों पर वापस जाएं';
+
+  @override
+  String get chatbotAnythingElse => 'इस विषय पर कुछ और जानना है?';
+
+  @override
+  String get chatbotNoAnswerYet =>
+      'क्षमा करें, इसका उत्तर अभी मेरे पास नहीं है।';
+
+  @override
+  String get chatbotGeneralTopic => 'सामान्य';
+
+  @override
+  String get chatbotYes => 'हां';
+
+  @override
+  String get chatbotNo => 'नहीं';
+
+  @override
+  String get chatbotPickAnother => 'ठीक है, एक और सवाल चुनें:';
 
   @override
   String get remindersTitle => 'मेरे अनुस्मारक';
@@ -595,6 +1016,9 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get viewAll => 'सभी देखें';
+
+  @override
+  String get help => 'मैं आपकी क्या मदद कर सकता हूँ ?';
 
   @override
   String get alertsTitle => 'अलर्ट';

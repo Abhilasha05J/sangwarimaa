@@ -9,23 +9,20 @@ part of 'locale_provider.dart';
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, type=warning
 /// Stores the currently selected app locale.
-/// Default: English.
-/// Persisted via SharedPreferences on first language selection.
-/// See LanguageSelectionPage for usage.
+/// Default: English. Persisted via SharedPreferences across restarts.
+/// See LanguageSelectionPage and TopBar for usage.
 
 @ProviderFor(LocaleNotifier)
 const localeProvider = LocaleNotifierProvider._();
 
 /// Stores the currently selected app locale.
-/// Default: English.
-/// Persisted via SharedPreferences on first language selection.
-/// See LanguageSelectionPage for usage.
+/// Default: English. Persisted via SharedPreferences across restarts.
+/// See LanguageSelectionPage and TopBar for usage.
 final class LocaleNotifierProvider
     extends $NotifierProvider<LocaleNotifier, Locale> {
   /// Stores the currently selected app locale.
-  /// Default: English.
-  /// Persisted via SharedPreferences on first language selection.
-  /// See LanguageSelectionPage for usage.
+  /// Default: English. Persisted via SharedPreferences across restarts.
+  /// See LanguageSelectionPage and TopBar for usage.
   const LocaleNotifierProvider._()
     : super(
         from: null,
@@ -53,12 +50,11 @@ final class LocaleNotifierProvider
   }
 }
 
-String _$localeNotifierHash() => r'a504fdbdd7924b8d6b2348c073b4e7a04deb2a84';
+String _$localeNotifierHash() => r'01832f0ffe0726e242462dae675f7629c3862fce';
 
 /// Stores the currently selected app locale.
-/// Default: English.
-/// Persisted via SharedPreferences on first language selection.
-/// See LanguageSelectionPage for usage.
+/// Default: English. Persisted via SharedPreferences across restarts.
+/// See LanguageSelectionPage and TopBar for usage.
 
 abstract class _$LocaleNotifier extends $Notifier<Locale> {
   Locale build();

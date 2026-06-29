@@ -1,21 +1,801 @@
+// import 'package:flutter/material.dart';
+// import 'package:flutter/services.dart';
+// import 'package:flutter_riverpod/flutter_riverpod.dart';
+// import 'package:go_router/go_router.dart';
+// import 'package:sangwari_maa/core/constants/app_colors.dart';
+// import 'package:sangwari_maa/core/constants/app_spacing.dart';
+// import 'package:sangwari_maa/core/constants/app_typography.dart';
+// import 'package:sangwari_maa/core/l10n/generated/app_localizations.dart';
+// import 'package:sangwari_maa/features/registration/data/model/women_register_request_model.dart';
+// import 'package:sangwari_maa/features/registration/presentation/controller/registration_controller.dart';
+// import 'package:sangwari_maa/shared/providers/locale_provider.dart';
+// import 'package:sangwari_maa/shared/widgets/app_bar.dart';
+// import 'package:sangwari_maa/shared/widgets/app_primary_button.dart';
+// import 'package:sangwari_maa/shared/widgets/app_text_field.dart';
+//
+// /// Route: /register
+// class RegistrationPage extends ConsumerStatefulWidget {
+//   final String? initialMobile;
+//   const RegistrationPage({super.key, this.initialMobile});
+//
+//   @override
+//   ConsumerState<RegistrationPage> createState() => _RegistrationPageState();
+// }
+//
+// class _RegistrationPageState extends ConsumerState<RegistrationPage> {
+//   final _formKey = GlobalKey<FormState>();
+//
+//   final _nameCtrl    = TextEditingController();
+//   final _mobileCtrl  = TextEditingController();
+//   final _ageCtrl     = TextEditingController();
+//   final _husbAgeCtrl = TextEditingController();
+//   final _dobCtrl     = TextEditingController();
+//   final _addressCtrl = TextEditingController();
+//   final _gestCtrl    = TextEditingController();
+//   final _lmpCtrl     = TextEditingController();
+//   final _eddCtrl     = TextEditingController();
+//
+//   String? _selectedBloodGroup;
+//   String? _selectedVillage;
+//   String? _selectedPhc;
+//   bool _consentGiven = false;
+//
+//   static const List<String> _bloodGroups = [
+//     'A+', 'A−', 'B+', 'B−', 'AB+', 'AB−', 'O+', 'O−',
+//   ];
+//
+//   static const List<String> _villages = [
+//     'Raipur Village', 'Bilaspur Village', 'Durg Village',
+//     'Korba Village', 'Jagdalpur Village',
+//   ];
+//   static const List<String> _phcs = [
+//     'PHC Raipur North', 'PHC Bilaspur Central', 'PHC Durg South',
+//     'PHC Korba East', 'PHC Jagdalpur West',
+//   ];
+//
+//   @override
+//   void initState() {
+//     super.initState();
+//     if (widget.initialMobile != null) {
+//       _mobileCtrl.text = widget.initialMobile!;
+//     }
+//   }
+//
+//   @override
+//   void dispose() {
+//     _nameCtrl.dispose();
+//     _mobileCtrl.dispose();
+//     _ageCtrl.dispose();
+//     _husbAgeCtrl.dispose();
+//     _dobCtrl.dispose();
+//     _addressCtrl.dispose();
+//     _gestCtrl.dispose();
+//     _lmpCtrl.dispose();
+//     _eddCtrl.dispose();
+//     super.dispose();
+//   }
+//
+//   Future<void> _pickDate(TextEditingController ctrl) async {
+//     final picked = await showDatePicker(
+//       context: context,
+//       initialDate: DateTime.now(),
+//       firstDate: DateTime(1950),
+//       lastDate: DateTime.now().add(const Duration(days: 300)),
+//       builder: (ctx, child) => Theme(
+//         data: Theme.of(ctx).copyWith(
+//           colorScheme: const ColorScheme.light(
+//             primary: AppColors.gradStart,
+//             onPrimary: AppColors.white,
+//           ),
+//         ),
+//         child: child!,
+//       ),
+//     );
+//     if (picked != null) {
+//       ctrl.text =
+//       '${picked.day.toString().padLeft(2, '0')}-'
+//           '${picked.month.toString().padLeft(2, '0')}-'
+//           '${picked.year}';
+//     }
+//   }
+//
+//   /// Converts "dd-MM-yyyy" (from _pickDate) → "yyyy-MM-dd" (backend ISO format).
+//   String? _toIsoDate(String ddMMyyyy) {
+//     if (ddMMyyyy.isEmpty) return null;
+//     final parts = ddMMyyyy.split('-');
+//     if (parts.length != 3) return null;
+//     return '${parts[2]}-${parts[1]}-${parts[0]}';
+//   }
+//
+//   /// Backend regex is `^(A|B|AB|O)[+-]$` — ASCII hyphen, not the
+//   /// typographic minus (−) used in _bloodGroups for display.
+//   String? _normalizeBloodGroup(String? group) {
+//     if (group == null) return null;
+//     return group.replaceAll('−', '-');
+//   }
+//
+//   void _onSubmit() {
+//     final l10n = AppLocalizations.of(context)!;
+//     if (!(_formKey.currentState?.validate() ?? false)) return;
+//     if (!_consentGiven) {
+//       ScaffoldMessenger.of(context).showSnackBar(
+//         SnackBar(content: Text(l10n.consentRequired)),
+//       );
+//       return;
+//     }
+//     ref.read(registrationControllerProvider.notifier).register(
+//       WomenRegisterRequestModel(
+//         name: _nameCtrl.text.trim(),
+//         age: int.tryParse(_ageCtrl.text) ?? 0,
+//         husbandAge: int.tryParse(_husbAgeCtrl.text),
+//         dob: _toIsoDate(_dobCtrl.text),
+//         address: _addressCtrl.text.trim().isEmpty ? null : _addressCtrl.text.trim(),
+//         village: _selectedVillage,
+//         phc: _selectedPhc,
+//         lmp: _toIsoDate(_lmpCtrl.text) ?? '',
+//         bloodGroup: _normalizeBloodGroup(_selectedBloodGroup),
+//         preferredLanguage: ref.read(localeProvider).languageCode,
+//         consent: _consentGiven,
+//       ),
+//     );
+//   }
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     final l10n = AppLocalizations.of(context)!;
+//
+//     ref.listen<AsyncValue<void>>(registrationControllerProvider, (_, next) {
+//       next.whenOrNull(
+//         error: (e, _) => ScaffoldMessenger.of(context).showSnackBar(
+//           SnackBar(content: Text(e.toString())),
+//         ),
+//         data: (_) => context.go('/womensdashboard'),
+//       );
+//     });
+//
+//     final isLoading = ref.watch(registrationControllerProvider).isLoading;
+//     final isNewUserFlow = widget.initialMobile != null;
+//
+//     return Scaffold(
+//       backgroundColor: Colors.white,
+//       resizeToAvoidBottomInset: true,
+//       appBar: TopBar(l10n: l10n),
+//       body: Form(
+//         key: _formKey,
+//         autovalidateMode: AutovalidateMode.onUserInteraction,
+//         child: SingleChildScrollView(
+//           physics: const BouncingScrollPhysics(),
+//           padding: const EdgeInsets.symmetric(
+//             horizontal: AppSpacing.screenH,
+//             vertical: AppSpacing.md,
+//           ),
+//           child: Column(
+//             crossAxisAlignment: CrossAxisAlignment.start,
+//             children: [
+//               // ── "New here" banner — only shown when arriving via OTP flow ──
+//               if (isNewUserFlow) ...[
+//                 Container(
+//                   width: double.infinity,
+//                   padding: const EdgeInsets.symmetric(
+//                       horizontal: AppSpacing.md, vertical: AppSpacing.sm),
+//                   decoration: BoxDecoration(
+//                     color: const Color(0xFFFFF8E1),
+//                     borderRadius: BorderRadius.circular(AppSpacing.radiusSm),
+//                     border: Border.all(color: const Color(0xFFFFD54F)),
+//                   ),
+//                   child: Row(
+//                     children: [
+//                       const Icon(Icons.info_outline, size: 18, color: Color(0xFFF9A825)),
+//                       const SizedBox(width: AppSpacing.xs),
+//                       Expanded(
+//                         child: Text(
+//                           l10n.newUserCompleteRegistration,
+//                           style: AppTypography.bodySmall
+//                               .copyWith(color: const Color(0xFF6D4C00)),
+//                         ),
+//                       ),
+//                     ],
+//                   ),
+//                 ),
+//                 const SizedBox(height: AppSpacing.md),
+//               ],
+//
+//               // ── "Already have an account?" banner ─────────────────────
+//               _LoginBanner(l10n: l10n),
+//
+//               const SizedBox(height: AppSpacing.md),
+//
+//               Center(
+//                 child: Text(
+//                   l10n.registerTitle,
+//                   style: AppTypography.titleMedium,
+//                   textAlign: TextAlign.center,
+//                 ),
+//               ),
+//               const SizedBox(height: AppSpacing.md),
+//
+//               _SectionCard(
+//                 svgAsset: "assets/icons/motherprofile.png",
+//                 title: l10n.mothersProfile,
+//                 child: _MothersProfileSection(
+//                   l10n: l10n,
+//                   nameCtrl: _nameCtrl,
+//                   mobileCtrl: _mobileCtrl,
+//                   mobileLocked: isNewUserFlow, // ADD
+//                   ageCtrl: _ageCtrl,
+//                   husbAgeCtrl: _husbAgeCtrl,
+//                   dobCtrl: _dobCtrl,
+//                   addressCtrl: _addressCtrl,
+//                   gestCtrl: _gestCtrl,
+//                   lmpCtrl: _lmpCtrl,
+//                   eddCtrl: _eddCtrl,
+//                   selectedBloodGroup: _selectedBloodGroup,
+//                   bloodGroups: _bloodGroups,
+//                   onBloodGroupChanged: (v) =>
+//                       setState(() => _selectedBloodGroup = v),
+//                   onPickDate: _pickDate,
+//                 ),
+//               ),
+//
+//               const SizedBox(height: AppSpacing.md),
+//
+//               _SectionCard(
+//                 svgAsset: 'assets/icons/location.png',
+//                 title: l10n.healthCenter,
+//                 child: _HealthCenterSection(
+//                   l10n: l10n,
+//                   villages: _villages,
+//                   phcs: _phcs,
+//                   selectedVillage: _selectedVillage,
+//                   selectedPhc: _selectedPhc,
+//                   onVillageChanged: (v) =>
+//                       setState(() => _selectedVillage = v),
+//                   onPhcChanged: (v) => setState(() => _selectedPhc = v),
+//                 ),
+//               ),
+//
+//               const SizedBox(height: AppSpacing.md),
+//
+//               _ConsentSection(
+//                 l10n: l10n,
+//                 value: _consentGiven,
+//                 onChanged: (v) =>
+//                     setState(() => _consentGiven = v ?? false),
+//               ),
+//
+//               const SizedBox(height: AppSpacing.xl),
+//
+//               AppPrimaryButton(
+//                 label: l10n.completeReg,
+//                 showArrow: false,
+//                 isLoading: isLoading,
+//                 onTap: _onSubmit,
+//               ),
+//
+//               SizedBox(
+//                 height: AppSpacing.md +
+//                     MediaQuery.paddingOf(context).bottom,
+//               ),
+//             ],
+//           ),
+//         ),
+//       ),
+//     );
+//   }
+// }
+//
+// // ── Login banner ──────────────────────────────────────────────────────────
+//
+// class _LoginBanner extends StatelessWidget {
+//   final AppLocalizations l10n;
+//   const _LoginBanner({required this.l10n});
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return Container(
+//       width: double.infinity,
+//       color: const Color(0xFFE8F4FD),
+//       padding: const EdgeInsets.symmetric(
+//         horizontal: AppSpacing.md,
+//         vertical: AppSpacing.sm,
+//       ),
+//       child: Wrap(
+//         alignment: WrapAlignment.spaceBetween,
+//         crossAxisAlignment: WrapCrossAlignment.center,
+//         runSpacing: AppSpacing.sm,
+//         children: [
+//           Text(
+//             '${l10n.alreadyHaveAccount} ${l10n.loginTitle}',
+//             style: AppTypography.bodyMedium,
+//           ),
+//           GestureDetector(
+//             onTap: () => context.pushNamed('login'),
+//             child: Container(
+//               padding: const EdgeInsets.symmetric(
+//                 horizontal: AppSpacing.sm,
+//                 vertical: AppSpacing.xs,
+//               ),
+//               decoration: BoxDecoration(
+//                 color: Colors.white,
+//                 boxShadow: const [
+//                   BoxShadow(
+//                     color: Color(0xCC004AC1),
+//                     blurRadius: 4,
+//                     spreadRadius: 0,
+//                     offset: Offset(0, 0),
+//                   ),
+//                 ],
+//                 border: Border.all(color: AppColors.greyBorder),
+//                 borderRadius: BorderRadius.circular(AppSpacing.radiusSm),
+//               ),
+//               child: Row(
+//                 mainAxisSize: MainAxisSize.min,
+//                 children: [
+//                   Text(
+//                     l10n.mobileOtp,
+//                     style: AppTypography.bodySmall
+//                         .copyWith(color: AppColors.bodyText),
+//                   ),
+//                   const SizedBox(width: AppSpacing.xs),
+//                   const Icon(Icons.phone_android,
+//                       size: 14, color: AppColors.hintText),
+//                 ],
+//               ),
+//             ),
+//           ),
+//         ],
+//       ),
+//     );
+//   }
+// }
+//
+// // ── Section Card ──────────────────────────────────────────────────────────
+//
+// class _SectionCard extends StatelessWidget {
+//   final String? svgAsset;
+//   final IconData? icon;
+//   final String title;
+//   final Widget child;
+//
+//   const _SectionCard({
+//     this.svgAsset,
+//     this.icon,
+//     required this.title,
+//     required this.child,
+//   });
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return Container(
+//       width: double.infinity,
+//       decoration: BoxDecoration(
+//         color: AppColors.white,
+//         borderRadius: BorderRadius.circular(AppSpacing.radiusLg),
+//         border: Border.all(color: AppColors.greyBorder),
+//       ),
+//       padding: const EdgeInsets.all(AppSpacing.md),
+//       child: Column(
+//         crossAxisAlignment: CrossAxisAlignment.start,
+//         children: [
+//           Row(
+//             children: [
+//               if (svgAsset != null)
+//                 Image.asset(
+//                   svgAsset!,
+//                   width: 20,
+//                   height: 20,
+//                   color: AppColors.pinkText,
+//                 )
+//               else if (icon != null)
+//                 Icon(icon, color: AppColors.pinkText, size: 20),
+//               const SizedBox(width: AppSpacing.xs),
+//               Flexible(
+//                 child: Text(
+//                   title,
+//                   style: AppTypography.pinkLabelLg,
+//                   overflow: TextOverflow.ellipsis,
+//                 ),
+//               ),
+//             ],
+//           ),
+//           const SizedBox(height: AppSpacing.md),
+//           child,
+//         ],
+//       ),
+//     );
+//   }
+// }
+//
+// // ── Mother's Profile Section ──────────────────────────────────────────────
+//
+// class _MothersProfileSection extends StatelessWidget {
+//   final AppLocalizations l10n;
+//   final TextEditingController nameCtrl;
+//   final TextEditingController mobileCtrl;
+//   final bool mobileLocked; // ADD
+//   final TextEditingController ageCtrl;
+//   final TextEditingController husbAgeCtrl;
+//   final TextEditingController dobCtrl;
+//   final TextEditingController addressCtrl;
+//   final TextEditingController gestCtrl;
+//   final TextEditingController lmpCtrl;
+//   final TextEditingController eddCtrl;
+//   final String? selectedBloodGroup;
+//   final List<String> bloodGroups;
+//   final ValueChanged<String?> onBloodGroupChanged;
+//   final Future<void> Function(TextEditingController) onPickDate;
+//
+//   const _MothersProfileSection({
+//     required this.l10n,
+//     required this.nameCtrl,
+//     required this.mobileCtrl,
+//     this.mobileLocked = false, // ADD
+//     required this.ageCtrl,
+//     required this.husbAgeCtrl,
+//     required this.dobCtrl,
+//     required this.addressCtrl,
+//     required this.gestCtrl,
+//     required this.lmpCtrl,
+//     required this.eddCtrl,
+//     required this.selectedBloodGroup,
+//     required this.bloodGroups,
+//     required this.onBloodGroupChanged,
+//     required this.onPickDate,
+//   });
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return Column(
+//       crossAxisAlignment: CrossAxisAlignment.start,
+//       children: [
+//         Text(l10n.fullName, style: AppTypography.fieldLabel),
+//         const SizedBox(height: AppSpacing.xs),
+//         AppTextField(
+//           hint: l10n.fullNameHint,
+//           controller: nameCtrl,
+//           textCapitalization: TextCapitalization.words,
+//           validator: (v) =>
+//           (v == null || v.trim().isEmpty) ? 'Required' : null,
+//         ),
+//         const SizedBox(height: AppSpacing.md),
+//
+//         Text(l10n.mobileNumber, style: AppTypography.fieldLabel),
+//         const SizedBox(height: AppSpacing.xs),
+//         AppTextField(
+//           hint: '+91',
+//           controller: mobileCtrl,
+//           readOnly: mobileLocked, // ADD — locked when arriving from verified OTP flow
+//           keyboardType: TextInputType.phone,
+//           inputFormatters: [
+//             FilteringTextInputFormatter.digitsOnly,
+//             LengthLimitingTextInputFormatter(10),
+//           ],
+//           validator: (v) =>
+//           (v == null || v.length != 10) ? l10n.invalidMobile : null,
+//         ),
+//         const SizedBox(height: AppSpacing.md),
+//
+//         Row(
+//           children: [
+//             Expanded(
+//               child: Column(
+//                 crossAxisAlignment: CrossAxisAlignment.start,
+//                 children: [
+//                   Text(l10n.age, style: AppTypography.fieldLabel),
+//                   const SizedBox(height: AppSpacing.xs),
+//                   AppTextField(
+//                     hint: l10n.ageHint,
+//                     controller: ageCtrl,
+//                     keyboardType: TextInputType.number,
+//                     inputFormatters: [
+//                       FilteringTextInputFormatter.digitsOnly,
+//                       LengthLimitingTextInputFormatter(3),
+//                     ],
+//                   ),
+//                 ],
+//               ),
+//             ),
+//             const SizedBox(width: AppSpacing.md),
+//             Expanded(
+//               child: Column(
+//                 crossAxisAlignment: CrossAxisAlignment.start,
+//                 children: [
+//                   Text(l10n.husbandsAge, style: AppTypography.fieldLabel),
+//                   const SizedBox(height: AppSpacing.xs),
+//                   AppTextField(
+//                     hint: l10n.ageHint,
+//                     controller: husbAgeCtrl,
+//                     keyboardType: TextInputType.number,
+//                     inputFormatters: [
+//                       FilteringTextInputFormatter.digitsOnly,
+//                       LengthLimitingTextInputFormatter(3),
+//                     ],
+//                   ),
+//                 ],
+//               ),
+//             ),
+//           ],
+//         ),
+//         const SizedBox(height: AppSpacing.md),
+//
+//         Text(l10n.dateOfBirth, style: AppTypography.fieldLabel),
+//         const SizedBox(height: AppSpacing.xs),
+//         AppTextField(
+//           hint: l10n.dateHint,
+//           controller: dobCtrl,
+//           readOnly: true,
+//           onTap: () => onPickDate(dobCtrl),
+//           suffixIcon: const Padding(
+//             padding: EdgeInsets.all(AppSpacing.md),
+//             child: Icon(Icons.calendar_month_outlined,
+//                 color: AppColors.hintText, size: 20),
+//           ),
+//         ),
+//         const SizedBox(height: AppSpacing.md),
+//
+//         Text(l10n.currentAddress, style: AppTypography.fieldLabel),
+//         const SizedBox(height: AppSpacing.xs),
+//         AppTextField(
+//           hint: l10n.addressHint,
+//           controller: addressCtrl,
+//           maxLines: 3,
+//           textCapitalization: TextCapitalization.sentences,
+//         ),
+//         const SizedBox(height: AppSpacing.md),
+//
+//         Row(
+//           children: [
+//             Expanded(
+//               child: Column(
+//                 crossAxisAlignment: CrossAxisAlignment.start,
+//                 children: [
+//                   Text(l10n.bloodGroup, style: AppTypography.fieldLabel),
+//                   const SizedBox(height: AppSpacing.xs),
+//                   _DropdownField(
+//                     hint: l10n.bloodGroupHint,
+//                     value: selectedBloodGroup,
+//                     items: bloodGroups,
+//                     onChanged: onBloodGroupChanged,
+//                   ),
+//                 ],
+//               ),
+//             ),
+//             const SizedBox(width: AppSpacing.md),
+//             Expanded(
+//               child: Column(
+//                 crossAxisAlignment: CrossAxisAlignment.start,
+//                 children: [
+//                   Text(l10n.gestationalAge, style: AppTypography.fieldLabel),
+//                   const SizedBox(height: AppSpacing.xs),
+//                   AppTextField(
+//                     hint: l10n.gestationalAgeHint,
+//                     controller: gestCtrl,
+//                     keyboardType: TextInputType.number,
+//                     inputFormatters: [
+//                       FilteringTextInputFormatter.digitsOnly,
+//                       LengthLimitingTextInputFormatter(2),
+//                     ],
+//                   ),
+//                 ],
+//               ),
+//             ),
+//           ],
+//         ),
+//         const SizedBox(height: AppSpacing.md),
+//
+//         Text(l10n.lmpDetails, style: AppTypography.fieldLabel),
+//         const SizedBox(height: AppSpacing.xs),
+//         AppTextField(
+//           hint: l10n.lmpDate,
+//           controller: lmpCtrl,
+//           readOnly: true,
+//           onTap: () => onPickDate(lmpCtrl),
+//           suffixIcon: const Padding(
+//             padding: EdgeInsets.all(AppSpacing.md),
+//             child: Icon(Icons.calendar_month_outlined,
+//                 color: AppColors.hintText, size: 20),
+//           ),
+//         ),
+//         const SizedBox(height: AppSpacing.md),
+//
+//         Text(l10n.expectedDeliveryDate, style: AppTypography.fieldLabel),
+//         const SizedBox(height: AppSpacing.xs),
+//         AppTextField(
+//           hint: l10n.eddHint,
+//           controller: eddCtrl,
+//           readOnly: true,
+//           onTap: () => onPickDate(eddCtrl),
+//           suffixIcon: const Padding(
+//             padding: EdgeInsets.all(AppSpacing.md),
+//             child: Icon(Icons.calendar_month_outlined,
+//                 color: AppColors.hintText, size: 20),
+//           ),
+//         ),
+//       ],
+//     );
+//   }
+// }
+//
+// // ── Health Center Section ─────────────────────────────────────────────────
+//
+// class _HealthCenterSection extends StatelessWidget {
+//   final AppLocalizations l10n;
+//   final List<String> villages;
+//   final List<String> phcs;
+//   final String? selectedVillage;
+//   final String? selectedPhc;
+//   final ValueChanged<String?> onVillageChanged;
+//   final ValueChanged<String?> onPhcChanged;
+//
+//   const _HealthCenterSection({
+//     required this.l10n,
+//     required this.villages,
+//     required this.phcs,
+//     required this.selectedVillage,
+//     required this.selectedPhc,
+//     required this.onVillageChanged,
+//     required this.onPhcChanged,
+//   });
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return Column(
+//       crossAxisAlignment: CrossAxisAlignment.start,
+//       children: [
+//         Text(l10n.selectVillage, style: AppTypography.fieldLabel),
+//         const SizedBox(height: AppSpacing.xs),
+//         _DropdownField(
+//           hint: l10n.selectVillageHint,
+//           value: selectedVillage,
+//           items: villages,
+//           onChanged: onVillageChanged,
+//         ),
+//         const SizedBox(height: AppSpacing.md),
+//
+//         Text(l10n.phc, style: AppTypography.fieldLabel),
+//         const SizedBox(height: AppSpacing.xs),
+//         _DropdownField(
+//           hint: l10n.phcHint,
+//           value: selectedPhc,
+//           items: phcs,
+//           onChanged: onPhcChanged,
+//         ),
+//       ],
+//     );
+//   }
+// }
+//
+// // ── Consent Section ───────────────────────────────────────────────────────
+//
+// class _ConsentSection extends StatelessWidget {
+//   final AppLocalizations l10n;
+//   final bool value;
+//   final ValueChanged<bool?> onChanged;
+//
+//   const _ConsentSection({
+//     required this.l10n,
+//     required this.value,
+//     required this.onChanged,
+//   });
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return Container(
+//       decoration: BoxDecoration(
+//         color: const Color(0xFFFFF3F3),
+//         borderRadius: BorderRadius.circular(AppSpacing.radiusLg),
+//         border: Border.all(color: AppColors.greyBorder),
+//       ),
+//       padding: const EdgeInsets.all(AppSpacing.md),
+//       child: Row(
+//         crossAxisAlignment: CrossAxisAlignment.start,
+//         children: [
+//           SizedBox(
+//             width: 24,
+//             height: 24,
+//             child: Checkbox(
+//               value: value,
+//               onChanged: onChanged,
+//               materialTapTargetSize: MaterialTapTargetSize.padded,
+//             ),
+//           ),
+//           const SizedBox(width: AppSpacing.sm),
+//           Expanded(
+//             child: Column(
+//               crossAxisAlignment: CrossAxisAlignment.start,
+//               children: [
+//                 Text(
+//                   l10n.consentTitle,
+//                   style: AppTypography.titleMedium
+//                       .copyWith(fontWeight: FontWeight.w700),
+//                 ),
+//                 const SizedBox(height: AppSpacing.xs),
+//                 Text(
+//                   l10n.consentBody,
+//                   style: AppTypography.bodySmall
+//                       .copyWith(color: AppColors.bodyText),
+//                 ),
+//               ],
+//             ),
+//           ),
+//         ],
+//       ),
+//     );
+//   }
+// }
+//
+// // ── Reusable Dropdown Field ───────────────────────────────────────────────
+//
+// class _DropdownField extends StatelessWidget {
+//   final String hint;
+//   final String? value;
+//   final List<String> items;
+//   final ValueChanged<String?> onChanged;
+//
+//   const _DropdownField({
+//     required this.hint,
+//     required this.value,
+//     required this.items,
+//     required this.onChanged,
+//   });
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     final menuItems = items
+//         .map((e) => DropdownMenuItem(
+//       value: e,
+//       child: Text(e, style: AppTypography.bodyMedium),
+//     ))
+//         .toList(growable: false);
+//
+//     return Container(
+//       decoration: BoxDecoration(
+//         color: AppColors.fieldFill,
+//         borderRadius: BorderRadius.circular(AppSpacing.radiusLg),
+//       ),
+//       padding: const EdgeInsets.symmetric(horizontal: AppSpacing.md),
+//       child: DropdownButtonHideUnderline(
+//         child: DropdownButton<String>(
+//           value: value,
+//           hint: Text(hint, style: AppTypography.hint),
+//           isExpanded: true,
+//           icon: const Icon(Icons.keyboard_arrow_down,
+//               color: AppColors.hintText),
+//           items: menuItems,
+//           onChanged: onChanged,
+//         ),
+//       ),
+//     );
+//   }
+// }
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sangwari_maa/core/constants/app_colors.dart';
 import 'package:sangwari_maa/core/constants/app_spacing.dart';
 import 'package:sangwari_maa/core/constants/app_typography.dart';
+import 'package:sangwari_maa/core/errors/failures.dart';
 import 'package:sangwari_maa/core/l10n/generated/app_localizations.dart';
+import 'package:sangwari_maa/features/auth/data/model/user_model.dart';
+import 'package:sangwari_maa/features/auth/presentation/controller/auth_controller.dart';
+import 'package:sangwari_maa/features/registration/data/model/women_register_request_model.dart';
 import 'package:sangwari_maa/features/registration/presentation/controller/registration_controller.dart';
+import 'package:sangwari_maa/shared/providers/locale_provider.dart';
 import 'package:sangwari_maa/shared/widgets/app_bar.dart';
 import 'package:sangwari_maa/shared/widgets/app_primary_button.dart';
 import 'package:sangwari_maa/shared/widgets/app_text_field.dart';
 
+const _otpGreen = Color(0xFF2E7D32);
 
 /// Route: /register
 class RegistrationPage extends ConsumerStatefulWidget {
-  const RegistrationPage({super.key});
+  /// Set when arriving from OtpVerificationPage (OTP already verified there).
+  /// Null when arriving directly — this page then collects + verifies OTP
+  /// inline before unlocking the rest of the form.
+  final String? initialMobile;
+  const RegistrationPage({super.key, this.initialMobile});
 
   @override
   ConsumerState<RegistrationPage> createState() => _RegistrationPageState();
@@ -24,9 +804,9 @@ class RegistrationPage extends ConsumerStatefulWidget {
 class _RegistrationPageState extends ConsumerState<RegistrationPage> {
   final _formKey = GlobalKey<FormState>();
 
-  // Mother's Profile controllers
   final _nameCtrl    = TextEditingController();
   final _mobileCtrl  = TextEditingController();
+  final _otpCtrl     = TextEditingController();
   final _ageCtrl     = TextEditingController();
   final _husbAgeCtrl = TextEditingController();
   final _dobCtrl     = TextEditingController();
@@ -40,10 +820,14 @@ class _RegistrationPageState extends ConsumerState<RegistrationPage> {
   String? _selectedPhc;
   bool _consentGiven = false;
 
+  bool _otpSent = false;
+  bool _verified = false;
+  bool _isSendingOtp = false;
+  bool _isVerifyingOtp = false;
+
   static const List<String> _bloodGroups = [
     'A+', 'A−', 'B+', 'B−', 'AB+', 'AB−', 'O+', 'O−',
   ];
-
   static const List<String> _villages = [
     'Raipur Village', 'Bilaspur Village', 'Durg Village',
     'Korba Village', 'Jagdalpur Village',
@@ -53,10 +837,21 @@ class _RegistrationPageState extends ConsumerState<RegistrationPage> {
     'PHC Korba East', 'PHC Jagdalpur West',
   ];
 
+  bool get _isUnlocked => widget.initialMobile != null || _verified;
+
+  @override
+  void initState() {
+    super.initState();
+    if (widget.initialMobile != null) {
+      _mobileCtrl.text = widget.initialMobile!;
+    }
+  }
+
   @override
   void dispose() {
     _nameCtrl.dispose();
     _mobileCtrl.dispose();
+    _otpCtrl.dispose();
     _ageCtrl.dispose();
     _husbAgeCtrl.dispose();
     _dobCtrl.dispose();
@@ -67,7 +862,35 @@ class _RegistrationPageState extends ConsumerState<RegistrationPage> {
     super.dispose();
   }
 
-  Future<void> _pickDate(TextEditingController ctrl) async {
+  // ── Date helpers ─────────────────────────────────────────────────────────
+
+  String _formatDate(DateTime d) =>
+      '${d.day.toString().padLeft(2, '0')}-${d.month.toString().padLeft(2, '0')}-${d.year}';
+
+  DateTime? _parseDate(String s) {
+    final parts = s.split('-');
+    if (parts.length != 3) return null;
+    final d = int.tryParse(parts[0]);
+    final m = int.tryParse(parts[1]);
+    final y = int.tryParse(parts[2]);
+    if (d == null || m == null || y == null) return null;
+    try {
+      return DateTime(y, m, d);
+    } catch (_) {
+      return null;
+    }
+  }
+
+  int _calculateAge(DateTime dob) {
+    final now = DateTime.now();
+    int age = now.year - dob.year;
+    if (now.month < dob.month || (now.month == dob.month && now.day < dob.day)) {
+      age--;
+    }
+    return age;
+  }
+
+  Future<void> _pickDate(TextEditingController ctrl, {bool isLmp = false}) async {
     final picked = await showDatePicker(
       context: context,
       initialDate: DateTime.now(),
@@ -83,36 +906,121 @@ class _RegistrationPageState extends ConsumerState<RegistrationPage> {
         child: child!,
       ),
     );
-    if (picked != null) {
-      ctrl.text =
-      '${picked.day.toString().padLeft(2, '0')}-'
-          '${picked.month.toString().padLeft(2, '0')}-'
-          '${picked.year}';
+    if (picked == null) return;
+
+    setState(() {
+      ctrl.text = _formatDate(picked);
+      if (isLmp) {
+        // EDD is backend-computed (lmp + 280 days) — derive it here too so
+        // the UI shows the right value, but it is never sent for editing,
+        // only displayed.
+        final edd = picked.add(const Duration(days: 280));
+        _eddCtrl.text = _formatDate(edd);
+        // Gestational age suggestion — editable afterwards if adjustment needed.
+        final weeks = (DateTime.now().difference(picked).inDays / 7).floor();
+        if (weeks >= 0) _gestCtrl.text = weeks.toString();
+      }
+    });
+  }
+
+  String? _toIsoDate(String ddMMyyyy) {
+    final d = _parseDate(ddMMyyyy);
+    if (d == null) return null;
+    return '${d.year.toString().padLeft(4, '0')}-${d.month.toString().padLeft(2, '0')}-${d.day.toString().padLeft(2, '0')}';
+  }
+
+  String? _normalizeBloodGroup(String? group) {
+    if (group == null) return null;
+    return group.replaceAll('−', '-');
+  }
+
+  // ── Cross-field validators ───────────────────────────────────────────────
+
+  String? _dobValidator(String? _) {
+    if (!_isUnlocked) return null;
+    final l10n = AppLocalizations.of(context)!;
+    if (_dobCtrl.text.isEmpty) return null; // optional field server-side
+    final dob = _parseDate(_dobCtrl.text);
+    if (dob == null) return null;
+    if (dob.isAfter(DateTime.now())) return l10n.dobFutureError;
+    return null;
+  }
+
+  String? _ageValidator(String? v) {
+    if (!_isUnlocked) return null;
+    final l10n = AppLocalizations.of(context)!;
+    if (v == null || v.isEmpty) return l10n.required;
+    final age = int.tryParse(v);
+    if (age == null) return l10n.invalidValue;
+    if (age < 14 || age > 55) return l10n.ageRangeError;
+    if (_dobCtrl.text.isNotEmpty) {
+      final dob = _parseDate(_dobCtrl.text);
+      if (dob != null && !dob.isAfter(DateTime.now())) {
+        final computed = _calculateAge(dob);
+        if ((computed - age).abs() > 1) return l10n.ageDobMismatch;
+      }
     }
+    return null;
+  }
+
+  String? _lmpValidator(String? _) {
+    if (!_isUnlocked) return null;
+    final l10n = AppLocalizations.of(context)!;
+    if (_lmpCtrl.text.isEmpty) return l10n.required;
+    final lmp = _parseDate(_lmpCtrl.text);
+    if (lmp == null) return null;
+    final now = DateTime.now();
+    if (lmp.isAfter(now)) return l10n.lmpFutureError;
+    if (now.difference(lmp).inDays > 294) return l10n.lmpTooOldError;
+    return null;
+  }
+
+  // ── Inline OTP actions ───────────────────────────────────────────────────
+
+  void _onSendOtp() {
+    final mobile = _mobileCtrl.text.trim();
+    final l10n = AppLocalizations.of(context)!;
+    if (mobile.length != 10) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(l10n.invalidMobile)));
+      return;
+    }
+    setState(() => _isSendingOtp = true);
+    ref.read(authControllerProvider.notifier).sendOtp(mobile);
+  }
+
+  void _onVerifyOtp() {
+    final otp = _otpCtrl.text.trim();
+    final l10n = AppLocalizations.of(context)!;
+    if (otp.length != 6) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(l10n.invalidOtp)));
+      return;
+    }
+    setState(() => _isVerifyingOtp = true);
+    ref.read(authControllerProvider.notifier).verifyOtp(_mobileCtrl.text.trim(), otp);
   }
 
   void _onSubmit() {
     final l10n = AppLocalizations.of(context)!;
+    if (!_isUnlocked) return;
     if (!(_formKey.currentState?.validate() ?? false)) return;
     if (!_consentGiven) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(l10n.consentRequired)),
-      );
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(l10n.consentRequired)));
       return;
     }
     ref.read(registrationControllerProvider.notifier).register(
-      name: _nameCtrl.text.trim(),
-      mobile: _mobileCtrl.text.trim(),
-      age: int.tryParse(_ageCtrl.text) ?? 0,
-      husbandAge: int.tryParse(_husbAgeCtrl.text) ?? 0,
-      dob: _dobCtrl.text,
-      address: _addressCtrl.text.trim(),
-      bloodGroup: _selectedBloodGroup ?? '',
-      gestationalAge: int.tryParse(_gestCtrl.text) ?? 0,
-      lmp: _lmpCtrl.text,
-      edd: _eddCtrl.text,
-      village: _selectedVillage ?? '',
-      phc: _selectedPhc ?? '',
+      WomenRegisterRequestModel(
+        name: _nameCtrl.text.trim(),
+        age: int.tryParse(_ageCtrl.text) ?? 0,
+        husbandAge: int.tryParse(_husbAgeCtrl.text),
+        dob: _toIsoDate(_dobCtrl.text),
+        address: _addressCtrl.text.trim().isEmpty ? null : _addressCtrl.text.trim(),
+        village: _selectedVillage,
+        phc: _selectedPhc,
+        lmp: _toIsoDate(_lmpCtrl.text) ?? '',
+        bloodGroup: _normalizeBloodGroup(_selectedBloodGroup),
+        preferredLanguage: ref.read(localeProvider).languageCode,
+        consent: _consentGiven,
+      ),
     );
   }
 
@@ -120,18 +1028,76 @@ class _RegistrationPageState extends ConsumerState<RegistrationPage> {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
 
-    // ref.listen is fine in build for ConsumerStatefulWidget.
-    // It only fires on state transitions, not every frame.
+    if (widget.initialMobile == null) {
+      ref.listen<AsyncValue<void>>(authControllerProvider, (previous, next) {
+        final wasLoading = previous?.isLoading ?? false;
+        if (!wasLoading) return;
+
+        next.whenOrNull(
+          error: (e, _) {
+            setState(() {
+              _isSendingOtp = false;
+              _isVerifyingOtp = false;
+            });
+            final message = e is Failure ? e.message : e.toString();
+            ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(message)));
+          },
+          data: (_) {
+            if (_isSendingOtp) {
+              setState(() {
+                _isSendingOtp = false;
+                _otpSent = true;
+              });
+              return;
+            }
+            if (_isVerifyingOtp) {
+              final controller = ref.read(authControllerProvider.notifier);
+              final isNewUser = controller.isNewUser;
+              setState(() => _isVerifyingOtp = false);
+
+              if (!isNewUser) {
+                // Existing account — verify-otp already returned a valid JWT, so log
+                // them straight into their dashboard instead of forcing a second OTP
+                // cycle on the Login screen.
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text(l10n.welcomeBackLoggedIn)),
+                );
+                switch (controller.role) {
+                  case UserRole.pregnantWoman:
+                    context.go('/womensdashboard');
+                    break;
+                  case UserRole.asha:
+                  case UserRole.anm:
+                    context.go('/mitanindashboard');
+                    break;
+                  case UserRole.blockAdmin:
+                  case UserRole.pi:
+                  case UserRole.superAdmin:
+                    context.go('/admindashboard'); // still pending per earlier conversation
+                    break;
+                  case null:
+                    context.go('/womensdashboard');
+                }
+                return;
+              }
+              setState(() => _verified = true);
+            }
+          },
+        );
+      });
+    }
+
     ref.listen<AsyncValue<void>>(registrationControllerProvider, (_, next) {
       next.whenOrNull(
         error: (e, _) => ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(e.toString())),
+          SnackBar(content: Text(e is Failure ? e.message : e.toString())),
         ),
         data: (_) => context.go('/womensdashboard'),
       );
     });
 
-    final isLoading = ref.watch(registrationControllerProvider).isLoading;
+    final isRegistering = ref.watch(registrationControllerProvider).isLoading;
+    final isNewUserFlow = widget.initialMobile != null;
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -139,9 +1105,6 @@ class _RegistrationPageState extends ConsumerState<RegistrationPage> {
       appBar: TopBar(l10n: l10n),
       body: Form(
         key: _formKey,
-        // onUserInteraction: validates only the field the user touched —
-        // avoids validating all fields (and calling setState) on every
-        // keystroke across the whole form, which was a major jank source.
         autovalidateMode: AutovalidateMode.onUserInteraction,
         child: SingleChildScrollView(
           physics: const BouncingScrollPhysics(),
@@ -152,90 +1115,326 @@ class _RegistrationPageState extends ConsumerState<RegistrationPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // ── "Already have an account?" banner ─────────────────────
+              if (isNewUserFlow) ...[
+                _InfoBanner(text: l10n.newUserCompleteRegistration),
+                const SizedBox(height: AppSpacing.md),
+              ],
+
               _LoginBanner(l10n: l10n),
-
               const SizedBox(height: AppSpacing.md),
 
-              // ── Title ─────────────────────────────────────────────────
               Center(
-                child: Text(
-                  l10n.registerTitle,
-                  style: AppTypography.titleMedium,
-                  textAlign: TextAlign.center,
-                ),
+                child: Text(l10n.registerTitle, style: AppTypography.titleMedium, textAlign: TextAlign.center),
               ),
               const SizedBox(height: AppSpacing.md),
 
-              // ── Section A: Mother's Profile ───────────────────────────
-              // Each section is its own StatelessWidget so it is only
-              // rebuilt when its own inputs change, not when any other
-              // section's setState fires.
+              // ── Mother's Profile ────────────────────────────────────────
               _SectionCard(
-                icon: Icons.person,
+                svgAsset: "assets/icons/motherprofile.png",
                 title: l10n.mothersProfile,
-                child: _MothersProfileSection(
-                  l10n: l10n,
-                  nameCtrl: _nameCtrl,
-                  mobileCtrl: _mobileCtrl,
-                  ageCtrl: _ageCtrl,
-                  husbAgeCtrl: _husbAgeCtrl,
-                  dobCtrl: _dobCtrl,
-                  addressCtrl: _addressCtrl,
-                  gestCtrl: _gestCtrl,
-                  lmpCtrl: _lmpCtrl,
-                  eddCtrl: _eddCtrl,
-                  selectedBloodGroup: _selectedBloodGroup,
-                  bloodGroups: _bloodGroups,
-                  onBloodGroupChanged: (v) =>
-                      setState(() => _selectedBloodGroup = v),
-                  onPickDate: _pickDate,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(l10n.fullName, style: AppTypography.fieldLabel),
+                    const SizedBox(height: AppSpacing.xs),
+                    AppTextField(
+                      hint: l10n.fullNameHint,
+                      controller: _nameCtrl,
+                      textCapitalization: TextCapitalization.words,
+                      validator: (v) => (v == null || v.trim().isEmpty) ? l10n.required : null,
+                    ),
+                    const SizedBox(height: AppSpacing.md),
+
+                    Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children : [
+                      Text(l10n.mobileNumber, style: AppTypography.fieldLabel),
+                      if (!_isUnlocked) ...[
+                        const SizedBox(width: AppSpacing.sm),
+                        TextButton(
+                          style: TextButton.styleFrom(
+                            padding: EdgeInsets.zero,
+                            minimumSize: Size.zero,
+                            tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                          ),
+                          onPressed: _isSendingOtp ? null : _onSendOtp,
+                          child: _isSendingOtp
+                              ? const SizedBox(
+                            width: 14, height: 14,
+                            child: CircularProgressIndicator(strokeWidth: 2, color: _otpGreen),
+                          )
+                              : Text(
+                            _otpSent ? l10n.resendOtp : l10n.sendOtp,
+                            style: AppTypography.bodyMedium.copyWith(
+                              color: _otpGreen,
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ]
+                    ),
+                    const SizedBox(height: AppSpacing.xs),
+                    AppTextField(
+                      hint: '+91',
+                      controller: _mobileCtrl,
+                      readOnly: _isUnlocked || _otpSent,
+                      keyboardType: TextInputType.phone,
+                      inputFormatters: [
+                        FilteringTextInputFormatter.digitsOnly,
+                        LengthLimitingTextInputFormatter(10),
+                      ],
+                      validator: (v) => (v == null || v.length != 10) ? l10n.invalidMobile : null,
+                    ),
+
+                    if (!_isUnlocked && _otpSent) ...[
+                      const SizedBox(height: AppSpacing.md),
+                      Text(l10n.enterOtp, style: AppTypography.fieldLabel),
+                      const SizedBox(height: AppSpacing.xs),
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Expanded(
+                            child: AppTextField(
+                              hint: l10n.enterOtp,
+                              controller: _otpCtrl,
+                              keyboardType: TextInputType.number,
+                              inputFormatters: [
+                                FilteringTextInputFormatter.digitsOnly,
+                                LengthLimitingTextInputFormatter(6),
+                              ],
+                            ),
+                          ),
+                          const SizedBox(width: AppSpacing.sm),
+                          SizedBox(
+                            height: 48,
+                            child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: _otpGreen,
+                                foregroundColor: Colors.white,
+                                shape: RoundedRectangleBorder(
+                                  //borderRadius: BorderRadius.circular(0),
+                                  borderRadius: BorderRadius.circular(AppSpacing.radiusSm),
+                                ),
+                              ),
+                              onPressed: _isVerifyingOtp ? null : _onVerifyOtp,
+                              child: _isVerifyingOtp
+                                  ? const SizedBox(
+                                width: 18, height: 18,
+                                child: CircularProgressIndicator(strokeWidth: 2, color: Colors.white),
+                              )
+                                  : Text(l10n.verifyOtp),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+
+                    const SizedBox(height: AppSpacing.md),
+
+                    // ── Locked until verified — dimmed, not removed ───────
+                    IgnorePointer(
+                      ignoring: !_isUnlocked,
+                      child: Opacity(
+                        opacity: _isUnlocked ? 1.0 : 0.4,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Text(l10n.age, style: AppTypography.fieldLabel),
+                                      const SizedBox(height: AppSpacing.xs),
+                                      AppTextField(
+                                        hint: l10n.ageHint,
+                                        controller: _ageCtrl,
+                                        keyboardType: TextInputType.number,
+                                        inputFormatters: [
+                                          FilteringTextInputFormatter.digitsOnly,
+                                          LengthLimitingTextInputFormatter(3),
+                                        ],
+                                        validator: _ageValidator,
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                const SizedBox(width: AppSpacing.md),
+                                Expanded(
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Text(l10n.husbandsAge, style: AppTypography.fieldLabel),
+                                      const SizedBox(height: AppSpacing.xs),
+                                      AppTextField(
+                                        hint: l10n.ageHint,
+                                        controller: _husbAgeCtrl,
+                                        keyboardType: TextInputType.number,
+                                        inputFormatters: [
+                                          FilteringTextInputFormatter.digitsOnly,
+                                          LengthLimitingTextInputFormatter(3),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(height: AppSpacing.md),
+
+                            Text(l10n.dateOfBirth, style: AppTypography.fieldLabel),
+                            const SizedBox(height: AppSpacing.xs),
+                            AppTextField(
+                              hint: l10n.dateHint,
+                              controller: _dobCtrl,
+                              readOnly: true,
+                              onTap: _isUnlocked ? () => _pickDate(_dobCtrl) : null,
+                              validator: _dobValidator,
+                              suffixIcon: const Padding(
+                                padding: EdgeInsets.all(AppSpacing.md),
+                                child: Icon(Icons.calendar_month_outlined, color: AppColors.hintText, size: 20),
+                              ),
+                            ),
+                            const SizedBox(height: AppSpacing.md),
+
+                            Text(l10n.currentAddress, style: AppTypography.fieldLabel),
+                            const SizedBox(height: AppSpacing.xs),
+                            AppTextField(
+                              hint: l10n.addressHint,
+                              controller: _addressCtrl,
+                              maxLines: 3,
+                              textCapitalization: TextCapitalization.sentences,
+                            ),
+                            const SizedBox(height: AppSpacing.md),
+
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Text(l10n.bloodGroup, style: AppTypography.fieldLabel),
+                                      const SizedBox(height: AppSpacing.xs),
+                                      _DropdownField(
+                                        hint: l10n.bloodGroupHint,
+                                        value: _selectedBloodGroup,
+                                        items: _bloodGroups,
+                                        onChanged: _isUnlocked
+                                            ? (v) => setState(() => _selectedBloodGroup = v)
+                                            : null,
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                const SizedBox(width: AppSpacing.md),
+                                Expanded(
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Text(l10n.gestationalAge, style: AppTypography.fieldLabel),
+                                      const SizedBox(height: AppSpacing.xs),
+                                      AppTextField(
+                                        hint: l10n.gestationalAgeHint,
+                                        controller: _gestCtrl,
+                                        keyboardType: TextInputType.number,
+                                        inputFormatters: [
+                                          FilteringTextInputFormatter.digitsOnly,
+                                          LengthLimitingTextInputFormatter(2),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(height: AppSpacing.md),
+
+                            Text(l10n.lmpDetails, style: AppTypography.fieldLabel),
+                            const SizedBox(height: AppSpacing.xs),
+                            AppTextField(
+                              hint: l10n.lmpDate,
+                              controller: _lmpCtrl,
+                              readOnly: true,
+                              onTap: _isUnlocked ? () => _pickDate(_lmpCtrl, isLmp: true) : null,
+                              validator: _lmpValidator,
+                              suffixIcon: const Padding(
+                                padding: EdgeInsets.all(AppSpacing.md),
+                                child: Icon(Icons.calendar_month_outlined, color: AppColors.hintText, size: 20),
+                              ),
+                            ),
+                            const SizedBox(height: AppSpacing.md),
+
+                            Text(l10n.expectedDeliveryDate, style: AppTypography.fieldLabel),
+                            const SizedBox(height: AppSpacing.xs),
+                            AppTextField(
+                              hint: l10n.eddHint,
+                              controller: _eddCtrl,
+                              readOnly: true,
+                              onTap: null, // EDD is computed from LMP, never manually editable
+                              suffixIcon: const Padding(
+                                padding: EdgeInsets.all(AppSpacing.md),
+                                child: Icon(Icons.calculate_outlined, color: AppColors.hintText, size: 20),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
 
               const SizedBox(height: AppSpacing.md),
 
-              // ── Section B: Health Center Selection ────────────────────
-              _SectionCard(
-                svgAsset: 'assets/icons/location.svg',
-                title: l10n.healthCenter,
-                child: _HealthCenterSection(
-                  l10n: l10n,
-                  villages: _villages,
-                  phcs: _phcs,
-                  selectedVillage: _selectedVillage,
-                  selectedPhc: _selectedPhc,
-                  onVillageChanged: (v) =>
-                      setState(() => _selectedVillage = v),
-                  onPhcChanged: (v) => setState(() => _selectedPhc = v),
+              // ── Health Center — always visible, locked until verified ──
+              IgnorePointer(
+                ignoring: !_isUnlocked,
+                child: Opacity(
+                  opacity: _isUnlocked ? 1.0 : 0.4,
+                  child: _SectionCard(
+                    svgAsset: 'assets/icons/location.png',
+                    title: l10n.healthCenter,
+                    child: _HealthCenterSection(
+                      l10n: l10n,
+                      villages: _villages,
+                      phcs: _phcs,
+                      selectedVillage: _selectedVillage,
+                      selectedPhc: _selectedPhc,
+                      onVillageChanged: (v) => setState(() => _selectedVillage = v),
+                      onPhcChanged: (v) => setState(() => _selectedPhc = v),
+                    ),
+                  ),
                 ),
               ),
-
               const SizedBox(height: AppSpacing.md),
 
-              // ── Section C: Digital Health Consent ────────────────────
-              _ConsentSection(
-                l10n: l10n,
-                value: _consentGiven,
-                onChanged: (v) =>
-                    setState(() => _consentGiven = v ?? false),
+              IgnorePointer(
+                ignoring: !_isUnlocked,
+                child: Opacity(
+                  opacity: _isUnlocked ? 1.0 : 0.4,
+                  child: _ConsentSection(
+                    l10n: l10n,
+                    value: _consentGiven,
+                    onChanged: (v) => setState(() => _consentGiven = v ?? false),
+                  ),
+                ),
               ),
-
               const SizedBox(height: AppSpacing.xl),
 
-              // ── Complete Registration CTA ─────────────────────────────
-              AppPrimaryButton(
-                label: l10n.completeReg,
-                showArrow: false,
-                isLoading: isLoading,
-                onTap: _onSubmit,
+              Opacity(
+                opacity: _isUnlocked ? 1.0 : 0.5,
+                child: AppPrimaryButton(
+                  label: l10n.completeReg,
+                  showArrow: false,
+                  isLoading: isRegistering,
+                  onTap: _isUnlocked ? _onSubmit : null,
+                ),
               ),
 
-              // Safe bottom padding — respects keyboard + home indicator
-              SizedBox(
-                height: AppSpacing.md +
-                    MediaQuery.paddingOf(context).bottom,
-              ),
+              SizedBox(height: AppSpacing.md + MediaQuery.paddingOf(context).bottom),
             ],
           ),
         ),
@@ -244,8 +1443,36 @@ class _RegistrationPageState extends ConsumerState<RegistrationPage> {
   }
 }
 
+// ── Info banner ──────────────────────────────────────────────────────────
+
+class _InfoBanner extends StatelessWidget {
+  final String text;
+  const _InfoBanner({required this.text});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.symmetric(horizontal: AppSpacing.md, vertical: AppSpacing.sm),
+      decoration: BoxDecoration(
+        color: const Color(0xFFFFF8E1),
+        borderRadius: BorderRadius.circular(AppSpacing.radiusSm),
+        border: Border.all(color: const Color(0xFFFFD54F)),
+      ),
+      child: Row(
+        children: [
+          const Icon(Icons.info_outline, size: 18, color: Color(0xFFF9A825)),
+          const SizedBox(width: AppSpacing.xs),
+          Expanded(
+            child: Text(text, style: AppTypography.bodySmall.copyWith(color: const Color(0xFF6D4C00))),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
 // ── Login banner ──────────────────────────────────────────────────────────
-// Replaced Row with Wrap so it reflows gracefully on 320 pt screens.
 
 class _LoginBanner extends StatelessWidget {
   final AppLocalizations l10n;
@@ -256,51 +1483,31 @@ class _LoginBanner extends StatelessWidget {
     return Container(
       width: double.infinity,
       color: const Color(0xFFE8F4FD),
-      padding: const EdgeInsets.symmetric(
-        horizontal: AppSpacing.md,
-        vertical: AppSpacing.sm,
-      ),
+      padding: const EdgeInsets.symmetric(horizontal: AppSpacing.md, vertical: AppSpacing.sm),
       child: Wrap(
         alignment: WrapAlignment.spaceBetween,
         crossAxisAlignment: WrapCrossAlignment.center,
         runSpacing: AppSpacing.sm,
         children: [
-          Text(
-            '${l10n.alreadyHaveAccount} ${l10n.loginTitle}',
-            style: AppTypography.bodyMedium,
-          ),
+          Text('${l10n.alreadyHaveAccount} ${l10n.loginTitle}', style: AppTypography.bodyMedium),
           GestureDetector(
-            onTap: () =>  context.pushNamed('login'),
+            onTap: () => context.pushNamed('login'),
             child: Container(
-              padding: const EdgeInsets.symmetric(
-                horizontal: AppSpacing.sm,
-                vertical: AppSpacing.xs,
-              ),
+              padding: const EdgeInsets.symmetric(horizontal: AppSpacing.sm, vertical: AppSpacing.xs),
               decoration: BoxDecoration(
                 color: Colors.white,
                 boxShadow: const [
-                  BoxShadow(
-                    color: Color(0xCC004AC1),
-                    blurRadius: 4,
-                    spreadRadius: 0,
-                    offset: Offset(0, 0),
-                  ),
+                  BoxShadow(color: Color(0xCC004AC1), blurRadius: 4, spreadRadius: 0, offset: Offset(0, 0)),
                 ],
                 border: Border.all(color: AppColors.greyBorder),
-                borderRadius:
-                BorderRadius.circular(AppSpacing.radiusSm),
+                borderRadius: BorderRadius.circular(AppSpacing.radiusSm),
               ),
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Text(
-                    l10n.mobileOtp,
-                    style: AppTypography.bodySmall
-                        .copyWith(color: AppColors.bodyText),
-                  ),
+                  Text(l10n.mobileOtp, style: AppTypography.bodySmall.copyWith(color: AppColors.bodyText)),
                   const SizedBox(width: AppSpacing.xs),
-                  const Icon(Icons.phone_android,
-                      size: 14, color: AppColors.hintText),
+                  const Icon(Icons.phone_android, size: 14, color: AppColors.hintText),
                 ],
               ),
             ),
@@ -319,12 +1526,7 @@ class _SectionCard extends StatelessWidget {
   final String title;
   final Widget child;
 
-  const _SectionCard({
-    this.svgAsset,
-    this.icon,
-    required this.title,
-    required this.child,
-  });
+  const _SectionCard({this.svgAsset, this.icon, required this.title, required this.child});
 
   @override
   Widget build(BuildContext context) {
@@ -342,246 +1544,17 @@ class _SectionCard extends StatelessWidget {
           Row(
             children: [
               if (svgAsset != null)
-                SvgPicture.asset(
-                  svgAsset!,
-                  width: 20,
-                  height: 20,
-                  colorFilter: const ColorFilter.mode(
-                    AppColors.pinkText,
-                    BlendMode.srcIn,
-                  ),
-                )
+                Image.asset(svgAsset!, width: 20, height: 20, color: AppColors.pinkText)
               else if (icon != null)
                 Icon(icon, color: AppColors.pinkText, size: 20),
               const SizedBox(width: AppSpacing.xs),
-              Flexible(
-                child: Text(
-                  title,
-                  style: AppTypography.pinkLabelLg,
-                  overflow: TextOverflow.ellipsis,
-                ),
-              ),
+              Flexible(child: Text(title, style: AppTypography.pinkLabelLg, overflow: TextOverflow.ellipsis)),
             ],
           ),
           const SizedBox(height: AppSpacing.md),
           child,
         ],
       ),
-    );
-  }
-}
-
-// ── Mother's Profile Section ──────────────────────────────────────────────
-
-class _MothersProfileSection extends StatelessWidget {
-  final AppLocalizations l10n;
-  final TextEditingController nameCtrl;
-  final TextEditingController mobileCtrl;
-  final TextEditingController ageCtrl;
-  final TextEditingController husbAgeCtrl;
-  final TextEditingController dobCtrl;
-  final TextEditingController addressCtrl;
-  final TextEditingController gestCtrl;
-  final TextEditingController lmpCtrl;
-  final TextEditingController eddCtrl;
-  final String? selectedBloodGroup;
-  final List<String> bloodGroups;
-  final ValueChanged<String?> onBloodGroupChanged;
-  final Future<void> Function(TextEditingController) onPickDate;
-
-  const _MothersProfileSection({
-    required this.l10n,
-    required this.nameCtrl,
-    required this.mobileCtrl,
-    required this.ageCtrl,
-    required this.husbAgeCtrl,
-    required this.dobCtrl,
-    required this.addressCtrl,
-    required this.gestCtrl,
-    required this.lmpCtrl,
-    required this.eddCtrl,
-    required this.selectedBloodGroup,
-    required this.bloodGroups,
-    required this.onBloodGroupChanged,
-    required this.onPickDate,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        // Full Name
-        Text(l10n.fullName, style: AppTypography.fieldLabel),
-        const SizedBox(height: AppSpacing.xs),
-        AppTextField(
-          hint: l10n.fullNameHint,
-          controller: nameCtrl,
-          textCapitalization: TextCapitalization.words,
-          validator: (v) =>
-          (v == null || v.trim().isEmpty) ? 'Required' : null,
-        ),
-        const SizedBox(height: AppSpacing.md),
-
-        // Mobile Number
-        Text(l10n.mobileNumber, style: AppTypography.fieldLabel),
-        const SizedBox(height: AppSpacing.xs),
-        AppTextField(
-          hint: '+91',
-          controller: mobileCtrl,
-          keyboardType: TextInputType.phone,
-          inputFormatters: [
-            FilteringTextInputFormatter.digitsOnly,
-            LengthLimitingTextInputFormatter(10),
-          ],
-          validator: (v) =>
-          (v == null || v.length != 10) ? l10n.invalidMobile : null,
-        ),
-        const SizedBox(height: AppSpacing.md),
-
-        // Age + Husband's Age (side by side — Expanded handles narrow screens)
-        Row(
-          children: [
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(l10n.age, style: AppTypography.fieldLabel),
-                  const SizedBox(height: AppSpacing.xs),
-                  AppTextField(
-                    hint: l10n.ageHint,
-                    controller: ageCtrl,
-                    keyboardType: TextInputType.number,
-                    inputFormatters: [
-                      FilteringTextInputFormatter.digitsOnly,
-                      LengthLimitingTextInputFormatter(3),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(width: AppSpacing.md),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(l10n.husbandsAge, style: AppTypography.fieldLabel),
-                  const SizedBox(height: AppSpacing.xs),
-                  AppTextField(
-                    hint: l10n.ageHint,
-                    controller: husbAgeCtrl,
-                    keyboardType: TextInputType.number,
-                    inputFormatters: [
-                      FilteringTextInputFormatter.digitsOnly,
-                      LengthLimitingTextInputFormatter(3),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
-        const SizedBox(height: AppSpacing.md),
-
-        // Date of Birth
-        Text(l10n.dateOfBirth, style: AppTypography.fieldLabel),
-        const SizedBox(height: AppSpacing.xs),
-        AppTextField(
-          hint: l10n.dateHint,
-          controller: dobCtrl,
-          readOnly: true,
-          onTap: () => onPickDate(dobCtrl),
-          suffixIcon: const Padding(
-            padding: EdgeInsets.all(AppSpacing.md),
-            child: Icon(Icons.calendar_month_outlined,
-                color: AppColors.hintText, size: 20),
-          ),
-        ),
-        const SizedBox(height: AppSpacing.md),
-
-        // Current Address
-        Text(l10n.currentAddress, style: AppTypography.fieldLabel),
-        const SizedBox(height: AppSpacing.xs),
-        AppTextField(
-          hint: l10n.addressHint,
-          controller: addressCtrl,
-          maxLines: 3,
-          textCapitalization: TextCapitalization.sentences,
-        ),
-        const SizedBox(height: AppSpacing.md),
-
-        // Blood Group + Gestational Age (side by side)
-        Row(
-          children: [
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(l10n.bloodGroup, style: AppTypography.fieldLabel),
-                  const SizedBox(height: AppSpacing.xs),
-                  _DropdownField(
-                    hint: l10n.bloodGroupHint,
-                    value: selectedBloodGroup,
-                    items: bloodGroups,
-                    onChanged: onBloodGroupChanged,
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(width: AppSpacing.md),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(l10n.gestationalAge, style: AppTypography.fieldLabel),
-                  const SizedBox(height: AppSpacing.xs),
-                  AppTextField(
-                    hint: l10n.gestationalAgeHint,
-                    controller: gestCtrl,
-                    keyboardType: TextInputType.number,
-                    inputFormatters: [
-                      FilteringTextInputFormatter.digitsOnly,
-                      LengthLimitingTextInputFormatter(2),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
-        const SizedBox(height: AppSpacing.md),
-
-        // LMP Details
-        Text(l10n.lmpDetails, style: AppTypography.fieldLabel),
-        const SizedBox(height: AppSpacing.xs),
-        AppTextField(
-          hint: l10n.lmpDate,
-          controller: lmpCtrl,
-          readOnly: true,
-          onTap: () => onPickDate(lmpCtrl),
-          suffixIcon: const Padding(
-            padding: EdgeInsets.all(AppSpacing.md),
-            child: Icon(Icons.calendar_month_outlined,
-                color: AppColors.hintText, size: 20),
-          ),
-        ),
-        const SizedBox(height: AppSpacing.md),
-
-        // Expected Delivery Date
-        Text(l10n.expectedDeliveryDate, style: AppTypography.fieldLabel),
-        const SizedBox(height: AppSpacing.xs),
-        AppTextField(
-          hint: l10n.eddHint,
-          controller: eddCtrl,
-          readOnly: true,
-          onTap: () => onPickDate(eddCtrl),
-          suffixIcon: const Padding(
-            padding: EdgeInsets.all(AppSpacing.md),
-            child: Icon(Icons.calendar_month_outlined,
-                color: AppColors.hintText, size: 20),
-          ),
-        ),
-      ],
     );
   }
 }
@@ -614,22 +1587,11 @@ class _HealthCenterSection extends StatelessWidget {
       children: [
         Text(l10n.selectVillage, style: AppTypography.fieldLabel),
         const SizedBox(height: AppSpacing.xs),
-        _DropdownField(
-          hint: l10n.selectVillageHint,
-          value: selectedVillage,
-          items: villages,
-          onChanged: onVillageChanged,
-        ),
+        _DropdownField(hint: l10n.selectVillageHint, value: selectedVillage, items: villages, onChanged: onVillageChanged),
         const SizedBox(height: AppSpacing.md),
-
         Text(l10n.phc, style: AppTypography.fieldLabel),
         const SizedBox(height: AppSpacing.xs),
-        _DropdownField(
-          hint: l10n.phcHint,
-          value: selectedPhc,
-          items: phcs,
-          onChanged: onPhcChanged,
-        ),
+        _DropdownField(hint: l10n.phcHint, value: selectedPhc, items: phcs, onChanged: onPhcChanged),
       ],
     );
   }
@@ -642,11 +1604,7 @@ class _ConsentSection extends StatelessWidget {
   final bool value;
   final ValueChanged<bool?> onChanged;
 
-  const _ConsentSection({
-    required this.l10n,
-    required this.value,
-    required this.onChanged,
-  });
+  const _ConsentSection({required this.l10n, required this.value, required this.onChanged});
 
   @override
   Widget build(BuildContext context) {
@@ -661,30 +1619,17 @@ class _ConsentSection extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SizedBox(
-            width: 24,
-            height: 24,
-            child: Checkbox(
-              value: value,
-              onChanged: onChanged,
-              materialTapTargetSize: MaterialTapTargetSize.padded,
-            ),
+            width: 24, height: 24,
+            child: Checkbox(value: value, onChanged: onChanged, materialTapTargetSize: MaterialTapTargetSize.padded),
           ),
           const SizedBox(width: AppSpacing.sm),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  l10n.consentTitle,
-                  style: AppTypography.titleMedium
-                      .copyWith(fontWeight: FontWeight.w700),
-                ),
+                Text(l10n.consentTitle, style: AppTypography.titleMedium.copyWith(fontWeight: FontWeight.w700)),
                 const SizedBox(height: AppSpacing.xs),
-                Text(
-                  l10n.consentBody,
-                  style: AppTypography.bodySmall
-                      .copyWith(color: AppColors.bodyText),
-                ),
+                Text(l10n.consentBody, style: AppTypography.bodySmall.copyWith(color: AppColors.bodyText)),
               ],
             ),
           ),
@@ -700,40 +1645,25 @@ class _DropdownField extends StatelessWidget {
   final String hint;
   final String? value;
   final List<String> items;
-  final ValueChanged<String?> onChanged;
+  final ValueChanged<String?>? onChanged;
 
-  const _DropdownField({
-    required this.hint,
-    required this.value,
-    required this.items,
-    required this.onChanged,
-  });
+  const _DropdownField({required this.hint, required this.value, required this.items, required this.onChanged});
 
   @override
   Widget build(BuildContext context) {
-    // Build DropdownMenuItems once per build. In practice the parent widget
-    // (a StatelessWidget section) is only rebuilt when the dropdown value
-    // changes, so this is called at most once per user interaction.
     final menuItems = items
-        .map((e) => DropdownMenuItem(
-      value: e,
-      child: Text(e, style: AppTypography.bodyMedium),
-    ))
+        .map((e) => DropdownMenuItem(value: e, child: Text(e, style: AppTypography.bodyMedium)))
         .toList(growable: false);
 
     return Container(
-      decoration: BoxDecoration(
-        color: AppColors.fieldFill,
-        borderRadius: BorderRadius.circular(AppSpacing.radiusLg),
-      ),
+      decoration: BoxDecoration(color: AppColors.fieldFill, borderRadius: BorderRadius.circular(AppSpacing.radiusLg)),
       padding: const EdgeInsets.symmetric(horizontal: AppSpacing.md),
       child: DropdownButtonHideUnderline(
         child: DropdownButton<String>(
           value: value,
           hint: Text(hint, style: AppTypography.hint),
           isExpanded: true,
-          icon: const Icon(Icons.keyboard_arrow_down,
-              color: AppColors.hintText),
+          icon: const Icon(Icons.keyboard_arrow_down, color: AppColors.hintText),
           items: menuItems,
           onChanged: onChanged,
         ),
