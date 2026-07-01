@@ -892,6 +892,63 @@ class AppLocalizationsEn extends AppLocalizations {
   String get chatbotCategoryPnc => 'Postnatal & Newborn Care';
 
   @override
+  String get chatbotSubAdvanced => 'Advanced Preparedness';
+
+  @override
+  String get chatbotSubBirthCompanion => 'Birth Companion';
+
+  @override
+  String get chatbotSubEmergencyTransport => 'Emergency Transport';
+
+  @override
+  String get chatbotSubFinancial => 'Financial Preparedness';
+
+  @override
+  String get chatbotSubBloodDonor => 'Blood Donor Preparedness';
+
+  @override
+  String get chatbotSubHighRiskPregnancy => 'High-Risk Pregnancy';
+
+  @override
+  String get chatbotSubLaborReadiness => 'Labor Readiness';
+
+  @override
+  String get chatbotSubFamilyPreparedness => 'Family Preparedness';
+
+  @override
+  String get chatbotSubDeliveryKit => 'Delivery Kit';
+
+  @override
+  String get chatbotSubEmergencyDecisionMaking => 'Emergency Decisions';
+
+  @override
+  String get chatbotSubAdditional => 'Additional Topics';
+
+  @override
+  String get chatbotSubMaternalRecovery => 'Maternal Recovery';
+
+  @override
+  String get chatbotSubNutrition => 'Nutrition';
+
+  @override
+  String get chatbotSubMentalHealth => 'Mental Health';
+
+  @override
+  String get chatbotSubFamilyPlanning => 'Family Planning';
+
+  @override
+  String get chatbotSubNewbornCare => 'Newborn Care';
+
+  @override
+  String get chatbotSubNewbornDangerSigns => 'Newborn Danger Signs';
+
+  @override
+  String get chatbotSubImmunization => 'Immunization & Growth';
+
+  @override
+  String get chatbotSubLowBirthWeight => 'Low Birth Weight Care';
+
+  @override
   String chatbotQuestionsIntro(Object category) {
     return 'Here are some common questions about $category:';
   }
@@ -931,7 +988,14 @@ class AppLocalizationsEn extends AppLocalizations {
   String get chatbotPickAnother => 'Sure, pick another question:';
 
   @override
+  String get chatbotLanguageChanged =>
+      'You tapped the language switch button, so the language has changed — messages from here on will appear in this language.';
+
+  @override
   String get remindersTitle => 'My Reminders';
+
+  @override
+  String get noReminders => 'No reminders yet';
 
   @override
   String get reminderAncVisit => 'ANC Visit Reminder';

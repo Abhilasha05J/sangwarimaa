@@ -27,7 +27,26 @@ class WomenRemindersScreen extends ConsumerWidget {
               title: l10n.reminders,
               onBack: () => context.pop(),
             ),
-
+            Expanded(
+              child: Center(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Image.asset(
+                      'assets/icons/reminderbg.png',
+                      width: 200,
+                      height: 200,
+                    ),
+                   // const SizedBox(height: 5),
+                    Text(
+                      l10n.noReminders,
+                      textAlign: TextAlign.center,
+                    ),
+                  ],
+                ),
+              ),
+            )
+            
           ],
         ),
       ),

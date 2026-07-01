@@ -100,17 +100,36 @@ class BpcrScreen extends ConsumerWidget {
                     ),
                     const SizedBox(height: AppSpacing.md),
 
-                    // Health facility identification — full width, green
-                    _BpcrFullWidthTile(
-                      iconAsset: 'assets/icons/bpcr5.png',
-                      title: '${l10n.bpcr_health_facility_title}',
-                      backgroundColor: const Color(0xFFE3F2E5),
-                      iconBgColor: const Color(0xFF43A047),
-                      onTap: () => context.pushNamed('healthFacilityId'),
-                    ),
-                    const SizedBox(height: AppSpacing.md),
 
-                    // Row 3: Identified skill birth attendant / Transport modality
+//Row 3: Health facility identification /Identify community blood donor
+                    IntrinsicHeight(
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          Expanded(
+                            child: _BpcrTile(
+                              iconAsset: 'assets/icons/bpcr5.png',
+                              title: '${l10n.bpcr_health_facility_title}',
+                              subtitle: '',
+                              onTap: () => context.pushNamed('healthFacilityId'),
+                            ),
+                          ),
+                          const SizedBox(width: AppSpacing.md),
+                          Expanded(
+                            child: _BpcrTile(
+                              iconAsset: 'assets/icons/bpcr10.png',
+                              title: '${l10n.bpcr_blood_donor_title}',
+                              subtitle: '',
+                              onTap: () => context.pushNamed('communityBloodDonor'),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(height: AppSpacing.md,),
+
+
+                    // Row 4: Identified skill birth attendant / Transport modality
                     IntrinsicHeight(
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -140,7 +159,7 @@ class BpcrScreen extends ConsumerWidget {
                     ),
                     const SizedBox(height: AppSpacing.md),
 
-                    // Row 4: Saved money / Community financial support
+                    // Row 5: Saved money / Community financial support
                     IntrinsicHeight(
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -170,14 +189,6 @@ class BpcrScreen extends ConsumerWidget {
                     ),
                     const SizedBox(height: AppSpacing.md),
 
-                    // Identify community blood donor — full width, red
-                    _BpcrFullWidthTile(
-                      iconAsset: 'assets/icons/bpcr10.png',
-                      title: '${l10n.bpcr_blood_donor_title}',
-                      backgroundColor: const Color(0xFFFCE4E4),
-                      iconBgColor: const Color(0xFFE53935),
-                      onTap: () => context.pushNamed('communityBloodDonor'),
-                    ),
                     const SizedBox(height: AppSpacing.lg),
                   ],
                 ),
@@ -248,11 +259,12 @@ class _BpcrTile extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
+        height: 180,
         width: double.infinity,
         padding: const EdgeInsets.all(AppSpacing.md),
         decoration: BoxDecoration(
           color: const Color(0xFFF2F2F2),
-          borderRadius: BorderRadius.circular(AppSpacing.radiusLg),
+          borderRadius: BorderRadius.circular(AppSpacing.radiusSm),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -294,65 +306,3 @@ class _BpcrTile extends StatelessWidget {
   }
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
-// Full-width colored tile (Health facility / Blood donor)
-// ─────────────────────────────────────────────────────────────────────────────
-class _BpcrFullWidthTile extends StatelessWidget {
-  final String iconAsset;
-  final String title;
-  final Color backgroundColor;
-  final Color iconBgColor;
-  final VoidCallback onTap;
-
-  const _BpcrFullWidthTile({
-    required this.iconAsset,
-    required this.title,
-    required this.backgroundColor,
-    required this.iconBgColor,
-    required this.onTap,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        width: double.infinity,
-        padding: const EdgeInsets.symmetric(
-          horizontal: AppSpacing.md,
-          vertical: AppSpacing.md,
-        ),
-        decoration: BoxDecoration(
-          color: backgroundColor,
-          borderRadius: BorderRadius.circular(AppSpacing.radiusLg),
-        ),
-        child: Row(
-          children: [
-            Container(
-              width: 40,
-              height: 40,
-              decoration: BoxDecoration(
-                color: AppColors.white,
-                borderRadius: BorderRadius.circular(AppSpacing.radiusSm),
-              ),
-              padding: const EdgeInsets.all(8),
-              child: Image.asset(iconAsset, fit: BoxFit.contain),
-            ),
-            const SizedBox(width: AppSpacing.md),
-            Expanded(
-              child: Text(
-                title,
-                style: AppTypography.titleMedium.copyWith(fontSize: 16),
-              ),
-            ),
-            const Icon(
-              Icons.chevron_right_rounded,
-              color: AppColors.hintText,
-              size: 24,
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}

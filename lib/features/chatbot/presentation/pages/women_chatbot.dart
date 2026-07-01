@@ -1,3 +1,5 @@
+// import 'dart:math';
+//
 // import 'package:flutter/material.dart';
 // import 'package:flutter_riverpod/flutter_riverpod.dart';
 // import 'package:sangwari_maa/core/constants/app_colors.dart';
@@ -28,55 +30,32 @@
 //     super.dispose();
 //   }
 //
-//   void _scrollToBottom() {
-//     WidgetsBinding.instance.addPostFrameCallback((_) {
-//       if (_scrollCtrl.hasClients) {
-//         _scrollCtrl.animateTo(
-//           _scrollCtrl.position.maxScrollExtent,
-//           duration: const Duration(milliseconds: 300),
-//           curve: Curves.easeOut,
-//         );
-//       }
-//     });
-//   }
-//
 //   Future<void> _sendMessage(String text) async {
 //     if (text.trim().isEmpty) return;
 //     _inputCtrl.clear();
-//     _scrollToBottom();
-//
 //     await ref.read(chatMessagesProvider.notifier).sendUserMessage(text);
-//     _scrollToBottom();
 //   }
 //
 //   Future<void> _onCategoryTap(QuickOption category) async {
 //     await ref.read(chatMessagesProvider.notifier).selectCategory(category);
-//     _scrollToBottom();
 //   }
 //
 //   Future<void> _onSubcategoryTap(QuickOption subcategory) async {
 //     await ref.read(chatMessagesProvider.notifier).selectSubcategory(subcategory);
-//     _scrollToBottom();
 //   }
 //
 //   Future<void> _onQuestionTap(QuickOption question) async {
 //     await ref.read(chatMessagesProvider.notifier).selectQuestion(question);
-//     _scrollToBottom();
+//   }
+//
+//   void _onYesNoTap(QuickOption option) {
+//     ref.read(chatMessagesProvider.notifier).selectYesNo(option);
 //   }
 //
 //   @override
 //   Widget build(BuildContext context) {
 //     final l10n = AppLocalizations.of(context)!;
 //
-//     // Scroll down every time a new message actually lands — not just once
-//     // after the whole provider call finishes. This is what makes the answer
-//     // and the follow-up chip list each get a visible moment on screen
-//     // instead of the final scroll landing past the answer.
-//     ref.listen(chatMessagesProvider, (previous, next) {
-//       if (next.length > (previous?.length ?? 0)) {
-//         _scrollToBottom();
-//       }
-//     });
 //
 //     final messages = ref.watch(chatMessagesProvider);
 //     final isTyping = ref.watch(chatIsTypingProvider);
@@ -100,8 +79,8 @@
 //                         opacity: 0.18,
 //                         child: Image.asset(
 //                           'assets/images/app_logo.png',
-//                          // width: 200,
-//                           //height: 200,
+//                         //  width: 200,
+//                         //  height: 200,
 //                         ),
 //                       ),
 //                     ),
@@ -122,6 +101,7 @@
 //                           onCategoryTap: _onCategoryTap,
 //                           onSubcategoryTap: _onSubcategoryTap,
 //                           onQuestionTap: _onQuestionTap,
+//                           onYesNoTap: _onYesNoTap,
 //                         );
 //                       },
 //                     ),
@@ -131,6 +111,7 @@
 //               _ChatInputBar(
 //                 controller: _inputCtrl,
 //                 onSend: _sendMessage,
+//                 l10n: l10n,
 //               ),
 //             ],
 //           ),
@@ -149,12 +130,14 @@
 //   final void Function(QuickOption) onCategoryTap;
 //   final void Function(QuickOption) onSubcategoryTap;
 //   final void Function(QuickOption) onQuestionTap;
+//   final void Function(QuickOption) onYesNoTap;
 //
 //   const _MessageBubble({
 //     required this.message,
 //     required this.onCategoryTap,
 //     required this.onSubcategoryTap,
 //     required this.onQuestionTap,
+//     required this.onYesNoTap,
 //   });
 //
 //   @override
@@ -224,6 +207,7 @@
 //                 onTap: switch (message.contentType) {
 //                   MessageContentType.categoryOptions => onCategoryTap,
 //                   MessageContentType.subcategoryOptions => onSubcategoryTap,
+//                   MessageContentType.yesNoOptions => onYesNoTap,
 //                   _ => onQuestionTap,
 //                 },
 //               ),
@@ -375,8 +359,9 @@
 // class _ChatInputBar extends StatelessWidget {
 //   final TextEditingController controller;
 //   final Future<void> Function(String) onSend;
+//   final AppLocalizations l10n;
 //
-//   const _ChatInputBar({required this.controller, required this.onSend});
+//   const _ChatInputBar({required this.controller, required this.onSend, required this.l10n,});
 //
 //   @override
 //   Widget build(BuildContext context) {
@@ -419,7 +404,7 @@
 //                       textInputAction: TextInputAction.send,
 //                       onSubmitted: onSend,
 //                       decoration: InputDecoration(
-//                         hintText: 'Type a message....',
+//                         hintText: l10n.chatbotPlaceholder,
 //                         hintStyle: AppTypography.bodyLarge,
 //                         border: InputBorder.none,
 //                         isDense: true,
@@ -474,6 +459,18 @@ class _ChatbotScreenState extends ConsumerState<ChatbotScreen> {
     super.dispose();
   }
 
+  void _scrollToBottom() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (_scrollCtrl.hasClients) {
+        _scrollCtrl.animateTo(
+          _scrollCtrl.position.maxScrollExtent,
+          duration: const Duration(milliseconds: 300),
+          curve: Curves.easeOut,
+        );
+      }
+    });
+  }
+
   Future<void> _sendMessage(String text) async {
     if (text.trim().isEmpty) return;
     _inputCtrl.clear();
@@ -500,6 +497,19 @@ class _ChatbotScreenState extends ConsumerState<ChatbotScreen> {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
 
+    // Scroll only when an actual answer (a plain bot text bubble — not a
+    // chip list, not the user's own echoed message) lands, so the user
+    // sees the answer arrive without being auto-scrolled on every tap.
+    ref.listen(chatMessagesProvider, (previous, next) {
+      if (next.length > (previous?.length ?? 0)) {
+        final latest = next.last;
+        final isPlainBotAnswer = latest.sender == MessageSender.bot &&
+            latest.contentType == MessageContentType.text;
+        if (isPlainBotAnswer) {
+          _scrollToBottom();
+        }
+      }
+    });
 
     final messages = ref.watch(chatMessagesProvider);
     final isTyping = ref.watch(chatIsTypingProvider);
@@ -523,8 +533,8 @@ class _ChatbotScreenState extends ConsumerState<ChatbotScreen> {
                         opacity: 0.18,
                         child: Image.asset(
                           'assets/images/app_logo.png',
-                        //  width: 200,
-                        //  height: 200,
+                          //width: 200,
+                          //height: 200,
                         ),
                       ),
                     ),
@@ -555,6 +565,7 @@ class _ChatbotScreenState extends ConsumerState<ChatbotScreen> {
               _ChatInputBar(
                 controller: _inputCtrl,
                 onSend: _sendMessage,
+                l10n: l10n,
               ),
             ],
           ),
@@ -802,8 +813,13 @@ class _TypingDotsState extends State<_TypingDots>
 class _ChatInputBar extends StatelessWidget {
   final TextEditingController controller;
   final Future<void> Function(String) onSend;
+  final AppLocalizations l10n;
 
-  const _ChatInputBar({required this.controller, required this.onSend});
+  const _ChatInputBar({
+    required this.controller,
+    required this.onSend,
+    required this.l10n,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -846,7 +862,7 @@ class _ChatInputBar extends StatelessWidget {
                       textInputAction: TextInputAction.send,
                       onSubmitted: onSend,
                       decoration: InputDecoration(
-                        hintText: 'Type a message....',
+                        hintText: l10n.chatbotPlaceholder,
                         hintStyle: AppTypography.bodyLarge,
                         border: InputBorder.none,
                         isDense: true,

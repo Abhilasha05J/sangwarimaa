@@ -893,6 +893,63 @@ class AppLocalizationsHi extends AppLocalizations {
   String get chatbotCategoryPnc => 'प्रसवोत्तर और नवजात देखभाल';
 
   @override
+  String get chatbotSubAdvanced => 'उन्नत तैयारी';
+
+  @override
+  String get chatbotSubBirthCompanion => 'प्रसव साथी';
+
+  @override
+  String get chatbotSubEmergencyTransport => 'आपातकालीन परिवहन';
+
+  @override
+  String get chatbotSubFinancial => 'आर्थिक तैयारी';
+
+  @override
+  String get chatbotSubBloodDonor => 'रक्तदाता तैयारी';
+
+  @override
+  String get chatbotSubHighRiskPregnancy => 'उच्च जोखिम गर्भावस्था';
+
+  @override
+  String get chatbotSubLaborReadiness => 'प्रसव हेतु तैयारी';
+
+  @override
+  String get chatbotSubFamilyPreparedness => 'पारिवारिक तैयारी';
+
+  @override
+  String get chatbotSubDeliveryKit => 'प्रसव किट';
+
+  @override
+  String get chatbotSubEmergencyDecisionMaking => 'आपातकालीन निर्णय';
+
+  @override
+  String get chatbotSubAdditional => 'अतिरिक्त विषय';
+
+  @override
+  String get chatbotSubMaternalRecovery => 'मातृ स्वास्थ्य लाभ';
+
+  @override
+  String get chatbotSubNutrition => 'पोषण';
+
+  @override
+  String get chatbotSubMentalHealth => 'मानसिक स्वास्थ्य';
+
+  @override
+  String get chatbotSubFamilyPlanning => 'परिवार नियोजन';
+
+  @override
+  String get chatbotSubNewbornCare => 'नवजात देखभाल';
+
+  @override
+  String get chatbotSubNewbornDangerSigns => 'नवजात के खतरे के संकेत';
+
+  @override
+  String get chatbotSubImmunization => 'टीकाकरण और वृद्धि';
+
+  @override
+  String get chatbotSubLowBirthWeight => 'कम वजन वाले शिशु की देखभाल';
+
+  @override
   String chatbotQuestionsIntro(Object category) {
     return '$category के बारे में कुछ सामान्य सवाल यहां हैं:';
   }
@@ -932,7 +989,14 @@ class AppLocalizationsHi extends AppLocalizations {
   String get chatbotPickAnother => 'ठीक है, एक और सवाल चुनें:';
 
   @override
+  String get chatbotLanguageChanged =>
+      'आपने भाषा बदलने वाले बटन पर टैप किया है, इसलिए भाषा बदल गई है — अब से संदेश इसी भाषा में आएंगे।';
+
+  @override
   String get remindersTitle => 'मेरे अनुस्मारक';
+
+  @override
+  String get noReminders => 'अभी तक कोई रिमाइंडर नहीं';
 
   @override
   String get reminderAncVisit => 'ANC विजिट अनुस्मारक';

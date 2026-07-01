@@ -20,7 +20,7 @@ final class ChatMessagesProvider
         argument: null,
         retry: null,
         name: r'chatMessagesProvider',
-        isAutoDispose: true,
+        isAutoDispose: false,
         dependencies: null,
         $allTransitiveDependencies: null,
       );
@@ -41,7 +41,7 @@ final class ChatMessagesProvider
   }
 }
 
-String _$chatMessagesHash() => r'93f81f081d1b39432faaf2407b37c689c1ecfe04';
+String _$chatMessagesHash() => r'810e626abcd766067f72cebf3bed5f5e2fb32f63';
 
 abstract class _$ChatMessages extends $Notifier<List<ChatMessage>> {
   List<ChatMessage> build();
@@ -72,7 +72,7 @@ final class ChatIsTypingProvider extends $NotifierProvider<ChatIsTyping, bool> {
         argument: null,
         retry: null,
         name: r'chatIsTypingProvider',
-        isAutoDispose: true,
+        isAutoDispose: false,
         dependencies: null,
         $allTransitiveDependencies: null,
       );
@@ -93,7 +93,7 @@ final class ChatIsTypingProvider extends $NotifierProvider<ChatIsTyping, bool> {
   }
 }
 
-String _$chatIsTypingHash() => r'94a2a5a70d50478bf544491cfbaf8c2351ef381a';
+String _$chatIsTypingHash() => r'7ddebddbc6aa9f05f065694ccd48e147096304cb';
 
 abstract class _$ChatIsTyping extends $Notifier<bool> {
   bool build();

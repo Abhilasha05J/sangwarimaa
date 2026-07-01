@@ -1718,6 +1718,120 @@ abstract class AppLocalizations {
   /// **'Postnatal & Newborn Care'**
   String get chatbotCategoryPnc;
 
+  /// No description provided for @chatbotSubAdvanced.
+  ///
+  /// In en, this message translates to:
+  /// **'Advanced Preparedness'**
+  String get chatbotSubAdvanced;
+
+  /// No description provided for @chatbotSubBirthCompanion.
+  ///
+  /// In en, this message translates to:
+  /// **'Birth Companion'**
+  String get chatbotSubBirthCompanion;
+
+  /// No description provided for @chatbotSubEmergencyTransport.
+  ///
+  /// In en, this message translates to:
+  /// **'Emergency Transport'**
+  String get chatbotSubEmergencyTransport;
+
+  /// No description provided for @chatbotSubFinancial.
+  ///
+  /// In en, this message translates to:
+  /// **'Financial Preparedness'**
+  String get chatbotSubFinancial;
+
+  /// No description provided for @chatbotSubBloodDonor.
+  ///
+  /// In en, this message translates to:
+  /// **'Blood Donor Preparedness'**
+  String get chatbotSubBloodDonor;
+
+  /// No description provided for @chatbotSubHighRiskPregnancy.
+  ///
+  /// In en, this message translates to:
+  /// **'High-Risk Pregnancy'**
+  String get chatbotSubHighRiskPregnancy;
+
+  /// No description provided for @chatbotSubLaborReadiness.
+  ///
+  /// In en, this message translates to:
+  /// **'Labor Readiness'**
+  String get chatbotSubLaborReadiness;
+
+  /// No description provided for @chatbotSubFamilyPreparedness.
+  ///
+  /// In en, this message translates to:
+  /// **'Family Preparedness'**
+  String get chatbotSubFamilyPreparedness;
+
+  /// No description provided for @chatbotSubDeliveryKit.
+  ///
+  /// In en, this message translates to:
+  /// **'Delivery Kit'**
+  String get chatbotSubDeliveryKit;
+
+  /// No description provided for @chatbotSubEmergencyDecisionMaking.
+  ///
+  /// In en, this message translates to:
+  /// **'Emergency Decisions'**
+  String get chatbotSubEmergencyDecisionMaking;
+
+  /// No description provided for @chatbotSubAdditional.
+  ///
+  /// In en, this message translates to:
+  /// **'Additional Topics'**
+  String get chatbotSubAdditional;
+
+  /// No description provided for @chatbotSubMaternalRecovery.
+  ///
+  /// In en, this message translates to:
+  /// **'Maternal Recovery'**
+  String get chatbotSubMaternalRecovery;
+
+  /// No description provided for @chatbotSubNutrition.
+  ///
+  /// In en, this message translates to:
+  /// **'Nutrition'**
+  String get chatbotSubNutrition;
+
+  /// No description provided for @chatbotSubMentalHealth.
+  ///
+  /// In en, this message translates to:
+  /// **'Mental Health'**
+  String get chatbotSubMentalHealth;
+
+  /// No description provided for @chatbotSubFamilyPlanning.
+  ///
+  /// In en, this message translates to:
+  /// **'Family Planning'**
+  String get chatbotSubFamilyPlanning;
+
+  /// No description provided for @chatbotSubNewbornCare.
+  ///
+  /// In en, this message translates to:
+  /// **'Newborn Care'**
+  String get chatbotSubNewbornCare;
+
+  /// No description provided for @chatbotSubNewbornDangerSigns.
+  ///
+  /// In en, this message translates to:
+  /// **'Newborn Danger Signs'**
+  String get chatbotSubNewbornDangerSigns;
+
+  /// No description provided for @chatbotSubImmunization.
+  ///
+  /// In en, this message translates to:
+  /// **'Immunization & Growth'**
+  String get chatbotSubImmunization;
+
+  /// No description provided for @chatbotSubLowBirthWeight.
+  ///
+  /// In en, this message translates to:
+  /// **'Low Birth Weight Care'**
+  String get chatbotSubLowBirthWeight;
+
   /// No description provided for @chatbotQuestionsIntro.
   ///
   /// In en, this message translates to:
@@ -1784,11 +1898,23 @@ abstract class AppLocalizations {
   /// **'Sure, pick another question:'**
   String get chatbotPickAnother;
 
+  /// No description provided for @chatbotLanguageChanged.
+  ///
+  /// In en, this message translates to:
+  /// **'You tapped the language switch button, so the language has changed — messages from here on will appear in this language.'**
+  String get chatbotLanguageChanged;
+
   /// No description provided for @remindersTitle.
   ///
   /// In en, this message translates to:
   /// **'My Reminders'**
   String get remindersTitle;
+
+  /// No description provided for @noReminders.
+  ///
+  /// In en, this message translates to:
+  /// **'No reminders yet'**
+  String get noReminders;
 
   /// No description provided for @reminderAncVisit.
   ///

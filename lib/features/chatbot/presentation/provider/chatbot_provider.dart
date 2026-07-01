@@ -9,6 +9,8 @@
 //
 // const _backOptionId = '__back__';
 // const _generalSubcatId = '__general__';
+// const _yesOptionId = '__yes__';
+// const _noOptionId = '__no__';
 //
 // /// Where the "back" chip on the current question list should return to.
 // enum _BackTarget { categories, subcategories }
@@ -292,12 +294,48 @@
 //         text: l10n.chatbotAnythingElse,
 //         sender: MessageSender.bot,
 //         timestamp: DateTime.now(),
+//         contentType: MessageContentType.yesNoOptions,
+//         options: [
+//           QuickOption(id: _yesOptionId, label: l10n.chatbotYes),
+//           QuickOption(id: _noOptionId, label: l10n.chatbotNo),
+//         ],
+//       ));
+//     }
+//   }
+//
+//   /// "Anything else?" Yes/No chip tapped.
+//   /// Yes -> re-show the remaining questions in the current subcategory/category.
+//   /// No  -> back to subcategories (if there were any) or categories.
+//   void selectYesNo(QuickOption option) {
+//     final locale = ref.read(localeProvider);
+//     final l10n = _l10nFor(locale);
+//     final lang = locale.languageCode;
+//
+//     if (option.id == _yesOptionId) {
+//       if (_activeFaqs.isEmpty) {
+//         addMessage(_welcomeMessage(l10n));
+//         return;
+//       }
+//       addMessage(ChatMessage(
+//         text: l10n.chatbotPickAnother,
+//         sender: MessageSender.bot,
+//         timestamp: DateTime.now(),
 //         contentType: MessageContentType.questionOptions,
 //         options: [
 //           ..._activeFaqs.map((f) => QuickOption(id: f.id, label: f.title(lang))),
 //           _backOption(l10n),
 //         ],
 //       ));
+//       return;
+//     }
+//
+//     // No -> go back up a level.
+//     if (_backTarget == _BackTarget.subcategories && _currentCategory != null) {
+//       final faqsInCategory =
+//       _allFaqs.where((f) => f.category == _currentCategory).toList();
+//       addMessage(_subcategoryMessage(_currentCategory!, faqsInCategory, l10n));
+//     } else {
+//       addMessage(_welcomeMessage(l10n));
 //     }
 //   }
 //
@@ -362,7 +400,7 @@ const _noOptionId = '__no__';
 /// Where the "back" chip on the current question list should return to.
 enum _BackTarget { categories, subcategories }
 
-@riverpod
+@Riverpod(keepAlive: true)
 class ChatMessages extends _$ChatMessages {
   List<FaqItem> _allFaqs = [];
   List<FaqItem> _activeFaqs = [];
@@ -371,8 +409,16 @@ class ChatMessages extends _$ChatMessages {
 
   @override
   List<ChatMessage> build() {
-    // IMPORTANT: do NOT ref.watch(localeProvider) here — that would
-    // rerun build() on every language toggle and wipe the whole conversation.
+    ref.listen(localeProvider, (previous, next) {
+      if (previous != null && previous != next) {
+        final l10n = _l10nFor(next);
+        addMessage(ChatMessage(
+          text: l10n.chatbotLanguageChanged,
+          sender: MessageSender.bot,
+          timestamp: DateTime.now(),
+        ));
+      }
+    });
     Future.microtask(_initialize);
     return [];
   }
@@ -434,9 +480,58 @@ class ChatMessages extends _$ChatMessages {
     }
   }
 
-  /// 'newborn_danger_signs' -> 'Newborn Danger Signs'.
-  /// English-only for now since the source content itself is English-only
-  /// pending Hindi translation — same gap noted for FAQ content.
+  /// Maps each known subcategory slug to its localized label.
+  /// Falls back to a title-cased version of the slug (English only) for
+  /// anything not yet in this map, so a new slug never disappears silently
+  /// — it just won't be translated until added here + the ARB files.
+  String _subcategoryLabel(String slug, AppLocalizations l10n) {
+    switch (slug) {
+    // BPCR subcategories
+      case 'advanced':
+        return l10n.chatbotSubAdvanced;
+      case 'birth_companion':
+        return l10n.chatbotSubBirthCompanion;
+      case 'emergency_transport':
+        return l10n.chatbotSubEmergencyTransport;
+      case 'financial':
+        return l10n.chatbotSubFinancial;
+      case 'blood_donor':
+        return l10n.chatbotSubBloodDonor;
+      case 'high_risk_pregnancy':
+        return l10n.chatbotSubHighRiskPregnancy;
+      case 'labor_readiness':
+        return l10n.chatbotSubLaborReadiness;
+      case 'family_preparedness':
+        return l10n.chatbotSubFamilyPreparedness;
+      case 'delivery_kit':
+        return l10n.chatbotSubDeliveryKit;
+      case 'emergency_decision_making':
+        return l10n.chatbotSubEmergencyDecisionMaking;
+      case 'additional':
+        return l10n.chatbotSubAdditional;
+    // PNC subcategories
+      case 'maternal_recovery':
+        return l10n.chatbotSubMaternalRecovery;
+      case 'nutrition':
+        return l10n.chatbotSubNutrition;
+      case 'mental_health':
+        return l10n.chatbotSubMentalHealth;
+      case 'family_planning':
+        return l10n.chatbotSubFamilyPlanning;
+      case 'newborn_care':
+        return l10n.chatbotSubNewbornCare;
+      case 'newborn_danger_signs':
+        return l10n.chatbotSubNewbornDangerSigns;
+      case 'immunization':
+        return l10n.chatbotSubImmunization;
+      case 'low_birth_weight':
+        return l10n.chatbotSubLowBirthWeight;
+      default:
+        return _prettifySlug(slug);
+    }
+  }
+
+  /// Fallback for any slug not yet mapped above: 'some_slug' -> 'Some Slug'.
   String _prettifySlug(String slug) => slug
       .split('_')
       .map((w) => w.isEmpty ? w : '${w[0].toUpperCase()}${w.substring(1)}')
@@ -469,7 +564,9 @@ class ChatMessages extends _$ChatMessages {
       options: [
         ...subcats.map((s) => QuickOption(
           id: s ?? _generalSubcatId,
-          label: s == null ? l10n.chatbotGeneralTopic : _prettifySlug(s),
+          label: s == null
+              ? l10n.chatbotGeneralTopic
+              : _subcategoryLabel(s, l10n),
         )),
         _backOption(l10n),
       ],
@@ -723,7 +820,7 @@ class ChatMessages extends _$ChatMessages {
   }
 }
 
-@riverpod
+@Riverpod(keepAlive: true)
 class ChatIsTyping extends _$ChatIsTyping {
   @override
   bool build() => false;
