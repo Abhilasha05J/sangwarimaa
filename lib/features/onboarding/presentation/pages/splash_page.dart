@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -20,7 +19,7 @@ class SplashPage extends ConsumerWidget {
     final l10n = AppLocalizations.of(context)!;
     // Read MediaQuery once — avoids repeated lookups on every rebuild
     final mq = MediaQuery.sizeOf(context);
-   // final padding = MediaQuery.paddingOf(context);
+    // final padding = MediaQuery.paddingOf(context);
     final screenH = mq.height;
     final logoHeight = (screenH * 0.20).clamp(100.0, 200.0);
 
@@ -30,62 +29,62 @@ class SplashPage extends ConsumerWidget {
         backgroundColor: Colors.transparent,
         resizeToAvoidBottomInset: false,
         body: AppBackground(
-          child:Stack(
-            children: [
-              // ── Watermark Background ─────────────────────────
-              Positioned.fill(
-                child: Opacity(
-                  opacity: 0.20,
-                  child: Image.asset(
-                    'assets/images/bg1.png',
-                    width: double.infinity,
-                    fit: BoxFit.cover,
+            child:Stack(
+              children: [
+                // ── Watermark Background ─────────────────────────
+                Positioned.fill(
+                  child: Opacity(
+                    opacity: 0.20,
+                    child: Image.asset(
+                      'assets/images/bg1.png',
+                      width: double.infinity,
+                      fit: BoxFit.cover,
+                    ),
                   ),
                 ),
-              ),
-              SafeArea(
-                child: CustomScrollView(
-                  physics: const BouncingScrollPhysics(),
-                  slivers: [
-                    SliverPadding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: AppSpacing.screenH),
-                      sliver: SliverFillRemaining(
-                        hasScrollBody: false,
-                        child: Column(
-                          children: [
-                            SizedBox(height: screenH * 0.20),
+                SafeArea(
+                  child: CustomScrollView(
+                    physics: const BouncingScrollPhysics(),
+                    slivers: [
+                      SliverPadding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: AppSpacing.screenH),
+                        sliver: SliverFillRemaining(
+                          hasScrollBody: false,
+                          child: Column(
+                            children: [
+                              SizedBox(height: screenH * 0.20),
 
-                            // ── Logo ───────────────────────────────────────
-                            AppLogoHeader(
-                              width: double.infinity,
-                              height: logoHeight,
-                            ),
+                              // ── Logo ───────────────────────────────────────
+                              AppLogoHeader(
+                                width: double.infinity,
+                                height: logoHeight,
+                              ),
 
-                            SizedBox(height: screenH * 0.01),
+                              SizedBox(height: screenH * 0.01),
 
-                            // ── Bilingual tagline ───────────────────────────
-                            _BilingualTagline(l10n: l10n),
+                              // ── Bilingual tagline ───────────────────────────
+                              _BilingualTagline(l10n: l10n),
 
-                            const Spacer(),
+                              const Spacer(),
 
-                            // ── CTA ─────────────────────────────────────────
-                            AppPrimaryButton(
-                              label: l10n.splashStart,
-                              showArrow: false,
-                              onTap: () => context.pushNamed('language'),
-                            ),
+                              // ── CTA ─────────────────────────────────────────
+                              AppPrimaryButton(
+                                label: l10n.splashStart,
+                                showArrow: false,
+                                onTap: () => context.pushNamed('language'),
+                              ),
 
-                            SizedBox(height: screenH * 0.04),
-                          ],
+                              SizedBox(height: screenH * 0.04),
+                            ],
+                          ),
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-            ],
-          )
+              ],
+            )
 
         ),
       ),
@@ -166,6 +165,3 @@ class _BilingualTagline extends StatelessWidget {
     );
   }
 }
-
-
-

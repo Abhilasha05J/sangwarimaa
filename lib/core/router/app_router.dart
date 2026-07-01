@@ -49,9 +49,9 @@ abstract final class Routes {
   static const mitaninDashboard  = '/mitanindashboard';
 }
 
-GoRouter buildAppRouter() => GoRouter(
-  initialLocation: Routes.splash,
-    debugLogDiagnostics: kDebugMode,
+GoRouter buildAppRouter({String initialLocation = '/'}) => GoRouter(
+  initialLocation: initialLocation,
+  debugLogDiagnostics: kDebugMode,
   routes: [
     GoRoute(
       path: '/',
