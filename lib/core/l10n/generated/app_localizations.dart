@@ -800,6 +800,30 @@ abstract class AppLocalizations {
   /// **'Educational content for safe motherhood'**
   String get videomoduledesc;
 
+  /// No description provided for @videoFilterAll.
+  ///
+  /// In en, this message translates to:
+  /// **'All'**
+  String get videoFilterAll;
+
+  /// No description provided for @videoFilterBpcr.
+  ///
+  /// In en, this message translates to:
+  /// **'BPCR'**
+  String get videoFilterBpcr;
+
+  /// No description provided for @videoFilterPnc.
+  ///
+  /// In en, this message translates to:
+  /// **'Postnatal & Newborn Care'**
+  String get videoFilterPnc;
+
+  /// No description provided for @videoLoadError.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not load videos'**
+  String get videoLoadError;
+
   /// No description provided for @bpcrTitle.
   ///
   /// In en, this message translates to:
@@ -1682,6 +1706,18 @@ abstract class AppLocalizations {
   /// **'Sangwari Maa is typing…'**
   String get chatbotTyping;
 
+  /// No description provided for @chatbotListening.
+  ///
+  /// In en, this message translates to:
+  /// **'Listening...'**
+  String get chatbotListening;
+
+  /// No description provided for @chatbotBrowseTopics.
+  ///
+  /// In en, this message translates to:
+  /// **'Browse Topics'**
+  String get chatbotBrowseTopics;
+
   /// No description provided for @faqTitle.
   ///
   /// In en, this message translates to:
@@ -1831,6 +1867,48 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Low Birth Weight Care'**
   String get chatbotSubLowBirthWeight;
+
+  /// No description provided for @chatbotSubPregnancyRegistration.
+  ///
+  /// In en, this message translates to:
+  /// **'Pregnancy Registration'**
+  String get chatbotSubPregnancyRegistration;
+
+  /// No description provided for @chatbotSubPregnancyDuration.
+  ///
+  /// In en, this message translates to:
+  /// **'Pregnancy Duration'**
+  String get chatbotSubPregnancyDuration;
+
+  /// No description provided for @chatbotSubAncVisits.
+  ///
+  /// In en, this message translates to:
+  /// **'ANC Visits'**
+  String get chatbotSubAncVisits;
+
+  /// No description provided for @chatbotSubMaternalNutrition.
+  ///
+  /// In en, this message translates to:
+  /// **'Maternal Nutrition'**
+  String get chatbotSubMaternalNutrition;
+
+  /// No description provided for @chatbotSubIfaCalcium.
+  ///
+  /// In en, this message translates to:
+  /// **'IFA & Calcium'**
+  String get chatbotSubIfaCalcium;
+
+  /// No description provided for @chatbotSubCommonSymptoms.
+  ///
+  /// In en, this message translates to:
+  /// **'Common Symptoms'**
+  String get chatbotSubCommonSymptoms;
+
+  /// No description provided for @chatbotSubDangerSigns.
+  ///
+  /// In en, this message translates to:
+  /// **'Danger Signs'**
+  String get chatbotSubDangerSigns;
 
   /// No description provided for @chatbotQuestionsIntro.
   ///

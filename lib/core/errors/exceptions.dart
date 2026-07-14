@@ -14,6 +14,11 @@ class UnauthorizedException implements Exception {
   UnauthorizedException([this.message = 'Session expired, please login again']);
 }
 
+class NotFoundException implements Exception {  // NEW
+  final String message;
+  NotFoundException([this.message = 'Resource not found']);
+}
+
 class ValidationException implements Exception {
   final String message;
   final Map<String, List<String>> fieldErrors;

@@ -8,6 +8,12 @@ part 'profile_remote_datasource.g.dart';
 abstract class ProfileRemoteDataSource {
   factory ProfileRemoteDataSource(Dio dio, {String baseUrl}) = _ProfileRemoteDataSource;
 
+  @GET(ApiEndpoints.womenProfile)
+  Future<HttpResponse<dynamic>> getWomenProfile();
+
+  @GET(ApiEndpoints.mitaninProfile)
+  Future<HttpResponse<dynamic>> getMitaninProfile();
+
   @PATCH(ApiEndpoints.womenProfile)
   Future<HttpResponse<dynamic>> updateWomenProfile(@Body() Map<String, dynamic> body);
 

@@ -8,7 +8,7 @@ import 'package:sangwari_maa/core/constants/app_colors.dart';
 import 'package:sangwari_maa/core/constants/app_spacing.dart';
 import 'package:sangwari_maa/core/constants/app_typography.dart';
 import 'package:sangwari_maa/core/l10n/generated/app_localizations.dart';
-import 'package:sangwari_maa/features/auth/data/model/user_model.dart';
+import 'package:sangwari_maa/core/services/destination_service.dart';
 import 'package:sangwari_maa/features/auth/presentation/controller/auth_controller.dart';
 import 'package:sangwari_maa/shared/widgets/app_background.dart';
 import 'package:sangwari_maa/shared/widgets/app_logo_header.dart';
@@ -27,6 +27,7 @@ class OtpVerificationPage extends ConsumerStatefulWidget {
 class _OtpVerificationPageState extends ConsumerState<OtpVerificationPage> {
   static const int _otpLength = 6;
   static const int _resendSeconds = 60;
+  bool _isResolving = false;
 
   final List<TextEditingController> _controllers =
   List.generate(_otpLength, (_) => TextEditingController());
@@ -96,15 +97,67 @@ class _OtpVerificationPageState extends ConsumerState<OtpVerificationPage> {
     _startTimer();
   }
 
+  Future<void> _navigateAfterVerify() async {
+    final destination = await resolveDestination();
+    if (!mounted) return;
+
+    switch (destination) {
+      case SplashDestination():
+        context.go('/');
+      case DashboardDestination(:final path):
+        context.go(path);
+      case RegistrationDestination(:final mobile):
+        context.go('/register-complete', extra: mobile);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
     final screenH = MediaQuery.sizeOf(context).height;
     final logoHeight = (screenH * 0.20).clamp(100.0, 180.0);
+    final isLoading = ref.watch(authControllerProvider).isLoading;
 
+    // ref.listen<AsyncValue<void>>(authControllerProvider, (previous, next) {
+    //   // Only react when transitioning OUT of loading — prevents stale
+    //   // AsyncData from sendOtp (LoginPage) from mis-navigating on mount.
+    //   final wasLoading = previous?.isLoading ?? false;
+    //   if (!wasLoading) return;
+    //
+    //   next.whenOrNull(
+    //     error: (e, _) {
+    //       setState(() => _isVerifying = false);
+    //       ScaffoldMessenger.of(context).showSnackBar(
+    //         SnackBar(content: Text(e.toString())),
+    //       );
+    //     },
+    //     data: (_) {
+    //       if (!_isVerifying) return;
+    //       final controller = ref.read(authControllerProvider.notifier);
+    //       if (controller.isNewUser) {
+    //         context.pushNamed('register', extra: widget.mobile);
+    //         return;
+    //       }
+    //       switch (controller.role) {
+    //         case UserRole.pregnantWoman:
+    //           context.go('/womensdashboard');
+    //           break;
+    //         case UserRole.asha:
+    //         case UserRole.anm:
+    //           context.go('/mitanindashboard'); // ⚠️ route doesn't exist yet — see below
+    //           break;
+    //         case UserRole.blockAdmin:
+    //         case UserRole.pi:
+    //         case UserRole.superAdmin:
+    //           context.go('/admindashboard'); // ⚠️ route doesn't exist yet — see below
+    //           break;
+    //         case null:
+    //           context.go('/womensdashboard'); // fallback, shouldn't happen
+    //       }
+    //     },
+    //   );
+    // });
     ref.listen<AsyncValue<void>>(authControllerProvider, (previous, next) {
-      // Only react when transitioning OUT of loading — prevents stale
-      // AsyncData from sendOtp (LoginPage) from mis-navigating on mount.
       final wasLoading = previous?.isLoading ?? false;
       if (!wasLoading) return;
 
@@ -117,157 +170,261 @@ class _OtpVerificationPageState extends ConsumerState<OtpVerificationPage> {
         },
         data: (_) {
           if (!_isVerifying) return;
-          final controller = ref.read(authControllerProvider.notifier);
-          if (controller.isNewUser) {
-            context.pushNamed('register', extra: widget.mobile);
-            return;
-          }
-          switch (controller.role) {
-            case UserRole.pregnantWoman:
-              context.go('/womensdashboard');
-              break;
-            case UserRole.asha:
-            case UserRole.anm:
-              context.go('/mitanindashboard'); // ⚠️ route doesn't exist yet — see below
-              break;
-            case UserRole.blockAdmin:
-            case UserRole.pi:
-            case UserRole.superAdmin:
-              context.go('/admindashboard'); // ⚠️ route doesn't exist yet — see below
-              break;
-            case null:
-              context.go('/womensdashboard'); // fallback, shouldn't happen
-          }
+          setState(() {
+            _isVerifying = false;
+            _isResolving = true; // show loading on button while resolving
+          });
+          // Navigate after current frame — avoids async inside whenOrNull
+          WidgetsBinding.instance.addPostFrameCallback((_) {
+            _navigateAfterVerify();
+          });
         },
       );
     });
 
-    final isLoading = ref.watch(authControllerProvider).isLoading;
+    // if(_isResolving){
+    //   return AppBackground(
+    //     child: const Scaffold(
+    //       backgroundColor: Colors.transparent,
+    //       body: Center(
+    //         child: CircularProgressIndicator(
+    //           color: AppColors.pinkText,
+    //         ),
+    //       ),
+    //     ),
+    //   );
+    // }
+    // return AppBackground(
+    //   child: Scaffold(
+    //     backgroundColor: Colors.transparent,
+    //     resizeToAvoidBottomInset: true,
+    //     body: SafeArea(
+    //       child: SingleChildScrollView(
+    //         // SingleChildScrollView is required here because LayoutBuilder
+    //         // (used for OTP box sizing) is incompatible with SliverFillRemaining:
+    //         // Flutter asks SliverFillRemaining for intrinsic height, which forces
+    //         // LayoutBuilder to run speculatively — it refuses and throws.
+    //         // SingleChildScrollView + ConstrainedBox achieves the same
+    //         // "fill viewport, scroll if needed" behaviour without intrinsics.
+    //         physics: const ClampingScrollPhysics(),
+    //         padding: const EdgeInsets.symmetric(horizontal: AppSpacing.screenH),
+    //         child: ConstrainedBox(
+    //           constraints: BoxConstraints(
+    //             minHeight: screenH -
+    //                 MediaQuery.paddingOf(context).top -
+    //                 MediaQuery.paddingOf(context).bottom -
+    //                 MediaQuery.viewInsetsOf(context).bottom,
+    //           ),
+    //           child: Column(
+    //             crossAxisAlignment: CrossAxisAlignment.start,
+    //             children: [
+    //               SizedBox(height: screenH * 0.06),
+    //
+    //               // ── Logo ─────────────────────────────────────────────
+    //               AppLogoHeader(
+    //                 width: double.infinity,
+    //                 height: logoHeight,
+    //               ),
+    //
+    //               SizedBox(height: screenH * 0.02),
+    //
+    //               // ── Header ────────────────────────────────────────────
+    //               SizedBox(
+    //                 width: double.infinity,
+    //                 child: Column(
+    //                   crossAxisAlignment: CrossAxisAlignment.center,
+    //                   children: [
+    //                     const SizedBox(height: AppSpacing.xs),
+    //                     Text(
+    //                       l10n.loginTitle,
+    //                       style: AppTypography.titleLarge,
+    //                       textAlign: TextAlign.center,
+    //                     ),
+    //                     const SizedBox(height: AppSpacing.sm),
+    //                     RichText(
+    //                       textAlign: TextAlign.center,
+    //                       text: TextSpan(
+    //                         children: [
+    //                           TextSpan(
+    //                             text: l10n.otpSentTo(widget.mobile),
+    //                             style: AppTypography.bodyMedium,
+    //                           ),
+    //                         ],
+    //                       ),
+    //                     ),
+    //                   ],
+    //                 ),
+    //               ),
+    //
+    //               const SizedBox(height: AppSpacing.xl),
+    //
+    //               // ── Enter OTP label ───────────────────────────────────
+    //               Text(l10n.enterOtp, style: AppTypography.fieldLabel),
+    //               const SizedBox(height: AppSpacing.md),
+    //
+    //               // ── 6-digit OTP boxes ─────────────────────────────────
+    //               // LayoutBuilder is safe inside SingleChildScrollView —
+    //               // it is only incompatible with SliverFillRemaining.
+    //               LayoutBuilder(
+    //                 builder: (context, constraints) {
+    //                   return _OtpInputRow(
+    //                     controllers: _controllers,
+    //                     focusNodes: _focusNodes,
+    //                     otpLength: _otpLength,
+    //                     availableWidth: constraints.maxWidth,
+    //                   );
+    //                 },
+    //               ),
+    //
+    //               const SizedBox(height: AppSpacing.xl),
+    //
+    //               // ── Verify OTP button ─────────────────────────────────
+    //               AppPrimaryButton(
+    //                 label: l10n.verifyOtp,
+    //                 isLoading: isLoading || _isResolving,
+    //                 onTap: _onVerify,
+    //               ),
+    //
+    //               SizedBox(height: screenH * 0.02),
+    //
+    //               // ── Resend link ───────────────────────────────────────
+    //               Center(
+    //                 child: GestureDetector(
+    //                   onTap: _secondsLeft == 0 ? _onResend : null,
+    //                   child: Padding(
+    //                     padding: const EdgeInsets.symmetric(
+    //                         vertical: AppSpacing.md),
+    //                     child: Text(
+    //                       _secondsLeft > 0
+    //                           ? l10n.resendOtpIn(_secondsLeft)
+    //                           : l10n.resendOtp,
+    //                       style: AppTypography.bodyMedium.copyWith(
+    //                         color: _secondsLeft > 0
+    //                             ? AppColors.hintText
+    //                             : AppColors.pinkText,
+    //                         fontWeight: _secondsLeft == 0
+    //                             ? FontWeight.w600
+    //                             : FontWeight.w400,
+    //                       ),
+    //                     ),
+    //                   ),
+    //                 ),
+    //               ),
+    //
+    //               const SizedBox(height: AppSpacing.lg),
+    //             ],
+    //           ),
+    //         ),
+    //       ),
+    //     ),
+    //   ),
+    // );
+    // REMOVE THIS ENTIRE BLOCK:
+// if (_isResolving) {
+//   return AppBackground(
+//     child: const Scaffold(
+//       backgroundColor: Colors.transparent,
+//       body: Center(child: CircularProgressIndicator(color: Colors.white)),
+//     ),
+//   );
+// }
 
-    return AppBackground(
-      child: Scaffold(
-        backgroundColor: Colors.transparent,
-        resizeToAvoidBottomInset: true,
-        body: SafeArea(
-          child: SingleChildScrollView(
-            // SingleChildScrollView is required here because LayoutBuilder
-            // (used for OTP box sizing) is incompatible with SliverFillRemaining:
-            // Flutter asks SliverFillRemaining for intrinsic height, which forces
-            // LayoutBuilder to run speculatively — it refuses and throws.
-            // SingleChildScrollView + ConstrainedBox achieves the same
-            // "fill viewport, scroll if needed" behaviour without intrinsics.
-            physics: const ClampingScrollPhysics(),
-            padding: const EdgeInsets.symmetric(horizontal: AppSpacing.screenH),
-            child: ConstrainedBox(
-              constraints: BoxConstraints(
-                minHeight: screenH -
-                    MediaQuery.paddingOf(context).top -
-                    MediaQuery.paddingOf(context).bottom -
-                    MediaQuery.viewInsetsOf(context).bottom,
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(height: screenH * 0.06),
-
-                  // ── Logo ─────────────────────────────────────────────
-                  AppLogoHeader(
-                    width: double.infinity,
-                    height: logoHeight,
+// REPLACE the existing return AppBackground(...) with:
+    return Stack(
+      children: [
+        AppBackground(
+          child: Scaffold(
+            backgroundColor: Colors.transparent,
+            resizeToAvoidBottomInset: true,
+            body: SafeArea(
+              child: SingleChildScrollView(
+                physics: const ClampingScrollPhysics(),
+                padding: const EdgeInsets.symmetric(horizontal: AppSpacing.screenH),
+                child: ConstrainedBox(
+                  constraints: BoxConstraints(
+                    minHeight: screenH -
+                        MediaQuery.paddingOf(context).top -
+                        MediaQuery.paddingOf(context).bottom -
+                        MediaQuery.viewInsetsOf(context).bottom,
                   ),
-
-                  SizedBox(height: screenH * 0.02),
-
-                  // ── Header ────────────────────────────────────────────
-                  SizedBox(
-                    width: double.infinity,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        const SizedBox(height: AppSpacing.xs),
-                        Text(
-                          l10n.loginTitle,
-                          style: AppTypography.titleLarge,
-                          textAlign: TextAlign.center,
-                        ),
-                        const SizedBox(height: AppSpacing.sm),
-                        RichText(
-                          textAlign: TextAlign.center,
-                          text: TextSpan(
-                            children: [
-                              TextSpan(
-                                text: l10n.otpSentTo(widget.mobile),
-                                style: AppTypography.bodyMedium,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(height: screenH * 0.06),
+                      AppLogoHeader(width: double.infinity, height: logoHeight),
+                      SizedBox(height: screenH * 0.02),
+                      SizedBox(
+                        width: double.infinity,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            const SizedBox(height: AppSpacing.xs),
+                            Text(l10n.loginTitle, style: AppTypography.titleLarge, textAlign: TextAlign.center),
+                            const SizedBox(height: AppSpacing.sm),
+                            RichText(
+                              textAlign: TextAlign.center,
+                              text: TextSpan(
+                                children: [
+                                  TextSpan(text: l10n.otpSentTo(widget.mobile), style: AppTypography.bodyMedium),
+                                ],
                               ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
-                      ],
-                    ),
-                  ),
-
-                  const SizedBox(height: AppSpacing.xl),
-
-                  // ── Enter OTP label ───────────────────────────────────
-                  Text(l10n.enterOtp, style: AppTypography.fieldLabel),
-                  const SizedBox(height: AppSpacing.md),
-
-                  // ── 6-digit OTP boxes ─────────────────────────────────
-                  // LayoutBuilder is safe inside SingleChildScrollView —
-                  // it is only incompatible with SliverFillRemaining.
-                  LayoutBuilder(
-                    builder: (context, constraints) {
-                      return _OtpInputRow(
-                        controllers: _controllers,
-                        focusNodes: _focusNodes,
-                        otpLength: _otpLength,
-                        availableWidth: constraints.maxWidth,
-                      );
-                    },
-                  ),
-
-                  const SizedBox(height: AppSpacing.xl),
-
-                  // ── Verify OTP button ─────────────────────────────────
-                  AppPrimaryButton(
-                    label: l10n.verifyOtp,
-                    isLoading: isLoading,
-                    onTap: _onVerify,
-                  ),
-
-                  SizedBox(height: screenH * 0.02),
-
-                  // ── Resend link ───────────────────────────────────────
-                  Center(
-                    child: GestureDetector(
-                      onTap: _secondsLeft == 0 ? _onResend : null,
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                            vertical: AppSpacing.md),
-                        child: Text(
-                          _secondsLeft > 0
-                              ? l10n.resendOtpIn(_secondsLeft)
-                              : l10n.resendOtp,
-                          style: AppTypography.bodyMedium.copyWith(
-                            color: _secondsLeft > 0
-                                ? AppColors.hintText
-                                : AppColors.pinkText,
-                            fontWeight: _secondsLeft == 0
-                                ? FontWeight.w600
-                                : FontWeight.w400,
+                      ),
+                      const SizedBox(height: AppSpacing.xl),
+                      Text(l10n.enterOtp, style: AppTypography.fieldLabel),
+                      const SizedBox(height: AppSpacing.md),
+                      LayoutBuilder(
+                        builder: (context, constraints) {
+                          return _OtpInputRow(
+                            controllers: _controllers,
+                            focusNodes: _focusNodes,
+                            otpLength: _otpLength,
+                            availableWidth: constraints.maxWidth,
+                          );
+                        },
+                      ),
+                      const SizedBox(height: AppSpacing.xl),
+                      AppPrimaryButton(
+                        label: l10n.verifyOtp,
+                        isLoading: isLoading || _isResolving,
+                        onTap: _isResolving ? null : _onVerify,
+                      ),
+                      SizedBox(height: screenH * 0.02),
+                      Center(
+                        child: GestureDetector(
+                          onTap: (_secondsLeft == 0 && !_isResolving) ? _onResend : null,
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(vertical: AppSpacing.md),
+                            child: Text(
+                              _secondsLeft > 0 ? l10n.resendOtpIn(_secondsLeft) : l10n.resendOtp,
+                              style: AppTypography.bodyMedium.copyWith(
+                                color: _secondsLeft > 0 ? AppColors.hintText : AppColors.pinkText,
+                                fontWeight: _secondsLeft == 0 ? FontWeight.w600 : FontWeight.w400,
+                              ),
+                            ),
                           ),
                         ),
                       ),
-                    ),
+                      const SizedBox(height: AppSpacing.lg),
+                    ],
                   ),
-
-                  const SizedBox(height: AppSpacing.lg),
-                ],
+                ),
               ),
             ),
           ),
         ),
-      ),
+
+        // ── Loading overlay — shown during resolveDestination() ──────────────
+        if (_isResolving)
+          Container(
+            color: Colors.black.withValues(alpha: 0.4),
+            child: const Center(
+              child: CircularProgressIndicator(color: Colors.white),
+            ),
+          ),
+      ],
     );
   }
 }

@@ -1,5 +1,3 @@
-// import 'dart:math';
-//
 // import 'package:flutter/material.dart';
 // import 'package:flutter_riverpod/flutter_riverpod.dart';
 // import 'package:sangwari_maa/core/constants/app_colors.dart';
@@ -11,6 +9,7 @@
 // import 'package:sangwari_maa/shared/widgets/app_background.dart';
 // import 'package:sangwari_maa/shared/widgets/app_bar.dart';
 // import 'package:sangwari_maa/shared/widgets/bottom_navbar.dart';
+// import 'package:speech_to_text/speech_to_text.dart';
 //
 // class ChatbotScreen extends ConsumerStatefulWidget {
 //   const ChatbotScreen({super.key});
@@ -28,6 +27,18 @@
 //     _inputCtrl.dispose();
 //     _scrollCtrl.dispose();
 //     super.dispose();
+//   }
+//
+//   void _scrollToBottom() {
+//     WidgetsBinding.instance.addPostFrameCallback((_) {
+//       if (_scrollCtrl.hasClients) {
+//         _scrollCtrl.animateTo(
+//           _scrollCtrl.position.maxScrollExtent,
+//           duration: const Duration(milliseconds: 300),
+//           curve: Curves.easeOut,
+//         );
+//       }
+//     });
 //   }
 //
 //   Future<void> _sendMessage(String text) async {
@@ -56,6 +67,19 @@
 //   Widget build(BuildContext context) {
 //     final l10n = AppLocalizations.of(context)!;
 //
+//     // Scroll only when an actual answer (a plain bot text bubble — not a
+//     // chip list, not the user's own echoed message) lands, so the user
+//     // sees the answer arrive without being auto-scrolled on every tap.
+//     ref.listen(chatMessagesProvider, (previous, next) {
+//       if (next.length > (previous?.length ?? 0)) {
+//         final latest = next.last;
+//         final isPlainBotAnswer = latest.sender == MessageSender.bot &&
+//             latest.contentType == MessageContentType.text;
+//         if (isPlainBotAnswer) {
+//           _scrollToBottom();
+//         }
+//       }
+//     });
 //
 //     final messages = ref.watch(chatMessagesProvider);
 //     final isTyping = ref.watch(chatIsTypingProvider);
@@ -79,8 +103,8 @@
 //                         opacity: 0.18,
 //                         child: Image.asset(
 //                           'assets/images/app_logo.png',
-//                         //  width: 200,
-//                         //  height: 200,
+//                           //width: 200,
+//                           //height: 200,
 //                         ),
 //                       ),
 //                     ),
@@ -356,12 +380,104 @@
 // // ─────────────────────────────────────────────────────────────────────────────
 // // Input bar
 // // ─────────────────────────────────────────────────────────────────────────────
-// class _ChatInputBar extends StatelessWidget {
+// class _ChatInputBar extends StatefulWidget {
 //   final TextEditingController controller;
 //   final Future<void> Function(String) onSend;
 //   final AppLocalizations l10n;
 //
-//   const _ChatInputBar({required this.controller, required this.onSend, required this.l10n,});
+//   const _ChatInputBar({
+//     required this.controller,
+//     required this.onSend,
+//     required this.l10n,
+// });
+//
+//   @override
+//   State<_ChatInputBar> createState() => _ChatInputBarState();
+// }
+//
+// class _ChatInputBarState extends State<_ChatInputBar>
+//     with SingleTickerProviderStateMixin {
+//   final SpeechToText _stt = SpeechToText();
+//   bool _isListening = false;
+//   late AnimationController _pulseCtrl;
+//   late Animation<double> _pulseAnim;
+//
+//   @override
+//   void initState() {
+//     super.initState();
+//     _pulseCtrl = AnimationController(
+//       vsync: this,
+//       duration: const Duration(milliseconds: 700),
+//     );
+//     _pulseAnim = Tween<double>(begin: 1.0, end: 1.25).animate(
+//       CurvedAnimation(parent: _pulseCtrl, curve: Curves.easeInOut),
+//     );
+//   }
+//
+//   Future<void> _toggleListening() async {
+//     if (_isListening) {
+//       await _stt.stop();
+//       setState(() => _isListening = false);
+//       _pulseCtrl.stop();
+//       _pulseCtrl.reset();
+//       // Send whatever was transcribed so far
+//       final text = widget.controller.text.trim();
+//       if (text.isNotEmpty) {
+//         widget.controller.clear();
+//         await widget.onSend(text);
+//       }
+//       return;
+//     }
+//
+//     final available = await _stt.initialize(
+//       onError: (_) {
+//         setState(() => _isListening = false);
+//         _pulseCtrl.stop();
+//         _pulseCtrl.reset();
+//       },
+//       onStatus: (status) {
+//         // 'done' fires when the user stops speaking — auto-send then.
+//         if (status == SpeechToText.doneStatus) {
+//           setState(() => _isListening = false);
+//           _pulseCtrl.stop();
+//           _pulseCtrl.reset();
+//           final text = widget.controller.text.trim();
+//           if (text.isNotEmpty) {
+//             widget.controller.clear();
+//             widget.onSend(text);
+//           }
+//         }
+//       },
+//     );
+//
+//     if (!available) return;
+//
+//     // Locale: use Hindi locale on Hindi, English otherwise.
+//     // 'hi_IN' is the BCP-47 tag Android/iOS both understand.
+//     final localeId = widget.l10n.localeName == 'hi' ? 'hi_IN' : 'en_IN';
+//
+//     setState(() => _isListening = true);
+//     _pulseCtrl.repeat(reverse: true);
+//     await _stt.listen(
+//       onResult: (result) {
+//         widget.controller.text = result.recognizedWords;
+//         // Move cursor to end so the field looks right while dictating.
+//         widget.controller.selection = TextSelection.fromPosition(
+//           TextPosition(offset: widget.controller.text.length),
+//         );
+//       },
+//       localeId: localeId,
+//       pauseFor: const Duration(seconds: 3),
+//       listenFor: const Duration(seconds: 30),
+//     );
+//   }
+//
+//   @override
+//   void dispose() {
+//     _pulseCtrl.dispose();
+//     _stt.stop();
+//     super.dispose();
+//   }
 //
 //   @override
 //   Widget build(BuildContext context) {
@@ -385,26 +501,29 @@
 //               child: Row(
 //                 children: [
 //                   GestureDetector(
-//                     onTap: () => onSend(controller.text),
-//                     child: Container(
-//                       width: 40,
-//                       height: 40,
-//                       decoration: BoxDecoration(
-//                         gradient: AppColors.primaryButtonGradient,
-//                         shape: BoxShape.circle,
+//                     onTap: _toggleListening,
+//                     child: ScaleTransition(
+//                       scale: _isListening ? _pulseAnim : const AlwaysStoppedAnimation(1.0),
+//                       child: Container(
+//                         width: 40,
+//                         height: 40,
+//                         child: _isListening
+//                             ? Image.asset('assets/icons/mic.png')
+//                             : Image.asset('assets/icons/mic.png'),
 //                       ),
-//                       child: Image.asset('assets/icons/mic.png'),
 //                     ),
 //                   ),
 //                   const SizedBox(width: AppSpacing.md),
 //                   Expanded(
 //                     child: TextField(
-//                       controller: controller,
+//                       controller: widget.controller,
 //                       style: AppTypography.bodyMedium,
 //                       textInputAction: TextInputAction.send,
-//                       onSubmitted: onSend,
+//                       onSubmitted: widget.onSend,
 //                       decoration: InputDecoration(
-//                         hintText: l10n.chatbotPlaceholder,
+//                         hintText: _isListening
+//                             ? widget.l10n.chatbotListening
+//                             : widget.l10n.chatbotPlaceholder,
 //                         hintStyle: AppTypography.bodyLarge,
 //                         border: InputBorder.none,
 //                         isDense: true,
@@ -416,7 +535,11 @@
 //                   ),
 //                   const SizedBox(width: AppSpacing.xxl),
 //                   GestureDetector(
-//                     onTap: () => onSend(controller.text),
+//                     onTap: () {
+//                       final text = widget.controller.text;
+//                       widget.controller.clear();
+//                       widget.onSend(text);
+//                     },
 //                     child: Icon(Icons.send_rounded,
 //                         color: AppColors.hintText, size: 25),
 //                   ),
@@ -429,7 +552,10 @@
 //     );
 //   }
 // }
+//
 import 'package:flutter/material.dart';
+import 'package:flutter_tts/flutter_tts.dart';
+import 'package:speech_to_text/speech_to_text.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sangwari_maa/core/constants/app_colors.dart';
 import 'package:sangwari_maa/core/constants/app_spacing.dart';
@@ -440,6 +566,7 @@ import 'package:sangwari_maa/features/chatbot/presentation/provider/chatbot_prov
 import 'package:sangwari_maa/shared/widgets/app_background.dart';
 import 'package:sangwari_maa/shared/widgets/app_bar.dart';
 import 'package:sangwari_maa/shared/widgets/bottom_navbar.dart';
+import 'package:sangwari_maa/shared/providers/locale_provider.dart';
 
 class ChatbotScreen extends ConsumerStatefulWidget {
   const ChatbotScreen({super.key});
@@ -451,12 +578,46 @@ class ChatbotScreen extends ConsumerStatefulWidget {
 class _ChatbotScreenState extends ConsumerState<ChatbotScreen> {
   final TextEditingController _inputCtrl = TextEditingController();
   final ScrollController _scrollCtrl = ScrollController();
+  final FlutterTts _tts = FlutterTts();
+  bool _lastInputWasVoice = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _tts.setSpeechRate(0.5);
+    _tts.setVolume(1.0);
+    _tts.setLanguage('hi-IN'); // default; overridden per message in _speak()
+  }
 
   @override
   void dispose() {
+    _tts.stop();
     _inputCtrl.dispose();
     _scrollCtrl.dispose();
     super.dispose();
+  }
+
+  void _onVoiceSent() {
+    setState(() => _lastInputWasVoice = true);
+  }
+
+  // Splits text into sentences and speaks each one so long responses
+  // aren't silently cut off by Android's ~400 char TTS limit per utterance.
+  Future<void> _speak(String text, String languageCode) async {
+    await _tts.stop();
+    await _tts.setLanguage(languageCode == 'hi' ? 'hi-IN' : 'en-IN');
+    final sentences = text
+        .split(RegExp(r'(?<=[।.!?])\s+'))
+        .where((s) => s.trim().isNotEmpty)
+        .toList();
+    if (sentences.isEmpty) {
+      await _tts.speak(text);
+      return;
+    }
+    for (final sentence in sentences) {
+      await _tts.awaitSpeakCompletion(true);
+      await _tts.speak(sentence.trim());
+    }
   }
 
   void _scrollToBottom() {
@@ -507,6 +668,11 @@ class _ChatbotScreenState extends ConsumerState<ChatbotScreen> {
             latest.contentType == MessageContentType.text;
         if (isPlainBotAnswer) {
           _scrollToBottom();
+          if (_lastInputWasVoice) {
+            final locale = ref.read(localeProvider);
+            _speak(latest.text, locale.languageCode);
+          }
+          setState(() => _lastInputWasVoice = false);
         }
       }
     });
@@ -533,8 +699,6 @@ class _ChatbotScreenState extends ConsumerState<ChatbotScreen> {
                         opacity: 0.18,
                         child: Image.asset(
                           'assets/images/app_logo.png',
-                          //width: 200,
-                          //height: 200,
                         ),
                       ),
                     ),
@@ -562,10 +726,49 @@ class _ChatbotScreenState extends ConsumerState<ChatbotScreen> {
                   ],
                 ),
               ),
+              if (messages.isNotEmpty)
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: AppSpacing.md,
+                    vertical: AppSpacing.xs,
+                  ),
+                  child: GestureDetector(
+                    onTap: () => ref
+                        .read(chatMessagesProvider.notifier)
+                        .showCategories(),
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: AppSpacing.md,
+                        vertical: AppSpacing.sm,
+                      ),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius:
+                        BorderRadius.circular(AppSpacing.radiusLg),
+                        border: Border.all(
+                            color: AppColors.hintText.withOpacity(0.4)),
+                      ),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          const Icon(Icons.menu_book_rounded,
+                              size: 16, color: AppColors.hintText),
+                          const SizedBox(width: AppSpacing.xs),
+                          Text(
+                            l10n.chatbotBrowseTopics,
+                            style: AppTypography.bodyMedium
+                                .copyWith(color: AppColors.hintText),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
               _ChatInputBar(
                 controller: _inputCtrl,
                 onSend: _sendMessage,
                 l10n: l10n,
+                onVoiceSent: _onVoiceSent,
               ),
             ],
           ),
@@ -810,16 +1013,112 @@ class _TypingDotsState extends State<_TypingDots>
 // ─────────────────────────────────────────────────────────────────────────────
 // Input bar
 // ─────────────────────────────────────────────────────────────────────────────
-class _ChatInputBar extends StatelessWidget {
+class _ChatInputBar extends StatefulWidget {
   final TextEditingController controller;
   final Future<void> Function(String) onSend;
   final AppLocalizations l10n;
+  final VoidCallback onVoiceSent;
 
   const _ChatInputBar({
     required this.controller,
     required this.onSend,
     required this.l10n,
+    required this.onVoiceSent,
   });
+
+  @override
+  State<_ChatInputBar> createState() => _ChatInputBarState();
+}
+
+class _ChatInputBarState extends State<_ChatInputBar>
+    with SingleTickerProviderStateMixin {
+  final SpeechToText _stt = SpeechToText();
+  bool _isListening = false;
+  bool _hasSent = false; // guard against doneStatus firing twice on Android
+  late AnimationController _pulseCtrl;
+  late Animation<double> _pulseAnim;
+
+  @override
+  void initState() {
+    super.initState();
+    _pulseCtrl = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 700),
+    );
+    _pulseAnim = Tween<double>(begin: 1.0, end: 1.25).animate(
+      CurvedAnimation(parent: _pulseCtrl, curve: Curves.easeInOut),
+    );
+  }
+
+  Future<void> _toggleListening() async {
+    if (_isListening) {
+      await _stt.stop();
+      setState(() => _isListening = false);
+      _pulseCtrl.stop();
+      _pulseCtrl.reset();
+      // Send whatever was transcribed so far
+      final text = widget.controller.text.trim();
+      if (text.isNotEmpty && !_hasSent) {
+        _hasSent = true;
+        widget.onVoiceSent();
+        widget.controller.clear();
+        await widget.onSend(text);
+      }
+      return;
+    }
+
+    final available = await _stt.initialize(
+      onError: (_) {
+        setState(() => _isListening = false);
+        _pulseCtrl.stop();
+        _pulseCtrl.reset();
+      },
+      onStatus: (status) {
+        // 'done' fires when the user stops speaking — auto-send then.
+        if (status == SpeechToText.doneStatus) {
+          setState(() => _isListening = false);
+          _pulseCtrl.stop();
+          _pulseCtrl.reset();
+          final text = widget.controller.text.trim();
+          if (text.isNotEmpty && !_hasSent) {
+            _hasSent = true;
+            widget.onVoiceSent();
+            widget.controller.clear();
+            widget.onSend(text);
+          }
+        }
+      },
+    );
+
+    if (!available) return;
+
+    // Locale: use Hindi locale on Hindi, English otherwise.
+    // 'hi_IN' is the BCP-47 tag Android/iOS both understand.
+    final localeId = widget.l10n.localeName == 'hi' ? 'hi_IN' : 'en_IN';
+
+    setState(() => _isListening = true);
+    _hasSent = false;
+    _pulseCtrl.repeat(reverse: true);
+    await _stt.listen(
+      onResult: (result) {
+        if (_hasSent) return; // onResult fires async — ignore after send
+        widget.controller.text = result.recognizedWords;
+        widget.controller.selection = TextSelection.fromPosition(
+          TextPosition(offset: widget.controller.text.length),
+        );
+      },
+      localeId: localeId,
+      pauseFor: const Duration(seconds: 3),
+      listenFor: const Duration(seconds: 30),
+    );
+  }
+
+  @override
+  void dispose() {
+    _pulseCtrl.dispose();
+    _stt.stop();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -843,26 +1142,30 @@ class _ChatInputBar extends StatelessWidget {
               child: Row(
                 children: [
                   GestureDetector(
-                    onTap: () => onSend(controller.text),
-                    child: Container(
-                      width: 40,
-                      height: 40,
-                      decoration: BoxDecoration(
-                        gradient: AppColors.primaryButtonGradient,
-                        shape: BoxShape.circle,
+                    onTap: _toggleListening,
+                    child: ScaleTransition(
+                      scale: _isListening ? _pulseAnim : const AlwaysStoppedAnimation(1.0),
+                      child: Container(
+                        width: 40,
+                        height: 40,
+
+                        child: _isListening
+                            ? Image.asset('assets/icons/mic.png')
+                            : Image.asset('assets/icons/mic.png'),
                       ),
-                      child: Image.asset('assets/icons/mic.png'),
                     ),
                   ),
                   const SizedBox(width: AppSpacing.md),
                   Expanded(
                     child: TextField(
-                      controller: controller,
+                      controller: widget.controller,
                       style: AppTypography.bodyMedium,
                       textInputAction: TextInputAction.send,
-                      onSubmitted: onSend,
+                      onSubmitted: widget.onSend,
                       decoration: InputDecoration(
-                        hintText: l10n.chatbotPlaceholder,
+                        hintText: _isListening
+                            ? widget.l10n.chatbotListening
+                            : widget.l10n.chatbotPlaceholder,
                         hintStyle: AppTypography.bodyLarge,
                         border: InputBorder.none,
                         isDense: true,
@@ -874,7 +1177,11 @@ class _ChatInputBar extends StatelessWidget {
                   ),
                   const SizedBox(width: AppSpacing.xxl),
                   GestureDetector(
-                    onTap: () => onSend(controller.text),
+                    onTap: () {
+                      final text = widget.controller.text;
+                      widget.controller.clear();
+                      widget.onSend(text);
+                    },
                     child: Icon(Icons.send_rounded,
                         color: AppColors.hintText, size: 25),
                   ),

@@ -1,5 +1,4 @@
 import 'package:flutter/foundation.dart';
-
 import 'exceptions.dart';
 
 sealed class Failure {
@@ -18,6 +17,10 @@ class NetworkFailure extends Failure {
 
 class UnauthorizedFailure extends Failure {
   const UnauthorizedFailure([super.message = 'Session expired, please login again']);
+}
+
+class NotFoundFailure extends Failure {  // NEW
+  const NotFoundFailure([super.message = 'Resource not found']);
 }
 
 class ValidationFailure extends Failure {
@@ -40,6 +43,7 @@ Failure mapExceptionToFailure(Object e) {
     ServerException(message: final m, statusCode: final s) => ServerFailure(m, statusCode: s),
     NetworkException(message: final m) => NetworkFailure(m),
     UnauthorizedException(message: final m) => UnauthorizedFailure(m),
+    NotFoundException(message: final m) => NotFoundFailure(m),
     ValidationException(message: final m, fieldErrors: final f) => ValidationFailure(m, fieldErrors: f),
     CacheException(message: final m) => CacheFailure(m),
     _ => const UnknownFailure(),

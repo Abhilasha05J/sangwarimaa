@@ -53,26 +53,35 @@ class ChatbotRepository {
   }
 
   /// GET /api/v1/women/chatbot/history
-  /// `messages` is stored as a raw JSONB list on ChatbotConversation —
-  /// TODO: confirm the per-message shape once you have a populated example
-  /// (this assumes {role|sender, text|message, timestamp}).
+  /// Response envelope: { success, data: { messages: [...], total: N } }
+  /// Each message in the JSONB array:
+  /// { role: 'user'|'assistant', content: '...', timestamp: '...' }
   Future<List<ChatMessage>> getHistory() async {
     final response = await _dio.get('/api/v1/women/chatbot/history');
     final envelope = response.data as Map<String, dynamic>;
     final data = envelope['data'];
-    if (data is List) {
-      return data.map((e) {
-        final map = e as Map<String, dynamic>;
-        final isUser = (map['role'] ?? map['sender']) == 'user';
-        return ChatMessage(
-          text: (map['text'] ?? map['message'] ?? '') as String,
-          sender: isUser ? MessageSender.user : MessageSender.bot,
-          timestamp: DateTime.tryParse(map['timestamp']?.toString() ?? '') ??
-              DateTime.now(),
-        );
-      }).toList();
+
+    // Backend returns { messages: [...], total: N } not a flat list
+    List? messages;
+    if (data is Map<String, dynamic>) {
+      messages = data['messages'] as List?;
+    } else if (data is List) {
+      messages = data; // fallback if shape ever changes
     }
-    return [];
+
+    if (messages == null || messages.isEmpty) return [];
+
+    return messages.map((e) {
+      final map = e as Map<String, dynamic>;
+      // Backend stores role as 'user' / 'assistant'
+      final isUser = (map['role'] ?? map['sender']) == 'user';
+      return ChatMessage(
+        text: (map['content'] ?? map['text'] ?? map['message'] ?? '') as String,
+        sender: isUser ? MessageSender.user : MessageSender.bot,
+        timestamp: DateTime.tryParse(map['timestamp']?.toString() ?? '') ??
+            DateTime.now(),
+      );
+    }).toList();
   }
 
   /// DELETE /api/v1/women/chatbot/history

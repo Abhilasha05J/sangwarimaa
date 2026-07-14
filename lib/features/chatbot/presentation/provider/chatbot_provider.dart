@@ -425,32 +425,74 @@ class ChatMessages extends _$ChatMessages {
 
   AppLocalizations _l10nFor(locale) => lookupAppLocalizations(locale);
 
+  // Future<void> _initialize() async {
+  //   final locale = ref.read(localeProvider);
+  //   final l10n = _l10nFor(locale);
+  //
+  //   ref.read(chatIsTypingProvider.notifier).setTyping(true);
+  //   try {
+  //     final faqs = await ref
+  //         .read(chatbotRepositoryProvider)
+  //         .getFaqs(lang: locale.languageCode);
+  //     _allFaqs = faqs;
+  //
+  //     // Debug visibility — check your `flutter run` console with this if
+  //     // categories/answers still don't show up correctly.
+  //     final ids = faqs.map((f) => f.id).toList();
+  //     final duplicateIds = ids.toSet().length != ids.length;
+  //     debugPrint(
+  //       '[Chatbot] Fetched ${faqs.length} FAQs. '
+  //           'Categories: ${_categoryCodes}. '
+  //           'Duplicate ids: $duplicateIds. '
+  //           'Empty ids: ${ids.where((i) => i.isEmpty).length}.',
+  //     );
+  //
+  //     ref.read(chatIsTypingProvider.notifier).setTyping(false);
+  //     addMessage(_welcomeMessage(l10n));
+  //   } catch (e, st) {
+  //     debugPrint('[Chatbot] Failed to load FAQs: $e\n$st');
+  //     ref.read(chatIsTypingProvider.notifier).setTyping(false);
+  //     addMessage(ChatMessage(
+  //       text: l10n.chatbotCategoryLoadError,
+  //       sender: MessageSender.bot,
+  //       timestamp: DateTime.now(),
+  //     ));
+  //   }
+  // }
   Future<void> _initialize() async {
     final locale = ref.read(localeProvider);
     final l10n = _l10nFor(locale);
 
     ref.read(chatIsTypingProvider.notifier).setTyping(true);
     try {
-      final faqs = await ref
-          .read(chatbotRepositoryProvider)
-          .getFaqs(lang: locale.languageCode);
-      _allFaqs = faqs;
+      // Fetch FAQs and history in parallel
+      final results = await Future.wait([
+        ref.read(chatbotRepositoryProvider).getFaqs(lang: locale.languageCode),
+        ref.read(chatbotRepositoryProvider).getHistory(),
+      ]);
 
-      // Debug visibility — check your `flutter run` console with this if
-      // categories/answers still don't show up correctly.
-      final ids = faqs.map((f) => f.id).toList();
+      _allFaqs = results[0] as List<FaqItem>;
+      final history = results[1] as List<ChatMessage>;
+
+      final ids = _allFaqs.map((f) => f.id).toList();
       final duplicateIds = ids.toSet().length != ids.length;
       debugPrint(
-        '[Chatbot] Fetched ${faqs.length} FAQs. '
+        '[Chatbot] Fetched ${_allFaqs.length} FAQs. '
             'Categories: ${_categoryCodes}. '
             'Duplicate ids: $duplicateIds. '
             'Empty ids: ${ids.where((i) => i.isEmpty).length}.',
       );
 
       ref.read(chatIsTypingProvider.notifier).setTyping(false);
+
+      // Show past conversation first, then welcome message below it
+      for (final msg in history) {
+        addMessage(msg);
+      }
       addMessage(_welcomeMessage(l10n));
+
     } catch (e, st) {
-      debugPrint('[Chatbot] Failed to load FAQs: $e\n$st');
+      debugPrint('[Chatbot] Failed to initialize: $e\n$st');
       ref.read(chatIsTypingProvider.notifier).setTyping(false);
       addMessage(ChatMessage(
         text: l10n.chatbotCategoryLoadError,
@@ -459,7 +501,6 @@ class ChatMessages extends _$ChatMessages {
       ));
     }
   }
-
   List<String> get _categoryCodes => _allFaqs
       .map((f) => f.category)
       .where((c) => c.trim().isNotEmpty)
@@ -526,6 +567,21 @@ class ChatMessages extends _$ChatMessages {
         return l10n.chatbotSubImmunization;
       case 'low_birth_weight':
         return l10n.chatbotSubLowBirthWeight;
+    //ANC subcategories
+      case 'pregnancy_registration':
+        return l10n.chatbotSubPregnancyRegistration;
+      case 'pregnancy_duration':
+        return l10n.chatbotSubPregnancyDuration;
+      case 'anc_visits':
+        return l10n.chatbotSubAncVisits;
+      case 'maternal_nutrition':
+        return l10n.chatbotSubMaternalNutrition;
+      case 'ifa_calcium':
+        return l10n.chatbotSubIfaCalcium;
+      case 'common_symptoms':
+        return l10n.chatbotSubCommonSymptoms;
+      case 'danger_signs':
+        return l10n.chatbotSubDangerSigns;
       default:
         return _prettifySlug(slug);
     }
@@ -580,6 +636,15 @@ class ChatMessages extends _$ChatMessages {
     _currentCategory = null;
     state = [];
     await _initialize();
+  }
+
+  /// Appends the welcome message with category chips without clearing
+  /// history — used by the "Browse Topics" button so the user can get
+  /// back to FAQ browsing mid-conversation.
+  void showCategories() {
+    final locale = ref.read(localeProvider);
+    final l10n = _l10nFor(locale);
+    addMessage(_welcomeMessage(l10n));
   }
 
   /// Category chip tapped — drills into subcategories if this category has

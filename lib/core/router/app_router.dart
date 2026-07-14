@@ -3,10 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sangwari_maa/features/Emergency/data/model/emergency_args.dart';
 import 'package:sangwari_maa/features/Emergency/presentation/pages/women_emergency.dart';
+import 'package:sangwari_maa/features/ancservices/presentation/pages/anc_services_screen.dart';
 import 'package:sangwari_maa/features/auth/presentation/pages/login_page.dart';
 import 'package:sangwari_maa/features/auth/presentation/pages/otp_verification_page.dart';
 import 'package:sangwari_maa/features/bpcr/presentation/pages/women_bpcr.dart';
 import 'package:sangwari_maa/features/chatbot/presentation/pages/women_chatbot.dart';
+import 'package:sangwari_maa/features/dashboard/presentation/pages/admin_dashboard.dart';
 import 'package:sangwari_maa/features/dashboard/presentation/pages/mitanins_dashboard.dart';
 import 'package:sangwari_maa/features/dashboard/presentation/pages/womens_dashboard.dart';
 import 'package:sangwari_maa/features/onboarding/presentation/pages/language_selection_page.dart';
@@ -24,10 +26,12 @@ abstract final class Routes {
   static const login           = '/language/login';
   static const otp             = '/language/login/otp';
   static const register        = '/language/register';
+  static const registerComplete= '/register-complete';
   static const womensDashboard = '/womensdashboard';
   static const maternalSchemes = '/womensdashboard/maternal-schemes';
   static const schemeDetails   = '/womensdashboard/maternal-schemes/:id';
   static const videoModules    = '/womensdashboard/video-modules';
+  static const ancServices     = '/womensdashboard/anc-services';
   static const womenprofile    = '/womensdashboard/womenprofile';
   static const womenreminders  = '/womensdashboard/womenreminders';
   static const chatbot   = '/womensdashboard/chatbot';
@@ -47,9 +51,13 @@ abstract final class Routes {
 
   //Mitanin
   static const mitaninDashboard  = '/mitanindashboard';
+
+  //Admin
+  static const adminDashboard  = '/admindashboard';
+
 }
 
-GoRouter buildAppRouter({String initialLocation = '/'}) => GoRouter(
+GoRouter buildAppRouter({String initialLocation = '/',String? pendingMobile, }) => GoRouter(
   initialLocation: initialLocation,
   debugLogDiagnostics: kDebugMode,
   routes: [
@@ -89,6 +97,13 @@ GoRouter buildAppRouter({String initialLocation = '/'}) => GoRouter(
       ],
     ),
     GoRoute(
+      path: '/register-complete',
+      name: 'registerComplete',
+      builder: (_, state) => RegistrationPage(
+        initialMobile: state.extra as String? ?? pendingMobile,
+      ),
+    ),
+    GoRoute(
       path: '/womensdashboard',
       name: 'Womensdashboard',
       builder: (_, __) => const WomensDashboard(),
@@ -111,6 +126,11 @@ GoRouter buildAppRouter({String initialLocation = '/'}) => GoRouter(
           path: 'video-modules',
           name: 'videoModules',
           builder: (_, __) => const VideoModulesScreen(),
+        ),
+        GoRoute(
+          path: 'anc-services',
+          name: 'ancServices',
+          builder: (_, __) => const AncServicesScreen(),
         ),
         GoRoute(
           path: 'womenprofile',
@@ -197,6 +217,11 @@ builder: (_, __) => const BpcrScreen(),
       path: '/mitanindashboard',
       name: 'mitaninDashboard',
       builder: (_, __) => const MitaninsDashboard(),
+    ),
+    GoRoute(
+      path: '/admindashboard',
+      name: 'adminDashboard',
+      builder: (_, __) => const AdminDashboard(),
     ),
   ],
   errorBuilder: (_, state) => Scaffold(

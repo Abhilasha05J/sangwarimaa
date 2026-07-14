@@ -373,6 +373,18 @@ class AppLocalizationsHi extends AppLocalizations {
   String get videomoduledesc => 'सुरक्षित मातृत्व के लिए शैक्षणिक सामग्री';
 
   @override
+  String get videoFilterAll => 'सभी';
+
+  @override
+  String get videoFilterBpcr => 'BPCR';
+
+  @override
+  String get videoFilterPnc => 'प्रसवोत्तर एवं नवजात देखभाल';
+
+  @override
+  String get videoLoadError => 'वीडियो लोड नहीं हो सके';
+
+  @override
   String get bpcrTitle => 'प्रसव तैयारी';
 
   @override
@@ -874,6 +886,12 @@ class AppLocalizationsHi extends AppLocalizations {
   String get chatbotTyping => 'संगवारी माँ जवाब दे रही है…';
 
   @override
+  String get chatbotListening => 'सुन रहीं हूं...';
+
+  @override
+  String get chatbotBrowseTopics => 'विषय देखें';
+
+  @override
   String get faqTitle => 'अक्सर पूछे जाने वाले प्रश्न';
 
   @override
@@ -948,6 +966,27 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get chatbotSubLowBirthWeight => 'कम वजन वाले शिशु की देखभाल';
+
+  @override
+  String get chatbotSubPregnancyRegistration => 'गर्भावस्था पंजीकरण';
+
+  @override
+  String get chatbotSubPregnancyDuration => 'गर्भावस्था की अवधि';
+
+  @override
+  String get chatbotSubAncVisits => 'प्रसवपूर्व जांच (ANC) विज़िट';
+
+  @override
+  String get chatbotSubMaternalNutrition => 'गर्भवती महिला का पोषण';
+
+  @override
+  String get chatbotSubIfaCalcium => 'आयरन-फोलिक एसिड (IFA) एवं कैल्शियम';
+
+  @override
+  String get chatbotSubCommonSymptoms => 'सामान्य लक्षण';
+
+  @override
+  String get chatbotSubDangerSigns => 'खतरे के लक्षण';
 
   @override
   String chatbotQuestionsIntro(Object category) {

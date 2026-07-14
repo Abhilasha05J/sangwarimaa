@@ -22,6 +22,7 @@ class ErrorInterceptor extends Interceptor {
     final data = err.response?.data;
 
     if (statusCode == 401) return UnauthorizedException();
+    if (statusCode == 404) return NotFoundException();
 
     // Your backend's custom AppException envelope:
     // {"success": false, "data": null, "error": {"code", "message", "details"}}

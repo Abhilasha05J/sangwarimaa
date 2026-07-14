@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sangwari_maa/core/l10n/generated/app_localizations.dart';
 import 'package:sangwari_maa/shared/widgets/app_bar.dart';
-import 'package:sangwari_maa/shared/widgets/bottom_navbar.dart';
-
 
 class MitaninsDashboard extends ConsumerWidget {
   const MitaninsDashboard({super.key});
@@ -16,7 +14,7 @@ class MitaninsDashboard extends ConsumerWidget {
       backgroundColor: Colors.white,
       appBar: TopBar(l10n: l10n),
       body: Text(
-      'Mitanins Dashboard'
+      'Mitanins Dashboard coming soon'
       ),
     );
   }

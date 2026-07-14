@@ -193,6 +193,7 @@ class _AncServicesCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return _DashboardCard(
       backgroundColor: const Color(0xFFFFF0EE),
+      onTap: () => context.pushNamed('ancServices'),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [

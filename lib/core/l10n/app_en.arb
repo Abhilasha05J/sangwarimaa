@@ -341,6 +341,11 @@
   "videomoduledesc":"Educational content for safe motherhood",
   "@videomoduledesc":{},
 
+  "videoFilterAll": "All",
+  "videoFilterBpcr": "BPCR",
+  "videoFilterPnc": "Postnatal & Newborn Care",
+  "videoLoadError": "Could not load videos",
+
   "bpcrTitle": "Birth Preparedness",
   "@bpcrTitle": {},
 
@@ -793,6 +798,9 @@
   "chatbotTyping": "Sangwari Maa is typing…",
   "@chatbotTyping": {},
 
+  "chatbotListening": "Listening...",
+  "chatbotBrowseTopics": "Browse Topics",
+
   "faqTitle": "Frequently Asked Questions",
   "@faqTitle": {},
 
@@ -821,6 +829,13 @@
 "chatbotSubNewbornDangerSigns": "Newborn Danger Signs",
 "chatbotSubImmunization": "Immunization & Growth",
 "chatbotSubLowBirthWeight": "Low Birth Weight Care",
+"chatbotSubPregnancyRegistration": "Pregnancy Registration",
+"chatbotSubPregnancyDuration": "Pregnancy Duration",
+"chatbotSubAncVisits": "ANC Visits",
+"chatbotSubMaternalNutrition": "Maternal Nutrition",
+"chatbotSubIfaCalcium": "IFA & Calcium",
+"chatbotSubCommonSymptoms": "Common Symptoms",
+"chatbotSubDangerSigns": "Danger Signs",
 "chatbotQuestionsIntro": "Here are some common questions about {category}:",
 "@chatbotQuestionsIntro": { "placeholders": { "category": {} } },
 "chatbotNoFaqs": "I don't have FAQs for this topic yet — try typing your question below.",

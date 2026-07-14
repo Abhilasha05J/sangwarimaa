@@ -371,6 +371,18 @@ class AppLocalizationsEn extends AppLocalizations {
   String get videomoduledesc => 'Educational content for safe motherhood';
 
   @override
+  String get videoFilterAll => 'All';
+
+  @override
+  String get videoFilterBpcr => 'BPCR';
+
+  @override
+  String get videoFilterPnc => 'Postnatal & Newborn Care';
+
+  @override
+  String get videoLoadError => 'Could not load videos';
+
+  @override
   String get bpcrTitle => 'Birth Preparedness';
 
   @override
@@ -873,6 +885,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get chatbotTyping => 'Sangwari Maa is typing…';
 
   @override
+  String get chatbotListening => 'Listening...';
+
+  @override
+  String get chatbotBrowseTopics => 'Browse Topics';
+
+  @override
   String get faqTitle => 'Frequently Asked Questions';
 
   @override
@@ -947,6 +965,27 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get chatbotSubLowBirthWeight => 'Low Birth Weight Care';
+
+  @override
+  String get chatbotSubPregnancyRegistration => 'Pregnancy Registration';
+
+  @override
+  String get chatbotSubPregnancyDuration => 'Pregnancy Duration';
+
+  @override
+  String get chatbotSubAncVisits => 'ANC Visits';
+
+  @override
+  String get chatbotSubMaternalNutrition => 'Maternal Nutrition';
+
+  @override
+  String get chatbotSubIfaCalcium => 'IFA & Calcium';
+
+  @override
+  String get chatbotSubCommonSymptoms => 'Common Symptoms';
+
+  @override
+  String get chatbotSubDangerSigns => 'Danger Signs';
 
   @override
   String chatbotQuestionsIntro(Object category) {

@@ -23,6 +23,7 @@ class LoginPage extends ConsumerStatefulWidget {
 class _LoginPageState extends ConsumerState<LoginPage> {
   final _formKey = GlobalKey<FormState>();
   final _mobileCtrl = TextEditingController();
+  bool _otpPushed = false;
 
   @override
   void dispose() {
@@ -32,6 +33,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
 
   void _onGetOtp() {
     if (!(_formKey.currentState?.validate() ?? false)) return;
+    _otpPushed = false;
     ref
         .read(authControllerProvider.notifier)
         .sendOtp(_mobileCtrl.text.trim());
@@ -48,15 +50,21 @@ class _LoginPageState extends ConsumerState<LoginPage> {
     final logoHeight = (screenH * 0.20).clamp(100.0, 180.0);
 
     // Listen for OTP sent success → navigate to OTP screen
-    ref.listen<AsyncValue<void>>(authControllerProvider, (_, next) {
+    ref.listen<AsyncValue<void>>(authControllerProvider, (previous, next) {
+      final wasLoading = previous?.isLoading ?? false; // ADD
+      if (!wasLoading) return;
+      if (_otpPushed) return;
       next.whenOrNull(
         error: (e, _) => ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text(e.toString())),
         ),
-        data: (_) => context.pushNamed(
-          'otp',
-          extra: _mobileCtrl.text.trim(),
-        ),
+        data: (_) {
+          _otpPushed = true;
+          context.pushNamed(
+            'otp',
+            extra: _mobileCtrl.text.trim(),
+          );
+        },
       );
     });
 
