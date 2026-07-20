@@ -1,8 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:sangwari_maa/features/Emergency/data/model/emergency_args.dart';
-import 'package:sangwari_maa/features/Emergency/presentation/pages/women_emergency.dart';
 import 'package:sangwari_maa/features/ancservices/presentation/pages/anc_services_screen.dart';
 import 'package:sangwari_maa/features/auth/presentation/pages/login_page.dart';
 import 'package:sangwari_maa/features/auth/presentation/pages/otp_verification_page.dart';
@@ -35,7 +33,6 @@ abstract final class Routes {
   static const womenprofile    = '/womensdashboard/womenprofile';
   static const womenreminders  = '/womensdashboard/womenreminders';
   static const chatbot   = '/womensdashboard/chatbot';
-  static const emergency = '/womensdashboard/emergency';
   static const bpcr      = '/womensdashboard/bpcr';
   static const bpcrDangerSignsPregnancy      = '/womensdashboard/bpcr/danger-signs-pregnancy';
   static const bpcrDangerSignsLabor          = '/womensdashboard/bpcr/danger-signs-labor';
@@ -146,13 +143,6 @@ GoRouter buildAppRouter({String initialLocation = '/',String? pendingMobile, }) 
           path: 'chatbot',
           name: 'chatbot',
           builder: (_, __) => const ChatbotScreen(),
-        ),
-        GoRoute(
-          path: 'emergency',
-          name: 'emergency',
-          builder: (_, state) => EmergencyScreen(
-            args: state.extra as EmergencyArgs,
-          ),
         ),
        GoRoute(
 path: 'bpcr',

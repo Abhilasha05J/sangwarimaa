@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:sangwari_maa/core/constants/app_colors.dart';
 import 'package:sangwari_maa/core/constants/app_typography.dart';
 import 'package:sangwari_maa/core/l10n/generated/app_localizations.dart';
+import 'package:sangwari_maa/features/emergency/presentation/pages/women_emergency.dart';
 
 /// Usage: Set [currentIndex] to highlight the active tab.
 /// 0 = Home, 1 = Profile, 2 = Reminder, 3 = Chatbot
@@ -49,10 +50,12 @@ class AppBottomNavBar extends ConsumerWidget {
               SizedBox(
                 width: 80,
                 child: GestureDetector(
-                  onTap: () {
-                  context.go('/womensdashboard/emergency');
-
-                  },
+                  onTap: () => EmergencyDialSheet.show(
+                  context,
+                  // mitaninPhone: profile?.mitaninPhone,
+                  // familyPhone:  profile?.familyPhone,
+                  // husbandPhone: profile?.husbandPhone,
+                  ),
                   child: Transform.translate(
                     offset: const Offset(0, -25),
                     child: Image.asset(
