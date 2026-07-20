@@ -52,9 +52,9 @@ class AppBottomNavBar extends ConsumerWidget {
                 child: GestureDetector(
                   onTap: () => EmergencyDialSheet.show(
                   context,
-                  // mitaninPhone: profile?.mitaninPhone,
-                  // familyPhone:  profile?.familyPhone,
-                  // husbandPhone: profile?.husbandPhone,
+                   mitaninPhone: null,
+                   familyPhone:  null,
+                   husbandPhone: null,
                   ),
                   child: Transform.translate(
                     offset: const Offset(0, -25),
