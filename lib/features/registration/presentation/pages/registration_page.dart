@@ -7,6 +7,7 @@ import 'package:sangwari_maa/core/constants/app_spacing.dart';
 import 'package:sangwari_maa/core/constants/app_typography.dart';
 import 'package:sangwari_maa/core/errors/failures.dart';
 import 'package:sangwari_maa/core/l10n/generated/app_localizations.dart';
+import 'package:sangwari_maa/core/services/destination_service.dart';
 import 'package:sangwari_maa/features/auth/data/model/user_model.dart';
 import 'package:sangwari_maa/features/auth/presentation/controller/auth_controller.dart';
 import 'package:sangwari_maa/features/registration/data/model/women_register_request_model.dart';
@@ -33,20 +34,21 @@ class RegistrationPage extends ConsumerStatefulWidget {
 class _RegistrationPageState extends ConsumerState<RegistrationPage> {
   final _formKey = GlobalKey<FormState>();
 
+  bool _isResolving = false;
+
   final _nameCtrl    = TextEditingController();
   final _mobileCtrl  = TextEditingController();
   final _otpCtrl     = TextEditingController();
   final _ageCtrl     = TextEditingController();
-  final _husbAgeCtrl = TextEditingController();
   final _dobCtrl     = TextEditingController();
   final _addressCtrl = TextEditingController();
+  final _villageCtrl  = TextEditingController();
+  final _districtCtrl = TextEditingController();
   final _gestCtrl    = TextEditingController();
   final _lmpCtrl     = TextEditingController();
   final _eddCtrl     = TextEditingController();
 
   String? _selectedBloodGroup;
-  String? _selectedVillage;
-  String? _selectedPhc;
   bool _consentGiven = false;
 
   bool _otpSent = false;
@@ -56,14 +58,6 @@ class _RegistrationPageState extends ConsumerState<RegistrationPage> {
 
   static const List<String> _bloodGroups = [
     'A+', 'A−', 'B+', 'B−', 'AB+', 'AB−', 'O+', 'O−',
-  ];
-  static const List<String> _villages = [
-    'Raipur Village', 'Bilaspur Village', 'Durg Village',
-    'Korba Village', 'Jagdalpur Village',
-  ];
-  static const List<String> _phcs = [
-    'PHC Raipur North', 'PHC Bilaspur Central', 'PHC Durg South',
-    'PHC Korba East', 'PHC Jagdalpur West',
   ];
 
   bool get _isUnlocked => widget.initialMobile != null || _verified;
@@ -82,12 +76,13 @@ class _RegistrationPageState extends ConsumerState<RegistrationPage> {
     _mobileCtrl.dispose();
     _otpCtrl.dispose();
     _ageCtrl.dispose();
-    _husbAgeCtrl.dispose();
     _dobCtrl.dispose();
     _addressCtrl.dispose();
     _gestCtrl.dispose();
     _lmpCtrl.dispose();
     _eddCtrl.dispose();
+    _villageCtrl.dispose();
+    _districtCtrl.dispose();
     super.dispose();
   }
 
@@ -240,11 +235,11 @@ class _RegistrationPageState extends ConsumerState<RegistrationPage> {
       WomenRegisterRequestModel(
         name: _nameCtrl.text.trim(),
         age: int.tryParse(_ageCtrl.text) ?? 0,
-        husbandAge: int.tryParse(_husbAgeCtrl.text),
+      //  husbandAge: int.tryParse(_husbAgeCtrl.text),
         dob: _toIsoDate(_dobCtrl.text),
         address: _addressCtrl.text.trim().isEmpty ? null : _addressCtrl.text.trim(),
-        village: _selectedVillage,
-        phc: _selectedPhc,
+        village: _villageCtrl.text.trim().isEmpty ? null : _villageCtrl.text.trim(),
+        district: _districtCtrl.text.trim().isEmpty ? null : _districtCtrl.text.trim(),
         lmp: _toIsoDate(_lmpCtrl.text) ?? '',
         bloodGroup: _normalizeBloodGroup(_selectedBloodGroup),
         preferredLanguage: ref.read(localeProvider).languageCode,
@@ -279,37 +274,60 @@ class _RegistrationPageState extends ConsumerState<RegistrationPage> {
               });
               return;
             }
+            // if (_isVerifyingOtp) {
+            //   final controller = ref.read(authControllerProvider.notifier);
+            //   final isNewUser = controller.isNewUser;
+            //   setState(() => _isVerifyingOtp = false);
+            //
+            //   if (!isNewUser) {
+            //     // Existing account — verify-otp already returned a valid JWT, so log
+            //     // them straight into their dashboard instead of forcing a second OTP
+            //     // cycle on the Login screen.
+            //     ScaffoldMessenger.of(context).showSnackBar(
+            //       SnackBar(content: Text(l10n.welcomeBackLoggedIn)),
+            //     );
+            //     switch (controller.role) {
+            //       case UserRole.pregnantWoman:
+            //         context.go('/womensdashboard');
+            //         break;
+            //       case UserRole.asha:
+            //       case UserRole.anm:
+            //         context.go('/mitanindashboard');
+            //         break;
+            //       case UserRole.blockAdmin:
+            //       case UserRole.pi:
+            //       case UserRole.superAdmin:
+            //         context.go('/admindashboard'); // still pending per earlier conversation
+            //         break;
+            //       case null:
+            //         context.go('/womensdashboard');
+            //     }
+            //     return;
+            //   }
+            //   setState(() => _verified = true);
+            // }
             if (_isVerifyingOtp) {
-              final controller = ref.read(authControllerProvider.notifier);
-              final isNewUser = controller.isNewUser;
               setState(() => _isVerifyingOtp = false);
 
-              if (!isNewUser) {
-                // Existing account — verify-otp already returned a valid JWT, so log
-                // them straight into their dashboard instead of forcing a second OTP
-                // cycle on the Login screen.
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text(l10n.welcomeBackLoggedIn)),
-                );
-                switch (controller.role) {
-                  case UserRole.pregnantWoman:
-                    context.go('/womensdashboard');
-                    break;
-                  case UserRole.asha:
-                  case UserRole.anm:
-                    context.go('/mitanindashboard');
-                    break;
-                  case UserRole.blockAdmin:
-                  case UserRole.pi:
-                  case UserRole.superAdmin:
-                    context.go('/admindashboard'); // still pending per earlier conversation
-                    break;
-                  case null:
-                    context.go('/womensdashboard');
+              // Don't branch on isNewUser here — it only tells us if the User row
+              // was just created, NOT if the beneficiary profile is complete.
+              // Always call resolveDestination so the beneficiary table is checked.
+              setState(() => _isResolving = true); // ADD _isResolving field like OTP page
+              WidgetsBinding.instance.addPostFrameCallback((_) async {
+                final destination = await resolveDestination();
+                if (!mounted) return;
+                setState(() => _isResolving = false);
+                switch (destination) {
+                  case SplashDestination():
+                    context.go('/');
+                  case DashboardDestination(:final path):
+                    context.go(path);
+                  case RegistrationDestination():
+                  // Already on registration page — just unlock the form
+                    setState(() => _verified = true);
                 }
-                return;
-              }
-              setState(() => _verified = true);
+              });
+              return;
             }
           },
         );
@@ -470,8 +488,8 @@ class _RegistrationPageState extends ConsumerState<RegistrationPage> {
                                   borderRadius: BorderRadius.circular(AppSpacing.radiusSm),
                                 ),
                               ),
-                              onPressed: _isVerifyingOtp ? null : _onVerifyOtp,
-                              child: _isVerifyingOtp
+                              onPressed: (_isVerifyingOtp || _isResolving) ? null : _onVerifyOtp,
+                              child: (_isVerifyingOtp || _isResolving)
                                   ? const SizedBox(
                                 width: 18, height: 18,
                                 child: CircularProgressIndicator(strokeWidth: 2, color: Colors.white),
@@ -499,6 +517,28 @@ class _RegistrationPageState extends ConsumerState<RegistrationPage> {
                                   child: Column(
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
+                                      Text(l10n.dateOfBirth, style: AppTypography.fieldLabel),
+                                      const SizedBox(height: AppSpacing.xs),
+                                      AppTextField(
+                                        hint: l10n.dateHint,
+                                        controller: _dobCtrl,
+                                        readOnly: true,
+                                        onTap: _isUnlocked ? () => _pickDate(_dobCtrl) : null,
+                                        validator: _dobValidator,
+                                        suffixIcon: const Padding(
+                                          padding: EdgeInsets.all(AppSpacing.md),
+                                          child: Icon(Icons.calendar_month_outlined, color: AppColors.hintText, size: 20),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                const SizedBox(width: AppSpacing.md),
+                                Expanded(
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+
                                       Text(l10n.age, style: AppTypography.fieldLabel),
                                       const SizedBox(height: AppSpacing.xs),
                                       AppTextField(
@@ -514,51 +554,7 @@ class _RegistrationPageState extends ConsumerState<RegistrationPage> {
                                     ],
                                   ),
                                 ),
-                                const SizedBox(width: AppSpacing.md),
-                                Expanded(
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      Text(l10n.husbandsAge, style: AppTypography.fieldLabel),
-                                      const SizedBox(height: AppSpacing.xs),
-                                      AppTextField(
-                                        hint: l10n.ageHint,
-                                        controller: _husbAgeCtrl,
-                                        keyboardType: TextInputType.number,
-                                        inputFormatters: [
-                                          FilteringTextInputFormatter.digitsOnly,
-                                          LengthLimitingTextInputFormatter(3),
-                                        ],
-                                      ),
-                                    ],
-                                  ),
-                                ),
                               ],
-                            ),
-                            const SizedBox(height: AppSpacing.md),
-
-                            Text(l10n.dateOfBirth, style: AppTypography.fieldLabel),
-                            const SizedBox(height: AppSpacing.xs),
-                            AppTextField(
-                              hint: l10n.dateHint,
-                              controller: _dobCtrl,
-                              readOnly: true,
-                              onTap: _isUnlocked ? () => _pickDate(_dobCtrl) : null,
-                              validator: _dobValidator,
-                              suffixIcon: const Padding(
-                                padding: EdgeInsets.all(AppSpacing.md),
-                                child: Icon(Icons.calendar_month_outlined, color: AppColors.hintText, size: 20),
-                              ),
-                            ),
-                            const SizedBox(height: AppSpacing.md),
-
-                            Text(l10n.currentAddress, style: AppTypography.fieldLabel),
-                            const SizedBox(height: AppSpacing.xs),
-                            AppTextField(
-                              hint: l10n.addressHint,
-                              controller: _addressCtrl,
-                              maxLines: 3,
-                              textCapitalization: TextCapitalization.sentences,
                             ),
                             const SizedBox(height: AppSpacing.md),
 
@@ -647,16 +643,37 @@ class _RegistrationPageState extends ConsumerState<RegistrationPage> {
                 child: Opacity(
                   opacity: _isUnlocked ? 1.0 : 0.4,
                   child: _SectionCard(
-                    svgAsset: 'assets/icons/location.png',
-                    title: l10n.healthCenter,
-                    child: _HealthCenterSection(
-                      l10n: l10n,
-                      villages: _villages,
-                      phcs: _phcs,
-                      selectedVillage: _selectedVillage,
-                      selectedPhc: _selectedPhc,
-                      onVillageChanged: (v) => setState(() => _selectedVillage = v),
-                      onPhcChanged: (v) => setState(() => _selectedPhc = v),
+                    svgAsset: "assets/icons/location.png",
+                    title: l10n.address,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children:[
+                        Text(l10n.currentAddress, style: AppTypography.fieldLabel),
+                        const SizedBox(height: AppSpacing.xs),
+                        AppTextField(
+                          hint: l10n.addressHint,
+                          controller: _addressCtrl,
+                          maxLines: 3,
+                          textCapitalization: TextCapitalization.sentences,
+                        ),
+                        const SizedBox(height: AppSpacing.md),
+                        Text(l10n.village, style: AppTypography.fieldLabel),
+                        const SizedBox(height: AppSpacing.xs),
+                        AppTextField(
+                          hint: l10n.village,
+                          controller: _villageCtrl,
+                          textCapitalization: TextCapitalization.sentences,
+                        ),
+                        const SizedBox(height: AppSpacing.md),
+                        Text(l10n.district, style: AppTypography.fieldLabel),
+                        const SizedBox(height: AppSpacing.xs),
+                        AppTextField(
+                          hint: l10n.district,
+                          controller: _districtCtrl,
+                          textCapitalization: TextCapitalization.sentences,
+                        ),
+                        const SizedBox(height: AppSpacing.sm),
+                      ],
                     ),
                   ),
                 ),
@@ -807,44 +824,6 @@ class _SectionCard extends StatelessWidget {
           child,
         ],
       ),
-    );
-  }
-}
-
-// ── Health Center Section ─────────────────────────────────────────────────
-
-class _HealthCenterSection extends StatelessWidget {
-  final AppLocalizations l10n;
-  final List<String> villages;
-  final List<String> phcs;
-  final String? selectedVillage;
-  final String? selectedPhc;
-  final ValueChanged<String?> onVillageChanged;
-  final ValueChanged<String?> onPhcChanged;
-
-  const _HealthCenterSection({
-    required this.l10n,
-    required this.villages,
-    required this.phcs,
-    required this.selectedVillage,
-    required this.selectedPhc,
-    required this.onVillageChanged,
-    required this.onPhcChanged,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(l10n.selectVillage, style: AppTypography.fieldLabel),
-        const SizedBox(height: AppSpacing.xs),
-        _DropdownField(hint: l10n.selectVillageHint, value: selectedVillage, items: villages, onChanged: onVillageChanged),
-        const SizedBox(height: AppSpacing.md),
-        Text(l10n.phc, style: AppTypography.fieldLabel),
-        const SizedBox(height: AppSpacing.xs),
-        _DropdownField(hint: l10n.phcHint, value: selectedPhc, items: phcs, onChanged: onPhcChanged),
-      ],
     );
   }
 }
