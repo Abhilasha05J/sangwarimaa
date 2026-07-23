@@ -892,6 +892,10 @@ class AppLocalizationsHi extends AppLocalizations {
   String get chatbotBrowseTopics => 'विषय देखें';
 
   @override
+  String get chatbotRefresh =>
+      'नीचे खींचें या टैप करें — पुरानी बातचीत लोड करें';
+
+  @override
   String get faqTitle => 'अक्सर पूछे जाने वाले प्रश्न';
 
   @override

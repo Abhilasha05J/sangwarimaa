@@ -801,6 +801,8 @@
   "chatbotListening": "Listening...",
   "chatbotBrowseTopics": "Browse Topics",
 
+  "chatbotRefresh": "Pull down to refresh or tap to reload history",
+
   "faqTitle": "Frequently Asked Questions",
   "@faqTitle": {},
 

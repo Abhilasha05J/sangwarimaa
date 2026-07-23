@@ -891,6 +891,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get chatbotBrowseTopics => 'Browse Topics';
 
   @override
+  String get chatbotRefresh => 'Pull down to refresh or tap to reload history';
+
+  @override
   String get faqTitle => 'Frequently Asked Questions';
 
   @override

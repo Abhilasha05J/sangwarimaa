@@ -1718,6 +1718,12 @@ abstract class AppLocalizations {
   /// **'Browse Topics'**
   String get chatbotBrowseTopics;
 
+  /// No description provided for @chatbotRefresh.
+  ///
+  /// In en, this message translates to:
+  /// **'Pull down to refresh or tap to reload history'**
+  String get chatbotRefresh;
+
   /// No description provided for @faqTitle.
   ///
   /// In en, this message translates to:
