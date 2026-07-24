@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sangwari_maa/core/constants/app_colors.dart';
 import 'package:sangwari_maa/core/constants/app_spacing.dart';

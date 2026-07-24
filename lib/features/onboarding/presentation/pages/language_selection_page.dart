@@ -22,7 +22,7 @@ class LanguageSelectionPage extends ConsumerWidget {
     // MediaQuery.sizeOf / paddingOf are cheaper — they only rebuild when
     // size / padding change, not on every MediaQuery change (e.g. keyboard).
     final screenH = MediaQuery.sizeOf(context).height;
-    final bottomPad = MediaQuery.paddingOf(context).bottom;
+    //final bottomPad = MediaQuery.paddingOf(context).bottom;
 
     // Illustration: at most 45 % of screen height, min 160 px
     final illustrationH = (screenH * 0.45).clamp(160.0, 320.0);

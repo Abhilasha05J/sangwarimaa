@@ -45,7 +45,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
     // sizeOf / paddingOf are O(1) and rebuild only on their specific change,
     // unlike MediaQuery.of(context) which rebuilds on ANY MediaQuery change.
     final size = MediaQuery.sizeOf(context);
-    final padding = MediaQuery.paddingOf(context);
+    //final padding = MediaQuery.paddingOf(context);
     final screenH = size.height;
     final logoHeight = (screenH * 0.20).clamp(100.0, 180.0);
 

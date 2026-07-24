@@ -185,6 +185,7 @@ class _ChatbotScreenState extends ConsumerState<ChatbotScreen> {
                       ),
                       ListView.builder(
                         controller: _scrollCtrl,
+                        physics: const AlwaysScrollableScrollPhysics(),
                         padding: const EdgeInsets.symmetric(
                           horizontal: AppSpacing.md,
                           vertical: AppSpacing.md,
@@ -658,15 +659,15 @@ class _ChatInputBarState extends State<_ChatInputBar>
                     ),
                   ),
                   const SizedBox(width: AppSpacing.xxl),
-                  // GestureDetector(
-                  //   onTap: () {
-                  //     final text = widget.controller.text;
-                  //     widget.controller.clear();
-                  //     widget.onSend(text);
-                  //   },
-                  //   child: Icon(Icons.send_rounded,
-                  //       color: AppColors.hintText, size: 25),
-                  // ),
+                  GestureDetector(
+                    onTap: () {
+                      final text = widget.controller.text;
+                      widget.controller.clear();
+                      widget.onSend(text);
+                    },
+                    child: Icon(Icons.send_rounded,
+                        color: AppColors.hintText, size: 25),
+                  ),
                 ],
               ),
             ),

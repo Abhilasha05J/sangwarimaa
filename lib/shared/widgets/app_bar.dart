@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:sangwari_maa/core/constants/app_colors.dart';
 import 'package:sangwari_maa/core/constants/app_spacing.dart';
 import 'package:sangwari_maa/core/constants/app_typography.dart';
 import 'package:sangwari_maa/core/l10n/generated/app_localizations.dart';

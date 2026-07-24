@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 /// Represents a single maternal scheme entry in the list.
 class SchemeItem {
   final String id;
