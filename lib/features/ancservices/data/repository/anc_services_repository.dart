@@ -132,4 +132,20 @@ class AncServicesRepository {
       throw mapExceptionToFailure(e);
     }
   }
+
+  Future<void> batchUpdateAncServices({
+    required Map<String, bool> registrationFields,
+    required Map<String, bool> nutritionFields,
+    required List<Map<String, dynamic>> checklistItems,
+  }) async {
+    try {
+      await _datasource.batchUpdateAncServices({
+        'registration_fields': registrationFields,
+        'nutrition_fields': nutritionFields,
+        'checklist_items': checklistItems,
+      });
+    } catch (e) {
+      throw mapExceptionToFailure(e);
+    }
+  }
 }

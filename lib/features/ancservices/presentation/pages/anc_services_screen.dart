@@ -65,6 +65,7 @@ class AncServicesScreen extends ConsumerWidget {
                   ),
               ),
             ),
+            if (ref.read(ancServicesControllerProvider.notifier).hasPendingChanges) const _SaveBar(),
           ],
         ),
       ),
@@ -830,6 +831,60 @@ class _SectionHeader extends StatelessWidget {
         const SizedBox(width: 6),
         Text(title.toUpperCase(), style: AppTypography.titleMedium),
       ],
+    );
+  }
+}
+
+//──────────────────────────────────────────
+class _SaveBar extends ConsumerStatefulWidget {
+  const _SaveBar();
+
+  @override
+  ConsumerState<_SaveBar> createState() => _SaveBarState();
+}
+
+class _SaveBarState extends ConsumerState<_SaveBar> {
+  bool _saving = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.all(AppSpacing.md),
+      decoration: BoxDecoration(
+        color: AppColors.white,
+        boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.08), blurRadius: 8, offset: const Offset(0, -2))],
+      ),
+      child: SafeArea(
+        top: false,
+        child: SizedBox(
+          width: double.infinity,
+          height: 48,
+          child: ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: AppColors.gradStart,
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppSpacing.radiusMd)),
+            ),
+            onPressed: _saving
+                ? null
+                : () async {
+              setState(() => _saving = true);
+              final success = await ref.read(ancServicesControllerProvider.notifier).saveAll();
+              if (!mounted) return;
+              setState(() => _saving = false);
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text(success ? 'Saved successfully' : 'Could not save — please try again')),
+              );
+            },
+            child: _saving
+                ? const SizedBox(
+              width: 20, height: 20,
+              child: CircularProgressIndicator(strokeWidth: 2, color: Colors.white),
+            )
+                : const Text('Save Details', style: TextStyle(color: Colors.white, fontWeight: FontWeight.w600)),
+          ),
+        ),
+      ),
     );
   }
 }

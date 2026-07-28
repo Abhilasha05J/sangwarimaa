@@ -5,22 +5,55 @@ import 'package:sangwari_maa/features/ancservices/presentation/anc_services_prov
 part 'anc_services_controller.g.dart';
 
 @riverpod
+
 class AncServicesController extends _$AncServicesController {
   @override
   Future<AncServicesModel> build() {
     return ref.read(ancServicesRepositoryProvider).getAncServices();
   }
 
+  final Map<String, bool> _pendingRegistrationFields = {};
+  final Map<String, bool> _pendingNutritionFields = {};
+  final Map<String, bool> _pendingChecklistItems = {};
+
+  bool get hasPendingChanges =>
+      _pendingRegistrationFields.isNotEmpty ||
+          _pendingNutritionFields.isNotEmpty ||
+          _pendingChecklistItems.isNotEmpty;
+
+
   Future<void> refresh() async {
     state = const AsyncValue.loading();
     state = await AsyncValue.guard(() => ref.read(ancServicesRepositoryProvider).getAncServices());
   }
 
-  Future<void> toggleChecklistItem(int visitNumber, String itemKey, bool checked) async {
+  // Future<void> toggleChecklistItem(int visitNumber, String itemKey, bool checked) async {
+  //   final current = state.value;
+  //   if (current == null) return;
+  //
+  //   final optimisticTimeline = current.ancVisitTimeline.map((v) {
+  //     if (v.visitNumber != visitNumber) return v;
+  //     final newItems = v.items.map((i) => i.key == itemKey ? i.copyWith(checked: checked) : i).toList();
+  //     final checkedCount = newItems.where((i) => i.checked).length;
+  //     return v.copyWith(
+  //       items: newItems,
+  //       testsCompleted: checkedCount,
+  //       status: (checkedCount == newItems.length && newItems.isNotEmpty) ? 'completed' : 'due',
+  //     );
+  //   }).toList();
+  //   state = AsyncValue.data(current.copyWith(ancVisitTimeline: optimisticTimeline));
+  //
+  //   try {
+  //     await ref.read(ancServicesRepositoryProvider).updateChecklistItem(visitNumber, itemKey, checked);
+  //   } catch (_) {
+  //     state = AsyncValue.data(current);
+  //   }
+  // }
+  void toggleChecklistItem(int visitNumber, String itemKey, bool checked) {
     final current = state.value;
     if (current == null) return;
 
-    final optimisticTimeline = current.ancVisitTimeline.map((v) {
+    final newTimeline = current.ancVisitTimeline.map((v) {
       if (v.visitNumber != visitNumber) return v;
       final newItems = v.items.map((i) => i.key == itemKey ? i.copyWith(checked: checked) : i).toList();
       final checkedCount = newItems.where((i) => i.checked).length;
@@ -30,61 +63,86 @@ class AncServicesController extends _$AncServicesController {
         status: (checkedCount == newItems.length && newItems.isNotEmpty) ? 'completed' : 'due',
       );
     }).toList();
-    state = AsyncValue.data(current.copyWith(ancVisitTimeline: optimisticTimeline));
 
-    try {
-      await ref.read(ancServicesRepositoryProvider).updateChecklistItem(visitNumber, itemKey, checked);
-    } catch (_) {
-      state = AsyncValue.data(current);
-    }
+    _pendingChecklistItems['$visitNumber:$itemKey'] = checked;
+    state = AsyncValue.data(current.copyWith(ancVisitTimeline: newTimeline));
   }
-// ── Add these methods ──
-  Future<void> toggleRegistrationField(String field, bool checked) async {
-    final current = state.value;
-    if (current == null) return;
 
-    PregnancyRegistrationModel applyField(PregnancyRegistrationModel reg) {
-      return switch (field) {
-        'is_registered' => reg.copyWith(isRegistered: checked),
-        'rch_id_generated' => reg.copyWith(rchIdGenerated: checked),
-        'mcp_card_received' => reg.copyWith(mcpCardReceived: checked),
-        _ => reg,
-      };
-    }
-
-    final optimisticReg = applyField(current.pregnancyRegistration);
-    state = AsyncValue.data(current.copyWith(pregnancyRegistration: optimisticReg));
-
-    try {
-      await ref.read(ancServicesRepositoryProvider).updateRegistrationField(field, checked);
-      // Server response already reflected optimistically above; no need to overwrite ashaAssigned.
-    } catch (_) {
-      state = AsyncValue.data(current);
-    }
-  }
+ //  Future<void> toggleRegistrationField(String field, bool checked) async {
+ //    final current = state.value;
+ //    if (current == null) return;
+ //
+ //    PregnancyRegistrationModel applyField(PregnancyRegistrationModel reg) {
+ //      return switch (field) {
+ //        'is_registered' => reg.copyWith(isRegistered: checked),
+ //        'rch_id_generated' => reg.copyWith(rchIdGenerated: checked),
+ //        'mcp_card_received' => reg.copyWith(mcpCardReceived: checked),
+ //        _ => reg,
+ //      };
+ //    }
+ //
+ //    final optimisticReg = applyField(current.pregnancyRegistration);
+ //    state = AsyncValue.data(current.copyWith(pregnancyRegistration: optimisticReg));
+ //
+ //    try {
+ //      await ref.read(ancServicesRepositoryProvider).updateRegistrationField(field, checked);
+ //      // Server response already reflected optimistically above; no need to overwrite ashaAssigned.
+ //    } catch (_) {
+ //      state = AsyncValue.data(current);
+ //    }
+ //  }
 
   // ── Add ──
-  Future<void> toggleMaternalNutritionField(String field, bool checked) async {
+  void toggleRegistrationField(String field, bool checked) {
     final current = state.value;
     if (current == null) return;
 
-    MaternalNutritionModel applyField(MaternalNutritionModel n) {
-      return switch (field) {
-        'nutrition_counselling_received' => n.copyWith(nutritionCounsellingReceived: checked),
-        'weight_monitored' => n.copyWith(weightMonitored: checked),
-        'supplementary_nutrition_received' => n.copyWith(supplementaryNutritionReceived: checked),
-        _ => n,
-      };
-    }
+    PregnancyRegistrationModel apply(PregnancyRegistrationModel reg) => switch (field) {
+      'is_registered' => reg.copyWith(isRegistered: checked),
+      'rch_id_generated' => reg.copyWith(rchIdGenerated: checked),
+      'mcp_card_received' => reg.copyWith(mcpCardReceived: checked),
+      _ => reg,
+    };
 
-    final optimistic = applyField(current.maternalNutrition);
-    state = AsyncValue.data(current.copyWith(maternalNutrition: optimistic));
+    _pendingRegistrationFields[field] = checked;
+    state = AsyncValue.data(current.copyWith(pregnancyRegistration: apply(current.pregnancyRegistration)));
+  }
 
-    try {
-      await ref.read(ancServicesRepositoryProvider).updateMaternalNutritionField(field, checked);
-    } catch (_) {
-      state = AsyncValue.data(current);
-    }
+  // Future<void> toggleMaternalNutritionField(String field, bool checked) async {
+  //   final current = state.value;
+  //   if (current == null) return;
+  //
+  //   MaternalNutritionModel applyField(MaternalNutritionModel n) {
+  //     return switch (field) {
+  //       'nutrition_counselling_received' => n.copyWith(nutritionCounsellingReceived: checked),
+  //       'weight_monitored' => n.copyWith(weightMonitored: checked),
+  //       'supplementary_nutrition_received' => n.copyWith(supplementaryNutritionReceived: checked),
+  //       _ => n,
+  //     };
+  //   }
+  //
+  //   final optimistic = applyField(current.maternalNutrition);
+  //   state = AsyncValue.data(current.copyWith(maternalNutrition: optimistic));
+  //
+  //   try {
+  //     await ref.read(ancServicesRepositoryProvider).updateMaternalNutritionField(field, checked);
+  //   } catch (_) {
+  //     state = AsyncValue.data(current);
+  //   }
+  // }
+  void toggleMaternalNutritionField(String field, bool checked) {
+    final current = state.value;
+    if (current == null) return;
+
+    MaternalNutritionModel apply(MaternalNutritionModel n) => switch (field) {
+      'nutrition_counselling_received' => n.copyWith(nutritionCounsellingReceived: checked),
+      'weight_monitored' => n.copyWith(weightMonitored: checked),
+      'supplementary_nutrition_received' => n.copyWith(supplementaryNutritionReceived: checked),
+      _ => n,
+    };
+
+    _pendingNutritionFields[field] = checked;
+    state = AsyncValue.data(current.copyWith(maternalNutrition: apply(current.maternalNutrition)));
   }
 
   Future<List<String>> loadMedicineCalendar(String medicineType) {
@@ -116,20 +174,6 @@ class AncServicesController extends _$AncServicesController {
     }
   }
 
-  // Future<void> markMedicineTaken(String medicineType) async {
-  //   final current = state.value;
-  //   if (current == null) return;
-  //   try {
-  //     final updated = await ref.read(ancServicesRepositoryProvider).markMedicineTaken(medicineType);
-  //     final newTracker = Map<String, MedicineTrackerItem>.from(current.medicineTracker)
-  //       ..[medicineType] = updated;
-  //     state = AsyncValue.data(current.copyWith(medicineTracker: newTracker));
-  //   } catch (_) {
-  //     // Swallow and let the UI show a snackbar via ref.listen if desired;
-  //     // re-fetch as a safe fallback.
-  //     await refresh();
-  //   }
-  // }
   Future<void> markMedicineTaken(String medicineType) async {
     final current = state.value;
     if (current == null) return;
@@ -156,17 +200,7 @@ class AncServicesController extends _$AncServicesController {
     }
   }
 
-  // Future<void> updateImmunization(String doseType, {required String status, String? receivedDate}) async {
-  //   final current = state.value;
-  //   if (current == null) return;
-  //   final updated = await ref.read(ancServicesRepositoryProvider)
-  //       .updateImmunization(doseType, status: status, receivedDate: receivedDate);
-  //   final newList = current.immunization
-  //       .map((i) => i.doseType == doseType ? updated : i)
-  //       .toList();
-  //   state = AsyncValue.data(current.copyWith(immunization: newList));
-  // }
-  Future<void> updateImmunization(String doseType, {required String status, String? receivedDate}) async {
+ Future<void> updateImmunization(String doseType, {required String status, String? receivedDate}) async {
     final current = state.value;
     if (current == null) return;
 
@@ -186,17 +220,7 @@ class AncServicesController extends _$AncServicesController {
     }
   }
 
-  // Future<void> updateUltrasound(String scanType, {required String status, String? scanDate}) async {
-  //   final current = state.value;
-  //   if (current == null) return;
-  //   final updated = await ref.read(ancServicesRepositoryProvider)
-  //       .updateUltrasound(scanType, status: status, scanDate: scanDate);
-  //   final newList = current.ultrasound
-  //       .map((s) => s.scanType == scanType ? updated : s)
-  //       .toList();
-  //   state = AsyncValue.data(current.copyWith(ultrasound: newList));
-  // }
-  Future<void> updateUltrasound(String scanType, {required String status, String? scanDate}) async {
+ Future<void> updateUltrasound(String scanType, {required String status, String? scanDate}) async {
     final current = state.value;
     if (current == null) return;
 
@@ -213,6 +237,29 @@ class AncServicesController extends _$AncServicesController {
       state = AsyncValue.data(latest.copyWith(ultrasound: confirmedList));
     } catch (_) {
       state = AsyncValue.data(current);
+    }
+  }
+
+  Future<bool> saveAll() async {
+    if (!hasPendingChanges) return true;
+
+    final checklistItems = _pendingChecklistItems.entries.map((e) {
+      final parts = e.key.split(':');
+      return {'visit_number': int.parse(parts[0]), 'item_key': parts[1], 'checked': e.value};
+    }).toList();
+
+    try {
+      await ref.read(ancServicesRepositoryProvider).batchUpdateAncServices(
+        registrationFields: Map.from(_pendingRegistrationFields),
+        nutritionFields: Map.from(_pendingNutritionFields),
+        checklistItems: checklistItems,
+      );
+      _pendingRegistrationFields.clear();
+      _pendingNutritionFields.clear();
+      _pendingChecklistItems.clear();
+      return true;
+    } catch (_) {
+      return false;
     }
   }
 }

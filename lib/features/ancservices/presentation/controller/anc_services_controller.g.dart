@@ -34,7 +34,7 @@ final class AncServicesControllerProvider
 }
 
 String _$ancServicesControllerHash() =>
-    r'39fb934ea477fda4ea5650e0c5ebacc0d8620f25';
+    r'a92875cc6e9a196888b3178199e1000b3b65b07c';
 
 abstract class _$AncServicesController
     extends $AsyncNotifier<AncServicesModel> {

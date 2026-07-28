@@ -46,4 +46,7 @@ abstract class AncServicesDatasource {
       @Path('takenDate') String takenDate, // 'YYYY-MM-DD'
       @Body() Map<String, dynamic> body,
       );
+
+  @PATCH('/api/v1/women/anc-services/batch-update')
+  Future<HttpResponse<dynamic>> batchUpdateAncServices(@Body() Map<String, dynamic> body);
 }

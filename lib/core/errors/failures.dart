@@ -19,7 +19,7 @@ class UnauthorizedFailure extends Failure {
   const UnauthorizedFailure([super.message = 'Session expired, please login again']);
 }
 
-class NotFoundFailure extends Failure {  // NEW
+class NotFoundFailure extends Failure {
   const NotFoundFailure([super.message = 'Resource not found']);
 }
 
