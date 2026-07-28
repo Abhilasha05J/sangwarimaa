@@ -873,7 +873,7 @@ class _SaveBarState extends ConsumerState<_SaveBar> {
               if (!mounted) return;
               setState(() => _saving = false);
               ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(content: Text(success ? 'Saved successfully' : 'Could not save — please try again')),
+                SnackBar(content: Text(success ? 'Updated!' : 'Could not save — please try again')),
               );
             },
             child: _saving

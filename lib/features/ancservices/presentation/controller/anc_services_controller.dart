@@ -257,6 +257,7 @@ class AncServicesController extends _$AncServicesController {
       _pendingRegistrationFields.clear();
       _pendingNutritionFields.clear();
       _pendingChecklistItems.clear();
+      state = AsyncValue.data(await ref.read(ancServicesRepositoryProvider).getAncServices());
       return true;
     } catch (_) {
       return false;
