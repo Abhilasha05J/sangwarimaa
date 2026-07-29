@@ -34,7 +34,7 @@ class _OtpVerificationPageState extends ConsumerState<OtpVerificationPage> {
   final List<FocusNode> _focusNodes =
   List.generate(_otpLength, (_) => FocusNode());
 
-  late Timer _timer;
+  Timer? _timer;
   int _secondsLeft = _resendSeconds;
 
   @override
@@ -49,6 +49,7 @@ class _OtpVerificationPageState extends ConsumerState<OtpVerificationPage> {
   }
 
   void _startTimer() {
+    _timer?.cancel();
     _secondsLeft = _resendSeconds;
     _timer = Timer.periodic(const Duration(seconds: 1), (t) {
       if (_secondsLeft == 0) {
@@ -61,7 +62,7 @@ class _OtpVerificationPageState extends ConsumerState<OtpVerificationPage> {
 
   @override
   void dispose() {
-    _timer.cancel();
+    _timer?.cancel();
     for (final c in _controllers) {
       c.dispose();
     }
@@ -74,6 +75,7 @@ class _OtpVerificationPageState extends ConsumerState<OtpVerificationPage> {
   String get _otpValue => _controllers.map((c) => c.text).join();
 
   bool _isVerifying = false;
+  bool _isResending = false;
 
   void _onVerify() {
     final otp = _otpValue;
@@ -91,10 +93,12 @@ class _OtpVerificationPageState extends ConsumerState<OtpVerificationPage> {
   }
 
   void _onResend() {
-    if (_secondsLeft > 0) return;
-    setState(() => _isVerifying = false);
+    if (_secondsLeft > 0 || _isResending) return;
+    setState(() {
+      _isVerifying = false;
+      _isResending = true;
+    });
     ref.read(authControllerProvider.notifier).sendOtp(widget.mobile);
-    _startTimer();
   }
 
   Future<void> _navigateAfterVerify() async {
@@ -124,12 +128,27 @@ class _OtpVerificationPageState extends ConsumerState<OtpVerificationPage> {
 
       next.whenOrNull(
         error: (e, _) {
+          if (_isResending) {
+            setState(() => _isResending = false);
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(content: Text(e.toString())), // see note below on 429 messaging
+            );
+            return; // don't touch _isVerifying/timer — this wasn't a verify attempt
+          }
           setState(() => _isVerifying = false);
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(content: Text(e.toString())),
           );
         },
         data: (_) {
+          if (_isResending) {
+            setState(() => _isResending = false);
+            _startTimer(); // only restart the cooldown on confirmed success
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(content: Text('OTP resent successfully')),
+            );
+            return;
+          }
           if (!_isVerifying) return;
           setState(() {
             _isVerifying = false;
@@ -207,7 +226,7 @@ class _OtpVerificationPageState extends ConsumerState<OtpVerificationPage> {
                       SizedBox(height: screenH * 0.02),
                       Center(
                         child: GestureDetector(
-                          onTap: (_secondsLeft == 0 && !_isResolving) ? _onResend : null,
+                          onTap: (_secondsLeft == 0 && !_isResolving && !_isResending) ? _onResend : null,
                           child: Padding(
                             padding: const EdgeInsets.symmetric(vertical: AppSpacing.md),
                             child: Text(
