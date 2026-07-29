@@ -1,14 +1,26 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'exceptions.dart';
 
 sealed class Failure {
   final String message;
   const Failure(this.message);
+
+  @override
+  String toString() => message;
 }
 
 class ServerFailure extends Failure {
   final int? statusCode;
   const ServerFailure(super.message, {this.statusCode});
+
+  @override
+  String toString() {
+    if (statusCode == 429) {
+      return 'Too many attempts. Please wait a few minutes before trying again.';
+    }
+    return message;
+  }
 }
 
 class NetworkFailure extends Failure {
@@ -38,8 +50,9 @@ class UnknownFailure extends Failure {
 
 /// Maps any caught exception → a Failure, for use in repository catch blocks.
 Failure mapExceptionToFailure(Object e) {
-  debugPrint('🔴 RAW EXCEPTION: $e (${e.runtimeType})');
-  return switch (e) {
+  final error = e is DioException ? (e.error ?? e) : e;
+  debugPrint('🔴 RAW EXCEPTION: $error (${error.runtimeType})');
+  return switch (error) {
     ServerException(message: final m, statusCode: final s) => ServerFailure(m, statusCode: s),
     NetworkException(message: final m) => NetworkFailure(m),
     UnauthorizedException(message: final m) => UnauthorizedFailure(m),

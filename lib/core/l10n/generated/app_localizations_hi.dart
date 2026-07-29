@@ -476,6 +476,111 @@ class AppLocalizationsHi extends AppLocalizations {
   String get bpcrUpdateSuccess => 'BPCR चेकलिस्ट अपडेट हो गई।';
 
   @override
+  String get bpcr_back => 'वापस';
+
+  @override
+  String get bpcr_submit => 'स्वीकार किया';
+
+  @override
+  String get bpcr_pregnancy_card1_title => 'अत्यधिक योनि से रक्तस्राव';
+
+  @override
+  String get bpcr_pregnancy_card1_desc =>
+      'अधिक मात्रा में रक्तस्राव होना या रक्त के थक्के निकलना खतरनाक हो सकता है।';
+
+  @override
+  String get bpcr_pregnancy_card2_title => 'धुंधला दिखाई देना';
+
+  @override
+  String get bpcr_pregnancy_card2_desc =>
+      'अचानक धुंधला दिखाई देना या आँखों के सामने धब्बे दिखाई देना गंभीर समस्या का संकेत हो सकता है।';
+
+  @override
+  String get bpcr_pregnancy_card3_title => 'हाथों/चेहरे में सूजन';
+
+  @override
+  String get bpcr_pregnancy_card3_desc =>
+      'हाथों, चेहरे या पैरों में सूजन उच्च रक्तचाप का संकेत हो सकती है।';
+
+  @override
+  String get bpcr_labor_card1_title => 'अत्यधिक रक्तस्राव';
+
+  @override
+  String get bpcr_labor_card1_desc =>
+      'प्रसव के दौरान या प्रसव के बाद अधिक रक्तस्राव होना एक चिकित्सकीय आपात स्थिति है।';
+
+  @override
+  String get bpcr_labor_card2_title => 'लंबा प्रसव (> 12 घंटे)';
+
+  @override
+  String get bpcr_labor_card2_desc =>
+      '12 घंटे से अधिक समय तक प्रसव चलने से माँ और शिशु दोनों को खतरा हो सकता है।';
+
+  @override
+  String get bpcr_labor_card3_title => 'दौरे (ऐंठन)';
+
+  @override
+  String get bpcr_labor_card3_desc =>
+      'प्रसव के दौरान दौरे पड़ना या शरीर में ऐंठन होना एक्लेम्पसिया का संकेत हो सकता है। तुरंत चिकित्सकीय सहायता लें।';
+
+  @override
+  String get bpcr_labor_card4_title => 'अपरा (प्लेसेंटा) का बाहर न निकलना';
+
+  @override
+  String get bpcr_labor_card4_desc =>
+      'यदि शिशु के जन्म के 30 मिनट के भीतर अपरा बाहर नहीं निकलती है, तो इससे गंभीर रक्तस्राव हो सकता है।';
+
+  @override
+  String get bpcr_postnatal_card1_title => 'अत्यधिक योनि से रक्तस्राव';
+
+  @override
+  String get bpcr_postnatal_card1_desc =>
+      'अधिक रक्तस्राव होना, बड़े रक्त के थक्के निकलना या एक घंटे में एक से अधिक पैड पूरी तरह भीग जाना खतरनाक संकेत है।';
+
+  @override
+  String get bpcr_postnatal_card2_title => 'दुर्गंधयुक्त योनि स्राव';
+
+  @override
+  String get bpcr_postnatal_card2_desc =>
+      'दुर्गंधयुक्त योनि स्राव संक्रमण का संकेत हो सकता है। इसे नज़रअंदाज़ न करें।';
+
+  @override
+  String get bpcr_postnatal_card3_title => 'तेज़ बुखार';
+
+  @override
+  String get bpcr_postnatal_card3_desc =>
+      '100.4°F (38°C) या उससे अधिक बुखार, ठंड लगना या शरीर में दर्द संक्रमण का संकेत हो सकता है।';
+
+  @override
+  String get bpcr_newborn_card1_title => 'दौरे / ऐंठन / शरीर का अकड़ना';
+
+  @override
+  String get bpcr_newborn_card1_desc =>
+      'दौरे पड़ना, झटके आना, शरीर का अकड़ जाना या असामान्य मुद्रा गंभीर खतरे के संकेत हैं। तुरंत चिकित्सकीय सहायता लें।';
+
+  @override
+  String get bpcr_newborn_card2_title =>
+      'साँस लेने में कठिनाई / तेज़ साँस चलना';
+
+  @override
+  String get bpcr_newborn_card2_desc =>
+      'यदि शिशु एक मिनट में 60 से अधिक साँस ले रहा हो, छाती धँस रही हो, घरघराहट की आवाज़ आ रही हो या नथुने फूल रहे हों, तो यह खतरे का संकेत है।';
+
+  @override
+  String get bpcr_newborn_card3_title => 'बहुत कम वज़न वाला शिशु';
+
+  @override
+  String get bpcr_newborn_card3_desc =>
+      'समय से पहले जन्मे या 2.5 किलोग्राम से कम वज़न वाले शिशुओं को विशेष देखभाल की आवश्यकता होती है।';
+
+  @override
+  String get bpcr_newborn_card4_title => 'सुस्ती / बेहोशी';
+
+  @override
+  String get bpcr_newborn_card4_desc =>
+      'यदि शिशु जाग नहीं रहा है, उसकी रोने की आवाज़ बहुत कमजोर है या वह कोई प्रतिक्रिया नहीं दे रहा है, तो यह गंभीर खतरे का संकेत है। तुरंत चिकित्सकीय सहायता लें।';
+
+  @override
   String get maternalSchemesdesc =>
       'सरकारी योजनाओं के बारे में जानें और पात्रता की जाँच करें।';
 

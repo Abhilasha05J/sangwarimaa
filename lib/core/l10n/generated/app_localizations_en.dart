@@ -474,6 +474,110 @@ class AppLocalizationsEn extends AppLocalizations {
   String get bpcrUpdateSuccess => 'BPCR checklist updated.';
 
   @override
+  String get bpcr_back => 'Back';
+
+  @override
+  String get bpcr_submit => 'Acknowledged';
+
+  @override
+  String get bpcr_pregnancy_card1_title => 'Severe Vaginal Bleeding';
+
+  @override
+  String get bpcr_pregnancy_card1_desc =>
+      'Heavy bleeding or passing clots can be dangerous.';
+
+  @override
+  String get bpcr_pregnancy_card2_title => 'Blurred Vision';
+
+  @override
+  String get bpcr_pregnancy_card2_desc =>
+      'Sudden blurred vision or seeing spots may indicate a serious condition.';
+
+  @override
+  String get bpcr_pregnancy_card3_title => 'Swollen Hands/Face';
+
+  @override
+  String get bpcr_pregnancy_card3_desc =>
+      'Swelling in hands, face or feet may be a sign of high blood pressure.';
+
+  @override
+  String get bpcr_labor_card1_title => 'Severe Vaginal Bleeding';
+
+  @override
+  String get bpcr_labor_card1_desc =>
+      'Heavy bleeding during labor or after delivery is a medical emergency.';
+
+  @override
+  String get bpcr_labor_card2_title => 'Prolonged Labour (> 12 hours)';
+
+  @override
+  String get bpcr_labor_card2_desc =>
+      'Labor lasting more than 12 hours can put mother and baby at risk.';
+
+  @override
+  String get bpcr_labor_card3_title => 'Convulsions';
+
+  @override
+  String get bpcr_labor_card3_desc =>
+      'Fits or seizures during labor may be a sign of eclampsia. Seek help immediately.';
+
+  @override
+  String get bpcr_labor_card4_title => 'Retained Placenta';
+
+  @override
+  String get bpcr_labor_card4_desc =>
+      'If the placenta is not delivered within 30 minutes after birth, it can cause severe bleeding.';
+
+  @override
+  String get bpcr_postnatal_card1_title => 'Severe Vaginal Bleeding';
+
+  @override
+  String get bpcr_postnatal_card1_desc =>
+      'Heavy bleeding, passing large clots, or soaking more than 1 pad in an hour is dangerous.';
+
+  @override
+  String get bpcr_postnatal_card2_title => 'Foul-smelling Vaginal Discharge';
+
+  @override
+  String get bpcr_postnatal_card2_desc =>
+      'Bad-smelling discharge may indicate an infection. Do not ignore it.';
+
+  @override
+  String get bpcr_postnatal_card3_title => 'High Fever';
+
+  @override
+  String get bpcr_postnatal_card3_desc =>
+      'Fever (100.4°F / 38°C or higher), chills, or body ache may be a sign of infection.';
+
+  @override
+  String get bpcr_newborn_card1_title => 'Convulsions / Spasms / Rigidity';
+
+  @override
+  String get bpcr_newborn_card1_desc =>
+      'Fits, jerky movements, stiff body or abnormal posturing are dangerous signs. Seek help immediately.';
+
+  @override
+  String get bpcr_newborn_card2_title => 'Difficult / Fast Breathing';
+
+  @override
+  String get bpcr_newborn_card2_desc =>
+      'Breathing too fast (more than 60 breaths per minute), chest in-drawing, grunting or flaring nostrils are danger signs.';
+
+  @override
+  String get bpcr_newborn_card3_title => 'Very Small Baby';
+
+  @override
+  String get bpcr_newborn_card3_desc =>
+      'Babies born too early or with very low birth weight (less than 2.5 kg) need special care.';
+
+  @override
+  String get bpcr_newborn_card4_title => 'Lethargy / Unconsciousness';
+
+  @override
+  String get bpcr_newborn_card4_desc =>
+      'Baby is not able to wake up, has weak or no cry, or is not responding. This is a serious sign. Seek help immediately.';
+
+  @override
   String get maternalSchemesdesc =>
       'Explore Government schemes & check eligibility';
 

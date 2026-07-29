@@ -986,6 +986,186 @@ abstract class AppLocalizations {
   /// **'BPCR checklist updated.'**
   String get bpcrUpdateSuccess;
 
+  /// No description provided for @bpcr_back.
+  ///
+  /// In en, this message translates to:
+  /// **'Back'**
+  String get bpcr_back;
+
+  /// No description provided for @bpcr_submit.
+  ///
+  /// In en, this message translates to:
+  /// **'Acknowledged'**
+  String get bpcr_submit;
+
+  /// No description provided for @bpcr_pregnancy_card1_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Severe Vaginal Bleeding'**
+  String get bpcr_pregnancy_card1_title;
+
+  /// No description provided for @bpcr_pregnancy_card1_desc.
+  ///
+  /// In en, this message translates to:
+  /// **'Heavy bleeding or passing clots can be dangerous.'**
+  String get bpcr_pregnancy_card1_desc;
+
+  /// No description provided for @bpcr_pregnancy_card2_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Blurred Vision'**
+  String get bpcr_pregnancy_card2_title;
+
+  /// No description provided for @bpcr_pregnancy_card2_desc.
+  ///
+  /// In en, this message translates to:
+  /// **'Sudden blurred vision or seeing spots may indicate a serious condition.'**
+  String get bpcr_pregnancy_card2_desc;
+
+  /// No description provided for @bpcr_pregnancy_card3_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Swollen Hands/Face'**
+  String get bpcr_pregnancy_card3_title;
+
+  /// No description provided for @bpcr_pregnancy_card3_desc.
+  ///
+  /// In en, this message translates to:
+  /// **'Swelling in hands, face or feet may be a sign of high blood pressure.'**
+  String get bpcr_pregnancy_card3_desc;
+
+  /// No description provided for @bpcr_labor_card1_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Severe Vaginal Bleeding'**
+  String get bpcr_labor_card1_title;
+
+  /// No description provided for @bpcr_labor_card1_desc.
+  ///
+  /// In en, this message translates to:
+  /// **'Heavy bleeding during labor or after delivery is a medical emergency.'**
+  String get bpcr_labor_card1_desc;
+
+  /// No description provided for @bpcr_labor_card2_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Prolonged Labour (> 12 hours)'**
+  String get bpcr_labor_card2_title;
+
+  /// No description provided for @bpcr_labor_card2_desc.
+  ///
+  /// In en, this message translates to:
+  /// **'Labor lasting more than 12 hours can put mother and baby at risk.'**
+  String get bpcr_labor_card2_desc;
+
+  /// No description provided for @bpcr_labor_card3_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Convulsions'**
+  String get bpcr_labor_card3_title;
+
+  /// No description provided for @bpcr_labor_card3_desc.
+  ///
+  /// In en, this message translates to:
+  /// **'Fits or seizures during labor may be a sign of eclampsia. Seek help immediately.'**
+  String get bpcr_labor_card3_desc;
+
+  /// No description provided for @bpcr_labor_card4_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Retained Placenta'**
+  String get bpcr_labor_card4_title;
+
+  /// No description provided for @bpcr_labor_card4_desc.
+  ///
+  /// In en, this message translates to:
+  /// **'If the placenta is not delivered within 30 minutes after birth, it can cause severe bleeding.'**
+  String get bpcr_labor_card4_desc;
+
+  /// No description provided for @bpcr_postnatal_card1_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Severe Vaginal Bleeding'**
+  String get bpcr_postnatal_card1_title;
+
+  /// No description provided for @bpcr_postnatal_card1_desc.
+  ///
+  /// In en, this message translates to:
+  /// **'Heavy bleeding, passing large clots, or soaking more than 1 pad in an hour is dangerous.'**
+  String get bpcr_postnatal_card1_desc;
+
+  /// No description provided for @bpcr_postnatal_card2_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Foul-smelling Vaginal Discharge'**
+  String get bpcr_postnatal_card2_title;
+
+  /// No description provided for @bpcr_postnatal_card2_desc.
+  ///
+  /// In en, this message translates to:
+  /// **'Bad-smelling discharge may indicate an infection. Do not ignore it.'**
+  String get bpcr_postnatal_card2_desc;
+
+  /// No description provided for @bpcr_postnatal_card3_title.
+  ///
+  /// In en, this message translates to:
+  /// **'High Fever'**
+  String get bpcr_postnatal_card3_title;
+
+  /// No description provided for @bpcr_postnatal_card3_desc.
+  ///
+  /// In en, this message translates to:
+  /// **'Fever (100.4°F / 38°C or higher), chills, or body ache may be a sign of infection.'**
+  String get bpcr_postnatal_card3_desc;
+
+  /// No description provided for @bpcr_newborn_card1_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Convulsions / Spasms / Rigidity'**
+  String get bpcr_newborn_card1_title;
+
+  /// No description provided for @bpcr_newborn_card1_desc.
+  ///
+  /// In en, this message translates to:
+  /// **'Fits, jerky movements, stiff body or abnormal posturing are dangerous signs. Seek help immediately.'**
+  String get bpcr_newborn_card1_desc;
+
+  /// No description provided for @bpcr_newborn_card2_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Difficult / Fast Breathing'**
+  String get bpcr_newborn_card2_title;
+
+  /// No description provided for @bpcr_newborn_card2_desc.
+  ///
+  /// In en, this message translates to:
+  /// **'Breathing too fast (more than 60 breaths per minute), chest in-drawing, grunting or flaring nostrils are danger signs.'**
+  String get bpcr_newborn_card2_desc;
+
+  /// No description provided for @bpcr_newborn_card3_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Very Small Baby'**
+  String get bpcr_newborn_card3_title;
+
+  /// No description provided for @bpcr_newborn_card3_desc.
+  ///
+  /// In en, this message translates to:
+  /// **'Babies born too early or with very low birth weight (less than 2.5 kg) need special care.'**
+  String get bpcr_newborn_card3_desc;
+
+  /// No description provided for @bpcr_newborn_card4_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Lethargy / Unconsciousness'**
+  String get bpcr_newborn_card4_title;
+
+  /// No description provided for @bpcr_newborn_card4_desc.
+  ///
+  /// In en, this message translates to:
+  /// **'Baby is not able to wake up, has weak or no cry, or is not responding. This is a serious sign. Seek help immediately.'**
+  String get bpcr_newborn_card4_desc;
+
   /// No description provided for @maternalSchemesdesc.
   ///
   /// In en, this message translates to:

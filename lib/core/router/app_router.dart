@@ -4,6 +4,10 @@ import 'package:go_router/go_router.dart';
 import 'package:sangwari_maa/features/ancservices/presentation/pages/anc_services_screen.dart';
 import 'package:sangwari_maa/features/auth/presentation/pages/login_page.dart';
 import 'package:sangwari_maa/features/auth/presentation/pages/otp_verification_page.dart';
+import 'package:sangwari_maa/features/bpcr/presentation/pages/danger_signs_labor_page.dart';
+import 'package:sangwari_maa/features/bpcr/presentation/pages/danger_signs_newborn_page.dart';
+import 'package:sangwari_maa/features/bpcr/presentation/pages/danger_signs_postnatal_page.dart';
+import 'package:sangwari_maa/features/bpcr/presentation/pages/danger_signs_pregnancy_page.dart';
 import 'package:sangwari_maa/features/bpcr/presentation/pages/women_bpcr.dart';
 import 'package:sangwari_maa/features/chatbot/presentation/pages/women_chatbot.dart';
 import 'package:sangwari_maa/features/dashboard/presentation/pages/admin_dashboard.dart';
@@ -152,22 +156,22 @@ builder: (_, __) => const BpcrScreen(),
     GoRoute(
       path: 'danger-signs-pregnancy',
       name: 'dangerSignsPregnancy',
-      builder: (_, __) => const _BpcrPlaceholder(title: 'Danger Signs — Pregnancy'),
+      builder: (_, __) => const DangerSignsPregnancyPage(),
     ),
     GoRoute(
       path: 'danger-signs-labor',
       name: 'dangerSignsLabor',
-      builder: (_, __) => const _BpcrPlaceholder(title: 'Danger Signs — Labor & Childbirth'),
+      builder: (_, __) => const DangerSignsLaborPage(),
     ),
     GoRoute(
       path: 'danger-signs-postnatal',
       name: 'dangerSignsPostnatal',
-      builder: (_, __) => const _BpcrPlaceholder(title: 'Danger Signs — Postnatal'),
+      builder: (_, __) => const DangerSignsPostnatalPage(),
     ),
     GoRoute(
       path: 'danger-signs-newborn',
       name: 'dangerSignsNewborn',
-      builder: (_, __) => const _BpcrPlaceholder(title: 'Danger Signs — Newborn'),
+      builder: (_, __) => const DangerSignsNewbornPage(),
     ),
     GoRoute(
       path: 'health-facility-id',

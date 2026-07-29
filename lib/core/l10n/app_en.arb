@@ -429,6 +429,42 @@
   "bpcrUpdateSuccess": "BPCR checklist updated.",
   "@bpcrUpdateSuccess": {},
 
+"bpcr_back": "Back",
+"bpcr_submit": "Acknowledged",
+
+"bpcr_pregnancy_card1_title": "Severe Vaginal Bleeding",
+"bpcr_pregnancy_card1_desc": "Heavy bleeding or passing clots can be dangerous.",
+"bpcr_pregnancy_card2_title": "Blurred Vision",
+"bpcr_pregnancy_card2_desc": "Sudden blurred vision or seeing spots may indicate a serious condition.",
+"bpcr_pregnancy_card3_title": "Swollen Hands/Face",
+"bpcr_pregnancy_card3_desc": "Swelling in hands, face or feet may be a sign of high blood pressure.",
+
+"bpcr_labor_card1_title": "Severe Vaginal Bleeding",
+"bpcr_labor_card1_desc": "Heavy bleeding during labor or after delivery is a medical emergency.",
+"bpcr_labor_card2_title": "Prolonged Labour (> 12 hours)",
+"bpcr_labor_card2_desc": "Labor lasting more than 12 hours can put mother and baby at risk.",
+"bpcr_labor_card3_title": "Convulsions",
+"bpcr_labor_card3_desc": "Fits or seizures during labor may be a sign of eclampsia. Seek help immediately.",
+"bpcr_labor_card4_title": "Retained Placenta",
+"bpcr_labor_card4_desc": "If the placenta is not delivered within 30 minutes after birth, it can cause severe bleeding.",
+
+"bpcr_postnatal_card1_title": "Severe Vaginal Bleeding",
+"bpcr_postnatal_card1_desc": "Heavy bleeding, passing large clots, or soaking more than 1 pad in an hour is dangerous.",
+"bpcr_postnatal_card2_title": "Foul-smelling Vaginal Discharge",
+"bpcr_postnatal_card2_desc": "Bad-smelling discharge may indicate an infection. Do not ignore it.",
+"bpcr_postnatal_card3_title": "High Fever",
+"bpcr_postnatal_card3_desc": "Fever (100.4°F / 38°C or higher), chills, or body ache may be a sign of infection.",
+
+"bpcr_newborn_card1_title": "Convulsions / Spasms / Rigidity",
+"bpcr_newborn_card1_desc": "Fits, jerky movements, stiff body or abnormal posturing are dangerous signs. Seek help immediately.",
+"bpcr_newborn_card2_title": "Difficult / Fast Breathing",
+"bpcr_newborn_card2_desc": "Breathing too fast (more than 60 breaths per minute), chest in-drawing, grunting or flaring nostrils are danger signs.",
+"bpcr_newborn_card3_title": "Very Small Baby",
+"bpcr_newborn_card3_desc": "Babies born too early or with very low birth weight (less than 2.5 kg) need special care.",
+"bpcr_newborn_card4_title": "Lethargy / Unconsciousness",
+"bpcr_newborn_card4_desc": "Baby is not able to wake up, has weak or no cry, or is not responding. This is a serious sign. Seek help immediately.",
+
+
   "maternalSchemesdesc": "Explore Government schemes & check eligibility",
   "@maternalSchemesdesc": {},
 

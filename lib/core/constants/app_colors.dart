@@ -30,6 +30,8 @@ abstract final class AppColors {
   static const Color riskRed    = Color(0xFFD32F2F);
   static const Color riskYellow = Color(0xFFF9A825);
   static const Color riskGreen  = Color(0xFF388E3C);
+  static const Color infoBlue   = Color(0xFF3B7DD8);
+  static const Color infoPurple = Color(0xFF8E5FD1);
 
   // ── Borders ────────────────────────────────────────────────────────────
   static const Color pinkBorder = Color(0xFFF58D8B);
