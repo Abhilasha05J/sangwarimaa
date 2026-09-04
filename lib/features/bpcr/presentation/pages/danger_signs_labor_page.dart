@@ -13,7 +13,7 @@ class DangerSignsLaborPage extends StatelessWidget {
     final l10n = AppLocalizations.of(context)!;
     return BpcrChecklistScaffold(
       componentKey: 'dangerSignsLabor',
-      headerIcon: Icons.warning_rounded,
+      headerIconAsset: 'assets/icons/bpcr2.png',
       headerTitle: l10n.bpcr_danger_labor_title,
       cards: [
         DangerSignCardData(

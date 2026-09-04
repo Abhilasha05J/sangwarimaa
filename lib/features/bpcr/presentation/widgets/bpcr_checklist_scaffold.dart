@@ -10,11 +10,12 @@ import 'package:sangwari_maa/shared/widgets/app_bar.dart';
 import 'package:sangwari_maa/shared/widgets/app_primary_button.dart';
 import 'package:sangwari_maa/shared/widgets/bottom_navbar.dart';
 import 'package:sangwari_maa/features/bpcr/data/model/danger_sign_card_data.dart';
+import 'bpcr_section_header.dart';
 import 'danger_sign_card.dart';
 
 class BpcrChecklistScaffold extends ConsumerWidget {
   final String componentKey;
-  final IconData headerIcon;
+  final String headerIconAsset;
   final String headerTitle;
   final List<DangerSignCardData> cards;
   final VoidCallback onSubmitted;
@@ -22,7 +23,7 @@ class BpcrChecklistScaffold extends ConsumerWidget {
   const BpcrChecklistScaffold({
     super.key,
     required this.componentKey,
-    required this.headerIcon,
+    required this.headerIconAsset,
     required this.headerTitle,
     required this.cards,
     required this.onSubmitted,
@@ -47,7 +48,7 @@ class BpcrChecklistScaffold extends ConsumerWidget {
         top: false,
         child: Column(
           children: [
-            _SubHeader(icon: headerIcon, title: headerTitle),
+            BpcrSectionHeader(iconAsset: headerIconAsset, title: headerTitle),
             Expanded(
               child: SingleChildScrollView(
                 physics: const BouncingScrollPhysics(),
@@ -97,7 +98,7 @@ class BpcrChecklistScaffold extends ConsumerWidget {
                   const SizedBox(width: AppSpacing.md),
                   Expanded(
                     child: AppPrimaryButton(
-                      label: l10n.bpcr_submit,
+                      label: l10n.submit,
                       onTap: isComplete ? onSubmitted : null,
                     ),
                   ),
@@ -112,33 +113,3 @@ class BpcrChecklistScaffold extends ConsumerWidget {
   }
 }
 
-class _SubHeader extends StatelessWidget {
-  final IconData icon;
-  final String title;
-  const _SubHeader({required this.icon, required this.title});
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(
-        horizontal: AppSpacing.md,
-        vertical: AppSpacing.md,
-      ),
-      child: Row(
-        children: [
-          Container(
-            width: 44,
-            height: 44,
-            decoration: BoxDecoration(
-              color: const Color(0xFFFCE4E4),
-              borderRadius: BorderRadius.circular(AppSpacing.radiusMd),
-            ),
-            child: Icon(icon, color: AppColors.riskRed, size: 22),
-          ),
-          const SizedBox(width: AppSpacing.sm),
-          Expanded(child: Text(title, style: AppTypography.titleLarge)),
-        ],
-      ),
-    );
-  }
-}

@@ -37,13 +37,18 @@ dependencies:
 
   # ── Local DB ──────────────────────────────────────────────────────────
   drift: ^2.18.0
-  sqlite3_flutter_libs: ^0.6.0+eol
+  sqlite3_flutter_libs: ^0.5.42   # NOT 0.6.0+eol — this is the last version that actually bundles native binaries
+  path_provider: ^2.1.4
+  path: ^1.9.0
+
 
   # ── Firebase ─────────────────────────────────────────────────────────
   firebase_core: ^3.13.0
   firebase_messaging: ^15.2.5
   firebase_crashlytics: ^4.3.5
   firebase_analytics: ^11.4.5
+  flutter_local_notifications: ^18.0.1
+  timezone: ^0.9.4
 
 
   # ── Fonts & UI ────────────────────────────────────────────────────────
@@ -101,6 +106,7 @@ dev_dependencies:
   freezed: ^3.1.0
   injectable_generator: ^2.6.2
   mocktail: ^1.0.3
+
 
 
 # For information on the generic Dart part of this file, see the

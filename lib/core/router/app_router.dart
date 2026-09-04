@@ -1,13 +1,21 @@
+import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:firebase_analytics/observer.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sangwari_maa/features/ancservices/presentation/pages/anc_services_screen.dart';
 import 'package:sangwari_maa/features/auth/presentation/pages/login_page.dart';
 import 'package:sangwari_maa/features/auth/presentation/pages/otp_verification_page.dart';
+import 'package:sangwari_maa/features/bpcr/presentation/pages/community_blood_donor_page.dart';
+import 'package:sangwari_maa/features/bpcr/presentation/pages/community_financial_support_page.dart';
 import 'package:sangwari_maa/features/bpcr/presentation/pages/danger_signs_labor_page.dart';
 import 'package:sangwari_maa/features/bpcr/presentation/pages/danger_signs_newborn_page.dart';
 import 'package:sangwari_maa/features/bpcr/presentation/pages/danger_signs_postnatal_page.dart';
 import 'package:sangwari_maa/features/bpcr/presentation/pages/danger_signs_pregnancy_page.dart';
+import 'package:sangwari_maa/features/bpcr/presentation/pages/health_facility_id_page.dart';
+import 'package:sangwari_maa/features/bpcr/presentation/pages/saved_money_delivery_page.dart';
+import 'package:sangwari_maa/features/bpcr/presentation/pages/skill_birth_attendant_page.dart';
+import 'package:sangwari_maa/features/bpcr/presentation/pages/transport_modality_page.dart';
 import 'package:sangwari_maa/features/bpcr/presentation/pages/women_bpcr.dart';
 import 'package:sangwari_maa/features/chatbot/presentation/pages/women_chatbot.dart';
 import 'package:sangwari_maa/features/dashboard/presentation/pages/admin_dashboard.dart';
@@ -56,10 +64,16 @@ abstract final class Routes {
   //Admin
   static const adminDashboard  = '/admindashboard';
 
+
 }
 
+final rootNavigatorKey = GlobalKey<NavigatorState>();
 GoRouter buildAppRouter({String initialLocation = '/',String? pendingMobile, }) => GoRouter(
+  navigatorKey: rootNavigatorKey,
   initialLocation: initialLocation,
+  observers: [
+    FirebaseAnalyticsObserver(analytics: FirebaseAnalytics.instance),
+  ],
   debugLogDiagnostics: kDebugMode,
   routes: [
     GoRoute(
@@ -176,32 +190,32 @@ builder: (_, __) => const BpcrScreen(),
     GoRoute(
       path: 'health-facility-id',
       name: 'healthFacilityId',
-      builder: (_, __) => const _BpcrPlaceholder(title: 'Health Facility Identification'),
+      builder: (_, __) => const HealthFacilityIdPage(),
     ),
     GoRoute(
       path: 'skill-birth-attendant',
       name: 'skillBirthAttendant',
-      builder: (_, __) => const _BpcrPlaceholder(title: 'Skilled Birth Attendant'),
+      builder: (_, __) => const SkillBirthAttendantPage(),
     ),
     GoRoute(
       path: 'transport-modality',
       name: 'transportModality',
-      builder: (_, __) => const _BpcrPlaceholder(title: 'Transport Modality'),
+      builder: (_, __) => const TransportModalityPage(),
     ),
     GoRoute(
       path: 'saved-money-delivery',
       name: 'savedMoneyDelivery',
-      builder: (_, __) => const _BpcrPlaceholder(title: 'Saved Money for Delivery'),
+      builder: (_, __) => const SavedMoneyDeliveryPage(),
     ),
     GoRoute(
       path: 'community-financial-support',
       name: 'communityFinancialSupport',
-      builder: (_, __) => const _BpcrPlaceholder(title: 'Community Financial Support'),
+      builder: (_, __) => const CommunityFinancialSupportPage(),
     ),
     GoRoute(
       path: 'community-blood-donor',
       name: 'communityBloodDonor',
-      builder: (_, __) => const _BpcrPlaceholder(title: 'Community Blood Donor'),
+      builder: (_, __) => const CommunityBloodDonorPage(),
     ),
   ],
 )

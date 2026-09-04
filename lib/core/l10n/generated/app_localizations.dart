@@ -1166,6 +1166,252 @@ abstract class AppLocalizations {
   /// **'Baby is not able to wake up, has weak or no cry, or is not responding. This is a serious sign. Seek help immediately.'**
   String get bpcr_newborn_card4_desc;
 
+  /// No description provided for @bpcr_facilities_found.
+  ///
+  /// In en, this message translates to:
+  /// **'Facilities found nearby'**
+  String get bpcr_facilities_found;
+
+  /// No description provided for @bpcr_tba_available_question.
+  ///
+  /// In en, this message translates to:
+  /// **'Is a Traditional Birth Attendant available?'**
+  String get bpcr_tba_available_question;
+
+  /// No description provided for @bpcr_saving_reminder_quote.
+  ///
+  /// In en, this message translates to:
+  /// **'Dear mother, today\'s small saving can help with a safe delivery tomorrow. Set aside a little this week for delivery and emergency needs. Did you add any amount to your pregnancy savings this week?'**
+  String get bpcr_saving_reminder_quote;
+
+  /// No description provided for @bpcr_self_saving_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Self Saving'**
+  String get bpcr_self_saving_label;
+
+  /// No description provided for @bpcr_family_saving_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Family Saving'**
+  String get bpcr_family_saving_label;
+
+  /// No description provided for @bpcr_husband_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Husband'**
+  String get bpcr_husband_label;
+
+  /// No description provided for @bpcr_mother_in_law_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Mother-in-Law'**
+  String get bpcr_mother_in_law_label;
+
+  /// No description provided for @bpcr_name_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Name'**
+  String get bpcr_name_hint;
+
+  /// No description provided for @bpcr_contact_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Contact Number'**
+  String get bpcr_contact_hint;
+
+  /// No description provided for @bpcr_relation_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Relation With Pregnant Mother'**
+  String get bpcr_relation_hint;
+
+  /// No description provided for @bpcr_community_support_question.
+  ///
+  /// In en, this message translates to:
+  /// **'If yes, then with whom — details like Self Help Group (SHG)/ Community leaders (Panch/Sarpanch/Schoolteachers/Healers/other...)'**
+  String get bpcr_community_support_question;
+
+  /// No description provided for @bpcr_blood_donor_reminder_quote.
+  ///
+  /// In en, this message translates to:
+  /// **'Dear family, preparing for a safe delivery also means identifying a potential blood donor. This can save time if needed. Have you identified a potential blood donor for delivery? Discuss with family or acquaintances in advance.'**
+  String get bpcr_blood_donor_reminder_quote;
+
+  /// No description provided for @bpcr_self_blood_group_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Self Blood Group'**
+  String get bpcr_self_blood_group_label;
+
+  /// No description provided for @bpcr_blood_group_verified_note.
+  ///
+  /// In en, this message translates to:
+  /// **'Last Verified During Your 2nd Trimester ANC Checkup.'**
+  String get bpcr_blood_group_verified_note;
+
+  /// No description provided for @bpcr_emergency_hospital_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Emergency hospital'**
+  String get bpcr_emergency_hospital_label;
+
+  /// No description provided for @bpcr_family_donors_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Family Donors'**
+  String get bpcr_family_donors_label;
+
+  /// No description provided for @bpcr_add_family_member.
+  ///
+  /// In en, this message translates to:
+  /// **'+ Add Family Member'**
+  String get bpcr_add_family_member;
+
+  /// No description provided for @bpcr_add_community_donors.
+  ///
+  /// In en, this message translates to:
+  /// **'+ Add community Donors'**
+  String get bpcr_add_community_donors;
+
+  /// No description provided for @bpcr_community_donors_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Community Donors'**
+  String get bpcr_community_donors_label;
+
+  /// No description provided for @bpcr_transport_plan_subtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Prepare in advance for your safety.'**
+  String get bpcr_transport_plan_subtitle;
+
+  /// No description provided for @bpcr_delivery_place_question.
+  ///
+  /// In en, this message translates to:
+  /// **'Where do you plan to deliver?'**
+  String get bpcr_delivery_place_question;
+
+  /// No description provided for @bpcr_place_government.
+  ///
+  /// In en, this message translates to:
+  /// **'Government Hospital'**
+  String get bpcr_place_government;
+
+  /// No description provided for @bpcr_place_private.
+  ///
+  /// In en, this message translates to:
+  /// **'Private Hospital'**
+  String get bpcr_place_private;
+
+  /// No description provided for @bpcr_place_undecided.
+  ///
+  /// In en, this message translates to:
+  /// **'Undecided'**
+  String get bpcr_place_undecided;
+
+  /// No description provided for @bpcr_hospital_name_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Hospital Name'**
+  String get bpcr_hospital_name_label;
+
+  /// No description provided for @bpcr_hospital_name_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter Hospital Name'**
+  String get bpcr_hospital_name_hint;
+
+  /// No description provided for @bpcr_transport_options_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Transport Options'**
+  String get bpcr_transport_options_label;
+
+  /// No description provided for @bpcr_option_government_ambulance.
+  ///
+  /// In en, this message translates to:
+  /// **'Government Ambulance — Call 102 / 108'**
+  String get bpcr_option_government_ambulance;
+
+  /// No description provided for @bpcr_shared_with_family_question.
+  ///
+  /// In en, this message translates to:
+  /// **'Shared with family?'**
+  String get bpcr_shared_with_family_question;
+
+  /// No description provided for @bpcr_option_private_ambulance.
+  ///
+  /// In en, this message translates to:
+  /// **'Private Ambulance'**
+  String get bpcr_option_private_ambulance;
+
+  /// No description provided for @bpcr_provider_name_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Provider Name'**
+  String get bpcr_provider_name_hint;
+
+  /// No description provided for @bpcr_option_own_vehicle.
+  ///
+  /// In en, this message translates to:
+  /// **'Own Vehicle'**
+  String get bpcr_option_own_vehicle;
+
+  /// No description provided for @bpcr_vehicle_car.
+  ///
+  /// In en, this message translates to:
+  /// **'Car'**
+  String get bpcr_vehicle_car;
+
+  /// No description provided for @bpcr_vehicle_bike.
+  ///
+  /// In en, this message translates to:
+  /// **'Bike'**
+  String get bpcr_vehicle_bike;
+
+  /// No description provided for @bpcr_vehicle_other.
+  ///
+  /// In en, this message translates to:
+  /// **'Other'**
+  String get bpcr_vehicle_other;
+
+  /// No description provided for @bpcr_driver_name_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Driver Name'**
+  String get bpcr_driver_name_hint;
+
+  /// No description provided for @bpcr_driver_number_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Driver Number'**
+  String get bpcr_driver_number_hint;
+
+  /// No description provided for @bpcr_identify_birth_companion_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Identify Birth Companion'**
+  String get bpcr_identify_birth_companion_label;
+
+  /// No description provided for @bpcr_companion_asha.
+  ///
+  /// In en, this message translates to:
+  /// **'ASHA'**
+  String get bpcr_companion_asha;
+
+  /// No description provided for @bpcr_companion_husband.
+  ///
+  /// In en, this message translates to:
+  /// **'Husband'**
+  String get bpcr_companion_husband;
+
+  /// No description provided for @bpcr_companion_other_family.
+  ///
+  /// In en, this message translates to:
+  /// **'Other Family Members'**
+  String get bpcr_companion_other_family;
+
   /// No description provided for @maternalSchemesdesc.
   ///
   /// In en, this message translates to:
@@ -2635,6 +2881,36 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Avg. BPCR Score'**
   String get statAvgBpcr;
+
+  /// No description provided for @bpcr_support_panch.
+  ///
+  /// In en, this message translates to:
+  /// **'Panch'**
+  String get bpcr_support_panch;
+
+  /// No description provided for @bpcr_support_sarpanch.
+  ///
+  /// In en, this message translates to:
+  /// **'Sarpanch'**
+  String get bpcr_support_sarpanch;
+
+  /// No description provided for @bpcr_support_healers.
+  ///
+  /// In en, this message translates to:
+  /// **'Healers'**
+  String get bpcr_support_healers;
+
+  /// No description provided for @bpcr_support_school_teachers.
+  ///
+  /// In en, this message translates to:
+  /// **'School Teachers'**
+  String get bpcr_support_school_teachers;
+
+  /// No description provided for @bpcr_support_other.
+  ///
+  /// In en, this message translates to:
+  /// **'Other'**
+  String get bpcr_support_other;
 
   /// No description provided for @statActiveAlerts.
   ///

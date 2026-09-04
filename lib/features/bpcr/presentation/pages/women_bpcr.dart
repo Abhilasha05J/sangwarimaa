@@ -148,7 +148,7 @@ class BpcrScreen extends ConsumerWidget {
                             child: _BpcrTile(
                               iconAsset: 'assets/icons/bpcr7.png',
                               title:
-                              '${l10n.bpcr_danger_pregnancy_title}',
+                              '${l10n.bpcr_transport_title}',
                               subtitle: '${l10n.bpcr_transport_desc}',
                               onTap: () =>
                                   context.pushNamed('transportModality'),

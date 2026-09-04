@@ -149,9 +149,33 @@ class AncServicesController extends _$AncServicesController {
     return ref.read(ancServicesRepositoryProvider).getMedicineCalendar(medicineType);
   }
 
-  Future<void> toggleMedicineDate(String medicineType, DateTime date, bool taken) async {
+  // Future<void> toggleMedicineDate(String medicineType, DateTime date, bool taken) async {
+  //   final current = state.value;
+  //   if (current == null) return;
+  //   final isoDate = date.toIso8601String().split('T').first;
+  //
+  //   final previous = current.medicineTracker[medicineType];
+  //   final defaultTotal = medicineType == 'iron' ? 180 : 360;
+  //   final delta = taken ? 1 : -1;
+  //   final optimisticTracker = Map<String, MedicineTrackerItem>.from(current.medicineTracker)
+  //     ..[medicineType] = MedicineTrackerItem(
+  //       taken: ((previous?.taken ?? 0) + delta).clamp(0, previous?.total ?? defaultTotal),
+  //       total: previous?.total ?? defaultTotal,
+  //     );
+  //   state = AsyncValue.data(current.copyWith(medicineTracker: optimisticTracker));
+  //
+  //   try {
+  //     final updated = await ref.read(ancServicesRepositoryProvider).toggleMedicineDate(medicineType, isoDate, taken);
+  //     final latest = state.value ?? current;
+  //     final confirmedTracker = Map<String, MedicineTrackerItem>.from(latest.medicineTracker)..[medicineType] = updated;
+  //     state = AsyncValue.data(latest.copyWith(medicineTracker: confirmedTracker));
+  //   } catch (_) {
+  //     state = AsyncValue.data(current);
+  //   }
+  // }
+  Future<bool> toggleMedicineDate(String medicineType, DateTime date, bool taken) async {
     final current = state.value;
-    if (current == null) return;
+    if (current == null) return false;
     final isoDate = date.toIso8601String().split('T').first;
 
     final previous = current.medicineTracker[medicineType];
@@ -169,11 +193,12 @@ class AncServicesController extends _$AncServicesController {
       final latest = state.value ?? current;
       final confirmedTracker = Map<String, MedicineTrackerItem>.from(latest.medicineTracker)..[medicineType] = updated;
       state = AsyncValue.data(latest.copyWith(medicineTracker: confirmedTracker));
+      return true;
     } catch (_) {
       state = AsyncValue.data(current);
+      return false;
     }
   }
-
   Future<void> markMedicineTaken(String medicineType) async {
     final current = state.value;
     if (current == null) return;

@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:sangwari_maa/core/errors/failures.dart';
+import 'package:sangwari_maa/core/services/notification_service.dart';
 import 'package:sangwari_maa/core/services/token_storage_service.dart';
 import 'package:sangwari_maa/features/auth/data/datasource/auth_remote_datasource.dart';
 import 'package:sangwari_maa/features/auth/data/model/auth_response_model.dart';
@@ -33,6 +34,12 @@ class AuthRepository {
         refreshToken: auth.tokens.refreshToken,
       );
       await _tokenStorage.saveRole(auth.user.role.name);
+      // Register this device for push notifications — best-effort, never
+      // block login on it.
+      final fcmToken = await NotificationService.instance.getToken();
+      if (fcmToken != null) {
+        await updateFcmToken(fcmToken); // ignore failure — not login-critical
+      }
       return Right(auth);
     } catch (e) {
       return Left(mapExceptionToFailure(e));

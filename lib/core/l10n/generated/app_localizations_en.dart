@@ -578,6 +578,136 @@ class AppLocalizationsEn extends AppLocalizations {
       'Baby is not able to wake up, has weak or no cry, or is not responding. This is a serious sign. Seek help immediately.';
 
   @override
+  String get bpcr_facilities_found => 'Facilities found nearby';
+
+  @override
+  String get bpcr_tba_available_question =>
+      'Is a Traditional Birth Attendant available?';
+
+  @override
+  String get bpcr_saving_reminder_quote =>
+      'Dear mother, today\'s small saving can help with a safe delivery tomorrow. Set aside a little this week for delivery and emergency needs. Did you add any amount to your pregnancy savings this week?';
+
+  @override
+  String get bpcr_self_saving_label => 'Self Saving';
+
+  @override
+  String get bpcr_family_saving_label => 'Family Saving';
+
+  @override
+  String get bpcr_husband_label => 'Husband';
+
+  @override
+  String get bpcr_mother_in_law_label => 'Mother-in-Law';
+
+  @override
+  String get bpcr_name_hint => 'Name';
+
+  @override
+  String get bpcr_contact_hint => 'Contact Number';
+
+  @override
+  String get bpcr_relation_hint => 'Relation With Pregnant Mother';
+
+  @override
+  String get bpcr_community_support_question =>
+      'If yes, then with whom — details like Self Help Group (SHG)/ Community leaders (Panch/Sarpanch/Schoolteachers/Healers/other...)';
+
+  @override
+  String get bpcr_blood_donor_reminder_quote =>
+      'Dear family, preparing for a safe delivery also means identifying a potential blood donor. This can save time if needed. Have you identified a potential blood donor for delivery? Discuss with family or acquaintances in advance.';
+
+  @override
+  String get bpcr_self_blood_group_label => 'Self Blood Group';
+
+  @override
+  String get bpcr_blood_group_verified_note =>
+      'Last Verified During Your 2nd Trimester ANC Checkup.';
+
+  @override
+  String get bpcr_emergency_hospital_label => 'Emergency hospital';
+
+  @override
+  String get bpcr_family_donors_label => 'Family Donors';
+
+  @override
+  String get bpcr_add_family_member => '+ Add Family Member';
+
+  @override
+  String get bpcr_add_community_donors => '+ Add community Donors';
+
+  @override
+  String get bpcr_community_donors_label => 'Community Donors';
+
+  @override
+  String get bpcr_transport_plan_subtitle =>
+      'Prepare in advance for your safety.';
+
+  @override
+  String get bpcr_delivery_place_question => 'Where do you plan to deliver?';
+
+  @override
+  String get bpcr_place_government => 'Government Hospital';
+
+  @override
+  String get bpcr_place_private => 'Private Hospital';
+
+  @override
+  String get bpcr_place_undecided => 'Undecided';
+
+  @override
+  String get bpcr_hospital_name_label => 'Hospital Name';
+
+  @override
+  String get bpcr_hospital_name_hint => 'Enter Hospital Name';
+
+  @override
+  String get bpcr_transport_options_label => 'Transport Options';
+
+  @override
+  String get bpcr_option_government_ambulance =>
+      'Government Ambulance — Call 102 / 108';
+
+  @override
+  String get bpcr_shared_with_family_question => 'Shared with family?';
+
+  @override
+  String get bpcr_option_private_ambulance => 'Private Ambulance';
+
+  @override
+  String get bpcr_provider_name_hint => 'Provider Name';
+
+  @override
+  String get bpcr_option_own_vehicle => 'Own Vehicle';
+
+  @override
+  String get bpcr_vehicle_car => 'Car';
+
+  @override
+  String get bpcr_vehicle_bike => 'Bike';
+
+  @override
+  String get bpcr_vehicle_other => 'Other';
+
+  @override
+  String get bpcr_driver_name_hint => 'Driver Name';
+
+  @override
+  String get bpcr_driver_number_hint => 'Driver Number';
+
+  @override
+  String get bpcr_identify_birth_companion_label => 'Identify Birth Companion';
+
+  @override
+  String get bpcr_companion_asha => 'ASHA';
+
+  @override
+  String get bpcr_companion_husband => 'Husband';
+
+  @override
+  String get bpcr_companion_other_family => 'Other Family Members';
+
+  @override
   String get maternalSchemesdesc =>
       'Explore Government schemes & check eligibility';
 
@@ -1376,6 +1506,21 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get statAvgBpcr => 'Avg. BPCR Score';
+
+  @override
+  String get bpcr_support_panch => 'Panch';
+
+  @override
+  String get bpcr_support_sarpanch => 'Sarpanch';
+
+  @override
+  String get bpcr_support_healers => 'Healers';
+
+  @override
+  String get bpcr_support_school_teachers => 'School Teachers';
+
+  @override
+  String get bpcr_support_other => 'Other';
 
   @override
   String get statActiveAlerts => 'Active Alerts';

@@ -13,7 +13,7 @@ class DangerSignsNewbornPage extends StatelessWidget {
     final l10n = AppLocalizations.of(context)!;
     return BpcrChecklistScaffold(
       componentKey: 'dangerSignsNewborn',
-      headerIcon: Icons.child_care_rounded,
+      headerIconAsset: 'assets/icons/bpcr4.png',
       headerTitle: l10n.bpcr_newborn_title,
       cards: [
         DangerSignCardData(

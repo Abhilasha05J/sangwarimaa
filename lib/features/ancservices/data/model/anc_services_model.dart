@@ -1,5 +1,4 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-
 part 'anc_services_model.freezed.dart';
 part 'anc_services_model.g.dart';
 
