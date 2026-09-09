@@ -1658,4 +1658,78 @@ class AppLocalizationsEn extends AppLocalizations {
   String versionLabel(String version) {
     return 'Version $version';
   }
+
+  @override
+  String get estimatedDueDate => 'Estimated Due Date';
+
+  @override
+  String get assignedMitanin => 'Assigned Mitanin';
+
+  @override
+  String get call => 'Call';
+
+  @override
+  String get positive => 'Positive';
+
+  @override
+  String get negative => 'Negative';
+
+  @override
+  String get years => 'Years';
+
+  @override
+  String get weeksPregnant => 'Weeks Pregnant';
+
+  @override
+  String get generalSettings => 'General Settings';
+
+  @override
+  String get preferences => 'Preferences';
+
+  @override
+  String get appLanguage => 'App Language';
+
+  @override
+  String get change => 'Change';
+
+  @override
+  String get english => 'English';
+
+  @override
+  String get hindi => 'हिंदी';
+
+  @override
+  String get voiceAssistance => 'Voice Assistance';
+
+  @override
+  String get voiceAssistanceDesc => 'Listen to audio instructions';
+
+  @override
+  String get remindersAlerts => 'Reminders & Alerts';
+
+  @override
+  String get remindersAlertsDesc => 'Medication & checkup alerts';
+
+  @override
+  String get logOut => 'Log Out';
+
+  @override
+  String get logOutConfirmTitle => 'Log Out?';
+
+  @override
+  String get logOutConfirmMessage =>
+      'Are you sure you want to log out of your account?';
+
+  @override
+  String get notProvided => 'Not provided';
+
+  @override
+  String get editProfileComingSoon => 'Editing your profile is coming soon';
+
+  @override
+  String get contactUnavailable => 'Contact number unavailable right now';
+
+  @override
+  String get profileLoadError =>
+      'We couldn\'t load your profile. Please try again.';
 }

@@ -103,3 +103,51 @@ final class ProfileRepositoryProvider
 }
 
 String _$profileRepositoryHash() => r'4d135353b2e75010e7515d2a5a0b27077f6516ca';
+
+@ProviderFor(WomenProfileController)
+const womenProfileControllerProvider = WomenProfileControllerProvider._();
+
+final class WomenProfileControllerProvider
+    extends $AsyncNotifierProvider<WomenProfileController, WomenProfileModel> {
+  const WomenProfileControllerProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'womenProfileControllerProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$womenProfileControllerHash();
+
+  @$internal
+  @override
+  WomenProfileController create() => WomenProfileController();
+}
+
+String _$womenProfileControllerHash() =>
+    r'f7c457135301fe24472110efb32d6b1e8cd24464';
+
+abstract class _$WomenProfileController
+    extends $AsyncNotifier<WomenProfileModel> {
+  FutureOr<WomenProfileModel> build();
+  @$mustCallSuper
+  @override
+  void runBuild() {
+    final created = build();
+    final ref =
+        this.ref as $Ref<AsyncValue<WomenProfileModel>, WomenProfileModel>;
+    final element =
+        ref.element
+            as $ClassProviderElement<
+              AnyNotifier<AsyncValue<WomenProfileModel>, WomenProfileModel>,
+              AsyncValue<WomenProfileModel>,
+              Object?,
+              Object?
+            >;
+    element.handleValue(ref, created);
+  }
+}

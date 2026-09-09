@@ -575,16 +575,129 @@
 
   "uniqueId": "विशिष्ट पहचान",
   "area": "क्षेत्र",
-  "profileConfirmation": "कृपया अपनी प्रोफ़ाइल विवरण की पुष्टि करें",
-  "profileName": "नाम",
-  "profileRole": "भूमिका",
-  "profileArea": "क्षेत्र",
-  "profileSubcentre": "उप-केंद्र",
-  "profileUniqueId": "विशिष्ट पहचान",
-  "confirmDetails": "विवरण की पुष:पुष्टि करें",
+   "profileConfirmation": "कृपया अपनी प्रोफ़ाइल विवरण की पुष्टि करें",
+    "@profileConfirmation": {},
 
-  "offlineBannerMessage": "आप ऑफलाइन हैं। कनेक्ट होने पर डेटा सिंक होगा।",
-  "syncingData": "डेटा सिंक हो रहा है…",
-  "lastSynced": "अंतिम सिंक: {time}",
-  "versionLabel": "संस्करण {version}"
+    "profileName": "नाम",
+    "@profileName": {},
+
+    "profileRole": "भूमिका",
+    "@profileRole": {},
+
+    "profileArea": "क्षेत्र",
+    "@profileArea": {},
+
+    "profileSubcentre": "उप-केंद्र",
+    "@profileSubcentre": {},
+
+    "profileUniqueId": "विशिष्ट पहचान",
+    "@profileUniqueId": {},
+
+    "confirmDetails": "विवरण की पुष्टि करें",
+    "@confirmDetails": {},
+
+    "offlineBannerMessage": "आप ऑफलाइन हैं। कनेक्ट होने पर डेटा सिंक होगा।",
+    "@offlineBannerMessage": {},
+
+    "syncingData": "डेटा सिंक हो रहा है…",
+    "@syncingData": {},
+
+    "lastSynced": "अंतिम सिंक: {time}",
+    "@lastSynced": {
+      "placeholders": {
+        "time": {
+          "type": "String"
+        }
+      }
+    },
+
+    "versionLabel": "संस्करण {version}",
+    "@versionLabel": {
+      "placeholders": {
+        "version": {
+          "type": "String"
+        }
+      }
+    },
+
+    "bloodGroup": "रक्त समूह",
+    "@bloodGroup": {},
+
+    "estimatedDueDate": "अनुमानित प्रसव तिथि",
+    "@estimatedDueDate": {},
+
+    "assignedMitanin": "नियुक्त मितानिन",
+    "@assignedMitanin": {},
+
+    "call": "कॉल करें",
+    "@call": {},
+
+    "positive": "सकारात्मक",
+    "@positive": {},
+
+    "negative": "नकारात्मक",
+    "@negative": {},
+
+    "years": "वर्ष",
+    "@years": {},
+
+    "weeksPregnant": "गर्भावस्था के सप्ताह",
+    "@weeksPregnant": {},
+
+    "generalSettings": "सामान्य सेटिंग्स",
+    "@generalSettings": {},
+
+    "preferences": "प्राथमिकताएँ",
+    "@preferences": {},
+
+    "appLanguage": "ऐप की भाषा",
+    "@appLanguage": {},
+
+    "change": "बदलें",
+    "@change": {},
+
+    "english": "अंग्रेज़ी",
+    "@english": {},
+
+    "hindi": "हिंदी",
+    "@hindi": {},
+
+    "voiceAssistance": "वॉइस असिस्टेंस",
+    "@voiceAssistance": {},
+
+    "voiceAssistanceDesc": "ऑडियो निर्देश सुनें",
+    "@voiceAssistanceDesc": {},
+
+    "remindersAlerts": "रिमाइंडर और अलर्ट",
+    "@remindersAlerts": {},
+
+    "remindersAlertsDesc": "दवा और जांच के अलर्ट",
+    "@remindersAlertsDesc": {},
+
+    "logOut": "लॉग आउट",
+    "@logOut": {},
+
+    "logOutConfirmTitle": "लॉग आउट करें?",
+    "@logOutConfirmTitle": {},
+
+    "logOutConfirmMessage": "क्या आप वाकई अपने खाते से लॉग आउट करना चाहते हैं?",
+    "@logOutConfirmMessage": {},
+
+    "cancel": "रद्द करें",
+    "@cancel": {},
+
+    "notProvided": "उपलब्ध नहीं है",
+    "@notProvided": {},
+
+    "editProfileComingSoon": "प्रोफ़ाइल संपादन सुविधा जल्द ही उपलब्ध होगी",
+    "@editProfileComingSoon": {},
+
+    "contactUnavailable": "संपर्क नंबर अभी उपलब्ध नहीं है",
+    "@contactUnavailable": {},
+
+    "profileLoadError": "हम आपकी प्रोफ़ाइल लोड नहीं कर सके। कृपया पुनः प्रयास करें।",
+    "@profileLoadError": {},
+
+    "retry": "पुनः प्रयास करें",
+    "@retry": {}
 }

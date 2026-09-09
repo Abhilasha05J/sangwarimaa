@@ -1285,40 +1285,130 @@
   "area": "Area",
   "@area": {},
 
-  "profileConfirmation": "Please confirm your profile details",
-  "@profileConfirmation": {},
+    "profileConfirmation": "Please confirm your profile details",
+    "@profileConfirmation": {},
 
-  "profileName": "Name",
-  "@profileName": {},
+    "profileName": "Name",
+    "@profileName": {},
 
-  "profileRole": "Role",
-  "@profileRole": {},
+    "profileRole": "Role",
+    "@profileRole": {},
 
-  "profileArea": "Area",
-  "@profileArea": {},
+    "profileArea": "Area",
+    "@profileArea": {},
 
-  "profileSubcentre": "Sub-centre",
-  "@profileSubcentre": {},
+    "profileSubcentre": "Sub-centre",
+    "@profileSubcentre": {},
 
-  "profileUniqueId": "Unique ID",
-  "@profileUniqueId": {},
+    "profileUniqueId": "Unique ID",
+    "@profileUniqueId": {},
 
-  "confirmDetails": "Confirm Details",
-  "@confirmDetails": {},
+    "confirmDetails": "Confirm Details",
+    "@confirmDetails": {},
 
-  "offlineBannerMessage": "You are offline. Data will sync when connected.",
-  "@offlineBannerMessage": {},
+    "offlineBannerMessage": "You are offline. Data will sync when connected.",
+    "@offlineBannerMessage": {},
 
-  "syncingData": "Syncing data…",
-  "@syncingData": {},
+    "syncingData": "Syncing data…",
+    "@syncingData": {},
 
-  "lastSynced": "Last synced: {time}",
-  "@lastSynced": {
-    "placeholders": { "time": { "type": "String" } }
-  },
+    "lastSynced": "Last synced: {time}",
+    "@lastSynced": {
+      "placeholders": {
+        "time": {
+          "type": "String"
+        }
+      }
+    },
 
-  "versionLabel": "Version {version}",
-  "@versionLabel": {
-    "placeholders": { "version": { "type": "String" } }
+    "versionLabel": "Version {version}",
+    "@versionLabel": {
+      "placeholders": {
+        "version": {
+          "type": "String"
+        }
+      }
+    },
+
+    "bloodGroup": "Blood Group",
+    "@bloodGroup": {},
+
+    "estimatedDueDate": "Estimated Due Date",
+    "@estimatedDueDate": {},
+
+    "assignedMitanin": "Assigned Mitanin",
+    "@assignedMitanin": {},
+
+    "call": "Call",
+    "@call": {},
+
+    "positive": "Positive",
+    "@positive": {},
+
+    "negative": "Negative",
+    "@negative": {},
+
+    "years": "Years",
+    "@years": {},
+
+    "weeksPregnant": "Weeks Pregnant",
+    "@weeksPregnant": {},
+
+    "generalSettings": "General Settings",
+    "@generalSettings": {},
+
+    "preferences": "Preferences",
+    "@preferences": {},
+
+    "appLanguage": "App Language",
+    "@appLanguage": {},
+
+    "change": "Change",
+    "@change": {},
+
+    "english": "English",
+    "@english": {},
+
+    "hindi": "हिंदी",
+    "@hindi": {},
+
+    "voiceAssistance": "Voice Assistance",
+    "@voiceAssistance": {},
+
+    "voiceAssistanceDesc": "Listen to audio instructions",
+    "@voiceAssistanceDesc": {},
+
+    "remindersAlerts": "Reminders & Alerts",
+    "@remindersAlerts": {},
+
+    "remindersAlertsDesc": "Medication & checkup alerts",
+    "@remindersAlertsDesc": {},
+
+    "logOut": "Log Out",
+    "@logOut": {},
+
+    "logOutConfirmTitle": "Log Out?",
+    "@logOutConfirmTitle": {},
+
+    "logOutConfirmMessage": "Are you sure you want to log out of your account?",
+    "@logOutConfirmMessage": {},
+
+    "cancel": "Cancel",
+    "@cancel": {},
+
+    "notProvided": "Not provided",
+    "@notProvided": {},
+
+    "editProfileComingSoon": "Editing your profile is coming soon",
+    "@editProfileComingSoon": {},
+
+    "contactUnavailable": "Contact number unavailable right now",
+    "@contactUnavailable": {},
+
+    "profileLoadError": "We couldn't load your profile. Please try again.",
+    "@profileLoadError": {},
+
+    "retry": "Retry",
+    "@retry": {}
   }
-}
+

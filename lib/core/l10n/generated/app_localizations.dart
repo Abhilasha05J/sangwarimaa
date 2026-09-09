@@ -3175,6 +3175,150 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Version {version}'**
   String versionLabel(String version);
+
+  /// No description provided for @estimatedDueDate.
+  ///
+  /// In en, this message translates to:
+  /// **'Estimated Due Date'**
+  String get estimatedDueDate;
+
+  /// No description provided for @assignedMitanin.
+  ///
+  /// In en, this message translates to:
+  /// **'Assigned Mitanin'**
+  String get assignedMitanin;
+
+  /// No description provided for @call.
+  ///
+  /// In en, this message translates to:
+  /// **'Call'**
+  String get call;
+
+  /// No description provided for @positive.
+  ///
+  /// In en, this message translates to:
+  /// **'Positive'**
+  String get positive;
+
+  /// No description provided for @negative.
+  ///
+  /// In en, this message translates to:
+  /// **'Negative'**
+  String get negative;
+
+  /// No description provided for @years.
+  ///
+  /// In en, this message translates to:
+  /// **'Years'**
+  String get years;
+
+  /// No description provided for @weeksPregnant.
+  ///
+  /// In en, this message translates to:
+  /// **'Weeks Pregnant'**
+  String get weeksPregnant;
+
+  /// No description provided for @generalSettings.
+  ///
+  /// In en, this message translates to:
+  /// **'General Settings'**
+  String get generalSettings;
+
+  /// No description provided for @preferences.
+  ///
+  /// In en, this message translates to:
+  /// **'Preferences'**
+  String get preferences;
+
+  /// No description provided for @appLanguage.
+  ///
+  /// In en, this message translates to:
+  /// **'App Language'**
+  String get appLanguage;
+
+  /// No description provided for @change.
+  ///
+  /// In en, this message translates to:
+  /// **'Change'**
+  String get change;
+
+  /// No description provided for @english.
+  ///
+  /// In en, this message translates to:
+  /// **'English'**
+  String get english;
+
+  /// No description provided for @hindi.
+  ///
+  /// In en, this message translates to:
+  /// **'हिंदी'**
+  String get hindi;
+
+  /// No description provided for @voiceAssistance.
+  ///
+  /// In en, this message translates to:
+  /// **'Voice Assistance'**
+  String get voiceAssistance;
+
+  /// No description provided for @voiceAssistanceDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Listen to audio instructions'**
+  String get voiceAssistanceDesc;
+
+  /// No description provided for @remindersAlerts.
+  ///
+  /// In en, this message translates to:
+  /// **'Reminders & Alerts'**
+  String get remindersAlerts;
+
+  /// No description provided for @remindersAlertsDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Medication & checkup alerts'**
+  String get remindersAlertsDesc;
+
+  /// No description provided for @logOut.
+  ///
+  /// In en, this message translates to:
+  /// **'Log Out'**
+  String get logOut;
+
+  /// No description provided for @logOutConfirmTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Log Out?'**
+  String get logOutConfirmTitle;
+
+  /// No description provided for @logOutConfirmMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to log out of your account?'**
+  String get logOutConfirmMessage;
+
+  /// No description provided for @notProvided.
+  ///
+  /// In en, this message translates to:
+  /// **'Not provided'**
+  String get notProvided;
+
+  /// No description provided for @editProfileComingSoon.
+  ///
+  /// In en, this message translates to:
+  /// **'Editing your profile is coming soon'**
+  String get editProfileComingSoon;
+
+  /// No description provided for @contactUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Contact number unavailable right now'**
+  String get contactUnavailable;
+
+  /// No description provided for @profileLoadError.
+  ///
+  /// In en, this message translates to:
+  /// **'We couldn\'t load your profile. Please try again.'**
+  String get profileLoadError;
 }
 
 class _AppLocalizationsDelegate

@@ -63,6 +63,20 @@ class ProfileRepository {
       return Left(mapExceptionToFailure(e));
     }
   }
+  /// Fetches the full women profile (user + profile + pregnancy) for display
+  /// on the Profile screen. Unlike [isProfileComplete], this surfaces the
+  /// whole parsed model rather than just a boolean.
+  Future<Either<Failure, WomenProfileModel>> getWomenProfile() async {
+    try {
+      final response = await _remote.getWomenProfile();
+      final envelope = response.response.data as Map<String, dynamic>;
+      final data = envelope['data'] as Map<String, dynamic>;
+      final profile = WomenProfileModel.fromJson(data);
+      return Right(profile);
+    } catch (e) {
+      return Left(mapExceptionToFailure(e));
+    }
+  }
 
   /// Fetches the mobile number of the current user from the women profile.
   /// Used by resolveDestination when routing an incomplete-profile user to

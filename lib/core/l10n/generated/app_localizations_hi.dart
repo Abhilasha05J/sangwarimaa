@@ -1645,7 +1645,7 @@ class AppLocalizationsHi extends AppLocalizations {
   String get profileUniqueId => 'विशिष्ट पहचान';
 
   @override
-  String get confirmDetails => 'विवरण की पुष:पुष्टि करें';
+  String get confirmDetails => 'विवरण की पुष्टि करें';
 
   @override
   String get offlineBannerMessage =>
@@ -1663,4 +1663,79 @@ class AppLocalizationsHi extends AppLocalizations {
   String versionLabel(String version) {
     return 'संस्करण $version';
   }
+
+  @override
+  String get estimatedDueDate => 'अनुमानित प्रसव तिथि';
+
+  @override
+  String get assignedMitanin => 'नियुक्त मितानिन';
+
+  @override
+  String get call => 'कॉल करें';
+
+  @override
+  String get positive => 'सकारात्मक';
+
+  @override
+  String get negative => 'नकारात्मक';
+
+  @override
+  String get years => 'वर्ष';
+
+  @override
+  String get weeksPregnant => 'गर्भावस्था के सप्ताह';
+
+  @override
+  String get generalSettings => 'सामान्य सेटिंग्स';
+
+  @override
+  String get preferences => 'प्राथमिकताएँ';
+
+  @override
+  String get appLanguage => 'ऐप की भाषा';
+
+  @override
+  String get change => 'बदलें';
+
+  @override
+  String get english => 'अंग्रेज़ी';
+
+  @override
+  String get hindi => 'हिंदी';
+
+  @override
+  String get voiceAssistance => 'वॉइस असिस्टेंस';
+
+  @override
+  String get voiceAssistanceDesc => 'ऑडियो निर्देश सुनें';
+
+  @override
+  String get remindersAlerts => 'रिमाइंडर और अलर्ट';
+
+  @override
+  String get remindersAlertsDesc => 'दवा और जांच के अलर्ट';
+
+  @override
+  String get logOut => 'लॉग आउट';
+
+  @override
+  String get logOutConfirmTitle => 'लॉग आउट करें?';
+
+  @override
+  String get logOutConfirmMessage =>
+      'क्या आप वाकई अपने खाते से लॉग आउट करना चाहते हैं?';
+
+  @override
+  String get notProvided => 'उपलब्ध नहीं है';
+
+  @override
+  String get editProfileComingSoon =>
+      'प्रोफ़ाइल संपादन सुविधा जल्द ही उपलब्ध होगी';
+
+  @override
+  String get contactUnavailable => 'संपर्क नंबर अभी उपलब्ध नहीं है';
+
+  @override
+  String get profileLoadError =>
+      'हम आपकी प्रोफ़ाइल लोड नहीं कर सके। कृपया पुनः प्रयास करें।';
 }
