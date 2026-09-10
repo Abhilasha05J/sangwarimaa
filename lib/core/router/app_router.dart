@@ -29,6 +29,7 @@ import 'package:sangwari_maa/features/reminders/presentation/pages/women_reminde
 import 'package:sangwari_maa/features/schemes/presentation/pages/maternal_schemes.dart';
 import 'package:sangwari_maa/features/schemes/presentation/pages/scheme_details.dart';
 import 'package:sangwari_maa/features/videomodule/presentation/pages/video_modules.dart';
+import 'package:sangwari_maa/features/bpcr/presentation/pages/bpcr_summary_page.dart';
 
 abstract final class Routes {
   static const splash          = '/';
@@ -162,63 +163,73 @@ GoRouter buildAppRouter({String initialLocation = '/',String? pendingMobile, }) 
           name: 'chatbot',
           builder: (_, __) => const ChatbotScreen(),
         ),
-       GoRoute(
-path: 'bpcr',
-name: 'bpcr',
-builder: (_, __) => const BpcrScreen(),
-  routes: [
-    GoRoute(
-      path: 'danger-signs-pregnancy',
-      name: 'dangerSignsPregnancy',
-      builder: (_, __) => const DangerSignsPregnancyPage(),
-    ),
-    GoRoute(
-      path: 'danger-signs-labor',
-      name: 'dangerSignsLabor',
-      builder: (_, __) => const DangerSignsLaborPage(),
-    ),
-    GoRoute(
-      path: 'danger-signs-postnatal',
-      name: 'dangerSignsPostnatal',
-      builder: (_, __) => const DangerSignsPostnatalPage(),
-    ),
-    GoRoute(
-      path: 'danger-signs-newborn',
-      name: 'dangerSignsNewborn',
-      builder: (_, __) => const DangerSignsNewbornPage(),
-    ),
-    GoRoute(
-      path: 'health-facility-id',
-      name: 'healthFacilityId',
-      builder: (_, __) => const HealthFacilityIdPage(),
-    ),
-    GoRoute(
-      path: 'skill-birth-attendant',
-      name: 'skillBirthAttendant',
-      builder: (_, __) => const SkillBirthAttendantPage(),
-    ),
-    GoRoute(
-      path: 'transport-modality',
-      name: 'transportModality',
-      builder: (_, __) => const TransportModalityPage(),
-    ),
-    GoRoute(
-      path: 'saved-money-delivery',
-      name: 'savedMoneyDelivery',
-      builder: (_, __) => const SavedMoneyDeliveryPage(),
-    ),
-    GoRoute(
-      path: 'community-financial-support',
-      name: 'communityFinancialSupport',
-      builder: (_, __) => const CommunityFinancialSupportPage(),
-    ),
-    GoRoute(
-      path: 'community-blood-donor',
-      name: 'communityBloodDonor',
-      builder: (_, __) => const CommunityBloodDonorPage(),
-    ),
-  ],
-)
+
+
+        GoRoute(
+          path: 'bpcr',
+          name: 'bpcr',
+          builder: (_, __) => const BpcrSummaryPage(),
+          routes: [
+            GoRoute(
+              path: 'components',
+              name: 'bpcrComponents',
+              builder: (_, __) => const BpcrScreen(),
+              routes: [
+                GoRoute(
+                  path: 'danger-signs-pregnancy',
+                  name: 'dangerSignsPregnancy',
+                  builder: (_, __) => const DangerSignsPregnancyPage(),
+                ),
+                GoRoute(
+                  path: 'danger-signs-labor',
+                  name: 'dangerSignsLabor',
+                  builder: (_, __) => const DangerSignsLaborPage(),
+                ),
+                GoRoute(
+                  path: 'danger-signs-postnatal',
+                  name: 'dangerSignsPostnatal',
+                  builder: (_, __) => const DangerSignsPostnatalPage(),
+                ),
+                GoRoute(
+                  path: 'danger-signs-newborn',
+                  name: 'dangerSignsNewborn',
+                  builder: (_, __) => const DangerSignsNewbornPage(),
+                ),
+                GoRoute(
+                  path: 'health-facility-id',
+                  name: 'healthFacilityId',
+                  builder: (_, __) => const HealthFacilityIdPage(),
+                ),
+                GoRoute(
+                  path: 'skill-birth-attendant',
+                  name: 'skillBirthAttendant',
+                  builder: (_, __) => const SkillBirthAttendantPage(),
+                ),
+                GoRoute(
+                  path: 'transport-modality',
+                  name: 'transportModality',
+                  builder: (_, __) => const TransportModalityPage(),
+                ),
+                GoRoute(
+                  path: 'saved-money-delivery',
+                  name: 'savedMoneyDelivery',
+                  builder: (_, __) => const SavedMoneyDeliveryPage(),
+                ),
+                GoRoute(
+                  path: 'community-financial-support',
+                  name: 'communityFinancialSupport',
+                  builder: (_, __) => const CommunityFinancialSupportPage(),
+                ),
+                GoRoute(
+                  path: 'community-blood-donor',
+                  name: 'communityBloodDonor',
+                  builder: (_, __) => const CommunityBloodDonorPage(),
+                ),
+              ],
+            ),
+          ],
+        ),
+
       ],
     ),
     GoRoute(

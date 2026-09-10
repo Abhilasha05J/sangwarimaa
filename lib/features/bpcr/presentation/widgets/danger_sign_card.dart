@@ -11,6 +11,8 @@ import 'package:sangwari_maa/features/bpcr/data/model/danger_sign_card_data.dart
 /// space is letterboxed with a white background that matches the card's
 /// own baked-in white footer, so it reads as intentional, not as a bug.
 const double _kDangerSignCardAspectRatio = 0.65; // width / height
+const double _kTitleBlockHeight = 18;
+const double _kDescriptionBlockHeight = 86;
 
 class DangerSignCard extends StatelessWidget {
   final DangerSignCardData data;
@@ -89,19 +91,29 @@ class DangerSignCard extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: AppSpacing.xs),
-              Text(
-                data.title,
-                style: AppTypography.titleMedium.copyWith(
-                  color: data.accentColor,
-                  fontSize: 14,
+              SizedBox(
+                height: _kTitleBlockHeight,
+                child: Text(
+                  data.title,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: AppTypography.titleMedium.copyWith(
+                    color: data.accentColor,
+                    fontSize: 14,
+                  ),
                 ),
               ),
               const SizedBox(height: AppSpacing.xs),
-              Text(
-                data.description,
-                style: AppTypography.titleMedium.copyWith(
-                  color: Colors.black,
-                  fontSize: 12,
+              SizedBox(
+                height: _kDescriptionBlockHeight,
+                child: Text(
+                  data.description,
+                  maxLines: 5,
+                  overflow: TextOverflow.ellipsis,
+                  style: AppTypography.titleMedium.copyWith(
+                    color: Colors.black,
+                    fontSize: 12,
+                  ),
                 ),
               ),
             ],
