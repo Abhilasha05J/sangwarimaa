@@ -34,11 +34,15 @@ abstract final class AppColors {
   static const Color infoPurple = Color(0xFF8E5FD1);
 
   //BPCR ------
-  // add near infoBlue/infoPurple
   static const Color amberPending   = Color(0xFFF0A93B);
   static const Color emergencyMaroon = Color(0xFF7A2E2E);
   static const Color emergencyBg     = Color(0xFFFBE4E2);
   static const Color aiCardGreen     = Color(0xFFE3F5EA);
+
+  //profile -------
+  static const accent = Color(0xFF9C3400);
+  static const cellBg = Color(0x80FFF1EC);
+  static const cardBorder = Color(0xFFEEEEEE);
 
   // ── Borders ────────────────────────────────────────────────────────────
   static const Color pinkBorder = Color(0xFFF58D8B);

@@ -35,6 +35,16 @@ abstract class WomenProfileDataModel with _$WomenProfileDataModel {
     String? name,
     int? age,
     @JsonKey(name: 'husband_name') String? husbandName,
+    // NOTE: backend Beneficiary already stores these (set at registration —
+    // see register_woman()), but GET /women/profile doesn't return them yet.
+    // Nullable so parsing is safe either way; will populate automatically
+    // once the backend adds these two keys to profile_data.
+    @JsonKey(name: 'husband_age') int? husbandAge,
+    @JsonKey(name: 'husband_contact_no') String? husbandContactNo,
+    @JsonKey(name: 'other_family_member_name') String? otherFamilyMemberName,
+    @JsonKey(name: 'other_family_member_relation') String? otherFamilyMemberRelation,
+    @JsonKey(name: 'family_contact_no') String? familyContactNo,
+    String? dob, // ISO date string or null
     String? village,
     String? block,
     String? district,

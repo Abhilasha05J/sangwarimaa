@@ -71,7 +71,6 @@ List<DomainChecklistItem> domainChecklist(Ref ref) => const [
 
 @riverpod
 List<EmergencyContact> emergencyContacts(Ref ref) => const [
-  EmergencyContact(label: 'Dr. Priya (OBGYN)', number: '98271-XXXXX'),
   EmergencyContact(label: 'Rekha (ASHA Worker)', number: '99812-XXXXX'),
   EmergencyContact(label: 'Suresh (Husband)', number: '70001-XXXXX'),
   EmergencyContact(label: 'Amit (Blood Donor)', number: '94252-XXXXX'),

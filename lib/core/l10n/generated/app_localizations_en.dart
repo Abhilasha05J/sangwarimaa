@@ -291,7 +291,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get husbandMobile => 'Husband\'s Mobile';
 
   @override
-  String get lmpDate => 'Last Menstrual Period (LMP)';
+  String get lmpDate => 'Last Menstrual Period';
 
   @override
   String get expectedDeliveryDate => 'Expected Delivery Date';
@@ -1622,6 +1622,48 @@ class AppLocalizationsEn extends AppLocalizations {
   String get area => 'Area';
 
   @override
+  String get mothersProfileDetails => 'Mother\'s Profile Details';
+
+  @override
+  String get familyDetails => 'Family Details';
+
+  @override
+  String get ageAndDob => 'Age & Date of Birth';
+
+  @override
+  String get husbandsName => 'Husband\'s Name';
+
+  @override
+  String get husbandsContactNo => 'Husband\'s Contact No.';
+
+  @override
+  String get otherFamilyMember => 'Other Family Member';
+
+  @override
+  String get relationWithFamilyMember => 'Relation with Family Member';
+
+  @override
+  String get familyContactNo => 'Family Contact No.';
+
+  @override
+  String get editMotherDetails => 'Edit Mother\'s Profile Details';
+
+  @override
+  String get editFamilyDetails => 'Edit Family Details';
+
+  @override
+  String get tapToAdd => 'Tap to add';
+
+  @override
+  String get comingSoonField => 'Not available yet';
+
+  @override
+  String get profileUpdated => 'Profile updated';
+
+  @override
+  String get updateFailed => 'Couldn\'t update profile. Please try again.';
+
+  @override
   String get profileConfirmation => 'Please confirm your profile details';
 
   @override
@@ -1678,7 +1720,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get years => 'Years';
 
   @override
-  String get weeksPregnant => 'Weeks Pregnant';
+  String get weeks => 'Weeks';
+
+  @override
+  String get days => 'Days';
 
   @override
   String get generalSettings => 'General Settings';

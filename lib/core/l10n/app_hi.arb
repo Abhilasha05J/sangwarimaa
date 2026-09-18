@@ -98,7 +98,7 @@
   "dateOfBirth": "जन्म तिथि",
   "husbandName": "पति का नाम",
   "husbandMobile": "पति का मोबाइल",
-  "lmpDate": "अंतिम मासिक धर्म (LMP)",
+  "lmpDate": "अंतिम मासिक धर्म ",
   "expectedDeliveryDate": "संभावित प्रसव तिथि",
   "bloodGroup": "रक्त समूह",
   "address": "पता",
@@ -620,6 +620,48 @@
       }
     },
 
+      "mothersProfileDetails": "माँ की प्रोफ़ाइल का विवरण",
+      "@mothersProfileDetails": {},
+
+      "familyDetails": "परिवार का विवरण",
+      "@familyDetails": {},
+
+      "ageAndDob": "आयु और जन्म तिथि",
+      "@ageAndDob": {},
+
+      "husbandsName": "पति का नाम",
+      "@husbandsName": {},
+
+      "husbandsContactNo": "पति का संपर्क नंबर",
+      "@husbandsContactNo": {},
+
+      "otherFamilyMember": "परिवार का अन्य सदस्य",
+      "@otherFamilyMember": {},
+
+       "relationWithFamilyMember": "पारिवारिक सदस्य से संबंध",
+        "@relationWithFamilyMember": {},
+
+      "familyContactNo": "परिवार का संपर्क नंबर",
+      "@familyContactNo": {},
+
+      "editMotherDetails": "माँ की प्रोफ़ाइल का विवरण संपादित करें",
+      "@editMotherDetails": {},
+
+      "editFamilyDetails": "परिवार का विवरण संपादित करें",
+      "@editFamilyDetails": {},
+
+      "tapToAdd": "जोड़ने के लिए टैप करें",
+      "@tapToAdd": {},
+
+      "comingSoonField": "अभी उपलब्ध नहीं है",
+      "@comingSoonField": {},
+
+      "profileUpdated": "प्रोफ़ाइल अपडेट हो गई",
+      "@profileUpdated": {},
+
+      "updateFailed": "प्रोफ़ाइल अपडेट नहीं हो सकी। कृपया पुनः प्रयास करें।",
+      "@updateFailed": {},
+
     "bloodGroup": "रक्त समूह",
     "@bloodGroup": {},
 
@@ -641,8 +683,11 @@
     "years": "वर्ष",
     "@years": {},
 
-    "weeksPregnant": "गर्भावस्था के सप्ताह",
-    "@weeksPregnant": {},
+    "weeks": "सप्ताह",
+    "@weeks": {},
+
+    "days": "दिन",
+     "@days": {},
 
     "generalSettings": "सामान्य सेटिंग्स",
     "@generalSettings": {},

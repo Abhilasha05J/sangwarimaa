@@ -1,3 +1,4 @@
+
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:sangwari_maa/core/errors/exceptions.dart';
@@ -63,6 +64,23 @@ class ProfileRepository {
       return Left(mapExceptionToFailure(e));
     }
   }
+
+  /// Generic PATCH for the editable Mother's Profile Details / Family
+  /// Details fields. Caller is responsible for only including keys that
+  /// match Beneficiary column names (name, age, dob, husband_name,
+  /// husband_age, village, block, district, lmp, blood_group) — these are
+  /// confirmed against register_woman()'s Beneficiary(...) construction.
+  /// Empty/null entries should be stripped by the caller before calling this
+  /// so we don't accidentally blank out a field the user didn't touch.
+  Future<Either<Failure, void>> updateWomenProfileFields(Map<String, dynamic> fields) async {
+    try {
+      await _remote.updateWomenProfile(fields);
+      return const Right(null);
+    } catch (e) {
+      return Left(mapExceptionToFailure(e));
+    }
+  }
+
   /// Fetches the full women profile (user + profile + pregnancy) for display
   /// on the Profile screen. Unlike [isProfileComplete], this surfaces the
   /// whole parsed model rather than just a boolean.
@@ -96,4 +114,3 @@ class ProfileRepository {
     }
   }
 }
-

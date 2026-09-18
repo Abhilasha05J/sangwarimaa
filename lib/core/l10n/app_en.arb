@@ -263,7 +263,7 @@
   "husbandMobile": "Husband's Mobile",
   "@husbandMobile": {},
 
-  "lmpDate": "Last Menstrual Period (LMP)",
+  "lmpDate": "Last Menstrual Period",
   "@lmpDate": {},
 
   "expectedDeliveryDate": "Expected Delivery Date",
@@ -1285,6 +1285,50 @@
   "area": "Area",
   "@area": {},
 
+
+
+  "mothersProfileDetails": "Mother's Profile Details",
+  "@mothersProfileDetails": {},
+
+  "familyDetails": "Family Details",
+  "@familyDetails": {},
+
+  "ageAndDob": "Age & Date of Birth",
+  "@ageAndDob": {},
+
+  "husbandsName": "Husband's Name",
+  "@husbandsName": {},
+
+ "husbandsContactNo": "Husband's Contact No.",
+  "@husbandsContactNo": {},
+
+  "otherFamilyMember": "Other Family Member",
+  "@otherFamilyMember": {},
+
+   "relationWithFamilyMember": "Relation with Family Member",
+   "@relationWithFamilyMember": {},
+
+  "familyContactNo": "Family Contact No.",
+  "@familyContactNo": {},
+
+  "editMotherDetails": "Edit Mother's Profile Details",
+  "@editMotherDetails": {},
+
+  "editFamilyDetails": "Edit Family Details",
+  "@editFamilyDetails": {},
+
+  "tapToAdd": "Tap to add",
+  "@tapToAdd": {},
+
+  "comingSoonField": "Not available yet",
+  "@comingSoonField": {},
+
+  "profileUpdated": "Profile updated",
+  "@profileUpdated": {},
+
+  "updateFailed": "Couldn't update profile. Please try again.",
+  "@updateFailed": {},
+
     "profileConfirmation": "Please confirm your profile details",
     "@profileConfirmation": {},
 
@@ -1351,8 +1395,11 @@
     "years": "Years",
     "@years": {},
 
-    "weeksPregnant": "Weeks Pregnant",
-    "@weeksPregnant": {},
+    "weeks": "Weeks",
+    "@weeks": {},
+
+    "days": "Days",
+     "@days": {},
 
     "generalSettings": "General Settings",
     "@generalSettings": {},

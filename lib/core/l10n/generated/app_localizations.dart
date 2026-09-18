@@ -647,7 +647,7 @@ abstract class AppLocalizations {
   /// No description provided for @lmpDate.
   ///
   /// In en, this message translates to:
-  /// **'Last Menstrual Period (LMP)'**
+  /// **'Last Menstrual Period'**
   String get lmpDate;
 
   /// No description provided for @expectedDeliveryDate.
@@ -3110,6 +3110,90 @@ abstract class AppLocalizations {
   /// **'Area'**
   String get area;
 
+  /// No description provided for @mothersProfileDetails.
+  ///
+  /// In en, this message translates to:
+  /// **'Mother\'s Profile Details'**
+  String get mothersProfileDetails;
+
+  /// No description provided for @familyDetails.
+  ///
+  /// In en, this message translates to:
+  /// **'Family Details'**
+  String get familyDetails;
+
+  /// No description provided for @ageAndDob.
+  ///
+  /// In en, this message translates to:
+  /// **'Age & Date of Birth'**
+  String get ageAndDob;
+
+  /// No description provided for @husbandsName.
+  ///
+  /// In en, this message translates to:
+  /// **'Husband\'s Name'**
+  String get husbandsName;
+
+  /// No description provided for @husbandsContactNo.
+  ///
+  /// In en, this message translates to:
+  /// **'Husband\'s Contact No.'**
+  String get husbandsContactNo;
+
+  /// No description provided for @otherFamilyMember.
+  ///
+  /// In en, this message translates to:
+  /// **'Other Family Member'**
+  String get otherFamilyMember;
+
+  /// No description provided for @relationWithFamilyMember.
+  ///
+  /// In en, this message translates to:
+  /// **'Relation with Family Member'**
+  String get relationWithFamilyMember;
+
+  /// No description provided for @familyContactNo.
+  ///
+  /// In en, this message translates to:
+  /// **'Family Contact No.'**
+  String get familyContactNo;
+
+  /// No description provided for @editMotherDetails.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Mother\'s Profile Details'**
+  String get editMotherDetails;
+
+  /// No description provided for @editFamilyDetails.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Family Details'**
+  String get editFamilyDetails;
+
+  /// No description provided for @tapToAdd.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap to add'**
+  String get tapToAdd;
+
+  /// No description provided for @comingSoonField.
+  ///
+  /// In en, this message translates to:
+  /// **'Not available yet'**
+  String get comingSoonField;
+
+  /// No description provided for @profileUpdated.
+  ///
+  /// In en, this message translates to:
+  /// **'Profile updated'**
+  String get profileUpdated;
+
+  /// No description provided for @updateFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t update profile. Please try again.'**
+  String get updateFailed;
+
   /// No description provided for @profileConfirmation.
   ///
   /// In en, this message translates to:
@@ -3212,11 +3296,17 @@ abstract class AppLocalizations {
   /// **'Years'**
   String get years;
 
-  /// No description provided for @weeksPregnant.
+  /// No description provided for @weeks.
   ///
   /// In en, this message translates to:
-  /// **'Weeks Pregnant'**
-  String get weeksPregnant;
+  /// **'Weeks'**
+  String get weeks;
+
+  /// No description provided for @days.
+  ///
+  /// In en, this message translates to:
+  /// **'Days'**
+  String get days;
 
   /// No description provided for @generalSettings.
   ///

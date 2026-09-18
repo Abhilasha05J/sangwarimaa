@@ -293,7 +293,7 @@ class AppLocalizationsHi extends AppLocalizations {
   String get husbandMobile => 'पति का मोबाइल';
 
   @override
-  String get lmpDate => 'अंतिम मासिक धर्म (LMP)';
+  String get lmpDate => 'अंतिम मासिक धर्म ';
 
   @override
   String get expectedDeliveryDate => 'संभावित प्रसव तिथि';
@@ -1627,6 +1627,49 @@ class AppLocalizationsHi extends AppLocalizations {
   String get area => 'क्षेत्र';
 
   @override
+  String get mothersProfileDetails => 'माँ की प्रोफ़ाइल का विवरण';
+
+  @override
+  String get familyDetails => 'परिवार का विवरण';
+
+  @override
+  String get ageAndDob => 'आयु और जन्म तिथि';
+
+  @override
+  String get husbandsName => 'पति का नाम';
+
+  @override
+  String get husbandsContactNo => 'पति का संपर्क नंबर';
+
+  @override
+  String get otherFamilyMember => 'परिवार का अन्य सदस्य';
+
+  @override
+  String get relationWithFamilyMember => 'पारिवारिक सदस्य से संबंध';
+
+  @override
+  String get familyContactNo => 'परिवार का संपर्क नंबर';
+
+  @override
+  String get editMotherDetails => 'माँ की प्रोफ़ाइल का विवरण संपादित करें';
+
+  @override
+  String get editFamilyDetails => 'परिवार का विवरण संपादित करें';
+
+  @override
+  String get tapToAdd => 'जोड़ने के लिए टैप करें';
+
+  @override
+  String get comingSoonField => 'अभी उपलब्ध नहीं है';
+
+  @override
+  String get profileUpdated => 'प्रोफ़ाइल अपडेट हो गई';
+
+  @override
+  String get updateFailed =>
+      'प्रोफ़ाइल अपडेट नहीं हो सकी। कृपया पुनः प्रयास करें।';
+
+  @override
   String get profileConfirmation => 'कृपया अपनी प्रोफ़ाइल विवरण की पुष्टि करें';
 
   @override
@@ -1683,7 +1726,10 @@ class AppLocalizationsHi extends AppLocalizations {
   String get years => 'वर्ष';
 
   @override
-  String get weeksPregnant => 'गर्भावस्था के सप्ताह';
+  String get weeks => 'सप्ताह';
+
+  @override
+  String get days => 'दिन';
 
   @override
   String get generalSettings => 'सामान्य सेटिंग्स';

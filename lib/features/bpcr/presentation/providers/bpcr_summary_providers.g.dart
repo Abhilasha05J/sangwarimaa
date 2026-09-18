@@ -271,4 +271,4 @@ final class EmergencyContactsProvider
   }
 }
 
-String _$emergencyContactsHash() => r'3221866fd0c37d0ca25442dc1c57cb6f2f230593';
+String _$emergencyContactsHash() => r'27df18610da6aae8a8b6cf77156ecf7b7fa689cf';

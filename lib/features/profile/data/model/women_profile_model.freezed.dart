@@ -600,7 +600,12 @@ as String,
 /// @nodoc
 mixin _$WomenProfileDataModel {
 
- String get id; String? get name; int? get age;@JsonKey(name: 'husband_name') String? get husbandName; String? get village; String? get block; String? get district; String? get lmp;// ISO date string or null
+ String get id; String? get name; int? get age;@JsonKey(name: 'husband_name') String? get husbandName;// NOTE: backend Beneficiary already stores these (set at registration —
+// see register_woman()), but GET /women/profile doesn't return them yet.
+// Nullable so parsing is safe either way; will populate automatically
+// once the backend adds these two keys to profile_data.
+@JsonKey(name: 'husband_age') int? get husbandAge;@JsonKey(name: 'husband_contact_no') String? get husbandContactNo;@JsonKey(name: 'other_family_member_name') String? get otherFamilyMemberName;@JsonKey(name: 'other_family_member_relation') String? get otherFamilyMemberRelation;@JsonKey(name: 'family_contact_no') String? get familyContactNo; String? get dob;// ISO date string or null
+ String? get village; String? get block; String? get district; String? get lmp;// ISO date string or null
  String? get edd;@JsonKey(name: 'blood_group') String? get bloodGroup;@JsonKey(name: 'risk_level') String get riskLevel;@JsonKey(name: 'preferred_language') String get preferredLanguage;@JsonKey(name: 'asha_name') String? get ashaName;@JsonKey(name: 'anm_name') String? get anmName;@JsonKey(name: 'created_at') String? get createdAt;
 /// Create a copy of WomenProfileDataModel
 /// with the given fields replaced by the non-null parameter values.
@@ -614,16 +619,16 @@ $WomenProfileDataModelCopyWith<WomenProfileDataModel> get copyWith => _$WomenPro
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is WomenProfileDataModel&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.age, age) || other.age == age)&&(identical(other.husbandName, husbandName) || other.husbandName == husbandName)&&(identical(other.village, village) || other.village == village)&&(identical(other.block, block) || other.block == block)&&(identical(other.district, district) || other.district == district)&&(identical(other.lmp, lmp) || other.lmp == lmp)&&(identical(other.edd, edd) || other.edd == edd)&&(identical(other.bloodGroup, bloodGroup) || other.bloodGroup == bloodGroup)&&(identical(other.riskLevel, riskLevel) || other.riskLevel == riskLevel)&&(identical(other.preferredLanguage, preferredLanguage) || other.preferredLanguage == preferredLanguage)&&(identical(other.ashaName, ashaName) || other.ashaName == ashaName)&&(identical(other.anmName, anmName) || other.anmName == anmName)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is WomenProfileDataModel&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.age, age) || other.age == age)&&(identical(other.husbandName, husbandName) || other.husbandName == husbandName)&&(identical(other.husbandAge, husbandAge) || other.husbandAge == husbandAge)&&(identical(other.husbandContactNo, husbandContactNo) || other.husbandContactNo == husbandContactNo)&&(identical(other.otherFamilyMemberName, otherFamilyMemberName) || other.otherFamilyMemberName == otherFamilyMemberName)&&(identical(other.otherFamilyMemberRelation, otherFamilyMemberRelation) || other.otherFamilyMemberRelation == otherFamilyMemberRelation)&&(identical(other.familyContactNo, familyContactNo) || other.familyContactNo == familyContactNo)&&(identical(other.dob, dob) || other.dob == dob)&&(identical(other.village, village) || other.village == village)&&(identical(other.block, block) || other.block == block)&&(identical(other.district, district) || other.district == district)&&(identical(other.lmp, lmp) || other.lmp == lmp)&&(identical(other.edd, edd) || other.edd == edd)&&(identical(other.bloodGroup, bloodGroup) || other.bloodGroup == bloodGroup)&&(identical(other.riskLevel, riskLevel) || other.riskLevel == riskLevel)&&(identical(other.preferredLanguage, preferredLanguage) || other.preferredLanguage == preferredLanguage)&&(identical(other.ashaName, ashaName) || other.ashaName == ashaName)&&(identical(other.anmName, anmName) || other.anmName == anmName)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,name,age,husbandName,village,block,district,lmp,edd,bloodGroup,riskLevel,preferredLanguage,ashaName,anmName,createdAt);
+int get hashCode => Object.hashAll([runtimeType,id,name,age,husbandName,husbandAge,husbandContactNo,otherFamilyMemberName,otherFamilyMemberRelation,familyContactNo,dob,village,block,district,lmp,edd,bloodGroup,riskLevel,preferredLanguage,ashaName,anmName,createdAt]);
 
 @override
 String toString() {
-  return 'WomenProfileDataModel(id: $id, name: $name, age: $age, husbandName: $husbandName, village: $village, block: $block, district: $district, lmp: $lmp, edd: $edd, bloodGroup: $bloodGroup, riskLevel: $riskLevel, preferredLanguage: $preferredLanguage, ashaName: $ashaName, anmName: $anmName, createdAt: $createdAt)';
+  return 'WomenProfileDataModel(id: $id, name: $name, age: $age, husbandName: $husbandName, husbandAge: $husbandAge, husbandContactNo: $husbandContactNo, otherFamilyMemberName: $otherFamilyMemberName, otherFamilyMemberRelation: $otherFamilyMemberRelation, familyContactNo: $familyContactNo, dob: $dob, village: $village, block: $block, district: $district, lmp: $lmp, edd: $edd, bloodGroup: $bloodGroup, riskLevel: $riskLevel, preferredLanguage: $preferredLanguage, ashaName: $ashaName, anmName: $anmName, createdAt: $createdAt)';
 }
 
 
@@ -634,7 +639,7 @@ abstract mixin class $WomenProfileDataModelCopyWith<$Res>  {
   factory $WomenProfileDataModelCopyWith(WomenProfileDataModel value, $Res Function(WomenProfileDataModel) _then) = _$WomenProfileDataModelCopyWithImpl;
 @useResult
 $Res call({
- String id, String? name, int? age,@JsonKey(name: 'husband_name') String? husbandName, String? village, String? block, String? district, String? lmp, String? edd,@JsonKey(name: 'blood_group') String? bloodGroup,@JsonKey(name: 'risk_level') String riskLevel,@JsonKey(name: 'preferred_language') String preferredLanguage,@JsonKey(name: 'asha_name') String? ashaName,@JsonKey(name: 'anm_name') String? anmName,@JsonKey(name: 'created_at') String? createdAt
+ String id, String? name, int? age,@JsonKey(name: 'husband_name') String? husbandName,@JsonKey(name: 'husband_age') int? husbandAge,@JsonKey(name: 'husband_contact_no') String? husbandContactNo,@JsonKey(name: 'other_family_member_name') String? otherFamilyMemberName,@JsonKey(name: 'other_family_member_relation') String? otherFamilyMemberRelation,@JsonKey(name: 'family_contact_no') String? familyContactNo, String? dob, String? village, String? block, String? district, String? lmp, String? edd,@JsonKey(name: 'blood_group') String? bloodGroup,@JsonKey(name: 'risk_level') String riskLevel,@JsonKey(name: 'preferred_language') String preferredLanguage,@JsonKey(name: 'asha_name') String? ashaName,@JsonKey(name: 'anm_name') String? anmName,@JsonKey(name: 'created_at') String? createdAt
 });
 
 
@@ -651,12 +656,18 @@ class _$WomenProfileDataModelCopyWithImpl<$Res>
 
 /// Create a copy of WomenProfileDataModel
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? name = freezed,Object? age = freezed,Object? husbandName = freezed,Object? village = freezed,Object? block = freezed,Object? district = freezed,Object? lmp = freezed,Object? edd = freezed,Object? bloodGroup = freezed,Object? riskLevel = null,Object? preferredLanguage = null,Object? ashaName = freezed,Object? anmName = freezed,Object? createdAt = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? name = freezed,Object? age = freezed,Object? husbandName = freezed,Object? husbandAge = freezed,Object? husbandContactNo = freezed,Object? otherFamilyMemberName = freezed,Object? otherFamilyMemberRelation = freezed,Object? familyContactNo = freezed,Object? dob = freezed,Object? village = freezed,Object? block = freezed,Object? district = freezed,Object? lmp = freezed,Object? edd = freezed,Object? bloodGroup = freezed,Object? riskLevel = null,Object? preferredLanguage = null,Object? ashaName = freezed,Object? anmName = freezed,Object? createdAt = freezed,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,name: freezed == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String?,age: freezed == age ? _self.age : age // ignore: cast_nullable_to_non_nullable
 as int?,husbandName: freezed == husbandName ? _self.husbandName : husbandName // ignore: cast_nullable_to_non_nullable
+as String?,husbandAge: freezed == husbandAge ? _self.husbandAge : husbandAge // ignore: cast_nullable_to_non_nullable
+as int?,husbandContactNo: freezed == husbandContactNo ? _self.husbandContactNo : husbandContactNo // ignore: cast_nullable_to_non_nullable
+as String?,otherFamilyMemberName: freezed == otherFamilyMemberName ? _self.otherFamilyMemberName : otherFamilyMemberName // ignore: cast_nullable_to_non_nullable
+as String?,otherFamilyMemberRelation: freezed == otherFamilyMemberRelation ? _self.otherFamilyMemberRelation : otherFamilyMemberRelation // ignore: cast_nullable_to_non_nullable
+as String?,familyContactNo: freezed == familyContactNo ? _self.familyContactNo : familyContactNo // ignore: cast_nullable_to_non_nullable
+as String?,dob: freezed == dob ? _self.dob : dob // ignore: cast_nullable_to_non_nullable
 as String?,village: freezed == village ? _self.village : village // ignore: cast_nullable_to_non_nullable
 as String?,block: freezed == block ? _self.block : block // ignore: cast_nullable_to_non_nullable
 as String?,district: freezed == district ? _self.district : district // ignore: cast_nullable_to_non_nullable
@@ -753,10 +764,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String? name,  int? age, @JsonKey(name: 'husband_name')  String? husbandName,  String? village,  String? block,  String? district,  String? lmp,  String? edd, @JsonKey(name: 'blood_group')  String? bloodGroup, @JsonKey(name: 'risk_level')  String riskLevel, @JsonKey(name: 'preferred_language')  String preferredLanguage, @JsonKey(name: 'asha_name')  String? ashaName, @JsonKey(name: 'anm_name')  String? anmName, @JsonKey(name: 'created_at')  String? createdAt)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String? name,  int? age, @JsonKey(name: 'husband_name')  String? husbandName, @JsonKey(name: 'husband_age')  int? husbandAge, @JsonKey(name: 'husband_contact_no')  String? husbandContactNo, @JsonKey(name: 'other_family_member_name')  String? otherFamilyMemberName, @JsonKey(name: 'other_family_member_relation')  String? otherFamilyMemberRelation, @JsonKey(name: 'family_contact_no')  String? familyContactNo,  String? dob,  String? village,  String? block,  String? district,  String? lmp,  String? edd, @JsonKey(name: 'blood_group')  String? bloodGroup, @JsonKey(name: 'risk_level')  String riskLevel, @JsonKey(name: 'preferred_language')  String preferredLanguage, @JsonKey(name: 'asha_name')  String? ashaName, @JsonKey(name: 'anm_name')  String? anmName, @JsonKey(name: 'created_at')  String? createdAt)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _WomenProfileDataModel() when $default != null:
-return $default(_that.id,_that.name,_that.age,_that.husbandName,_that.village,_that.block,_that.district,_that.lmp,_that.edd,_that.bloodGroup,_that.riskLevel,_that.preferredLanguage,_that.ashaName,_that.anmName,_that.createdAt);case _:
+return $default(_that.id,_that.name,_that.age,_that.husbandName,_that.husbandAge,_that.husbandContactNo,_that.otherFamilyMemberName,_that.otherFamilyMemberRelation,_that.familyContactNo,_that.dob,_that.village,_that.block,_that.district,_that.lmp,_that.edd,_that.bloodGroup,_that.riskLevel,_that.preferredLanguage,_that.ashaName,_that.anmName,_that.createdAt);case _:
   return orElse();
 
 }
@@ -774,10 +785,10 @@ return $default(_that.id,_that.name,_that.age,_that.husbandName,_that.village,_t
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String? name,  int? age, @JsonKey(name: 'husband_name')  String? husbandName,  String? village,  String? block,  String? district,  String? lmp,  String? edd, @JsonKey(name: 'blood_group')  String? bloodGroup, @JsonKey(name: 'risk_level')  String riskLevel, @JsonKey(name: 'preferred_language')  String preferredLanguage, @JsonKey(name: 'asha_name')  String? ashaName, @JsonKey(name: 'anm_name')  String? anmName, @JsonKey(name: 'created_at')  String? createdAt)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String? name,  int? age, @JsonKey(name: 'husband_name')  String? husbandName, @JsonKey(name: 'husband_age')  int? husbandAge, @JsonKey(name: 'husband_contact_no')  String? husbandContactNo, @JsonKey(name: 'other_family_member_name')  String? otherFamilyMemberName, @JsonKey(name: 'other_family_member_relation')  String? otherFamilyMemberRelation, @JsonKey(name: 'family_contact_no')  String? familyContactNo,  String? dob,  String? village,  String? block,  String? district,  String? lmp,  String? edd, @JsonKey(name: 'blood_group')  String? bloodGroup, @JsonKey(name: 'risk_level')  String riskLevel, @JsonKey(name: 'preferred_language')  String preferredLanguage, @JsonKey(name: 'asha_name')  String? ashaName, @JsonKey(name: 'anm_name')  String? anmName, @JsonKey(name: 'created_at')  String? createdAt)  $default,) {final _that = this;
 switch (_that) {
 case _WomenProfileDataModel():
-return $default(_that.id,_that.name,_that.age,_that.husbandName,_that.village,_that.block,_that.district,_that.lmp,_that.edd,_that.bloodGroup,_that.riskLevel,_that.preferredLanguage,_that.ashaName,_that.anmName,_that.createdAt);case _:
+return $default(_that.id,_that.name,_that.age,_that.husbandName,_that.husbandAge,_that.husbandContactNo,_that.otherFamilyMemberName,_that.otherFamilyMemberRelation,_that.familyContactNo,_that.dob,_that.village,_that.block,_that.district,_that.lmp,_that.edd,_that.bloodGroup,_that.riskLevel,_that.preferredLanguage,_that.ashaName,_that.anmName,_that.createdAt);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -794,10 +805,10 @@ return $default(_that.id,_that.name,_that.age,_that.husbandName,_that.village,_t
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String? name,  int? age, @JsonKey(name: 'husband_name')  String? husbandName,  String? village,  String? block,  String? district,  String? lmp,  String? edd, @JsonKey(name: 'blood_group')  String? bloodGroup, @JsonKey(name: 'risk_level')  String riskLevel, @JsonKey(name: 'preferred_language')  String preferredLanguage, @JsonKey(name: 'asha_name')  String? ashaName, @JsonKey(name: 'anm_name')  String? anmName, @JsonKey(name: 'created_at')  String? createdAt)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String? name,  int? age, @JsonKey(name: 'husband_name')  String? husbandName, @JsonKey(name: 'husband_age')  int? husbandAge, @JsonKey(name: 'husband_contact_no')  String? husbandContactNo, @JsonKey(name: 'other_family_member_name')  String? otherFamilyMemberName, @JsonKey(name: 'other_family_member_relation')  String? otherFamilyMemberRelation, @JsonKey(name: 'family_contact_no')  String? familyContactNo,  String? dob,  String? village,  String? block,  String? district,  String? lmp,  String? edd, @JsonKey(name: 'blood_group')  String? bloodGroup, @JsonKey(name: 'risk_level')  String riskLevel, @JsonKey(name: 'preferred_language')  String preferredLanguage, @JsonKey(name: 'asha_name')  String? ashaName, @JsonKey(name: 'anm_name')  String? anmName, @JsonKey(name: 'created_at')  String? createdAt)?  $default,) {final _that = this;
 switch (_that) {
 case _WomenProfileDataModel() when $default != null:
-return $default(_that.id,_that.name,_that.age,_that.husbandName,_that.village,_that.block,_that.district,_that.lmp,_that.edd,_that.bloodGroup,_that.riskLevel,_that.preferredLanguage,_that.ashaName,_that.anmName,_that.createdAt);case _:
+return $default(_that.id,_that.name,_that.age,_that.husbandName,_that.husbandAge,_that.husbandContactNo,_that.otherFamilyMemberName,_that.otherFamilyMemberRelation,_that.familyContactNo,_that.dob,_that.village,_that.block,_that.district,_that.lmp,_that.edd,_that.bloodGroup,_that.riskLevel,_that.preferredLanguage,_that.ashaName,_that.anmName,_that.createdAt);case _:
   return null;
 
 }
@@ -809,13 +820,24 @@ return $default(_that.id,_that.name,_that.age,_that.husbandName,_that.village,_t
 @JsonSerializable()
 
 class _WomenProfileDataModel implements WomenProfileDataModel {
-  const _WomenProfileDataModel({required this.id, this.name, this.age, @JsonKey(name: 'husband_name') this.husbandName, this.village, this.block, this.district, this.lmp, this.edd, @JsonKey(name: 'blood_group') this.bloodGroup, @JsonKey(name: 'risk_level') this.riskLevel = 'low', @JsonKey(name: 'preferred_language') this.preferredLanguage = 'hi', @JsonKey(name: 'asha_name') this.ashaName, @JsonKey(name: 'anm_name') this.anmName, @JsonKey(name: 'created_at') this.createdAt});
+  const _WomenProfileDataModel({required this.id, this.name, this.age, @JsonKey(name: 'husband_name') this.husbandName, @JsonKey(name: 'husband_age') this.husbandAge, @JsonKey(name: 'husband_contact_no') this.husbandContactNo, @JsonKey(name: 'other_family_member_name') this.otherFamilyMemberName, @JsonKey(name: 'other_family_member_relation') this.otherFamilyMemberRelation, @JsonKey(name: 'family_contact_no') this.familyContactNo, this.dob, this.village, this.block, this.district, this.lmp, this.edd, @JsonKey(name: 'blood_group') this.bloodGroup, @JsonKey(name: 'risk_level') this.riskLevel = 'low', @JsonKey(name: 'preferred_language') this.preferredLanguage = 'hi', @JsonKey(name: 'asha_name') this.ashaName, @JsonKey(name: 'anm_name') this.anmName, @JsonKey(name: 'created_at') this.createdAt});
   factory _WomenProfileDataModel.fromJson(Map<String, dynamic> json) => _$WomenProfileDataModelFromJson(json);
 
 @override final  String id;
 @override final  String? name;
 @override final  int? age;
 @override@JsonKey(name: 'husband_name') final  String? husbandName;
+// NOTE: backend Beneficiary already stores these (set at registration —
+// see register_woman()), but GET /women/profile doesn't return them yet.
+// Nullable so parsing is safe either way; will populate automatically
+// once the backend adds these two keys to profile_data.
+@override@JsonKey(name: 'husband_age') final  int? husbandAge;
+@override@JsonKey(name: 'husband_contact_no') final  String? husbandContactNo;
+@override@JsonKey(name: 'other_family_member_name') final  String? otherFamilyMemberName;
+@override@JsonKey(name: 'other_family_member_relation') final  String? otherFamilyMemberRelation;
+@override@JsonKey(name: 'family_contact_no') final  String? familyContactNo;
+@override final  String? dob;
+// ISO date string or null
 @override final  String? village;
 @override final  String? block;
 @override final  String? district;
@@ -842,16 +864,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _WomenProfileDataModel&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.age, age) || other.age == age)&&(identical(other.husbandName, husbandName) || other.husbandName == husbandName)&&(identical(other.village, village) || other.village == village)&&(identical(other.block, block) || other.block == block)&&(identical(other.district, district) || other.district == district)&&(identical(other.lmp, lmp) || other.lmp == lmp)&&(identical(other.edd, edd) || other.edd == edd)&&(identical(other.bloodGroup, bloodGroup) || other.bloodGroup == bloodGroup)&&(identical(other.riskLevel, riskLevel) || other.riskLevel == riskLevel)&&(identical(other.preferredLanguage, preferredLanguage) || other.preferredLanguage == preferredLanguage)&&(identical(other.ashaName, ashaName) || other.ashaName == ashaName)&&(identical(other.anmName, anmName) || other.anmName == anmName)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _WomenProfileDataModel&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.age, age) || other.age == age)&&(identical(other.husbandName, husbandName) || other.husbandName == husbandName)&&(identical(other.husbandAge, husbandAge) || other.husbandAge == husbandAge)&&(identical(other.husbandContactNo, husbandContactNo) || other.husbandContactNo == husbandContactNo)&&(identical(other.otherFamilyMemberName, otherFamilyMemberName) || other.otherFamilyMemberName == otherFamilyMemberName)&&(identical(other.otherFamilyMemberRelation, otherFamilyMemberRelation) || other.otherFamilyMemberRelation == otherFamilyMemberRelation)&&(identical(other.familyContactNo, familyContactNo) || other.familyContactNo == familyContactNo)&&(identical(other.dob, dob) || other.dob == dob)&&(identical(other.village, village) || other.village == village)&&(identical(other.block, block) || other.block == block)&&(identical(other.district, district) || other.district == district)&&(identical(other.lmp, lmp) || other.lmp == lmp)&&(identical(other.edd, edd) || other.edd == edd)&&(identical(other.bloodGroup, bloodGroup) || other.bloodGroup == bloodGroup)&&(identical(other.riskLevel, riskLevel) || other.riskLevel == riskLevel)&&(identical(other.preferredLanguage, preferredLanguage) || other.preferredLanguage == preferredLanguage)&&(identical(other.ashaName, ashaName) || other.ashaName == ashaName)&&(identical(other.anmName, anmName) || other.anmName == anmName)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,name,age,husbandName,village,block,district,lmp,edd,bloodGroup,riskLevel,preferredLanguage,ashaName,anmName,createdAt);
+int get hashCode => Object.hashAll([runtimeType,id,name,age,husbandName,husbandAge,husbandContactNo,otherFamilyMemberName,otherFamilyMemberRelation,familyContactNo,dob,village,block,district,lmp,edd,bloodGroup,riskLevel,preferredLanguage,ashaName,anmName,createdAt]);
 
 @override
 String toString() {
-  return 'WomenProfileDataModel(id: $id, name: $name, age: $age, husbandName: $husbandName, village: $village, block: $block, district: $district, lmp: $lmp, edd: $edd, bloodGroup: $bloodGroup, riskLevel: $riskLevel, preferredLanguage: $preferredLanguage, ashaName: $ashaName, anmName: $anmName, createdAt: $createdAt)';
+  return 'WomenProfileDataModel(id: $id, name: $name, age: $age, husbandName: $husbandName, husbandAge: $husbandAge, husbandContactNo: $husbandContactNo, otherFamilyMemberName: $otherFamilyMemberName, otherFamilyMemberRelation: $otherFamilyMemberRelation, familyContactNo: $familyContactNo, dob: $dob, village: $village, block: $block, district: $district, lmp: $lmp, edd: $edd, bloodGroup: $bloodGroup, riskLevel: $riskLevel, preferredLanguage: $preferredLanguage, ashaName: $ashaName, anmName: $anmName, createdAt: $createdAt)';
 }
 
 
@@ -862,7 +884,7 @@ abstract mixin class _$WomenProfileDataModelCopyWith<$Res> implements $WomenProf
   factory _$WomenProfileDataModelCopyWith(_WomenProfileDataModel value, $Res Function(_WomenProfileDataModel) _then) = __$WomenProfileDataModelCopyWithImpl;
 @override @useResult
 $Res call({
- String id, String? name, int? age,@JsonKey(name: 'husband_name') String? husbandName, String? village, String? block, String? district, String? lmp, String? edd,@JsonKey(name: 'blood_group') String? bloodGroup,@JsonKey(name: 'risk_level') String riskLevel,@JsonKey(name: 'preferred_language') String preferredLanguage,@JsonKey(name: 'asha_name') String? ashaName,@JsonKey(name: 'anm_name') String? anmName,@JsonKey(name: 'created_at') String? createdAt
+ String id, String? name, int? age,@JsonKey(name: 'husband_name') String? husbandName,@JsonKey(name: 'husband_age') int? husbandAge,@JsonKey(name: 'husband_contact_no') String? husbandContactNo,@JsonKey(name: 'other_family_member_name') String? otherFamilyMemberName,@JsonKey(name: 'other_family_member_relation') String? otherFamilyMemberRelation,@JsonKey(name: 'family_contact_no') String? familyContactNo, String? dob, String? village, String? block, String? district, String? lmp, String? edd,@JsonKey(name: 'blood_group') String? bloodGroup,@JsonKey(name: 'risk_level') String riskLevel,@JsonKey(name: 'preferred_language') String preferredLanguage,@JsonKey(name: 'asha_name') String? ashaName,@JsonKey(name: 'anm_name') String? anmName,@JsonKey(name: 'created_at') String? createdAt
 });
 
 
@@ -879,12 +901,18 @@ class __$WomenProfileDataModelCopyWithImpl<$Res>
 
 /// Create a copy of WomenProfileDataModel
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? name = freezed,Object? age = freezed,Object? husbandName = freezed,Object? village = freezed,Object? block = freezed,Object? district = freezed,Object? lmp = freezed,Object? edd = freezed,Object? bloodGroup = freezed,Object? riskLevel = null,Object? preferredLanguage = null,Object? ashaName = freezed,Object? anmName = freezed,Object? createdAt = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? name = freezed,Object? age = freezed,Object? husbandName = freezed,Object? husbandAge = freezed,Object? husbandContactNo = freezed,Object? otherFamilyMemberName = freezed,Object? otherFamilyMemberRelation = freezed,Object? familyContactNo = freezed,Object? dob = freezed,Object? village = freezed,Object? block = freezed,Object? district = freezed,Object? lmp = freezed,Object? edd = freezed,Object? bloodGroup = freezed,Object? riskLevel = null,Object? preferredLanguage = null,Object? ashaName = freezed,Object? anmName = freezed,Object? createdAt = freezed,}) {
   return _then(_WomenProfileDataModel(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,name: freezed == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String?,age: freezed == age ? _self.age : age // ignore: cast_nullable_to_non_nullable
 as int?,husbandName: freezed == husbandName ? _self.husbandName : husbandName // ignore: cast_nullable_to_non_nullable
+as String?,husbandAge: freezed == husbandAge ? _self.husbandAge : husbandAge // ignore: cast_nullable_to_non_nullable
+as int?,husbandContactNo: freezed == husbandContactNo ? _self.husbandContactNo : husbandContactNo // ignore: cast_nullable_to_non_nullable
+as String?,otherFamilyMemberName: freezed == otherFamilyMemberName ? _self.otherFamilyMemberName : otherFamilyMemberName // ignore: cast_nullable_to_non_nullable
+as String?,otherFamilyMemberRelation: freezed == otherFamilyMemberRelation ? _self.otherFamilyMemberRelation : otherFamilyMemberRelation // ignore: cast_nullable_to_non_nullable
+as String?,familyContactNo: freezed == familyContactNo ? _self.familyContactNo : familyContactNo // ignore: cast_nullable_to_non_nullable
+as String?,dob: freezed == dob ? _self.dob : dob // ignore: cast_nullable_to_non_nullable
 as String?,village: freezed == village ? _self.village : village // ignore: cast_nullable_to_non_nullable
 as String?,block: freezed == block ? _self.block : block // ignore: cast_nullable_to_non_nullable
 as String?,district: freezed == district ? _self.district : district // ignore: cast_nullable_to_non_nullable
