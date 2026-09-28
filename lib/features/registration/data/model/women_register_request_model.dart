@@ -12,6 +12,7 @@ abstract class WomenRegisterRequestModel with _$WomenRegisterRequestModel {
     @JsonKey(name: 'husband_age') int? husbandAge,
     String? dob, // ISO yyyy-MM-dd
     String? address,
+    @JsonKey(name: 'village_id') String? villageId,
     String? village,
     String? phc,
     String? block,

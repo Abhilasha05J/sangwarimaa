@@ -13,6 +13,7 @@ class ApiEndpoints {
 
   // ── Women ─────────────────────────────
   static const String womenRegister        = '/api/v1/women/register';
+  static const String villages             =  '/api/v1/women/villages';
   static const String womenProfile         = '/api/v1/women/profile';
   static const String pregnancyCurrent     = '/api/v1/women/pregnancy/current';
   static String pregnancyWeek(int week)    => '/api/v1/women/pregnancy/week/$week';

@@ -101,10 +101,28 @@ class AppLocalizationsHi extends AppLocalizations {
   String get healthCenter => 'स्वास्थ्य केंद्र चयन';
 
   @override
-  String get selectVillage => 'गाँव चुनें';
+  String get selectVillageHint => 'अपना गाँव चुनें';
 
   @override
-  String get selectVillageHint => 'गाँव चुनें';
+  String get searchVillageHint => 'गाँव का नाम खोजें';
+
+  @override
+  String get searchVillagePrompt => 'खोजने के लिए टाइप करना शुरू करें';
+
+  @override
+  String get villageSearchError => 'गाँव लोड नहीं हो सके। पुनः प्रयास करें।';
+
+  @override
+  String get noVillagesFound => 'कोई गाँव नहीं मिला';
+
+  @override
+  String get villageNotListed => 'मेरा गाँव सूची में नहीं है';
+
+  @override
+  String get villageNotListedShort => 'सूची में नहीं है';
+
+  @override
+  String get typeYourVillageHint => 'अपने गाँव का नाम लिखें';
 
   @override
   String get phc => 'प्राथमिक स्वास्थ्य केंद्र (PHC)';

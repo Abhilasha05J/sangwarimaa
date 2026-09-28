@@ -101,10 +101,28 @@ class AppLocalizationsEn extends AppLocalizations {
   String get healthCenter => 'Health Center Selection';
 
   @override
-  String get selectVillage => 'Select Village';
+  String get selectVillageHint => 'Select your village';
 
   @override
-  String get selectVillageHint => 'Select Village';
+  String get searchVillageHint => 'Search village name';
+
+  @override
+  String get searchVillagePrompt => 'Start typing to search';
+
+  @override
+  String get villageSearchError => 'Couldn\'t load villages. Try again.';
+
+  @override
+  String get noVillagesFound => 'No villages found';
+
+  @override
+  String get villageNotListed => 'My village is not listed';
+
+  @override
+  String get villageNotListedShort => 'not listed';
+
+  @override
+  String get typeYourVillageHint => 'Type your village name';
 
   @override
   String get phc => 'Primary Health Center (PHC)';

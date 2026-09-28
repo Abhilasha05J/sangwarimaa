@@ -91,11 +91,29 @@
   "healthCenter": "Health Center Selection",
   "@healthCenter": {},
 
-  "selectVillage": "Select Village",
-  "@selectVillage": {},
-
-  "selectVillageHint": "Select Village",
+  "selectVillageHint": "Select your village",
   "@selectVillageHint": {},
+
+  "searchVillageHint": "Search village name",
+  "@searchVillageHint": {},
+
+  "searchVillagePrompt": "Start typing to search",
+  "@searchVillagePrompt": {},
+
+  "villageSearchError": "Couldn't load villages. Try again.",
+  "@villageSearchError": {},
+
+  "noVillagesFound": "No villages found",
+  "@noVillagesFound": {},
+
+  "villageNotListed": "My village is not listed",
+  "@villageNotListed": {},
+
+  "villageNotListedShort": "not listed",
+  "@villageNotListedShort": {},
+
+  "typeYourVillageHint": "Type your village name",
+  "@typeYourVillageHint": {},
 
   "phc": "Primary Health Center (PHC)",
   "@phc": {},

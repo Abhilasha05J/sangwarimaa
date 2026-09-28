@@ -16,7 +16,8 @@ import 'package:sangwari_maa/shared/providers/locale_provider.dart';
 import 'package:sangwari_maa/shared/widgets/app_bar.dart';
 import 'package:sangwari_maa/shared/widgets/app_primary_button.dart';
 import 'package:sangwari_maa/shared/widgets/app_text_field.dart';
-
+import 'package:sangwari_maa/features/registration/data/model/village_model.dart';
+import 'package:sangwari_maa/features/registration/presentation/widgets/village_picker_field.dart';
 const _otpGreen = Color(0xFF2E7D32);
 
 /// Route: /register
@@ -42,7 +43,8 @@ class _RegistrationPageState extends ConsumerState<RegistrationPage> {
   final _ageCtrl     = TextEditingController();
   final _dobCtrl     = TextEditingController();
   final _addressCtrl = TextEditingController();
-  final _villageCtrl  = TextEditingController();
+  VillageModel? _selectedVillage;
+  String? _villageNotListedName;
   final _districtCtrl = TextEditingController();
   final _gestCtrl    = TextEditingController();
   final _lmpCtrl     = TextEditingController();
@@ -81,7 +83,6 @@ class _RegistrationPageState extends ConsumerState<RegistrationPage> {
     _gestCtrl.dispose();
     _lmpCtrl.dispose();
     _eddCtrl.dispose();
-    _villageCtrl.dispose();
     _districtCtrl.dispose();
     super.dispose();
   }
@@ -199,6 +200,14 @@ class _RegistrationPageState extends ConsumerState<RegistrationPage> {
     return null;
   }
 
+  String? _villageValidator() {
+    if (!_isUnlocked) return null;
+    final l10n = AppLocalizations.of(context)!;
+    if (_selectedVillage == null && (_villageNotListedName == null || _villageNotListedName!.isEmpty)) {
+      return l10n.required;
+    }
+    return null;
+  }
   // ── Inline OTP actions ───────────────────────────────────────────────────
 
   void _onSendOtp() {
@@ -227,6 +236,11 @@ class _RegistrationPageState extends ConsumerState<RegistrationPage> {
     final l10n = AppLocalizations.of(context)!;
     if (!_isUnlocked) return;
     if (!(_formKey.currentState?.validate() ?? false)) return;
+    final villageError = _villageValidator();
+    if (villageError != null) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(villageError)));
+      return;
+    }
     if (!_consentGiven) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(l10n.consentRequired)));
       return;
@@ -238,7 +252,8 @@ class _RegistrationPageState extends ConsumerState<RegistrationPage> {
       //  husbandAge: int.tryParse(_husbAgeCtrl.text),
         dob: _toIsoDate(_dobCtrl.text),
         address: _addressCtrl.text.trim().isEmpty ? null : _addressCtrl.text.trim(),
-        village: _villageCtrl.text.trim().isEmpty ? null : _villageCtrl.text.trim(),
+        villageId: _selectedVillage?.id,
+        village: _selectedVillage == null ? _villageNotListedName : null,
         district: _districtCtrl.text.trim().isEmpty ? null : _districtCtrl.text.trim(),
         lmp: _toIsoDate(_lmpCtrl.text) ?? '',
         bloodGroup: _normalizeBloodGroup(_selectedBloodGroup),
@@ -246,6 +261,20 @@ class _RegistrationPageState extends ConsumerState<RegistrationPage> {
         consent: _consentGiven,
       ),
     );
+  }
+
+  Future<void> _onPickVillage() async {
+    final result = await showVillagePickerSheet(context, ref);
+    if (result == null) return;
+    setState(() {
+      if (result.village != null) {
+        _selectedVillage = result.village;
+        _villageNotListedName = null;
+      } else {
+        _selectedVillage = null;
+        _villageNotListedName = result.notListedName;
+      }
+    });
   }
 
   @override
@@ -659,10 +688,13 @@ class _RegistrationPageState extends ConsumerState<RegistrationPage> {
                         const SizedBox(height: AppSpacing.md),
                         Text(l10n.village, style: AppTypography.fieldLabel),
                         const SizedBox(height: AppSpacing.xs),
-                        AppTextField(
-                          hint: l10n.village,
-                          controller: _villageCtrl,
-                          textCapitalization: TextCapitalization.sentences,
+                        VillagePickerField(
+                          hint: l10n.selectVillageHint,
+                          displayText: _selectedVillage?.name ??
+                              (_villageNotListedName != null
+                                  ? '${_villageNotListedName!} (${l10n.villageNotListedShort})'
+                                  : null),
+                          onTap: _isUnlocked ? _onPickVillage : () {},
                         ),
                         const SizedBox(height: AppSpacing.md),
                         Text(l10n.district, style: AppTypography.fieldLabel),

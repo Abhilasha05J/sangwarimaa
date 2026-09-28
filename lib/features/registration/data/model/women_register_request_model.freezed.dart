@@ -16,7 +16,7 @@ T _$identity<T>(T value) => value;
 mixin _$WomenRegisterRequestModel {
 
  String get name; int get age;@JsonKey(name: 'husband_name') String? get husbandName;@JsonKey(name: 'husband_age') int? get husbandAge; String? get dob;// ISO yyyy-MM-dd
- String? get address; String? get village; String? get phc; String? get block; String? get district; String get lmp;// ISO yyyy-MM-dd
+ String? get address;@JsonKey(name: 'village_id') String? get villageId; String? get village; String? get phc; String? get block; String? get district; String get lmp;// ISO yyyy-MM-dd
 @JsonKey(name: 'blood_group') String? get bloodGroup;@JsonKey(name: 'preferred_language') String get preferredLanguage; bool get consent; String? get latitude; String? get longitude;
 /// Create a copy of WomenRegisterRequestModel
 /// with the given fields replaced by the non-null parameter values.
@@ -30,16 +30,16 @@ $WomenRegisterRequestModelCopyWith<WomenRegisterRequestModel> get copyWith => _$
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is WomenRegisterRequestModel&&(identical(other.name, name) || other.name == name)&&(identical(other.age, age) || other.age == age)&&(identical(other.husbandName, husbandName) || other.husbandName == husbandName)&&(identical(other.husbandAge, husbandAge) || other.husbandAge == husbandAge)&&(identical(other.dob, dob) || other.dob == dob)&&(identical(other.address, address) || other.address == address)&&(identical(other.village, village) || other.village == village)&&(identical(other.phc, phc) || other.phc == phc)&&(identical(other.block, block) || other.block == block)&&(identical(other.district, district) || other.district == district)&&(identical(other.lmp, lmp) || other.lmp == lmp)&&(identical(other.bloodGroup, bloodGroup) || other.bloodGroup == bloodGroup)&&(identical(other.preferredLanguage, preferredLanguage) || other.preferredLanguage == preferredLanguage)&&(identical(other.consent, consent) || other.consent == consent)&&(identical(other.latitude, latitude) || other.latitude == latitude)&&(identical(other.longitude, longitude) || other.longitude == longitude));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is WomenRegisterRequestModel&&(identical(other.name, name) || other.name == name)&&(identical(other.age, age) || other.age == age)&&(identical(other.husbandName, husbandName) || other.husbandName == husbandName)&&(identical(other.husbandAge, husbandAge) || other.husbandAge == husbandAge)&&(identical(other.dob, dob) || other.dob == dob)&&(identical(other.address, address) || other.address == address)&&(identical(other.villageId, villageId) || other.villageId == villageId)&&(identical(other.village, village) || other.village == village)&&(identical(other.phc, phc) || other.phc == phc)&&(identical(other.block, block) || other.block == block)&&(identical(other.district, district) || other.district == district)&&(identical(other.lmp, lmp) || other.lmp == lmp)&&(identical(other.bloodGroup, bloodGroup) || other.bloodGroup == bloodGroup)&&(identical(other.preferredLanguage, preferredLanguage) || other.preferredLanguage == preferredLanguage)&&(identical(other.consent, consent) || other.consent == consent)&&(identical(other.latitude, latitude) || other.latitude == latitude)&&(identical(other.longitude, longitude) || other.longitude == longitude));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,name,age,husbandName,husbandAge,dob,address,village,phc,block,district,lmp,bloodGroup,preferredLanguage,consent,latitude,longitude);
+int get hashCode => Object.hash(runtimeType,name,age,husbandName,husbandAge,dob,address,villageId,village,phc,block,district,lmp,bloodGroup,preferredLanguage,consent,latitude,longitude);
 
 @override
 String toString() {
-  return 'WomenRegisterRequestModel(name: $name, age: $age, husbandName: $husbandName, husbandAge: $husbandAge, dob: $dob, address: $address, village: $village, phc: $phc, block: $block, district: $district, lmp: $lmp, bloodGroup: $bloodGroup, preferredLanguage: $preferredLanguage, consent: $consent, latitude: $latitude, longitude: $longitude)';
+  return 'WomenRegisterRequestModel(name: $name, age: $age, husbandName: $husbandName, husbandAge: $husbandAge, dob: $dob, address: $address, villageId: $villageId, village: $village, phc: $phc, block: $block, district: $district, lmp: $lmp, bloodGroup: $bloodGroup, preferredLanguage: $preferredLanguage, consent: $consent, latitude: $latitude, longitude: $longitude)';
 }
 
 
@@ -50,7 +50,7 @@ abstract mixin class $WomenRegisterRequestModelCopyWith<$Res>  {
   factory $WomenRegisterRequestModelCopyWith(WomenRegisterRequestModel value, $Res Function(WomenRegisterRequestModel) _then) = _$WomenRegisterRequestModelCopyWithImpl;
 @useResult
 $Res call({
- String name, int age,@JsonKey(name: 'husband_name') String? husbandName,@JsonKey(name: 'husband_age') int? husbandAge, String? dob, String? address, String? village, String? phc, String? block, String? district, String lmp,@JsonKey(name: 'blood_group') String? bloodGroup,@JsonKey(name: 'preferred_language') String preferredLanguage, bool consent, String? latitude, String? longitude
+ String name, int age,@JsonKey(name: 'husband_name') String? husbandName,@JsonKey(name: 'husband_age') int? husbandAge, String? dob, String? address,@JsonKey(name: 'village_id') String? villageId, String? village, String? phc, String? block, String? district, String lmp,@JsonKey(name: 'blood_group') String? bloodGroup,@JsonKey(name: 'preferred_language') String preferredLanguage, bool consent, String? latitude, String? longitude
 });
 
 
@@ -67,7 +67,7 @@ class _$WomenRegisterRequestModelCopyWithImpl<$Res>
 
 /// Create a copy of WomenRegisterRequestModel
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? name = null,Object? age = null,Object? husbandName = freezed,Object? husbandAge = freezed,Object? dob = freezed,Object? address = freezed,Object? village = freezed,Object? phc = freezed,Object? block = freezed,Object? district = freezed,Object? lmp = null,Object? bloodGroup = freezed,Object? preferredLanguage = null,Object? consent = null,Object? latitude = freezed,Object? longitude = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? name = null,Object? age = null,Object? husbandName = freezed,Object? husbandAge = freezed,Object? dob = freezed,Object? address = freezed,Object? villageId = freezed,Object? village = freezed,Object? phc = freezed,Object? block = freezed,Object? district = freezed,Object? lmp = null,Object? bloodGroup = freezed,Object? preferredLanguage = null,Object? consent = null,Object? latitude = freezed,Object? longitude = freezed,}) {
   return _then(_self.copyWith(
 name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String,age: null == age ? _self.age : age // ignore: cast_nullable_to_non_nullable
@@ -75,6 +75,7 @@ as int,husbandName: freezed == husbandName ? _self.husbandName : husbandName // 
 as String?,husbandAge: freezed == husbandAge ? _self.husbandAge : husbandAge // ignore: cast_nullable_to_non_nullable
 as int?,dob: freezed == dob ? _self.dob : dob // ignore: cast_nullable_to_non_nullable
 as String?,address: freezed == address ? _self.address : address // ignore: cast_nullable_to_non_nullable
+as String?,villageId: freezed == villageId ? _self.villageId : villageId // ignore: cast_nullable_to_non_nullable
 as String?,village: freezed == village ? _self.village : village // ignore: cast_nullable_to_non_nullable
 as String?,phc: freezed == phc ? _self.phc : phc // ignore: cast_nullable_to_non_nullable
 as String?,block: freezed == block ? _self.block : block // ignore: cast_nullable_to_non_nullable
@@ -170,10 +171,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String name,  int age, @JsonKey(name: 'husband_name')  String? husbandName, @JsonKey(name: 'husband_age')  int? husbandAge,  String? dob,  String? address,  String? village,  String? phc,  String? block,  String? district,  String lmp, @JsonKey(name: 'blood_group')  String? bloodGroup, @JsonKey(name: 'preferred_language')  String preferredLanguage,  bool consent,  String? latitude,  String? longitude)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String name,  int age, @JsonKey(name: 'husband_name')  String? husbandName, @JsonKey(name: 'husband_age')  int? husbandAge,  String? dob,  String? address, @JsonKey(name: 'village_id')  String? villageId,  String? village,  String? phc,  String? block,  String? district,  String lmp, @JsonKey(name: 'blood_group')  String? bloodGroup, @JsonKey(name: 'preferred_language')  String preferredLanguage,  bool consent,  String? latitude,  String? longitude)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _WomenRegisterRequestModel() when $default != null:
-return $default(_that.name,_that.age,_that.husbandName,_that.husbandAge,_that.dob,_that.address,_that.village,_that.phc,_that.block,_that.district,_that.lmp,_that.bloodGroup,_that.preferredLanguage,_that.consent,_that.latitude,_that.longitude);case _:
+return $default(_that.name,_that.age,_that.husbandName,_that.husbandAge,_that.dob,_that.address,_that.villageId,_that.village,_that.phc,_that.block,_that.district,_that.lmp,_that.bloodGroup,_that.preferredLanguage,_that.consent,_that.latitude,_that.longitude);case _:
   return orElse();
 
 }
@@ -191,10 +192,10 @@ return $default(_that.name,_that.age,_that.husbandName,_that.husbandAge,_that.do
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String name,  int age, @JsonKey(name: 'husband_name')  String? husbandName, @JsonKey(name: 'husband_age')  int? husbandAge,  String? dob,  String? address,  String? village,  String? phc,  String? block,  String? district,  String lmp, @JsonKey(name: 'blood_group')  String? bloodGroup, @JsonKey(name: 'preferred_language')  String preferredLanguage,  bool consent,  String? latitude,  String? longitude)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String name,  int age, @JsonKey(name: 'husband_name')  String? husbandName, @JsonKey(name: 'husband_age')  int? husbandAge,  String? dob,  String? address, @JsonKey(name: 'village_id')  String? villageId,  String? village,  String? phc,  String? block,  String? district,  String lmp, @JsonKey(name: 'blood_group')  String? bloodGroup, @JsonKey(name: 'preferred_language')  String preferredLanguage,  bool consent,  String? latitude,  String? longitude)  $default,) {final _that = this;
 switch (_that) {
 case _WomenRegisterRequestModel():
-return $default(_that.name,_that.age,_that.husbandName,_that.husbandAge,_that.dob,_that.address,_that.village,_that.phc,_that.block,_that.district,_that.lmp,_that.bloodGroup,_that.preferredLanguage,_that.consent,_that.latitude,_that.longitude);case _:
+return $default(_that.name,_that.age,_that.husbandName,_that.husbandAge,_that.dob,_that.address,_that.villageId,_that.village,_that.phc,_that.block,_that.district,_that.lmp,_that.bloodGroup,_that.preferredLanguage,_that.consent,_that.latitude,_that.longitude);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -211,10 +212,10 @@ return $default(_that.name,_that.age,_that.husbandName,_that.husbandAge,_that.do
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String name,  int age, @JsonKey(name: 'husband_name')  String? husbandName, @JsonKey(name: 'husband_age')  int? husbandAge,  String? dob,  String? address,  String? village,  String? phc,  String? block,  String? district,  String lmp, @JsonKey(name: 'blood_group')  String? bloodGroup, @JsonKey(name: 'preferred_language')  String preferredLanguage,  bool consent,  String? latitude,  String? longitude)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String name,  int age, @JsonKey(name: 'husband_name')  String? husbandName, @JsonKey(name: 'husband_age')  int? husbandAge,  String? dob,  String? address, @JsonKey(name: 'village_id')  String? villageId,  String? village,  String? phc,  String? block,  String? district,  String lmp, @JsonKey(name: 'blood_group')  String? bloodGroup, @JsonKey(name: 'preferred_language')  String preferredLanguage,  bool consent,  String? latitude,  String? longitude)?  $default,) {final _that = this;
 switch (_that) {
 case _WomenRegisterRequestModel() when $default != null:
-return $default(_that.name,_that.age,_that.husbandName,_that.husbandAge,_that.dob,_that.address,_that.village,_that.phc,_that.block,_that.district,_that.lmp,_that.bloodGroup,_that.preferredLanguage,_that.consent,_that.latitude,_that.longitude);case _:
+return $default(_that.name,_that.age,_that.husbandName,_that.husbandAge,_that.dob,_that.address,_that.villageId,_that.village,_that.phc,_that.block,_that.district,_that.lmp,_that.bloodGroup,_that.preferredLanguage,_that.consent,_that.latitude,_that.longitude);case _:
   return null;
 
 }
@@ -226,7 +227,7 @@ return $default(_that.name,_that.age,_that.husbandName,_that.husbandAge,_that.do
 @JsonSerializable()
 
 class _WomenRegisterRequestModel implements WomenRegisterRequestModel {
-  const _WomenRegisterRequestModel({required this.name, required this.age, @JsonKey(name: 'husband_name') this.husbandName, @JsonKey(name: 'husband_age') this.husbandAge, this.dob, this.address, this.village, this.phc, this.block, this.district, required this.lmp, @JsonKey(name: 'blood_group') this.bloodGroup, @JsonKey(name: 'preferred_language') this.preferredLanguage = 'hi', required this.consent, this.latitude, this.longitude});
+  const _WomenRegisterRequestModel({required this.name, required this.age, @JsonKey(name: 'husband_name') this.husbandName, @JsonKey(name: 'husband_age') this.husbandAge, this.dob, this.address, @JsonKey(name: 'village_id') this.villageId, this.village, this.phc, this.block, this.district, required this.lmp, @JsonKey(name: 'blood_group') this.bloodGroup, @JsonKey(name: 'preferred_language') this.preferredLanguage = 'hi', required this.consent, this.latitude, this.longitude});
   factory _WomenRegisterRequestModel.fromJson(Map<String, dynamic> json) => _$WomenRegisterRequestModelFromJson(json);
 
 @override final  String name;
@@ -236,6 +237,7 @@ class _WomenRegisterRequestModel implements WomenRegisterRequestModel {
 @override final  String? dob;
 // ISO yyyy-MM-dd
 @override final  String? address;
+@override@JsonKey(name: 'village_id') final  String? villageId;
 @override final  String? village;
 @override final  String? phc;
 @override final  String? block;
@@ -261,16 +263,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _WomenRegisterRequestModel&&(identical(other.name, name) || other.name == name)&&(identical(other.age, age) || other.age == age)&&(identical(other.husbandName, husbandName) || other.husbandName == husbandName)&&(identical(other.husbandAge, husbandAge) || other.husbandAge == husbandAge)&&(identical(other.dob, dob) || other.dob == dob)&&(identical(other.address, address) || other.address == address)&&(identical(other.village, village) || other.village == village)&&(identical(other.phc, phc) || other.phc == phc)&&(identical(other.block, block) || other.block == block)&&(identical(other.district, district) || other.district == district)&&(identical(other.lmp, lmp) || other.lmp == lmp)&&(identical(other.bloodGroup, bloodGroup) || other.bloodGroup == bloodGroup)&&(identical(other.preferredLanguage, preferredLanguage) || other.preferredLanguage == preferredLanguage)&&(identical(other.consent, consent) || other.consent == consent)&&(identical(other.latitude, latitude) || other.latitude == latitude)&&(identical(other.longitude, longitude) || other.longitude == longitude));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _WomenRegisterRequestModel&&(identical(other.name, name) || other.name == name)&&(identical(other.age, age) || other.age == age)&&(identical(other.husbandName, husbandName) || other.husbandName == husbandName)&&(identical(other.husbandAge, husbandAge) || other.husbandAge == husbandAge)&&(identical(other.dob, dob) || other.dob == dob)&&(identical(other.address, address) || other.address == address)&&(identical(other.villageId, villageId) || other.villageId == villageId)&&(identical(other.village, village) || other.village == village)&&(identical(other.phc, phc) || other.phc == phc)&&(identical(other.block, block) || other.block == block)&&(identical(other.district, district) || other.district == district)&&(identical(other.lmp, lmp) || other.lmp == lmp)&&(identical(other.bloodGroup, bloodGroup) || other.bloodGroup == bloodGroup)&&(identical(other.preferredLanguage, preferredLanguage) || other.preferredLanguage == preferredLanguage)&&(identical(other.consent, consent) || other.consent == consent)&&(identical(other.latitude, latitude) || other.latitude == latitude)&&(identical(other.longitude, longitude) || other.longitude == longitude));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,name,age,husbandName,husbandAge,dob,address,village,phc,block,district,lmp,bloodGroup,preferredLanguage,consent,latitude,longitude);
+int get hashCode => Object.hash(runtimeType,name,age,husbandName,husbandAge,dob,address,villageId,village,phc,block,district,lmp,bloodGroup,preferredLanguage,consent,latitude,longitude);
 
 @override
 String toString() {
-  return 'WomenRegisterRequestModel(name: $name, age: $age, husbandName: $husbandName, husbandAge: $husbandAge, dob: $dob, address: $address, village: $village, phc: $phc, block: $block, district: $district, lmp: $lmp, bloodGroup: $bloodGroup, preferredLanguage: $preferredLanguage, consent: $consent, latitude: $latitude, longitude: $longitude)';
+  return 'WomenRegisterRequestModel(name: $name, age: $age, husbandName: $husbandName, husbandAge: $husbandAge, dob: $dob, address: $address, villageId: $villageId, village: $village, phc: $phc, block: $block, district: $district, lmp: $lmp, bloodGroup: $bloodGroup, preferredLanguage: $preferredLanguage, consent: $consent, latitude: $latitude, longitude: $longitude)';
 }
 
 
@@ -281,7 +283,7 @@ abstract mixin class _$WomenRegisterRequestModelCopyWith<$Res> implements $Women
   factory _$WomenRegisterRequestModelCopyWith(_WomenRegisterRequestModel value, $Res Function(_WomenRegisterRequestModel) _then) = __$WomenRegisterRequestModelCopyWithImpl;
 @override @useResult
 $Res call({
- String name, int age,@JsonKey(name: 'husband_name') String? husbandName,@JsonKey(name: 'husband_age') int? husbandAge, String? dob, String? address, String? village, String? phc, String? block, String? district, String lmp,@JsonKey(name: 'blood_group') String? bloodGroup,@JsonKey(name: 'preferred_language') String preferredLanguage, bool consent, String? latitude, String? longitude
+ String name, int age,@JsonKey(name: 'husband_name') String? husbandName,@JsonKey(name: 'husband_age') int? husbandAge, String? dob, String? address,@JsonKey(name: 'village_id') String? villageId, String? village, String? phc, String? block, String? district, String lmp,@JsonKey(name: 'blood_group') String? bloodGroup,@JsonKey(name: 'preferred_language') String preferredLanguage, bool consent, String? latitude, String? longitude
 });
 
 
@@ -298,7 +300,7 @@ class __$WomenRegisterRequestModelCopyWithImpl<$Res>
 
 /// Create a copy of WomenRegisterRequestModel
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? name = null,Object? age = null,Object? husbandName = freezed,Object? husbandAge = freezed,Object? dob = freezed,Object? address = freezed,Object? village = freezed,Object? phc = freezed,Object? block = freezed,Object? district = freezed,Object? lmp = null,Object? bloodGroup = freezed,Object? preferredLanguage = null,Object? consent = null,Object? latitude = freezed,Object? longitude = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? name = null,Object? age = null,Object? husbandName = freezed,Object? husbandAge = freezed,Object? dob = freezed,Object? address = freezed,Object? villageId = freezed,Object? village = freezed,Object? phc = freezed,Object? block = freezed,Object? district = freezed,Object? lmp = null,Object? bloodGroup = freezed,Object? preferredLanguage = null,Object? consent = null,Object? latitude = freezed,Object? longitude = freezed,}) {
   return _then(_WomenRegisterRequestModel(
 name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String,age: null == age ? _self.age : age // ignore: cast_nullable_to_non_nullable
@@ -306,6 +308,7 @@ as int,husbandName: freezed == husbandName ? _self.husbandName : husbandName // 
 as String?,husbandAge: freezed == husbandAge ? _self.husbandAge : husbandAge // ignore: cast_nullable_to_non_nullable
 as int?,dob: freezed == dob ? _self.dob : dob // ignore: cast_nullable_to_non_nullable
 as String?,address: freezed == address ? _self.address : address // ignore: cast_nullable_to_non_nullable
+as String?,villageId: freezed == villageId ? _self.villageId : villageId // ignore: cast_nullable_to_non_nullable
 as String?,village: freezed == village ? _self.village : village // ignore: cast_nullable_to_non_nullable
 as String?,phc: freezed == phc ? _self.phc : phc // ignore: cast_nullable_to_non_nullable
 as String?,block: freezed == block ? _self.block : block // ignore: cast_nullable_to_non_nullable

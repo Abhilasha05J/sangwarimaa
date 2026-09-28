@@ -278,17 +278,53 @@ abstract class AppLocalizations {
   /// **'Health Center Selection'**
   String get healthCenter;
 
-  /// No description provided for @selectVillage.
-  ///
-  /// In en, this message translates to:
-  /// **'Select Village'**
-  String get selectVillage;
-
   /// No description provided for @selectVillageHint.
   ///
   /// In en, this message translates to:
-  /// **'Select Village'**
+  /// **'Select your village'**
   String get selectVillageHint;
+
+  /// No description provided for @searchVillageHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Search village name'**
+  String get searchVillageHint;
+
+  /// No description provided for @searchVillagePrompt.
+  ///
+  /// In en, this message translates to:
+  /// **'Start typing to search'**
+  String get searchVillagePrompt;
+
+  /// No description provided for @villageSearchError.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t load villages. Try again.'**
+  String get villageSearchError;
+
+  /// No description provided for @noVillagesFound.
+  ///
+  /// In en, this message translates to:
+  /// **'No villages found'**
+  String get noVillagesFound;
+
+  /// No description provided for @villageNotListed.
+  ///
+  /// In en, this message translates to:
+  /// **'My village is not listed'**
+  String get villageNotListed;
+
+  /// No description provided for @villageNotListedShort.
+  ///
+  /// In en, this message translates to:
+  /// **'not listed'**
+  String get villageNotListedShort;
+
+  /// No description provided for @typeYourVillageHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Type your village name'**
+  String get typeYourVillageHint;
 
   /// No description provided for @phc.
   ///
