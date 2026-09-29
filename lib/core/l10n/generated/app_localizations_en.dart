@@ -498,6 +498,93 @@ class AppLocalizationsEn extends AppLocalizations {
   String get bpcr_submit => 'Acknowledged';
 
   @override
+  String get bpcr_search_facility_hint => 'Search facility name';
+
+  @override
+  String get bpcr_your_health_facilities => 'Your health facilities';
+
+  @override
+  String get bpcr_no_catchment_facility =>
+      'No facility on record for your village yet. Search to add one.';
+
+  @override
+  String get bpcr_facilities_load_error =>
+      'Couldn\'t load facilities. Try again.';
+
+  @override
+  String get bpcr_facilities_saved => 'Facilities saved';
+
+  @override
+  String get bpcr_facilities_save_error => 'Couldn\'t save. Try again.';
+
+  @override
+  String get bpcr_no_facility_selected =>
+      'Select a health facility first to see attendants there.';
+
+  @override
+  String get bpcr_select_facility_cta => 'Select Facility';
+
+  @override
+  String get bpcr_sba_load_error =>
+      'Couldn\'t load attendant details. Try again.';
+
+  @override
+  String get bpcr_no_sba_data_for_facility =>
+      'No SBA data for this facility yet';
+
+  @override
+  String get bpcr_sba_available_via_shc =>
+      'Staff available from the sub-centres under this facility:';
+
+  @override
+  String get bpcr_your_village_shc => 'your village';
+
+  @override
+  String get bpcr_post_vacant => 'Post vacant';
+
+  @override
+  String get bpcr_number_unavailable => 'Number unavailable';
+
+  @override
+  String get bpcr_asha_mitanin_label => 'ASHA / Mitanin';
+
+  @override
+  String get bpcr_answers_load_error =>
+      'Couldn\'t load your saved answers. Try again.';
+
+  @override
+  String get bpcr_answers_save_error => 'Couldn\'t save. Try again.';
+
+  @override
+  String get bpcr_saved_facilities => 'Saved facilities';
+
+  @override
+  String get bpcr_no_facilities_saved_yet =>
+      'You haven\'t saved any facility yet.';
+
+  @override
+  String get bpcr_select_facility_first_hint =>
+      'Select a facility above first.';
+
+  @override
+  String get bpcr_your_birth_companion_label => 'Your birth companion';
+
+  @override
+  String get bpcr_donor_address_hint => 'Address / locality';
+
+  @override
+  String get bpcr_donor_added => 'Donor added';
+
+  @override
+  String get bpcr_donor_add_error => 'Couldn\'t add donor. Try again.';
+
+  @override
+  String get bpcr_no_donors_added => 'No donors added yet.';
+
+  @override
+  String get bpcr_not_set => 'Not set';
+
+  @override
   String get bpcr_pregnancy_card1_title => 'Severe Vaginal Bleeding';
 
   @override

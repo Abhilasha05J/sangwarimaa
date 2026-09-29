@@ -1,69 +1,89 @@
-import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:dartz/dartz.dart';
+import 'package:sangwari_maa/core/errors/failures.dart';
+import '../datasource/bpcr_remote_datasource.dart';
 
-part 'bpcr_repository.g.dart';
+class BpcrRepository {
+  final BpcrRemoteDataSource _remote;
+  BpcrRepository(this._remote);
 
-/// BPCR repository interface.
-///
-/// STATUS: NOT IMPLEMENTED. Endpoint contracts, request/response shapes, and
-/// scoring rules are pending client confirmation (see bpcr_assessments table
-/// notes). All methods throw until backend work is greenlit. Wiring these up
-/// is a drop-in replacement for the local-only Riverpod state used today.
-abstract class BpcrRepository {
-  Future<void> submitDangerSignsPregnancy(Set<int> acknowledgedIndices);
-  Future<void> submitDangerSignsLabor(Set<int> acknowledgedIndices);
-  Future<void> submitDangerSignsPostnatal(Set<int> acknowledgedIndices);
-  Future<void> submitDangerSignsNewborn(Set<int> acknowledgedIndices);
-  Future<void> submitHealthFacilityId(String facilityId);
-  Future<void> submitSkillBirthAttendant(Map<String, dynamic> data);
-  Future<void> submitTransportModality(Map<String, dynamic> data);
-  Future<void> submitSavedMoneyDelivery(Map<String, dynamic> data);
-  Future<void> submitCommunityFinancialSupport(Map<String, dynamic> data);
-  Future<void> submitCommunityBloodDonor(Map<String, dynamic> data);
+  Future<Either<Failure, FacilitiesResponse>> getFacilities({String? q}) async {
+    try {
+      final res = await _remote.getFacilities(q: q);
+      return Right(res.data);
+    } catch (e) {
+      return Left(mapExceptionToFailure(e));
+    }
+  }
+
+  Future<Either<Failure, void>> saveFacilitySelection(List<String> facilityIds) async {
+    try {
+      await _remote.saveFacilitySelection({'facility_ids': facilityIds});
+      return const Right(null);
+    } catch (e) {
+      return Left(mapExceptionToFailure(e));
+    }
+  }
+
+  Future<Either<Failure, SbaResponse>> getSba() async {
+    try {
+      final res = await _remote.getSba();
+      return Right(res.data);
+    } catch (e) {
+      return Left(mapExceptionToFailure(e));
+    }
+  }
+
+  Future<Either<Failure, Map<String, dynamic>>> getAnswers(String component) async {
+    try {
+      final res = await _remote.getAnswers(component);
+      return Right(res.data.answers);
+    } catch (e) {
+      return Left(mapExceptionToFailure(e));
+    }
+  }
+
+  Future<Either<Failure, void>> saveAnswers(String component, Map<String, dynamic> answers) async {
+    try {
+      await _remote.saveAnswers(component, {'answers': answers});
+      return const Right(null);
+    } catch (e) {
+      return Left(mapExceptionToFailure(e));
+    }
+  }
+
+
+  Future<Either<Failure, BloodDonorListResponse>> getBloodDonors() async {
+    try {
+      final res = await _remote.getBloodDonors();
+      return Right(res.data);
+    } catch (e) {
+      return Left(mapExceptionToFailure(e));
+    }
+  }
+
+  Future<Either<Failure, void>> addBloodDonor({
+    required String donorType, required String name, required String bloodGroup,
+    String? relation, String? address, required String phone,
+  }) async {
+    try {
+      await _remote.addBloodDonor({
+        'donor_type': donorType, 'name': name, 'blood_group': bloodGroup,
+        'relation': relation, 'address': address, 'phone': phone,
+      });
+      return const Right(null);
+    } catch (e) {
+      return Left(mapExceptionToFailure(e));
+    }
+  }
+
+  Future<Either<Failure, void>> deleteBloodDonor(String id) async {
+    try {
+      await _remote.deleteBloodDonor(id);
+      return const Right(null);
+    } catch (e) {
+      return Left(mapExceptionToFailure(e));
+    }
+  }
+
+
 }
-
-class BpcrRepositoryImpl implements BpcrRepository {
-  const BpcrRepositoryImpl();
-
-  @override
-  Future<void> submitDangerSignsPregnancy(Set<int> acknowledgedIndices) =>
-      throw UnimplementedError('Pending backend API confirmation.');
-
-  @override
-  Future<void> submitDangerSignsLabor(Set<int> acknowledgedIndices) =>
-      throw UnimplementedError('Pending backend API confirmation.');
-
-  @override
-  Future<void> submitDangerSignsPostnatal(Set<int> acknowledgedIndices) =>
-      throw UnimplementedError('Pending backend API confirmation.');
-
-  @override
-  Future<void> submitDangerSignsNewborn(Set<int> acknowledgedIndices) =>
-      throw UnimplementedError('Pending backend API confirmation.');
-
-  @override
-  Future<void> submitHealthFacilityId(String facilityId) =>
-      throw UnimplementedError('Pending backend API confirmation.');
-
-  @override
-  Future<void> submitSkillBirthAttendant(Map<String, dynamic> data) =>
-      throw UnimplementedError('Pending backend API confirmation.');
-
-  @override
-  Future<void> submitTransportModality(Map<String, dynamic> data) =>
-      throw UnimplementedError('Pending backend API confirmation.');
-
-  @override
-  Future<void> submitSavedMoneyDelivery(Map<String, dynamic> data) =>
-      throw UnimplementedError('Pending backend API confirmation.');
-
-  @override
-  Future<void> submitCommunityFinancialSupport(Map<String, dynamic> data) =>
-      throw UnimplementedError('Pending backend API confirmation.');
-
-  @override
-  Future<void> submitCommunityBloodDonor(Map<String, dynamic> data) =>
-      throw UnimplementedError('Pending backend API confirmation.');
-}
-
-@riverpod
-BpcrRepository bpcrRepository(Ref ref) => const BpcrRepositoryImpl();

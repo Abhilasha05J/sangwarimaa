@@ -1034,6 +1034,162 @@ abstract class AppLocalizations {
   /// **'Acknowledged'**
   String get bpcr_submit;
 
+  /// No description provided for @bpcr_search_facility_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Search facility name'**
+  String get bpcr_search_facility_hint;
+
+  /// No description provided for @bpcr_your_health_facilities.
+  ///
+  /// In en, this message translates to:
+  /// **'Your health facilities'**
+  String get bpcr_your_health_facilities;
+
+  /// No description provided for @bpcr_no_catchment_facility.
+  ///
+  /// In en, this message translates to:
+  /// **'No facility on record for your village yet. Search to add one.'**
+  String get bpcr_no_catchment_facility;
+
+  /// No description provided for @bpcr_facilities_load_error.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t load facilities. Try again.'**
+  String get bpcr_facilities_load_error;
+
+  /// No description provided for @bpcr_facilities_saved.
+  ///
+  /// In en, this message translates to:
+  /// **'Facilities saved'**
+  String get bpcr_facilities_saved;
+
+  /// No description provided for @bpcr_facilities_save_error.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t save. Try again.'**
+  String get bpcr_facilities_save_error;
+
+  /// No description provided for @bpcr_no_facility_selected.
+  ///
+  /// In en, this message translates to:
+  /// **'Select a health facility first to see attendants there.'**
+  String get bpcr_no_facility_selected;
+
+  /// No description provided for @bpcr_select_facility_cta.
+  ///
+  /// In en, this message translates to:
+  /// **'Select Facility'**
+  String get bpcr_select_facility_cta;
+
+  /// No description provided for @bpcr_sba_load_error.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t load attendant details. Try again.'**
+  String get bpcr_sba_load_error;
+
+  /// No description provided for @bpcr_no_sba_data_for_facility.
+  ///
+  /// In en, this message translates to:
+  /// **'No SBA data for this facility yet'**
+  String get bpcr_no_sba_data_for_facility;
+
+  /// No description provided for @bpcr_sba_available_via_shc.
+  ///
+  /// In en, this message translates to:
+  /// **'Staff available from the sub-centres under this facility:'**
+  String get bpcr_sba_available_via_shc;
+
+  /// No description provided for @bpcr_your_village_shc.
+  ///
+  /// In en, this message translates to:
+  /// **'your village'**
+  String get bpcr_your_village_shc;
+
+  /// No description provided for @bpcr_post_vacant.
+  ///
+  /// In en, this message translates to:
+  /// **'Post vacant'**
+  String get bpcr_post_vacant;
+
+  /// No description provided for @bpcr_number_unavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Number unavailable'**
+  String get bpcr_number_unavailable;
+
+  /// No description provided for @bpcr_asha_mitanin_label.
+  ///
+  /// In en, this message translates to:
+  /// **'ASHA / Mitanin'**
+  String get bpcr_asha_mitanin_label;
+
+  /// No description provided for @bpcr_answers_load_error.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t load your saved answers. Try again.'**
+  String get bpcr_answers_load_error;
+
+  /// No description provided for @bpcr_answers_save_error.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t save. Try again.'**
+  String get bpcr_answers_save_error;
+
+  /// No description provided for @bpcr_saved_facilities.
+  ///
+  /// In en, this message translates to:
+  /// **'Saved facilities'**
+  String get bpcr_saved_facilities;
+
+  /// No description provided for @bpcr_no_facilities_saved_yet.
+  ///
+  /// In en, this message translates to:
+  /// **'You haven\'t saved any facility yet.'**
+  String get bpcr_no_facilities_saved_yet;
+
+  /// No description provided for @bpcr_select_facility_first_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Select a facility above first.'**
+  String get bpcr_select_facility_first_hint;
+
+  /// No description provided for @bpcr_your_birth_companion_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Your birth companion'**
+  String get bpcr_your_birth_companion_label;
+
+  /// No description provided for @bpcr_donor_address_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Address / locality'**
+  String get bpcr_donor_address_hint;
+
+  /// No description provided for @bpcr_donor_added.
+  ///
+  /// In en, this message translates to:
+  /// **'Donor added'**
+  String get bpcr_donor_added;
+
+  /// No description provided for @bpcr_donor_add_error.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t add donor. Try again.'**
+  String get bpcr_donor_add_error;
+
+  /// No description provided for @bpcr_no_donors_added.
+  ///
+  /// In en, this message translates to:
+  /// **'No donors added yet.'**
+  String get bpcr_no_donors_added;
+
+  /// No description provided for @bpcr_not_set.
+  ///
+  /// In en, this message translates to:
+  /// **'Not set'**
+  String get bpcr_not_set;
+
   /// No description provided for @bpcr_pregnancy_card1_title.
   ///
   /// In en, this message translates to:

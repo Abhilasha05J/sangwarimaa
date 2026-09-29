@@ -6,15 +6,35 @@ import 'package:sangwari_maa/core/constants/app_typography.dart';
 import 'package:sangwari_maa/core/l10n/generated/app_localizations.dart';
 import 'package:sangwari_maa/shared/widgets/app_bar.dart';
 import 'package:sangwari_maa/shared/widgets/bottom_navbar.dart';
+import 'package:sangwari_maa/features/bpcr/data/model/bpcr_blood_donor_model.dart';
+import 'package:sangwari_maa/features/bpcr/presentation/providers/bpcr_blood_donor_providers.dart';
+import 'package:sangwari_maa/features/bpcr/presentation/widgets/add_donor_sheet.dart';
 import 'package:sangwari_maa/features/bpcr/presentation/widgets/bpcr_info_banner.dart';
 import 'package:sangwari_maa/features/bpcr/presentation/widgets/bpcr_section_header.dart';
 
 class CommunityBloodDonorPage extends ConsumerWidget {
   const CommunityBloodDonorPage({super.key});
 
+  Future<void> _addDonor(BuildContext context, WidgetRef ref, {required bool isCommunity}) async {
+    final l10n = AppLocalizations.of(context)!;
+    final result = await showAddDonorSheet(context, isCommunity: isCommunity);
+    if (result == null) return;
+    final ok = await ref.read(bpcrBloodDonorsProvider.notifier).add(
+      donorType: isCommunity ? 'community' : 'family',
+      name: result.name, bloodGroup: result.bloodGroup, phone: result.phone,
+      relation: result.relation, address: result.address,
+    );
+    if (context.mounted) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text(ok ? l10n.bpcr_donor_added : l10n.bpcr_donor_add_error),
+      ));
+    }
+  }
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context)!;
+    final donorsAsync = ref.watch(bpcrBloodDonorsProvider);
 
     return Scaffold(
       backgroundColor: AppColors.white,
@@ -25,57 +45,70 @@ class CommunityBloodDonorPage extends ConsumerWidget {
           children: [
             BpcrSectionHeader(iconAsset: 'assets/icons/bpcr10.png', title: l10n.bpcr_blood_donor_title),
             Expanded(
-              child: SingleChildScrollView(
-                physics: const BouncingScrollPhysics(),
-                padding: const EdgeInsets.symmetric(horizontal: AppSpacing.md),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    BpcrInfoBanner(text: l10n.bpcr_blood_donor_reminder_quote),
-                    const SizedBox(height: AppSpacing.lg),
-                    // Single card now — no IntrinsicHeight/Row/Expanded
-                    // needed, that was only there to height-match a second
-                    // sibling card that's since been removed.
-                    _StatCard(
-                      label: l10n.bpcr_self_blood_group_label,
-                      value: 'O+',
-                    ),
-                    const SizedBox(height: AppSpacing.lg),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(l10n.bpcr_family_donors_label, style: AppTypography.titleMedium.copyWith(color: AppColors.pinkText)),
-                        TextButton(
-                          onPressed: () {},
-                          style: TextButton.styleFrom(foregroundColor: AppColors.riskGreen),
-                          child: Text(
-                            l10n.bpcr_add_family_member,
-                            style: const TextStyle(color: AppColors.riskGreen, fontWeight: FontWeight.w600),
+              child: donorsAsync.when(
+                loading: () => const Center(child: CircularProgressIndicator()),
+                error: (e, _) => Center(child: Text(l10n.bpcr_answers_load_error)),
+                data: (data) => SingleChildScrollView(
+                  physics: const BouncingScrollPhysics(),
+                  padding: const EdgeInsets.symmetric(horizontal: AppSpacing.md),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      BpcrInfoBanner(text: l10n.bpcr_blood_donor_reminder_quote),
+                      const SizedBox(height: AppSpacing.lg),
+                      _StatCard(
+                        label: l10n.bpcr_self_blood_group_label,
+                        value: data.selfBloodGroup ?? l10n.bpcr_not_set,
+                      ),
+                      const SizedBox(height: AppSpacing.lg),
+
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(l10n.bpcr_family_donors_label, style: AppTypography.titleMedium.copyWith(color: AppColors.pinkText)),
+                          TextButton(
+                            onPressed: () => _addDonor(context, ref, isCommunity: false),
+                            style: TextButton.styleFrom(foregroundColor: AppColors.riskGreen),
+                            child: Text(l10n.bpcr_add_family_member, style: const TextStyle(color: AppColors.riskGreen, fontWeight: FontWeight.w600)),
                           ),
-                        ),
-                      ],
-                    ),
-                    _DonorRow(name: 'Rajesh Kumar', detail: 'Brother • O Positive'),
-                    _DonorRow(name: 'Ayush Kumar', detail: 'Cousin • O Positive'),
-                    const SizedBox(height: AppSpacing.lg),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(l10n.bpcr_community_donors_label, style: AppTypography.titleMedium.copyWith(color: AppColors.pinkText)),
-                        TextButton(
-                          onPressed: () {},
-                          style: TextButton.styleFrom(foregroundColor: AppColors.riskGreen),
-                          child: Text(
-                            l10n.bpcr_add_community_donors,
-                            style: const TextStyle(color: AppColors.riskGreen, fontWeight: FontWeight.w600),
+                        ],
+                      ),
+                      if (data.family.isEmpty)
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: AppSpacing.sm),
+                          child: Text(l10n.bpcr_no_donors_added, style: AppTypography.bodySmall.copyWith(color: AppColors.hintText)),
+                        )
+                      else
+                        ...data.family.map((d) => _DonorRow(
+                          donor: d,
+                          onDelete: () => ref.read(bpcrBloodDonorsProvider.notifier).remove(d.id),
+                        )),
+
+                      const SizedBox(height: AppSpacing.lg),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(l10n.bpcr_community_donors_label, style: AppTypography.titleMedium.copyWith(color: AppColors.pinkText)),
+                          TextButton(
+                            onPressed: () => _addDonor(context, ref, isCommunity: true),
+                            style: TextButton.styleFrom(foregroundColor: AppColors.riskGreen),
+                            child: Text(l10n.bpcr_add_community_donors, style: const TextStyle(color: AppColors.riskGreen, fontWeight: FontWeight.w600)),
                           ),
-                        ),
-                      ],
-                    ),
-                    const _CommunityDonorRow(),
-                    const _CommunityDonorRow(),
-                    const SizedBox(height: AppSpacing.lg),
-                  ],
+                        ],
+                      ),
+                      if (data.community.isEmpty)
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: AppSpacing.sm),
+                          child: Text(l10n.bpcr_no_donors_added, style: AppTypography.bodySmall.copyWith(color: AppColors.hintText)),
+                        )
+                      else
+                        ...data.community.map((d) => _CommunityDonorRow(
+                          donor: d,
+                          onDelete: () => ref.read(bpcrBloodDonorsProvider.notifier).remove(d.id),
+                        )),
+                      const SizedBox(height: AppSpacing.lg),
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -90,11 +123,7 @@ class CommunityBloodDonorPage extends ConsumerWidget {
 class _StatCard extends StatelessWidget {
   final String label;
   final String value;
-  final String? footnote;
-  final String? actionLabel;
-  final VoidCallback? onAction;
-
-  const _StatCard({required this.label, required this.value, this.footnote, this.actionLabel, this.onAction});
+  const _StatCard({required this.label, required this.value});
 
   @override
   Widget build(BuildContext context) {
@@ -104,26 +133,10 @@ class _StatCard extends StatelessWidget {
       decoration: BoxDecoration(color: const Color(0xFFFCEDEC), borderRadius: BorderRadius.circular(AppSpacing.radiusSm)),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Text(label, style: AppTypography.titleMedium),
           const SizedBox(height: 6),
           Text(value, style: AppTypography.headlineMedium.copyWith(color: AppColors.riskRed, fontSize: 18)),
-          if (footnote != null) ...[
-            const SizedBox(height: 6),
-            Text(footnote!, style: AppTypography.bodySmall.copyWith(color: AppColors.hintText)),
-          ],
-          if (actionLabel != null) ...[
-            const SizedBox(height: AppSpacing.sm),
-            OutlinedButton(
-              onPressed: onAction,
-              style: OutlinedButton.styleFrom(
-                side: const BorderSide(color: AppColors.riskGreen),
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppSpacing.radiusSm)),
-              ),
-              child: Text(actionLabel!, style: const TextStyle(color: AppColors.riskGreen)),
-            ),
-          ],
         ],
       ),
     );
@@ -131,9 +144,9 @@ class _StatCard extends StatelessWidget {
 }
 
 class _DonorRow extends StatelessWidget {
-  final String name;
-  final String detail;
-  const _DonorRow({required this.name, required this.detail});
+  final BloodDonorModel donor;
+  final VoidCallback onDelete;
+  const _DonorRow({required this.donor, required this.onDelete});
 
   @override
   Widget build(BuildContext context) {
@@ -143,18 +156,16 @@ class _DonorRow extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(name, style: AppTypography.titleMedium),
-              Text(detail, style: AppTypography.bodySmall.copyWith(color: AppColors.hintText)),
-            ],
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(donor.name, style: AppTypography.titleMedium),
+                Text('${donor.relation ?? ''} • ${donor.bloodGroup}', style: AppTypography.bodySmall.copyWith(color: AppColors.hintText)),
+              ],
+            ),
           ),
-          Container(
-            width: 36,
-            height: 36,
-            child: Image.asset('assets/icons/callemer.png'),
-          ),
+          IconButton(icon: const Icon(Icons.close, size: 18, color: AppColors.hintText), onPressed: onDelete),
         ],
       ),
     );
@@ -162,7 +173,9 @@ class _DonorRow extends StatelessWidget {
 }
 
 class _CommunityDonorRow extends StatelessWidget {
-  const _CommunityDonorRow();
+  final BloodDonorModel donor;
+  final VoidCallback onDelete;
+  const _CommunityDonorRow({required this.donor, required this.onDelete});
 
   @override
   Widget build(BuildContext context) {
@@ -173,10 +186,7 @@ class _CommunityDonorRow extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Plain label now — no trailing Spacer, since there's no
-          // "Available Now"/"Not Available" text to push to the right
-          // anymore.
-          Text('O Positive', style: AppTypography.titleMedium.copyWith(color: AppColors.riskRed)),
+          Text(donor.bloodGroup, style: AppTypography.titleMedium.copyWith(color: AppColors.riskRed)),
           const SizedBox(height: 4),
           Row(
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -185,18 +195,15 @@ class _CommunityDonorRow extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('Amit Singh', style: AppTypography.bodyMedium),
-                    Text('Sector 33, Street 12, Raipur (2.4 Km)', style: AppTypography.bodySmall.copyWith(color: AppColors.hintText)),
-                    Text('0987654321', style: AppTypography.bodySmall.copyWith(color: AppColors.hintText)),
+                    Text(donor.name, style: AppTypography.bodyMedium),
+                    if (donor.address != null && donor.address!.isNotEmpty)
+                      Text(donor.address!, style: AppTypography.bodySmall.copyWith(color: AppColors.hintText)),
+                    Text(donor.phone, style: AppTypography.bodySmall.copyWith(color: AppColors.hintText)),
                   ],
                 ),
               ),
               const SizedBox(width: AppSpacing.sm),
-              Container(
-                width: 36,
-                height: 36,
-                child: Image.asset('assets/icons/callemer.png'),
-              ),
+              IconButton(icon: const Icon(Icons.close, size: 18, color: AppColors.hintText), onPressed: onDelete),
             ],
           ),
         ],

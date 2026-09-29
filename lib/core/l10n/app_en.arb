@@ -447,8 +447,86 @@
   "bpcrUpdateSuccess": "BPCR checklist updated.",
   "@bpcrUpdateSuccess": {},
 
-"bpcr_back": "Back",
-"bpcr_submit": "Acknowledged",
+  "bpcr_back": "Back",
+  "bpcr_submit": "Acknowledged",
+
+  "bpcr_search_facility_hint": "Search facility name",
+  "@bpcr_search_facility_hint": {},
+
+  "bpcr_your_health_facilities": "Your health facilities",
+  "@bpcr_your_health_facilities": {},
+
+  "bpcr_no_catchment_facility": "No facility on record for your village yet. Search to add one.",
+  "@bpcr_no_catchment_facility": {},
+
+  "bpcr_facilities_load_error": "Couldn't load facilities. Try again.",
+  "@bpcr_facilities_load_error": {},
+
+  "bpcr_facilities_saved": "Facilities saved",
+  "@bpcr_facilities_saved": {},
+
+  "bpcr_facilities_save_error": "Couldn't save. Try again.",
+  "@bpcr_facilities_save_error": {},
+
+  "bpcr_no_facility_selected": "Select a health facility first to see attendants there.",
+  "@bpcr_no_facility_selected": {},
+
+  "bpcr_select_facility_cta": "Select Facility",
+  "@bpcr_select_facility_cta": {},
+
+  "bpcr_sba_load_error": "Couldn't load attendant details. Try again.",
+  "@bpcr_sba_load_error": {},
+
+  "bpcr_no_sba_data_for_facility": "No SBA data for this facility yet",
+  "@bpcr_no_sba_data_for_facility": {},
+
+  "bpcr_sba_available_via_shc": "Staff available from the sub-centres under this facility:",
+  "@bpcr_sba_available_via_shc": {},
+
+  "bpcr_your_village_shc": "your village",
+  "@bpcr_your_village_shc": {},
+
+  "bpcr_post_vacant": "Post vacant",
+  "@bpcr_post_vacant": {},
+
+  "bpcr_number_unavailable": "Number unavailable",
+  "@bpcr_number_unavailable": {},
+
+  "bpcr_asha_mitanin_label": "ASHA / Mitanin",
+  "@bpcr_asha_mitanin_label": {},
+
+  "bpcr_answers_load_error": "Couldn't load your saved answers. Try again.",
+  "@bpcr_answers_load_error": {},
+
+   "bpcr_answers_save_error": "Couldn't save. Try again.",
+   "@bpcr_answers_save_error": {},
+
+  "bpcr_saved_facilities": "Saved facilities",
+  "@bpcr_saved_facilities": {},
+
+  "bpcr_no_facilities_saved_yet": "You haven't saved any facility yet.",
+  "@bpcr_no_facilities_saved_yet": {},
+
+  "bpcr_select_facility_first_hint": "Select a facility above first.",
+  "@bpcr_select_facility_first_hint": {},
+
+  "bpcr_your_birth_companion_label": "Your birth companion",
+  "@bpcr_your_birth_companion_label": {},
+
+  "bpcr_donor_address_hint": "Address / locality",
+  "@bpcr_donor_address_hint": {},
+
+  "bpcr_donor_added": "Donor added",
+  "@bpcr_donor_added": {},
+
+  "bpcr_donor_add_error": "Couldn't add donor. Try again.",
+  "@bpcr_donor_add_error": {},
+
+  "bpcr_no_donors_added": "No donors added yet.",
+  "@bpcr_no_donors_added": {},
+
+  "bpcr_not_set": "Not set",
+  "@bpcr_not_set": {},
 
 "bpcr_pregnancy_card1_title": "Severe Vaginal Bleeding",
 "bpcr_pregnancy_card1_desc": "Heavy bleeding or passing clots can be dangerous.",

@@ -182,6 +182,84 @@
   "bpcr_back": "वापस",
   "bpcr_submit": "स्वीकार किया",
 
+    "bpcr_search_facility_hint": "स्वास्थ्य सुविधा का नाम खोजें",
+    "@bpcr_search_facility_hint": {},
+
+    "bpcr_your_health_facilities": "आपकी स्वास्थ्य सुविधाएँ",
+    "@bpcr_your_health_facilities": {},
+
+    "bpcr_no_catchment_facility": "आपके गाँव के लिए अभी कोई स्वास्थ्य सुविधा दर्ज नहीं है। जोड़ने के लिए खोजें।",
+    "@bpcr_no_catchment_facility": {},
+
+    "bpcr_facilities_load_error": "स्वास्थ्य सुविधाएँ लोड नहीं हो सकीं। पुनः प्रयास करें।",
+    "@bpcr_facilities_load_error": {},
+
+    "bpcr_facilities_saved": "स्वास्थ्य सुविधाएँ सहेजी गईं",
+    "@bpcr_facilities_saved": {},
+
+    "bpcr_facilities_save_error": "सहेजा नहीं जा सका। पुनः प्रयास करें।",
+    "@bpcr_facilities_save_error": {},
+
+    "bpcr_no_facility_selected": "वहाँ के स्वास्थ्य कर्मियों को देखने के लिए पहले स्वास्थ्य सुविधा चुनें।",
+    "@bpcr_no_facility_selected": {},
+
+    "bpcr_select_facility_cta": "स्वास्थ्य सुविधा चुनें",
+    "@bpcr_select_facility_cta": {},
+
+    "bpcr_sba_load_error": "प्रसूति सहायक का विवरण लोड नहीं हो सका। पुनः प्रयास करें।",
+    "@bpcr_sba_load_error": {},
+
+    "bpcr_no_sba_data_for_facility": "इस स्वास्थ्य सुविधा के लिए अभी कोई SBA जानकारी उपलब्ध नहीं है",
+    "@bpcr_no_sba_data_for_facility": {},
+
+    "bpcr_sba_available_via_shc": "इस स्वास्थ्य सुविधा के अंतर्गत आने वाले उप-केंद्रों से उपलब्ध कर्मचारी:",
+    "@bpcr_sba_available_via_shc": {},
+
+    "bpcr_your_village_shc": "आपका गाँव",
+    "@bpcr_your_village_shc": {},
+
+    "bpcr_post_vacant": "पद रिक्त है",
+    "@bpcr_post_vacant": {},
+
+    "bpcr_number_unavailable": "नंबर उपलब्ध नहीं है",
+    "@bpcr_number_unavailable": {},
+
+    "bpcr_asha_mitanin_label": "आशा / मितानिन",
+    "@bpcr_asha_mitanin_label": {},
+
+      "bpcr_saved_facilities": "सहेजी गई स्वास्थ्य सुविधाएँ",
+      "@bpcr_saved_facilities": {},
+
+      "bpcr_no_facilities_saved_yet": "आपने अभी तक कोई स्वास्थ्य सुविधा नहीं सहेजी है।",
+      "@bpcr_no_facilities_saved_yet": {},
+
+      "bpcr_select_facility_first_hint": "पहले ऊपर से कोई स्वास्थ्य सुविधा चुनें।",
+      "@bpcr_select_facility_first_hint": {},
+
+      "bpcr_your_birth_companion_label": "आपके प्रसव के साथी",
+      "@bpcr_your_birth_companion_label": {},
+
+      "bpcr_donor_address_hint": "पता / स्थान",
+      "@bpcr_donor_address_hint": {},
+
+      "bpcr_donor_added": "डोनर जोड़ दिया गया",
+      "@bpcr_donor_added": {},
+
+      "bpcr_donor_add_error": "डोनर नहीं जोड़ा जा सका। पुनः प्रयास करें।",
+      "@bpcr_donor_add_error": {},
+
+      "bpcr_no_donors_added": "अभी तक कोई डोनर नहीं जोड़ा गया है।",
+      "@bpcr_no_donors_added": {},
+
+      "bpcr_not_set": "सेट नहीं है",
+      "@bpcr_not_set": {},
+
+    "bpcr_answers_load_error": "आपके सहेजे गए उत्तर लोड नहीं हो सके। पुनः प्रयास करें।",
+    "@bpcr_answers_load_error": {},
+
+    "bpcr_answers_save_error": "सहेजा नहीं जा सका। पुनः प्रयास करें।",
+    "@bpcr_answers_save_error": {},
+
   "bpcr_pregnancy_card1_title": "अत्यधिक योनि से रक्तस्राव",
   "bpcr_pregnancy_card1_desc": "अधिक मात्रा में रक्तस्राव होना या रक्त के थक्के निकलना खतरनाक हो सकता है।",
 

@@ -500,6 +500,95 @@ class AppLocalizationsHi extends AppLocalizations {
   String get bpcr_submit => 'स्वीकार किया';
 
   @override
+  String get bpcr_search_facility_hint => 'स्वास्थ्य सुविधा का नाम खोजें';
+
+  @override
+  String get bpcr_your_health_facilities => 'आपकी स्वास्थ्य सुविधाएँ';
+
+  @override
+  String get bpcr_no_catchment_facility =>
+      'आपके गाँव के लिए अभी कोई स्वास्थ्य सुविधा दर्ज नहीं है। जोड़ने के लिए खोजें।';
+
+  @override
+  String get bpcr_facilities_load_error =>
+      'स्वास्थ्य सुविधाएँ लोड नहीं हो सकीं। पुनः प्रयास करें।';
+
+  @override
+  String get bpcr_facilities_saved => 'स्वास्थ्य सुविधाएँ सहेजी गईं';
+
+  @override
+  String get bpcr_facilities_save_error =>
+      'सहेजा नहीं जा सका। पुनः प्रयास करें।';
+
+  @override
+  String get bpcr_no_facility_selected =>
+      'वहाँ के स्वास्थ्य कर्मियों को देखने के लिए पहले स्वास्थ्य सुविधा चुनें।';
+
+  @override
+  String get bpcr_select_facility_cta => 'स्वास्थ्य सुविधा चुनें';
+
+  @override
+  String get bpcr_sba_load_error =>
+      'प्रसूति सहायक का विवरण लोड नहीं हो सका। पुनः प्रयास करें।';
+
+  @override
+  String get bpcr_no_sba_data_for_facility =>
+      'इस स्वास्थ्य सुविधा के लिए अभी कोई SBA जानकारी उपलब्ध नहीं है';
+
+  @override
+  String get bpcr_sba_available_via_shc =>
+      'इस स्वास्थ्य सुविधा के अंतर्गत आने वाले उप-केंद्रों से उपलब्ध कर्मचारी:';
+
+  @override
+  String get bpcr_your_village_shc => 'आपका गाँव';
+
+  @override
+  String get bpcr_post_vacant => 'पद रिक्त है';
+
+  @override
+  String get bpcr_number_unavailable => 'नंबर उपलब्ध नहीं है';
+
+  @override
+  String get bpcr_asha_mitanin_label => 'आशा / मितानिन';
+
+  @override
+  String get bpcr_answers_load_error =>
+      'आपके सहेजे गए उत्तर लोड नहीं हो सके। पुनः प्रयास करें।';
+
+  @override
+  String get bpcr_answers_save_error => 'सहेजा नहीं जा सका। पुनः प्रयास करें।';
+
+  @override
+  String get bpcr_saved_facilities => 'सहेजी गई स्वास्थ्य सुविधाएँ';
+
+  @override
+  String get bpcr_no_facilities_saved_yet =>
+      'आपने अभी तक कोई स्वास्थ्य सुविधा नहीं सहेजी है।';
+
+  @override
+  String get bpcr_select_facility_first_hint =>
+      'पहले ऊपर से कोई स्वास्थ्य सुविधा चुनें।';
+
+  @override
+  String get bpcr_your_birth_companion_label => 'आपके प्रसव के साथी';
+
+  @override
+  String get bpcr_donor_address_hint => 'पता / स्थान';
+
+  @override
+  String get bpcr_donor_added => 'डोनर जोड़ दिया गया';
+
+  @override
+  String get bpcr_donor_add_error =>
+      'डोनर नहीं जोड़ा जा सका। पुनः प्रयास करें।';
+
+  @override
+  String get bpcr_no_donors_added => 'अभी तक कोई डोनर नहीं जोड़ा गया है।';
+
+  @override
+  String get bpcr_not_set => 'सेट नहीं है';
+
+  @override
   String get bpcr_pregnancy_card1_title => 'अत्यधिक योनि से रक्तस्राव';
 
   @override

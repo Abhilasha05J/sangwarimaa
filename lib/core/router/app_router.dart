@@ -7,15 +7,15 @@ import 'package:sangwari_maa/features/ancservices/presentation/pages/anc_service
 import 'package:sangwari_maa/features/auth/presentation/pages/login_page.dart';
 import 'package:sangwari_maa/features/auth/presentation/pages/otp_verification_page.dart';
 import 'package:sangwari_maa/features/bpcr/presentation/pages/community_blood_donor_page.dart';
-import 'package:sangwari_maa/features/bpcr/presentation/pages/community_financial_support_page.dart';
+import 'package:sangwari_maa/features/bpcr/presentation/pages/old/community_financial_support_page_mock.dart';
 import 'package:sangwari_maa/features/bpcr/presentation/pages/danger_signs_labor_page.dart';
 import 'package:sangwari_maa/features/bpcr/presentation/pages/danger_signs_newborn_page.dart';
 import 'package:sangwari_maa/features/bpcr/presentation/pages/danger_signs_postnatal_page.dart';
 import 'package:sangwari_maa/features/bpcr/presentation/pages/danger_signs_pregnancy_page.dart';
-import 'package:sangwari_maa/features/bpcr/presentation/pages/health_facility_id_page.dart';
-import 'package:sangwari_maa/features/bpcr/presentation/pages/saved_money_delivery_page.dart';
-import 'package:sangwari_maa/features/bpcr/presentation/pages/skill_birth_attendant_page.dart';
-import 'package:sangwari_maa/features/bpcr/presentation/pages/transport_modality_page.dart';
+import 'package:sangwari_maa/features/bpcr/presentation/pages/old/health_facility_id_page_mock.dart';
+import 'package:sangwari_maa/features/bpcr/presentation/pages/old/saved_money_delivery_page_mock.dart';
+import 'package:sangwari_maa/features/bpcr/presentation/pages/old/skill_birth_attendant_page_mock.dart';
+import 'package:sangwari_maa/features/bpcr/presentation/pages/old/transport_modality_page_mock.dart';
 import 'package:sangwari_maa/features/bpcr/presentation/pages/women_bpcr.dart';
 import 'package:sangwari_maa/features/chatbot/presentation/pages/women_chatbot.dart';
 import 'package:sangwari_maa/features/dashboard/presentation/pages/admin_dashboard.dart';
@@ -30,6 +30,12 @@ import 'package:sangwari_maa/features/schemes/presentation/pages/maternal_scheme
 import 'package:sangwari_maa/features/schemes/presentation/pages/scheme_details.dart';
 import 'package:sangwari_maa/features/videomodule/presentation/pages/video_modules.dart';
 import 'package:sangwari_maa/features/bpcr/presentation/pages/bpcr_summary_page.dart';
+
+import '../../features/bpcr/presentation/pages/community_financial_support_page.dart';
+import '../../features/bpcr/presentation/pages/health_facility_id_page.dart';
+import '../../features/bpcr/presentation/pages/saved_money_delivery_page.dart';
+import '../../features/bpcr/presentation/pages/skill_birth_attendant_page.dart';
+import '../../features/bpcr/presentation/pages/transport_modality_page.dart';
 
 abstract final class Routes {
   static const splash          = '/';

@@ -24,7 +24,6 @@ import 'features/auth/presentation/provider/auth_providers.dart';
 void main() async {
   final widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
-
   await Firebase.initializeApp();
 
   // ── Crashlytics: capture Flutter framework errors and uncaught async errors ──
@@ -33,6 +32,7 @@ void main() async {
     FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
     return true;
   };
+
   runApp(const ProviderScope(child: SangwariMaaApp()));
 }
 
@@ -58,6 +58,7 @@ class _SangwariMaaAppState extends ConsumerState<SangwariMaaApp> {
         // Use addPostFrameCallback so we don't navigate during a build.
         WidgetsBinding.instance.addPostFrameCallback((_) {
           if (mounted) _router.go('/');
+          _showSessionExpiredMessage();
         });
       }
     });
@@ -68,12 +69,82 @@ class _SangwariMaaAppState extends ConsumerState<SangwariMaaApp> {
     _authEventSub?.cancel();
     super.dispose();
   }
+  /// Shows "Session expired, please log in again" on whatever screen is
+  /// visible. Uses the root navigator's context (below MaterialApp), so
+  /// localization and ScaffoldMessenger are both available.
+  void _showSessionExpiredMessage([int attempt = 0]) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted) return;
+      final ctx = rootNavigatorKey.currentContext;
+      if (ctx == null) {
+        if (attempt < 3) _showSessionExpiredMessage(attempt + 1); // navigator not built yet
+        return;
+      }
+      ScaffoldMessenger.of(ctx)
+        ..hideCurrentSnackBar()
+        ..showSnackBar(
+          SnackBar(content: Text(AppLocalizations.of(ctx)!.errorSessionExpired)),
+        );
+    });
+  }
+
+  // Future<void> _init() async {
+  //   try {
+  //     final destination = await resolveDestination();
+  //     switch (destination) {
+  //       case SplashDestination():
+  //         _router = buildAppRouter(initialLocation: '/');
+  //       case DashboardDestination(:final path):
+  //         _router = buildAppRouter(initialLocation: path);
+  //       case RegistrationDestination(:final mobile):
+  //         _router = buildAppRouter(
+  //           initialLocation: '/register-complete',
+  //           pendingMobile: mobile,
+  //         );
+  //     }
+  //     await NotificationService.instance.initialize(rootNavigatorKey,onTokenRefresh: (token) => ref.read(authRepositoryProvider).updateFcmToken(token),
+  //     );
+  //
+  //     final token = await NotificationService.instance.getToken();
+  //     debugPrint('=== FCM TOKEN: $token ===');
+  //
+  //     final storage = const TokenStorageService(FlutterSecureStorage());
+  //     // final testTime = DateTime.now().add(const Duration(minutes: 1));
+  //     if (await storage.hasSession && await storage.role == 'pregnantWoman') {
+  //       final granted = await MedicineReminderScheduler.instance.ensureExactAlarmPermission();
+  //       if (!granted) {
+  //         developer.log('Exact alarm permission denied — reminders will be inexact', name: 'MedicineReminder');
+  //       }
+  //       await MedicineReminderScheduler.instance.scheduleDaily(
+  //         medicineType: 'iron',
+  //         title: 'Time for your IFA tablet',
+  //         body: 'Taking IFA every day prevents anemia and helps your baby grow',
+  //         // hour: testTime.hour,
+  //         // minute: testTime.minute,
+  //       );
+  //       await MedicineReminderScheduler.instance.scheduleDaily(
+  //         medicineType: 'calcium',
+  //         title: 'Time for your Calcium tablet',
+  //         body: 'Calcium supports your and your baby\'s health during pregnancy',
+  //       );
+  //       await _flushMedicineQueue();
+  //     }
+  //   } catch (e, st) {
+  //     debugPrint('⚠️ Destination resolve failed: $e\n$st');
+  //     _router = buildAppRouter(initialLocation: '/');
+  //   } finally {
+  //     FlutterNativeSplash.remove();
+  //     if (mounted) setState(() => _ready = true);
+  //   }
+  // }
 
   Future<void> _init() async {
+    var showSessionExpired = false;
     try {
       final destination = await resolveDestination();
       switch (destination) {
-        case SplashDestination():
+        case SplashDestination(:final sessionExpired):
+          showSessionExpired = sessionExpired;
           _router = buildAppRouter(initialLocation: '/');
         case DashboardDestination(:final path):
           _router = buildAppRouter(initialLocation: path);
@@ -83,7 +154,26 @@ class _SangwariMaaAppState extends ConsumerState<SangwariMaaApp> {
             pendingMobile: mobile,
           );
       }
-      await NotificationService.instance.initialize(rootNavigatorKey,onTokenRefresh: (token) => ref.read(authRepositoryProvider).updateFcmToken(token),
+    } catch (e, st) {
+      debugPrint('⚠️ Destination resolve failed: $e\n$st');
+      _router = buildAppRouter(initialLocation: '/');
+    } finally {
+      FlutterNativeSplash.remove();
+      if (mounted) setState(() => _ready = true);
+    }
+
+    if (showSessionExpired) _showSessionExpiredMessage();
+
+    // Everything below can no longer block the splash.
+    WidgetsBinding.instance.addPostFrameCallback((_) => _postStartup());
+  }
+
+  Future<void> _postStartup() async {
+    if (!mounted) return;
+    try {
+      await NotificationService.instance.initialize(
+        rootNavigatorKey,
+        onTokenRefresh: (token) => ref.read(authRepositoryProvider).updateFcmToken(token),
       );
 
       final token = await NotificationService.instance.getToken();
@@ -111,11 +201,7 @@ class _SangwariMaaAppState extends ConsumerState<SangwariMaaApp> {
         await _flushMedicineQueue();
       }
     } catch (e, st) {
-      debugPrint('⚠️ Destination resolve failed: $e\n$st');
-      _router = buildAppRouter(initialLocation: '/');
-    } finally {
-      FlutterNativeSplash.remove();
-      if (mounted) setState(() => _ready = true);
+      debugPrint('⚠️ Post-startup failed: $e\n$st');
     }
   }
 

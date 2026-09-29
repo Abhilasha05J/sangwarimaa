@@ -19,6 +19,13 @@ class ApiEndpoints {
   static String pregnancyWeek(int week)    => '/api/v1/women/pregnancy/week/$week';
   static const String bpcr                 = '/api/v1/women/bpcr';
   static const String bpcrRespond          = '/api/v1/women/bpcr/respond';
+  static const String bpcrFacilities          = '/api/v1/women/bpcr/facilities';
+  static const String bpcrFacilitySelection   = '/api/v1/women/bpcr/facilities/selection';
+  static const String bpcrSba                 = '/api/v1/women/bpcr/sba';
+  static const String bpcrAnswers             = '/api/v1/women/bpcr/answers'; // append '/$component'
+  static const String bpcrBloodDonors         = '/api/v1/women/bpcr/blood-donors';
+  static const String bpcrScore               = '/api/v1/women/bpcr/score';
+  static const String bpcrEmergencyHub        = '/api/v1/women/bpcr/emergency-hub';
   static const String ancServices          = '/api/v1/women/anc-services';
   static const String appointments         = '/api/v1/women/appointments';
   static const String reminders            = '/api/v1/women/reminders';
