@@ -39,8 +39,13 @@ abstract class BpcrRemoteDataSource {
 
   @DELETE('${ApiEndpoints.bpcrBloodDonors}/{id}')
   Future<HttpResponse<dynamic>> deleteBloodDonor(@Path('id') String id);
-}
 
+  @GET(ApiEndpoints.bpcrScore)
+  Future<HttpResponse<dynamic>> getScoreRaw();
+
+  @GET(ApiEndpoints.bpcrEmergencyHub)
+  Future<HttpResponse<dynamic>> getEmergencyHubRaw();
+}
 class FacilitiesResponse {
   final List<BpcrFacilityModel> catchment;
   final List<BpcrFacilityModel> results;

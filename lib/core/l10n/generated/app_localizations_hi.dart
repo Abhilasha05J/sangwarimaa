@@ -364,6 +364,9 @@ class AppLocalizationsHi extends AppLocalizations {
       'जन्म तैयारी एवं जटिलता तत्परता (BPCR) के महत्वपूर्ण चरणों की प्रगति को ट्रैक करें।';
 
   @override
+  String get bpcr_index_title => 'BPCR इंडेक्स (10 घटक)';
+
+  @override
   String get ancServices => 'ANC सेवाएं';
 
   @override
@@ -514,7 +517,7 @@ class AppLocalizationsHi extends AppLocalizations {
       'स्वास्थ्य सुविधाएँ लोड नहीं हो सकीं। पुनः प्रयास करें।';
 
   @override
-  String get bpcr_facilities_saved => 'स्वास्थ्य सुविधाएँ सहेजी गईं';
+  String get bpcr_saved => 'सहेजी गईं';
 
   @override
   String get bpcr_facilities_save_error =>
@@ -587,6 +590,77 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get bpcr_not_set => 'सेट नहीं है';
+
+  @override
+  String get bpcr_donor_removed => 'डोनर हटा दिया गया';
+
+  @override
+  String get bpcr_donor_remove_error =>
+      'डोनर नहीं हटाया जा सका। पुनः प्रयास करें।';
+
+  @override
+  String get bpcr_summary_title => 'BPCR';
+
+  @override
+  String get bpcr_band_excellent => 'उत्कृष्ट';
+
+  @override
+  String get bpcr_band_good => 'अच्छा';
+
+  @override
+  String get bpcr_band_moderate => 'मध्यम ';
+
+  @override
+  String get bpcr_band_poor => 'कम तैयारी';
+
+  @override
+  String get bpcr_band_high_risk => 'उच्च जोखिम';
+
+  @override
+  String bpcr_not_all_tracked_note(int count) {
+    return 'इस ऐप में अभी $count अंक ट्रैक नहीं किए गए हैं';
+  }
+
+  @override
+  String get bpcr_domain_checklist_title => 'BPCR डोमेन चेकलिस्ट';
+
+  @override
+  String get bpcr_pts_suffix => 'अंक';
+
+  @override
+  String get bpcr_status_completed => 'पूरा हुआ';
+
+  @override
+  String get bpcr_status_pending => 'लंबित';
+
+  @override
+  String get bpcr_status_not_tracked => 'अभी ट्रैक नहीं किया गया';
+
+  @override
+  String get bpcr_bag_baby_essentials => 'बच्चे की ज़रूरी चीज़ें पैक हैं';
+
+  @override
+  String get bpcr_bag_mother_clothes => 'माँ के साफ़ कपड़े पैक हैं';
+
+  @override
+  String get bpcr_bag_mcp_card => 'MCP कार्ड फ़ाइल शामिल है';
+
+  @override
+  String get bpcr_emergency_hub_title => 'आपातकालीन तैयारी केंद्र';
+
+  @override
+  String get bpcr_emergency_hub_subtitle =>
+      'प्रसव या जटिलताओं के दौरान एक टैप में आपातकालीन सहायता।';
+
+  @override
+  String get bpcr_govt_ambulance_label => 'सरकारी एम्बुलेंस';
+
+  @override
+  String get bpcr_no_emergency_contacts_yet =>
+      'अभी तक कोई आपातकालीन संपर्क सहेजा नहीं गया है।';
+
+  @override
+  String get bpcr_sos_emergency_call => 'SOS आपातकालीन कॉल';
 
   @override
   String get bpcr_pregnancy_card1_title => 'अत्यधिक योनि से रक्तस्राव';

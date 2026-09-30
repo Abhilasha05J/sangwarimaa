@@ -29,7 +29,7 @@ class SkillBirthAttendantPage extends ConsumerWidget {
             BpcrSectionHeader(iconAsset: 'assets/icons/bpcr6.png', title: l10n.bpcr_skill_birth_attendant_title),
             Expanded(
               child: sbaAsync.when(
-                loading: () => const Center(child: CircularProgressIndicator()),
+                loading: () => const Center(child: CircularProgressIndicator(color: AppColors.pinkText)),
                 error: (e, _) => Center(child: Text(l10n.bpcr_sba_load_error)),
                 data: (data) {
                   if (data.facilities.isEmpty) {

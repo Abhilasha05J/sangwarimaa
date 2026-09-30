@@ -92,7 +92,7 @@ class _WomenProfileScreenState extends ConsumerState<WomenProfileScreen> {
                   remindersOn: _remindersOn,
                   onRemindersChanged: (v) => setState(() => _remindersOn = v),
                 ),
-                loading: () => const Center(child: CircularProgressIndicator()),
+                loading: () => const Center(child: CircularProgressIndicator(color: AppColors.pinkText)),
                 error: (error, _) => _ProfileError(
                   l10n: l10n,
                   onRetry: () => ref.read(womenProfileControllerProvider.notifier).refresh(),

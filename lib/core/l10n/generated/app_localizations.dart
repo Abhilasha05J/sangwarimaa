@@ -782,6 +782,12 @@ abstract class AppLocalizations {
   /// **'Track your birth preparedness and complications readiness milestones.'**
   String get bpcrdesc;
 
+  /// No description provided for @bpcr_index_title.
+  ///
+  /// In en, this message translates to:
+  /// **'BPCR Index (10 components)'**
+  String get bpcr_index_title;
+
   /// Antenatal Care Services
   ///
   /// In en, this message translates to:
@@ -1058,11 +1064,11 @@ abstract class AppLocalizations {
   /// **'Couldn\'t load facilities. Try again.'**
   String get bpcr_facilities_load_error;
 
-  /// No description provided for @bpcr_facilities_saved.
+  /// No description provided for @bpcr_saved.
   ///
   /// In en, this message translates to:
-  /// **'Facilities saved'**
-  String get bpcr_facilities_saved;
+  /// **'Data saved'**
+  String get bpcr_saved;
 
   /// No description provided for @bpcr_facilities_save_error.
   ///
@@ -1189,6 +1195,138 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Not set'**
   String get bpcr_not_set;
+
+  /// No description provided for @bpcr_donor_removed.
+  ///
+  /// In en, this message translates to:
+  /// **'Donor removed'**
+  String get bpcr_donor_removed;
+
+  /// No description provided for @bpcr_donor_remove_error.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t remove donor. Try again.'**
+  String get bpcr_donor_remove_error;
+
+  /// No description provided for @bpcr_summary_title.
+  ///
+  /// In en, this message translates to:
+  /// **'BPCR'**
+  String get bpcr_summary_title;
+
+  /// No description provided for @bpcr_band_excellent.
+  ///
+  /// In en, this message translates to:
+  /// **'Excellent'**
+  String get bpcr_band_excellent;
+
+  /// No description provided for @bpcr_band_good.
+  ///
+  /// In en, this message translates to:
+  /// **'Good'**
+  String get bpcr_band_good;
+
+  /// No description provided for @bpcr_band_moderate.
+  ///
+  /// In en, this message translates to:
+  /// **'Moderate'**
+  String get bpcr_band_moderate;
+
+  /// No description provided for @bpcr_band_poor.
+  ///
+  /// In en, this message translates to:
+  /// **'Poor'**
+  String get bpcr_band_poor;
+
+  /// No description provided for @bpcr_band_high_risk.
+  ///
+  /// In en, this message translates to:
+  /// **'High Risk'**
+  String get bpcr_band_high_risk;
+
+  /// No description provided for @bpcr_not_all_tracked_note.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} points aren\'t tracked yet on this app'**
+  String bpcr_not_all_tracked_note(int count);
+
+  /// No description provided for @bpcr_domain_checklist_title.
+  ///
+  /// In en, this message translates to:
+  /// **'BPCR Domain Checklist'**
+  String get bpcr_domain_checklist_title;
+
+  /// No description provided for @bpcr_pts_suffix.
+  ///
+  /// In en, this message translates to:
+  /// **'PTS'**
+  String get bpcr_pts_suffix;
+
+  /// No description provided for @bpcr_status_completed.
+  ///
+  /// In en, this message translates to:
+  /// **'Completed'**
+  String get bpcr_status_completed;
+
+  /// No description provided for @bpcr_status_pending.
+  ///
+  /// In en, this message translates to:
+  /// **'Pending'**
+  String get bpcr_status_pending;
+
+  /// No description provided for @bpcr_status_not_tracked.
+  ///
+  /// In en, this message translates to:
+  /// **'Not tracked yet'**
+  String get bpcr_status_not_tracked;
+
+  /// No description provided for @bpcr_bag_baby_essentials.
+  ///
+  /// In en, this message translates to:
+  /// **'Baby essentials packed'**
+  String get bpcr_bag_baby_essentials;
+
+  /// No description provided for @bpcr_bag_mother_clothes.
+  ///
+  /// In en, this message translates to:
+  /// **'Mother\'s clean clothes packed'**
+  String get bpcr_bag_mother_clothes;
+
+  /// No description provided for @bpcr_bag_mcp_card.
+  ///
+  /// In en, this message translates to:
+  /// **'MCP card file included'**
+  String get bpcr_bag_mcp_card;
+
+  /// No description provided for @bpcr_emergency_hub_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Emergency Preparedness Hub'**
+  String get bpcr_emergency_hub_title;
+
+  /// No description provided for @bpcr_emergency_hub_subtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'One-tap emergency assistance during labor or complications.'**
+  String get bpcr_emergency_hub_subtitle;
+
+  /// No description provided for @bpcr_govt_ambulance_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Govt Ambulance'**
+  String get bpcr_govt_ambulance_label;
+
+  /// No description provided for @bpcr_no_emergency_contacts_yet.
+  ///
+  /// In en, this message translates to:
+  /// **'No emergency contacts saved yet.'**
+  String get bpcr_no_emergency_contacts_yet;
+
+  /// No description provided for @bpcr_sos_emergency_call.
+  ///
+  /// In en, this message translates to:
+  /// **'SOS EMERGENCY CALL'**
+  String get bpcr_sos_emergency_call;
 
   /// No description provided for @bpcr_pregnancy_card1_title.
   ///

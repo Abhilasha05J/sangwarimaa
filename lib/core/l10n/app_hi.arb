@@ -138,6 +138,7 @@
   "myProfile": "प्रोफ़ाइल",
   "bpcrModule": "BPCR",
   "bpcrdesc": "जन्म तैयारी एवं जटिलता तत्परता (BPCR) के महत्वपूर्ण चरणों की प्रगति को ट्रैक करें।",
+  "bpcr_index_title": "BPCR इंडेक्स (10 घटक)",
   "ancServices": "ANC सेवाएं",
   "faqs": "सामान्य प्रश्न",
   "reminders": "अनुस्मारक",
@@ -194,8 +195,8 @@
     "bpcr_facilities_load_error": "स्वास्थ्य सुविधाएँ लोड नहीं हो सकीं। पुनः प्रयास करें।",
     "@bpcr_facilities_load_error": {},
 
-    "bpcr_facilities_saved": "स्वास्थ्य सुविधाएँ सहेजी गईं",
-    "@bpcr_facilities_saved": {},
+    "bpcr_saved": "सहेजी गईं",
+    "@bpcr_saved": {},
 
     "bpcr_facilities_save_error": "सहेजा नहीं जा सका। पुनः प्रयास करें।",
     "@bpcr_facilities_save_error": {},
@@ -259,6 +260,78 @@
 
     "bpcr_answers_save_error": "सहेजा नहीं जा सका। पुनः प्रयास करें।",
     "@bpcr_answers_save_error": {},
+
+      "bpcr_donor_removed": "डोनर हटा दिया गया",
+      "@bpcr_donor_removed": {},
+
+      "bpcr_donor_remove_error": "डोनर नहीं हटाया जा सका। पुनः प्रयास करें।",
+      "@bpcr_donor_remove_error": {},
+
+  "bpcr_summary_title": "BPCR",
+  "@bpcr_summary_title": {},
+
+  "bpcr_band_excellent": "उत्कृष्ट",
+  "@bpcr_band_excellent": {},
+
+  "bpcr_band_good": "अच्छा",
+  "@bpcr_band_good": {},
+
+  "bpcr_band_moderate": "मध्यम ",
+  "@bpcr_band_moderate": {},
+
+  "bpcr_band_poor": "कम तैयारी",
+  "@bpcr_band_poor": {},
+
+  "bpcr_band_high_risk": "उच्च जोखिम",
+  "@bpcr_band_high_risk": {},
+
+  "bpcr_not_all_tracked_note": "इस ऐप में अभी {count} अंक ट्रैक नहीं किए गए हैं",
+  "@bpcr_not_all_tracked_note": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+
+  "bpcr_domain_checklist_title": "BPCR डोमेन चेकलिस्ट",
+  "@bpcr_domain_checklist_title": {},
+
+  "bpcr_pts_suffix": "अंक",
+  "@bpcr_pts_suffix": {},
+
+  "bpcr_status_completed": "पूरा हुआ",
+  "@bpcr_status_completed": {},
+
+  "bpcr_status_pending": "लंबित",
+  "@bpcr_status_pending": {},
+
+  "bpcr_status_not_tracked": "अभी ट्रैक नहीं किया गया",
+  "@bpcr_status_not_tracked": {},
+
+  "bpcr_bag_baby_essentials": "बच्चे की ज़रूरी चीज़ें पैक हैं",
+  "@bpcr_bag_baby_essentials": {},
+
+  "bpcr_bag_mother_clothes": "माँ के साफ़ कपड़े पैक हैं",
+  "@bpcr_bag_mother_clothes": {},
+
+  "bpcr_bag_mcp_card": "MCP कार्ड फ़ाइल शामिल है",
+  "@bpcr_bag_mcp_card": {},
+
+  "bpcr_emergency_hub_title": "आपातकालीन तैयारी केंद्र",
+  "@bpcr_emergency_hub_title": {},
+
+  "bpcr_emergency_hub_subtitle": "प्रसव या जटिलताओं के दौरान एक टैप में आपातकालीन सहायता।",
+  "@bpcr_emergency_hub_subtitle": {},
+
+  "bpcr_govt_ambulance_label": "सरकारी एम्बुलेंस",
+  "@bpcr_govt_ambulance_label": {},
+
+  "bpcr_no_emergency_contacts_yet": "अभी तक कोई आपातकालीन संपर्क सहेजा नहीं गया है।",
+  "@bpcr_no_emergency_contacts_yet": {},
+
+  "bpcr_sos_emergency_call": "SOS आपातकालीन कॉल",
+  "@bpcr_sos_emergency_call": {},
 
   "bpcr_pregnancy_card1_title": "अत्यधिक योनि से रक्तस्राव",
   "bpcr_pregnancy_card1_desc": "अधिक मात्रा में रक्तस्राव होना या रक्त के थक्के निकलना खतरनाक हो सकता है।",

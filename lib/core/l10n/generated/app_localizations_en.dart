@@ -362,6 +362,9 @@ class AppLocalizationsEn extends AppLocalizations {
       'Track your birth preparedness and complications readiness milestones.';
 
   @override
+  String get bpcr_index_title => 'BPCR Index (10 components)';
+
+  @override
   String get ancServices => 'ANC Services';
 
   @override
@@ -512,7 +515,7 @@ class AppLocalizationsEn extends AppLocalizations {
       'Couldn\'t load facilities. Try again.';
 
   @override
-  String get bpcr_facilities_saved => 'Facilities saved';
+  String get bpcr_saved => 'Data saved';
 
   @override
   String get bpcr_facilities_save_error => 'Couldn\'t save. Try again.';
@@ -583,6 +586,76 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get bpcr_not_set => 'Not set';
+
+  @override
+  String get bpcr_donor_removed => 'Donor removed';
+
+  @override
+  String get bpcr_donor_remove_error => 'Couldn\'t remove donor. Try again.';
+
+  @override
+  String get bpcr_summary_title => 'BPCR';
+
+  @override
+  String get bpcr_band_excellent => 'Excellent';
+
+  @override
+  String get bpcr_band_good => 'Good';
+
+  @override
+  String get bpcr_band_moderate => 'Moderate';
+
+  @override
+  String get bpcr_band_poor => 'Poor';
+
+  @override
+  String get bpcr_band_high_risk => 'High Risk';
+
+  @override
+  String bpcr_not_all_tracked_note(int count) {
+    return '$count points aren\'t tracked yet on this app';
+  }
+
+  @override
+  String get bpcr_domain_checklist_title => 'BPCR Domain Checklist';
+
+  @override
+  String get bpcr_pts_suffix => 'PTS';
+
+  @override
+  String get bpcr_status_completed => 'Completed';
+
+  @override
+  String get bpcr_status_pending => 'Pending';
+
+  @override
+  String get bpcr_status_not_tracked => 'Not tracked yet';
+
+  @override
+  String get bpcr_bag_baby_essentials => 'Baby essentials packed';
+
+  @override
+  String get bpcr_bag_mother_clothes => 'Mother\'s clean clothes packed';
+
+  @override
+  String get bpcr_bag_mcp_card => 'MCP card file included';
+
+  @override
+  String get bpcr_emergency_hub_title => 'Emergency Preparedness Hub';
+
+  @override
+  String get bpcr_emergency_hub_subtitle =>
+      'One-tap emergency assistance during labor or complications.';
+
+  @override
+  String get bpcr_govt_ambulance_label => 'Govt Ambulance';
+
+  @override
+  String get bpcr_no_emergency_contacts_yet =>
+      'No emergency contacts saved yet.';
+
+  @override
+  String get bpcr_sos_emergency_call => 'SOS EMERGENCY CALL';
 
   @override
   String get bpcr_pregnancy_card1_title => 'Severe Vaginal Bleeding';

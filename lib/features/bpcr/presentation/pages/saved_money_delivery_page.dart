@@ -28,6 +28,7 @@ class _SavedMoneyDeliveryPageState extends ConsumerState<SavedMoneyDeliveryPage>
   final _milContactCtrl = TextEditingController();
   final _milRelationCtrl = TextEditingController();
   bool _synced = false;
+  bool _isSaving = false;
 
   @override
   void dispose() {
@@ -49,6 +50,25 @@ class _SavedMoneyDeliveryPageState extends ConsumerState<SavedMoneyDeliveryPage>
     _milRelationCtrl.text = d.milRelation;
   }
 
+  Future<void> _save() async {
+    if (_isSaving) return;
+    final messenger = ScaffoldMessenger.of(context);
+    final l10n = AppLocalizations.of(context)!;
+    final router = GoRouter.of(context);
+
+    setState(() => _isSaving = true);
+    try {
+      final ok = await ref.read(savedMoneyAnswersProvider.notifier).save();
+      if (!mounted) return;
+      messenger.showSnackBar(SnackBar(
+        content: Text(ok ? l10n.bpcr_saved : l10n.bpcr_answers_save_error),
+      ));
+      if (ok) router.pop();
+    } finally {
+      if (mounted) setState(() => _isSaving = false);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
@@ -60,7 +80,7 @@ class _SavedMoneyDeliveryPageState extends ConsumerState<SavedMoneyDeliveryPage>
       body: SafeArea(
         top: false,
         child: draftAsync.when(
-          loading: () => const Center(child: CircularProgressIndicator()),
+          loading: () => const Center(child: CircularProgressIndicator(color: AppColors.pinkText)),
           error: (e, _) => Center(child: Text(l10n.bpcr_answers_load_error)),
           data: (draft) {
             _syncControllers(draft);
@@ -137,18 +157,14 @@ class _SavedMoneyDeliveryPageState extends ConsumerState<SavedMoneyDeliveryPage>
                     ),
                     const SizedBox(width: AppSpacing.md),
                     Expanded(
-                      child: AppPrimaryButton(
+                      child: _isSaving
+                          ? const SizedBox(
+                        height: 48,
+                        child: Center(child: CircularProgressIndicator(color: AppColors.pinkText)),
+                      )
+                          : AppPrimaryButton(
                         label: l10n.save,
-                        onTap: draft.selfSaving != null ? () async {
-                          final ok = await notifier.save();
-                          if (context.mounted) {
-                            if (ok) {
-                              context.pop();
-                            } else {
-                              ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(l10n.bpcr_answers_save_error)));
-                            }
-                          }
-                        } : null,
+                        onTap: draft.selfSaving != null ? _save : null,
                       ),
                     ),
                   ]),

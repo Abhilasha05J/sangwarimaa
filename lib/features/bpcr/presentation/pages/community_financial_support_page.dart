@@ -26,7 +26,7 @@ class CommunityFinancialSupportPage extends ConsumerWidget {
       body: SafeArea(
         top: false,
         child: answersAsync.when(
-          loading: () => const Center(child: CircularProgressIndicator()),
+          loading: () => const Center(child: CircularProgressIndicator(color: AppColors.pinkText)),
           error: (e, _) => Center(child: Text(l10n.bpcr_answers_load_error)),
           data: (answers) {
             final notifier = ref.read(communitySupportAnswersProvider.notifier);

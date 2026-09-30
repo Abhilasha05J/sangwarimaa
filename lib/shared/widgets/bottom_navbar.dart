@@ -6,6 +6,8 @@ import 'package:sangwari_maa/core/constants/app_typography.dart';
 import 'package:sangwari_maa/core/l10n/generated/app_localizations.dart';
 import 'package:sangwari_maa/features/emergency/presentation/pages/women_emergency.dart';
 
+import '../../features/profile/presentation/provider/profile_providers.dart';
+
 /// Usage: Set [currentIndex] to highlight the active tab.
 /// 0 = Home, 1 = Profile, 2 = Reminder, 3 = Chatbot
 class AppBottomNavBar extends ConsumerWidget {
@@ -16,7 +18,7 @@ class AppBottomNavBar extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context)!;
-
+    final profile = ref.watch(womenProfileControllerProvider).asData?.value;
     return Container(
       decoration: BoxDecoration(
         color: AppColors.white,
@@ -53,8 +55,8 @@ class AppBottomNavBar extends ConsumerWidget {
                   onTap: () => EmergencyDialSheet.show(
                   context,
                    mitaninPhone: null,
-                   familyPhone:  null,
-                   husbandPhone: null,
+                   familyPhone:  profile?.profile.familyContactNo,
+                   husbandPhone: profile?.profile.husbandContactNo,
                   ),
                   child: Transform.translate(
                     offset: const Offset(0, -25),

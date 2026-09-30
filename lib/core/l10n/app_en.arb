@@ -332,6 +332,9 @@
   "bpcrdesc": "Track your birth preparedness and complications readiness milestones.",
   "@bpcrdesc": { },
 
+   "bpcr_index_title": "BPCR Index (10 components)",
+    "@bpcr_index_title": {},
+
   "ancServices": "ANC Services",
   "@ancServices": { "description": "Antenatal Care Services" },
 
@@ -462,8 +465,8 @@
   "bpcr_facilities_load_error": "Couldn't load facilities. Try again.",
   "@bpcr_facilities_load_error": {},
 
-  "bpcr_facilities_saved": "Facilities saved",
-  "@bpcr_facilities_saved": {},
+  "bpcr_saved": "Data saved",
+  "@bpcr_saved": {},
 
   "bpcr_facilities_save_error": "Couldn't save. Try again.",
   "@bpcr_facilities_save_error": {},
@@ -527,6 +530,79 @@
 
   "bpcr_not_set": "Not set",
   "@bpcr_not_set": {},
+
+    "bpcr_donor_removed": "Donor removed",
+    "@bpcr_donor_removed": {},
+
+    "bpcr_donor_remove_error": "Couldn't remove donor. Try again.",
+    "@bpcr_donor_remove_error": {},
+
+      "bpcr_summary_title": "BPCR",
+      "@bpcr_summary_title": {},
+
+      "bpcr_band_excellent": "Excellent",
+      "@bpcr_band_excellent": {},
+
+      "bpcr_band_good": "Good",
+      "@bpcr_band_good": {},
+
+      "bpcr_band_moderate": "Moderate",
+      "@bpcr_band_moderate": {},
+
+      "bpcr_band_poor": "Poor",
+      "@bpcr_band_poor": {},
+
+      "bpcr_band_high_risk": "High Risk",
+      "@bpcr_band_high_risk": {},
+
+      "bpcr_not_all_tracked_note": "{count} points aren't tracked yet on this app",
+      "@bpcr_not_all_tracked_note": {
+        "placeholders": {
+          "count": {
+            "type": "int"
+          }
+        }
+      },
+
+      "bpcr_domain_checklist_title": "BPCR Domain Checklist",
+      "@bpcr_domain_checklist_title": {},
+
+      "bpcr_pts_suffix": "PTS",
+      "@bpcr_pts_suffix": {},
+
+      "bpcr_status_completed": "Completed",
+      "@bpcr_status_completed": {},
+
+      "bpcr_status_pending": "Pending",
+      "@bpcr_status_pending": {},
+
+      "bpcr_status_not_tracked": "Not tracked yet",
+      "@bpcr_status_not_tracked": {},
+
+      "bpcr_bag_baby_essentials": "Baby essentials packed",
+      "@bpcr_bag_baby_essentials": {},
+
+      "bpcr_bag_mother_clothes": "Mother's clean clothes packed",
+      "@bpcr_bag_mother_clothes": {},
+
+      "bpcr_bag_mcp_card": "MCP card file included",
+      "@bpcr_bag_mcp_card": {},
+
+      "bpcr_emergency_hub_title": "Emergency Preparedness Hub",
+      "@bpcr_emergency_hub_title": {},
+
+      "bpcr_emergency_hub_subtitle": "One-tap emergency assistance during labor or complications.",
+      "@bpcr_emergency_hub_subtitle": {},
+
+      "bpcr_govt_ambulance_label": "Govt Ambulance",
+      "@bpcr_govt_ambulance_label": {},
+
+      "bpcr_no_emergency_contacts_yet": "No emergency contacts saved yet.",
+      "@bpcr_no_emergency_contacts_yet": {},
+
+      "bpcr_sos_emergency_call": "SOS EMERGENCY CALL",
+      "@bpcr_sos_emergency_call": {},
+
 
 "bpcr_pregnancy_card1_title": "Severe Vaginal Bleeding",
 "bpcr_pregnancy_card1_desc": "Heavy bleeding or passing clots can be dangerous.",

@@ -155,7 +155,7 @@ class _VillageSearchSheetState extends ConsumerState<_VillageSearchSheet> {
                       ),
                     )
                   : searchAsync!.when(
-                      loading: () => const Center(child: CircularProgressIndicator()),
+                      loading: () => const Center(child: CircularProgressIndicator(color: AppColors.pinkText)),
                       error: (e, _) => Center(
                         child: Text(l10n.villageSearchError, style: AppTypography.bodySmall),
                       ),

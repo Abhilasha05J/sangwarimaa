@@ -12,8 +12,14 @@ part of 'bpcr_summary_providers.dart';
 @ProviderFor(bpcrScore)
 const bpcrScoreProvider = BpcrScoreProvider._();
 
-final class BpcrScoreProvider extends $FunctionalProvider<int, int, int>
-    with $Provider<int> {
+final class BpcrScoreProvider
+    extends
+        $FunctionalProvider<
+          AsyncValue<BpcrScoreModel>,
+          BpcrScoreModel,
+          FutureOr<BpcrScoreModel>
+        >
+    with $FutureModifier<BpcrScoreModel>, $FutureProvider<BpcrScoreModel> {
   const BpcrScoreProvider._()
     : super(
         from: null,
@@ -30,245 +36,116 @@ final class BpcrScoreProvider extends $FunctionalProvider<int, int, int>
 
   @$internal
   @override
-  $ProviderElement<int> $createElement($ProviderPointer pointer) =>
-      $ProviderElement(pointer);
+  $FutureProviderElement<BpcrScoreModel> $createElement(
+    $ProviderPointer pointer,
+  ) => $FutureProviderElement(pointer);
 
   @override
-  int create(Ref ref) {
+  FutureOr<BpcrScoreModel> create(Ref ref) {
     return bpcrScore(ref);
   }
-
-  /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(int value) {
-    return $ProviderOverride(
-      origin: this,
-      providerOverride: $SyncValueProvider<int>(value),
-    );
-  }
 }
 
-String _$bpcrScoreHash() => r'4982d3dc27c7390cb4dd753461f35a314e7cf11d';
+String _$bpcrScoreHash() => r'0bd19574fd62adcd6677c725f068a45f2d713239';
 
-@ProviderFor(bpcrCurrentProgressLabel)
-const bpcrCurrentProgressLabelProvider = BpcrCurrentProgressLabelProvider._();
+@ProviderFor(bpcrEmergencyHub)
+const bpcrEmergencyHubProvider = BpcrEmergencyHubProvider._();
 
-final class BpcrCurrentProgressLabelProvider
-    extends $FunctionalProvider<String, String, String>
-    with $Provider<String> {
-  const BpcrCurrentProgressLabelProvider._()
-    : super(
-        from: null,
-        argument: null,
-        retry: null,
-        name: r'bpcrCurrentProgressLabelProvider',
-        isAutoDispose: true,
-        dependencies: null,
-        $allTransitiveDependencies: null,
-      );
-
-  @override
-  String debugGetCreateSourceHash() => _$bpcrCurrentProgressLabelHash();
-
-  @$internal
-  @override
-  $ProviderElement<String> $createElement($ProviderPointer pointer) =>
-      $ProviderElement(pointer);
-
-  @override
-  String create(Ref ref) {
-    return bpcrCurrentProgressLabel(ref);
-  }
-
-  /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(String value) {
-    return $ProviderOverride(
-      origin: this,
-      providerOverride: $SyncValueProvider<String>(value),
-    );
-  }
-}
-
-String _$bpcrCurrentProgressLabelHash() =>
-    r'4a82e2b1d4c36541f25a11ab1baeeff9f30d5b55';
-
-@ProviderFor(bpcrDueDateLabel)
-const bpcrDueDateLabelProvider = BpcrDueDateLabelProvider._();
-
-final class BpcrDueDateLabelProvider
-    extends $FunctionalProvider<String, String, String>
-    with $Provider<String> {
-  const BpcrDueDateLabelProvider._()
-    : super(
-        from: null,
-        argument: null,
-        retry: null,
-        name: r'bpcrDueDateLabelProvider',
-        isAutoDispose: true,
-        dependencies: null,
-        $allTransitiveDependencies: null,
-      );
-
-  @override
-  String debugGetCreateSourceHash() => _$bpcrDueDateLabelHash();
-
-  @$internal
-  @override
-  $ProviderElement<String> $createElement($ProviderPointer pointer) =>
-      $ProviderElement(pointer);
-
-  @override
-  String create(Ref ref) {
-    return bpcrDueDateLabel(ref);
-  }
-
-  /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(String value) {
-    return $ProviderOverride(
-      origin: this,
-      providerOverride: $SyncValueProvider<String>(value),
-    );
-  }
-}
-
-String _$bpcrDueDateLabelHash() => r'19aa097feaca0297382b97deaf393e45402c483d';
-
-@ProviderFor(journeyMilestones)
-const journeyMilestonesProvider = JourneyMilestonesProvider._();
-
-final class JourneyMilestonesProvider
+final class BpcrEmergencyHubProvider
     extends
         $FunctionalProvider<
-          List<JourneyMilestone>,
-          List<JourneyMilestone>,
-          List<JourneyMilestone>
+          AsyncValue<EmergencyHubModel>,
+          EmergencyHubModel,
+          FutureOr<EmergencyHubModel>
         >
-    with $Provider<List<JourneyMilestone>> {
-  const JourneyMilestonesProvider._()
+    with
+        $FutureModifier<EmergencyHubModel>,
+        $FutureProvider<EmergencyHubModel> {
+  const BpcrEmergencyHubProvider._()
     : super(
         from: null,
         argument: null,
         retry: null,
-        name: r'journeyMilestonesProvider',
+        name: r'bpcrEmergencyHubProvider',
         isAutoDispose: true,
         dependencies: null,
         $allTransitiveDependencies: null,
       );
 
   @override
-  String debugGetCreateSourceHash() => _$journeyMilestonesHash();
+  String debugGetCreateSourceHash() => _$bpcrEmergencyHubHash();
 
   @$internal
   @override
-  $ProviderElement<List<JourneyMilestone>> $createElement(
+  $FutureProviderElement<EmergencyHubModel> $createElement(
     $ProviderPointer pointer,
-  ) => $ProviderElement(pointer);
+  ) => $FutureProviderElement(pointer);
 
   @override
-  List<JourneyMilestone> create(Ref ref) {
-    return journeyMilestones(ref);
-  }
-
-  /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(List<JourneyMilestone> value) {
-    return $ProviderOverride(
-      origin: this,
-      providerOverride: $SyncValueProvider<List<JourneyMilestone>>(value),
-    );
+  FutureOr<EmergencyHubModel> create(Ref ref) {
+    return bpcrEmergencyHub(ref);
   }
 }
 
-String _$journeyMilestonesHash() => r'6789417462cb7697479e07cbe71607b340608c68';
+String _$bpcrEmergencyHubHash() => r'514c2bdcd33e0481a9c19229a9d0001e1d2280c4';
 
-@ProviderFor(domainChecklist)
-const domainChecklistProvider = DomainChecklistProvider._();
+/// Unlike the other answer screens (draft + explicit Save), each delivery
+/// bag item saves the instant she ticks it — it's a 3-item checklist, not
+/// a form, and the summary card's score should reflect a tick immediately.
 
-final class DomainChecklistProvider
-    extends
-        $FunctionalProvider<
-          List<DomainChecklistItem>,
-          List<DomainChecklistItem>,
-          List<DomainChecklistItem>
-        >
-    with $Provider<List<DomainChecklistItem>> {
-  const DomainChecklistProvider._()
+@ProviderFor(DeliveryBagAnswers)
+const deliveryBagAnswersProvider = DeliveryBagAnswersProvider._();
+
+/// Unlike the other answer screens (draft + explicit Save), each delivery
+/// bag item saves the instant she ticks it — it's a 3-item checklist, not
+/// a form, and the summary card's score should reflect a tick immediately.
+final class DeliveryBagAnswersProvider
+    extends $AsyncNotifierProvider<DeliveryBagAnswers, Map<String, bool>> {
+  /// Unlike the other answer screens (draft + explicit Save), each delivery
+  /// bag item saves the instant she ticks it — it's a 3-item checklist, not
+  /// a form, and the summary card's score should reflect a tick immediately.
+  const DeliveryBagAnswersProvider._()
     : super(
         from: null,
         argument: null,
         retry: null,
-        name: r'domainChecklistProvider',
+        name: r'deliveryBagAnswersProvider',
         isAutoDispose: true,
         dependencies: null,
         $allTransitiveDependencies: null,
       );
 
   @override
-  String debugGetCreateSourceHash() => _$domainChecklistHash();
+  String debugGetCreateSourceHash() => _$deliveryBagAnswersHash();
 
   @$internal
   @override
-  $ProviderElement<List<DomainChecklistItem>> $createElement(
-    $ProviderPointer pointer,
-  ) => $ProviderElement(pointer);
-
-  @override
-  List<DomainChecklistItem> create(Ref ref) {
-    return domainChecklist(ref);
-  }
-
-  /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(List<DomainChecklistItem> value) {
-    return $ProviderOverride(
-      origin: this,
-      providerOverride: $SyncValueProvider<List<DomainChecklistItem>>(value),
-    );
-  }
+  DeliveryBagAnswers create() => DeliveryBagAnswers();
 }
 
-String _$domainChecklistHash() => r'ecd297ba81c88cf9fde5b18c2ad6f428621c56d5';
+String _$deliveryBagAnswersHash() =>
+    r'80b95e2567a988a15059ef8473ce92a026655576';
 
-@ProviderFor(emergencyContacts)
-const emergencyContactsProvider = EmergencyContactsProvider._();
+/// Unlike the other answer screens (draft + explicit Save), each delivery
+/// bag item saves the instant she ticks it — it's a 3-item checklist, not
+/// a form, and the summary card's score should reflect a tick immediately.
 
-final class EmergencyContactsProvider
-    extends
-        $FunctionalProvider<
-          List<EmergencyContact>,
-          List<EmergencyContact>,
-          List<EmergencyContact>
-        >
-    with $Provider<List<EmergencyContact>> {
-  const EmergencyContactsProvider._()
-    : super(
-        from: null,
-        argument: null,
-        retry: null,
-        name: r'emergencyContactsProvider',
-        isAutoDispose: true,
-        dependencies: null,
-        $allTransitiveDependencies: null,
-      );
-
+abstract class _$DeliveryBagAnswers extends $AsyncNotifier<Map<String, bool>> {
+  FutureOr<Map<String, bool>> build();
+  @$mustCallSuper
   @override
-  String debugGetCreateSourceHash() => _$emergencyContactsHash();
-
-  @$internal
-  @override
-  $ProviderElement<List<EmergencyContact>> $createElement(
-    $ProviderPointer pointer,
-  ) => $ProviderElement(pointer);
-
-  @override
-  List<EmergencyContact> create(Ref ref) {
-    return emergencyContacts(ref);
-  }
-
-  /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(List<EmergencyContact> value) {
-    return $ProviderOverride(
-      origin: this,
-      providerOverride: $SyncValueProvider<List<EmergencyContact>>(value),
-    );
+  void runBuild() {
+    final created = build();
+    final ref =
+        this.ref as $Ref<AsyncValue<Map<String, bool>>, Map<String, bool>>;
+    final element =
+        ref.element
+            as $ClassProviderElement<
+              AnyNotifier<AsyncValue<Map<String, bool>>, Map<String, bool>>,
+              AsyncValue<Map<String, bool>>,
+              Object?,
+              Object?
+            >;
+    element.handleValue(ref, created);
   }
 }
-
-String _$emergencyContactsHash() => r'27df18610da6aae8a8b6cf77156ecf7b7fa689cf';

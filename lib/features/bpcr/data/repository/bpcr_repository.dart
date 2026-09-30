@@ -1,6 +1,10 @@
 import 'package:dartz/dartz.dart';
 import 'package:sangwari_maa/core/errors/failures.dart';
-import '../datasource/bpcr_remote_datasource.dart';
+import 'package:sangwari_maa/features/bpcr/data/datasource/bpcr_remote_datasource.dart';
+import 'package:sangwari_maa/features/bpcr/data/model/bpcr_score_model.dart';
+
+Map<String, dynamic> _unwrap(Map<String, dynamic> json) =>
+    (json['data'] as Map<String, dynamic>?) ?? json;
 
 class BpcrRepository {
   final BpcrRemoteDataSource _remote;
@@ -33,6 +37,24 @@ class BpcrRepository {
     }
   }
 
+  Future<Either<Failure, BpcrScoreModel>> getScore() async {
+    try {
+      final res = await _remote.getScoreRaw();
+      return Right(BpcrScoreModel.fromJson(_unwrap(res.data as Map<String, dynamic>)));
+    } catch (e) {
+      return Left(mapExceptionToFailure(e));
+    }
+  }
+
+  Future<Either<Failure, EmergencyHubModel>> getEmergencyHub() async {
+    try {
+      final res = await _remote.getEmergencyHubRaw();
+      return Right(EmergencyHubModel.fromJson(_unwrap(res.data as Map<String, dynamic>)));
+    } catch (e) {
+      return Left(mapExceptionToFailure(e));
+    }
+  }
+
   Future<Either<Failure, Map<String, dynamic>>> getAnswers(String component) async {
     try {
       final res = await _remote.getAnswers(component);
@@ -50,7 +72,6 @@ class BpcrRepository {
       return Left(mapExceptionToFailure(e));
     }
   }
-
 
   Future<Either<Failure, BloodDonorListResponse>> getBloodDonors() async {
     try {

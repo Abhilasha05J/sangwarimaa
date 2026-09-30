@@ -31,6 +31,7 @@ class _HealthFacilityIdPageState extends ConsumerState<HealthFacilityIdPage> {
   Set<String>? _initialSelectedIds;
   String? _initialDeliveryFacilityId;
   bool _deliverySeeded = false;
+  bool _isSaving = false;
 
   @override
   void dispose() {
@@ -44,6 +45,32 @@ class _HealthFacilityIdPageState extends ConsumerState<HealthFacilityIdPage> {
     _debounce = Timer(const Duration(milliseconds: 300), () {
       ref.read(facilitySearchQueryProvider.notifier).set(value.trim());
     });
+  }
+  Future<void> _save({required bool facilitiesDirty, required bool deliveryDirty}) async {
+    if (_isSaving) return;
+    setState(() => _isSaving = true);
+    try {
+      final selOk = facilitiesDirty
+          ? await ref.read(bpcrFacilitySelectionProvider.notifier).save()
+          : true;
+      final delOk = deliveryDirty
+          ? await ref.read(deliveryFacilityAnswerProvider.notifier).save()
+          : true;
+
+      if (!mounted) return;
+      final l10n = AppLocalizations.of(context)!;
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text((selOk && delOk) ? l10n.bpcr_saved : l10n.bpcr_facilities_save_error),
+      ));
+      if (selOk && delOk) {
+        setState(() {
+          _initialSelectedIds = null; // re-seed from the refreshed data next build
+          _deliverySeeded = false;
+        });
+      }
+    } finally {
+      if (mounted) setState(() => _isSaving = false);
+    }
   }
 
   @override
@@ -81,7 +108,7 @@ class _HealthFacilityIdPageState extends ConsumerState<HealthFacilityIdPage> {
             ),
             Expanded(
               child: facilitiesAsync.when(
-                loading: () => const Center(child: CircularProgressIndicator()),
+                loading: () => const Center(child: CircularProgressIndicator(color: AppColors.pinkText)),
                 error: (e, _) => Center(child: Text(l10n.bpcr_facilities_load_error)),
                 data: (data) {
                   // Seed the "what's actually saved" snapshot once per load
@@ -96,7 +123,7 @@ class _HealthFacilityIdPageState extends ConsumerState<HealthFacilityIdPage> {
                   final selectedFacilities = selectedIds.map((id) => byId[id]).whereType<BpcrFacilityModel>().toList();
 
                   return deliveryAsync.when(
-                    loading: () => const Center(child: CircularProgressIndicator()),
+                    loading: () => const Center(child: CircularProgressIndicator(color: AppColors.pinkText)),
                     error: (e, _) => Center(child: Text(l10n.bpcr_facilities_load_error)),
                     data: (deliveryId) {
                       if (!_deliverySeeded) {
@@ -198,30 +225,48 @@ class _HealthFacilityIdPageState extends ConsumerState<HealthFacilityIdPage> {
                               ),
                             ),
                           ),
+                          // if (!isSearching)
+                          //   Padding(
+                          //     padding: const EdgeInsets.all(AppSpacing.md),
+                          //     child: AppPrimaryButton(
+                          //       label: l10n.save,
+                          //       onTap: !isDirty ? null : () async {
+                          //         final selOk = facilitiesDirty
+                          //             ? await ref.read(bpcrFacilitySelectionProvider.notifier).save()
+                          //             : true;
+                          //         final delOk = deliveryDirty
+                          //             ? await ref.read(deliveryFacilityAnswerProvider.notifier).save()
+                          //             : true;
+                          //         if (context.mounted) {
+                          //           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                          //             content: Text((selOk && delOk) ? l10n.bpcr_facilities_saved : l10n.bpcr_facilities_save_error),
+                          //           ));
+                          //           if (selOk && delOk) {
+                          //             setState(() {
+                          //               _initialSelectedIds = null; // re-seed from the refreshed data next build
+                          //               _deliverySeeded = false;
+                          //             });
+                          //           }
+                          //         }
+                          //       },
+                          //     ),
+                          //   ),
                           if (!isSearching)
                             Padding(
                               padding: const EdgeInsets.all(AppSpacing.md),
-                              child: AppPrimaryButton(
+                              child: _isSaving
+                                  ? const SizedBox(
+                                height: 48,
+                                child: Center(child: CircularProgressIndicator(color: AppColors.pinkText)),
+                              )
+                                  : AppPrimaryButton(
                                 label: l10n.save,
-                                onTap: !isDirty ? null : () async {
-                                  final selOk = facilitiesDirty
-                                      ? await ref.read(bpcrFacilitySelectionProvider.notifier).save()
-                                      : true;
-                                  final delOk = deliveryDirty
-                                      ? await ref.read(deliveryFacilityAnswerProvider.notifier).save()
-                                      : true;
-                                  if (context.mounted) {
-                                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                                      content: Text((selOk && delOk) ? l10n.bpcr_facilities_saved : l10n.bpcr_facilities_save_error),
-                                    ));
-                                    if (selOk && delOk) {
-                                      setState(() {
-                                        _initialSelectedIds = null; // re-seed from the refreshed data next build
-                                        _deliverySeeded = false;
-                                      });
-                                    }
-                                  }
-                                },
+                                onTap: !isDirty
+                                    ? null
+                                    : () => _save(
+                                  facilitiesDirty: facilitiesDirty,
+                                  deliveryDirty: deliveryDirty,
+                                ),
                               ),
                             ),
                         ],

@@ -105,7 +105,7 @@ class _EmergencyDialSheetContent extends StatelessWidget {
             ),
           ],
           if (husbandPhone != null) ...[
-            const SizedBox(height: AppSpacing.lg),
+         //   const SizedBox(height: AppSpacing.lg),
             _DialRow(
               label: 'Call Husband',
               onCall: () => _call(husbandPhone!),
@@ -118,6 +118,7 @@ class _EmergencyDialSheetContent extends StatelessWidget {
               onCall: () => _call(familyPhone!),
             ),
           ],
+          const SizedBox(height: AppSpacing.lg),
         ],
       ),
     );
