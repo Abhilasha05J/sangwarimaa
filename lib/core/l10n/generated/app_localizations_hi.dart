@@ -367,6 +367,96 @@ class AppLocalizationsHi extends AppLocalizations {
   String get bpcr_index_title => 'BPCR इंडेक्स (10 घटक)';
 
   @override
+  String get bpcr_nearest_title => 'सबसे नज़दीकी स्वास्थ्य सुविधाएं';
+
+  @override
+  String get bpcr_nearest_subtitle =>
+      'अपनी पसंद की सुविधा चुनें, फिर सेव दबाएं';
+
+  @override
+  String get bpcr_nearest_use_address => 'मेरा पता';
+
+  @override
+  String get bpcr_nearest_use_location => 'मेरी वर्तमान लोकेशन';
+
+  @override
+  String get bpcr_nearest_use_address_instead => 'मेरे पते का उपयोग करें';
+
+  @override
+  String get bpcr_nearest_locating => 'आपकी लोकेशन खोजी जा रही है…';
+
+  @override
+  String bpcr_nearest_distance_km(String km) {
+    return '$km किमी दूर';
+  }
+
+  @override
+  String get bpcr_nearest_no_village =>
+      'आपका गाँव दर्ज नहीं है, इसलिए पते से सुविधाएं नहीं दिखा सकते। कृपया वर्तमान लोकेशन चुनें।';
+
+  @override
+  String get bpcr_nearest_village_no_location =>
+      'आपके गाँव की मानचित्र लोकेशन अभी उपलब्ध नहीं है। कृपया वर्तमान लोकेशन चुनें।';
+
+  @override
+  String get bpcr_nearest_none =>
+      'अभी आस-पास ऐसी कोई सुविधा उपलब्ध नहीं है जिसकी लोकेशन पता हो।';
+
+  @override
+  String get bpcr_nearest_permission_denied => 'लोकेशन की अनुमति नहीं दी गई।';
+
+  @override
+  String get bpcr_nearest_permission_forever =>
+      'इस ऐप के लिए लोकेशन बंद है। कृपया ऐप सेटिंग्स में चालू करें।';
+
+  @override
+  String get bpcr_nearest_service_off =>
+      'कृपया फ़ोन में GPS / लोकेशन चालू करें।';
+
+  @override
+  String get bpcr_nearest_location_failed =>
+      'आपकी लोकेशन नहीं मिल सकी। कृपया फिर कोशिश करें।';
+
+  @override
+  String get bpcr_nearest_open_settings => 'सेटिंग्स खोलें';
+
+  @override
+  String get bpcr_nearest_try_again => 'फिर कोशिश करें';
+
+  @override
+  String get bpcr_nearest_route_show => 'रास्ता दिखाएं';
+
+  @override
+  String get bpcr_nearest_route_hide => 'रास्ता छुपाएं';
+
+  @override
+  String bpcr_nearest_route_summary(String km, String time) {
+    return 'सड़क से: $km किमी · $time';
+  }
+
+  @override
+  String bpcr_nearest_route_min(String m) {
+    return '$m मिनट';
+  }
+
+  @override
+  String bpcr_nearest_route_hr_min(String h, String m) {
+    return '$h घंटा $m मिनट';
+  }
+
+  @override
+  String get bpcr_nearest_route_unavailable => 'अभी रास्ता उपलब्ध नहीं है';
+
+  @override
+  String get bpcr_nearest_recenter => 'नक्शा फिर से केंद्र में करें';
+
+  @override
+  String get bpcr_your_delivery_place => 'आपका प्रसव स्थान';
+
+  @override
+  String get bpcr_remove_facility => 'हटाएं';
+
+  @override
   String get ancServices => 'ANC सेवाएं';
 
   @override

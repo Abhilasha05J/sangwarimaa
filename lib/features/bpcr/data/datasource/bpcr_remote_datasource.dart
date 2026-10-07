@@ -45,6 +45,22 @@ abstract class BpcrRemoteDataSource {
 
   @GET(ApiEndpoints.bpcrEmergencyHub)
   Future<HttpResponse<dynamic>> getEmergencyHubRaw();
+
+  @GET(ApiEndpoints.bpcrNearestFacilities)
+  Future<HttpResponse<NearestFacilitiesResponse>> getNearestFacilities({
+    @Query('source') required String source,
+    @Query('lat') double? lat,
+    @Query('lng') double? lng,
+    @Query('limit') int? limit,
+  });
+
+  @GET('${ApiEndpoints.bpcrFacilities}/{id}/route')
+  Future<HttpResponse<FacilityRouteResponse>> getFacilityRoute(
+      @Path('id') String id, {
+        @Query('source') required String source,
+        @Query('lat') double? lat,
+        @Query('lng') double? lng,
+      });
 }
 class FacilitiesResponse {
   final List<BpcrFacilityModel> catchment;
@@ -58,6 +74,63 @@ class FacilitiesResponse {
       catchment: (json['catchment'] as List? ?? []).map((e) => BpcrFacilityModel.fromJson(e)).toList(),
       results:   (json['results'] as List? ?? []).map((e) => BpcrFacilityModel.fromJson(e)).toList(),
       selected:  (json['selected'] as List? ?? []).map((e) => BpcrFacilityModel.fromJson(e)).toList(),
+    );
+  }
+}
+
+class NearestOrigin {
+  final String source; // 'gps' | 'village'
+  final double latitude;
+  final double longitude;
+  final String? villageName;
+  NearestOrigin({required this.source, required this.latitude, required this.longitude, this.villageName});
+
+  factory NearestOrigin.fromJson(Map<String, dynamic> json) => NearestOrigin(
+    source: json['source'] as String? ?? 'village',
+    latitude: (json['latitude'] as num).toDouble(),
+    longitude: (json['longitude'] as num).toDouble(),
+    villageName: json['village_name'] as String?,
+  );
+}
+
+class NearestFacilitiesResponse {
+  final NearestOrigin? origin;
+  final String? reason; // no_village | village_location_unavailable | no_located_facilities
+  final List<BpcrFacilityModel> facilities;
+  NearestFacilitiesResponse({required this.origin, required this.reason, required this.facilities});
+
+  factory NearestFacilitiesResponse.fromJson(Map<String, dynamic> raw) {
+    final json = _unwrap(raw);
+    return NearestFacilitiesResponse(
+      origin: json['origin'] == null ? null : NearestOrigin.fromJson(json['origin'] as Map<String, dynamic>),
+      reason: json['reason'] as String?,
+      facilities: (json['facilities'] as List? ?? []).map((e) => BpcrFacilityModel.fromJson(e)).toList(),
+    );
+  }
+}
+
+class FacilityRouteResponse {
+  final bool available;
+  final String? reason; // route_unavailable | no_village | village_location_unavailable
+  final int distanceM;
+  final int durationS;
+  final String? polyline; // Google encoded polyline
+  FacilityRouteResponse({
+    required this.available,
+    this.reason,
+    this.distanceM = 0,
+    this.durationS = 0,
+    this.polyline,
+  });
+
+  factory FacilityRouteResponse.fromJson(Map<String, dynamic> raw) {
+    final json = _unwrap(raw);
+    return FacilityRouteResponse(
+      available: json['available'] as bool? ?? false,
+      reason: json['reason'] as String?,
+      distanceM: (json['distance_m'] as num?)?.toInt() ?? 0,
+      durationS: (json['duration_s'] as num?)?.toInt() ?? 0,
+      polyline: json['polyline'] as String?,
     );
   }
 }

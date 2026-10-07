@@ -86,6 +86,7 @@ dependencies:
   speech_to_text: ^7.3.0
   flutter_tts: ^4.0.2
   android_intent_plus: ^6.1.0
+  google_maps_flutter: ^2.18.1
 
 dev_dependencies:
   flutter_native_splash: ^2.4.0

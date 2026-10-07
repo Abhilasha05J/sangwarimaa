@@ -17,6 +17,9 @@ _BpcrFacilityModel _$BpcrFacilityModelFromJson(Map<String, dynamic> json) =>
       category: json['category'] as String?,
       isSelected: json['is_selected'] as bool? ?? false,
       inCatchment: json['in_catchment'] as bool? ?? false,
+      latitude: (json['latitude'] as num?)?.toDouble(),
+      longitude: (json['longitude'] as num?)?.toDouble(),
+      distanceKm: (json['distance_km'] as num?)?.toDouble(),
     );
 
 Map<String, dynamic> _$BpcrFacilityModelToJson(_BpcrFacilityModel instance) =>
@@ -30,4 +33,7 @@ Map<String, dynamic> _$BpcrFacilityModelToJson(_BpcrFacilityModel instance) =>
       'category': instance.category,
       'is_selected': instance.isSelected,
       'in_catchment': instance.inCatchment,
+      'latitude': instance.latitude,
+      'longitude': instance.longitude,
+      'distance_km': instance.distanceKm,
     };

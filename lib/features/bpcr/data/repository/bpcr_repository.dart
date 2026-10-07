@@ -27,6 +27,34 @@ class BpcrRepository {
       return Left(mapExceptionToFailure(e));
     }
   }
+  Future<Either<Failure, NearestFacilitiesResponse>> getNearestFacilities({
+    required String source,
+    double? lat,
+    double? lng,
+    int limit = 4,
+  }) async {
+    try {
+      final res = await _remote.getNearestFacilities(source: source, lat: lat, lng: lng, limit: limit);
+      return Right(res.data);
+    } catch (e) {
+      return Left(mapExceptionToFailure(e));
+    }
+  }
+
+  Future<Either<Failure, FacilityRouteResponse>> getFacilityRoute(
+      String facilityId, {
+        required String source,
+        double? lat,
+        double? lng,
+      }) async {
+    try {
+      final res = await _remote.getFacilityRoute(facilityId, source: source, lat: lat, lng: lng);
+      return Right(res.data);
+    } catch (e) {
+      return Left(mapExceptionToFailure(e));
+    }
+  }
+
 
   Future<Either<Failure, SbaResponse>> getSba() async {
     try {

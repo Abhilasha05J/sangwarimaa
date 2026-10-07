@@ -16,7 +16,8 @@ T _$identity<T>(T value) => value;
 mixin _$BpcrFacilityModel {
 
  String get id; String get name;@JsonKey(name: 'facility_type') String get facilityType;// CHC|PHC|SHC|SDH
-@JsonKey(name: 'sub_district') String? get subDistrict;@JsonKey(name: 'is_24x7') bool get is24x7;@JsonKey(name: 'is_fru') bool get isFru; String? get category;@JsonKey(name: 'is_selected') bool get isSelected;@JsonKey(name: 'in_catchment') bool get inCatchment;
+@JsonKey(name: 'sub_district') String? get subDistrict;@JsonKey(name: 'is_24x7') bool get is24x7;@JsonKey(name: 'is_fru') bool get isFru; String? get category;@JsonKey(name: 'is_selected') bool get isSelected;@JsonKey(name: 'in_catchment') bool get inCatchment;// Only present on the "nearest" endpoint; null everywhere else.
+ double? get latitude; double? get longitude;@JsonKey(name: 'distance_km') double? get distanceKm;
 /// Create a copy of BpcrFacilityModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -29,16 +30,16 @@ $BpcrFacilityModelCopyWith<BpcrFacilityModel> get copyWith => _$BpcrFacilityMode
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is BpcrFacilityModel&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.facilityType, facilityType) || other.facilityType == facilityType)&&(identical(other.subDistrict, subDistrict) || other.subDistrict == subDistrict)&&(identical(other.is24x7, is24x7) || other.is24x7 == is24x7)&&(identical(other.isFru, isFru) || other.isFru == isFru)&&(identical(other.category, category) || other.category == category)&&(identical(other.isSelected, isSelected) || other.isSelected == isSelected)&&(identical(other.inCatchment, inCatchment) || other.inCatchment == inCatchment));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is BpcrFacilityModel&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.facilityType, facilityType) || other.facilityType == facilityType)&&(identical(other.subDistrict, subDistrict) || other.subDistrict == subDistrict)&&(identical(other.is24x7, is24x7) || other.is24x7 == is24x7)&&(identical(other.isFru, isFru) || other.isFru == isFru)&&(identical(other.category, category) || other.category == category)&&(identical(other.isSelected, isSelected) || other.isSelected == isSelected)&&(identical(other.inCatchment, inCatchment) || other.inCatchment == inCatchment)&&(identical(other.latitude, latitude) || other.latitude == latitude)&&(identical(other.longitude, longitude) || other.longitude == longitude)&&(identical(other.distanceKm, distanceKm) || other.distanceKm == distanceKm));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,name,facilityType,subDistrict,is24x7,isFru,category,isSelected,inCatchment);
+int get hashCode => Object.hash(runtimeType,id,name,facilityType,subDistrict,is24x7,isFru,category,isSelected,inCatchment,latitude,longitude,distanceKm);
 
 @override
 String toString() {
-  return 'BpcrFacilityModel(id: $id, name: $name, facilityType: $facilityType, subDistrict: $subDistrict, is24x7: $is24x7, isFru: $isFru, category: $category, isSelected: $isSelected, inCatchment: $inCatchment)';
+  return 'BpcrFacilityModel(id: $id, name: $name, facilityType: $facilityType, subDistrict: $subDistrict, is24x7: $is24x7, isFru: $isFru, category: $category, isSelected: $isSelected, inCatchment: $inCatchment, latitude: $latitude, longitude: $longitude, distanceKm: $distanceKm)';
 }
 
 
@@ -49,7 +50,7 @@ abstract mixin class $BpcrFacilityModelCopyWith<$Res>  {
   factory $BpcrFacilityModelCopyWith(BpcrFacilityModel value, $Res Function(BpcrFacilityModel) _then) = _$BpcrFacilityModelCopyWithImpl;
 @useResult
 $Res call({
- String id, String name,@JsonKey(name: 'facility_type') String facilityType,@JsonKey(name: 'sub_district') String? subDistrict,@JsonKey(name: 'is_24x7') bool is24x7,@JsonKey(name: 'is_fru') bool isFru, String? category,@JsonKey(name: 'is_selected') bool isSelected,@JsonKey(name: 'in_catchment') bool inCatchment
+ String id, String name,@JsonKey(name: 'facility_type') String facilityType,@JsonKey(name: 'sub_district') String? subDistrict,@JsonKey(name: 'is_24x7') bool is24x7,@JsonKey(name: 'is_fru') bool isFru, String? category,@JsonKey(name: 'is_selected') bool isSelected,@JsonKey(name: 'in_catchment') bool inCatchment, double? latitude, double? longitude,@JsonKey(name: 'distance_km') double? distanceKm
 });
 
 
@@ -66,7 +67,7 @@ class _$BpcrFacilityModelCopyWithImpl<$Res>
 
 /// Create a copy of BpcrFacilityModel
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? name = null,Object? facilityType = null,Object? subDistrict = freezed,Object? is24x7 = null,Object? isFru = null,Object? category = freezed,Object? isSelected = null,Object? inCatchment = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? name = null,Object? facilityType = null,Object? subDistrict = freezed,Object? is24x7 = null,Object? isFru = null,Object? category = freezed,Object? isSelected = null,Object? inCatchment = null,Object? latitude = freezed,Object? longitude = freezed,Object? distanceKm = freezed,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
@@ -77,7 +78,10 @@ as bool,isFru: null == isFru ? _self.isFru : isFru // ignore: cast_nullable_to_n
 as bool,category: freezed == category ? _self.category : category // ignore: cast_nullable_to_non_nullable
 as String?,isSelected: null == isSelected ? _self.isSelected : isSelected // ignore: cast_nullable_to_non_nullable
 as bool,inCatchment: null == inCatchment ? _self.inCatchment : inCatchment // ignore: cast_nullable_to_non_nullable
-as bool,
+as bool,latitude: freezed == latitude ? _self.latitude : latitude // ignore: cast_nullable_to_non_nullable
+as double?,longitude: freezed == longitude ? _self.longitude : longitude // ignore: cast_nullable_to_non_nullable
+as double?,distanceKm: freezed == distanceKm ? _self.distanceKm : distanceKm // ignore: cast_nullable_to_non_nullable
+as double?,
   ));
 }
 
@@ -162,10 +166,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String name, @JsonKey(name: 'facility_type')  String facilityType, @JsonKey(name: 'sub_district')  String? subDistrict, @JsonKey(name: 'is_24x7')  bool is24x7, @JsonKey(name: 'is_fru')  bool isFru,  String? category, @JsonKey(name: 'is_selected')  bool isSelected, @JsonKey(name: 'in_catchment')  bool inCatchment)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String name, @JsonKey(name: 'facility_type')  String facilityType, @JsonKey(name: 'sub_district')  String? subDistrict, @JsonKey(name: 'is_24x7')  bool is24x7, @JsonKey(name: 'is_fru')  bool isFru,  String? category, @JsonKey(name: 'is_selected')  bool isSelected, @JsonKey(name: 'in_catchment')  bool inCatchment,  double? latitude,  double? longitude, @JsonKey(name: 'distance_km')  double? distanceKm)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _BpcrFacilityModel() when $default != null:
-return $default(_that.id,_that.name,_that.facilityType,_that.subDistrict,_that.is24x7,_that.isFru,_that.category,_that.isSelected,_that.inCatchment);case _:
+return $default(_that.id,_that.name,_that.facilityType,_that.subDistrict,_that.is24x7,_that.isFru,_that.category,_that.isSelected,_that.inCatchment,_that.latitude,_that.longitude,_that.distanceKm);case _:
   return orElse();
 
 }
@@ -183,10 +187,10 @@ return $default(_that.id,_that.name,_that.facilityType,_that.subDistrict,_that.i
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String name, @JsonKey(name: 'facility_type')  String facilityType, @JsonKey(name: 'sub_district')  String? subDistrict, @JsonKey(name: 'is_24x7')  bool is24x7, @JsonKey(name: 'is_fru')  bool isFru,  String? category, @JsonKey(name: 'is_selected')  bool isSelected, @JsonKey(name: 'in_catchment')  bool inCatchment)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String name, @JsonKey(name: 'facility_type')  String facilityType, @JsonKey(name: 'sub_district')  String? subDistrict, @JsonKey(name: 'is_24x7')  bool is24x7, @JsonKey(name: 'is_fru')  bool isFru,  String? category, @JsonKey(name: 'is_selected')  bool isSelected, @JsonKey(name: 'in_catchment')  bool inCatchment,  double? latitude,  double? longitude, @JsonKey(name: 'distance_km')  double? distanceKm)  $default,) {final _that = this;
 switch (_that) {
 case _BpcrFacilityModel():
-return $default(_that.id,_that.name,_that.facilityType,_that.subDistrict,_that.is24x7,_that.isFru,_that.category,_that.isSelected,_that.inCatchment);case _:
+return $default(_that.id,_that.name,_that.facilityType,_that.subDistrict,_that.is24x7,_that.isFru,_that.category,_that.isSelected,_that.inCatchment,_that.latitude,_that.longitude,_that.distanceKm);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -203,10 +207,10 @@ return $default(_that.id,_that.name,_that.facilityType,_that.subDistrict,_that.i
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String name, @JsonKey(name: 'facility_type')  String facilityType, @JsonKey(name: 'sub_district')  String? subDistrict, @JsonKey(name: 'is_24x7')  bool is24x7, @JsonKey(name: 'is_fru')  bool isFru,  String? category, @JsonKey(name: 'is_selected')  bool isSelected, @JsonKey(name: 'in_catchment')  bool inCatchment)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String name, @JsonKey(name: 'facility_type')  String facilityType, @JsonKey(name: 'sub_district')  String? subDistrict, @JsonKey(name: 'is_24x7')  bool is24x7, @JsonKey(name: 'is_fru')  bool isFru,  String? category, @JsonKey(name: 'is_selected')  bool isSelected, @JsonKey(name: 'in_catchment')  bool inCatchment,  double? latitude,  double? longitude, @JsonKey(name: 'distance_km')  double? distanceKm)?  $default,) {final _that = this;
 switch (_that) {
 case _BpcrFacilityModel() when $default != null:
-return $default(_that.id,_that.name,_that.facilityType,_that.subDistrict,_that.is24x7,_that.isFru,_that.category,_that.isSelected,_that.inCatchment);case _:
+return $default(_that.id,_that.name,_that.facilityType,_that.subDistrict,_that.is24x7,_that.isFru,_that.category,_that.isSelected,_that.inCatchment,_that.latitude,_that.longitude,_that.distanceKm);case _:
   return null;
 
 }
@@ -218,7 +222,7 @@ return $default(_that.id,_that.name,_that.facilityType,_that.subDistrict,_that.i
 @JsonSerializable()
 
 class _BpcrFacilityModel implements BpcrFacilityModel {
-  const _BpcrFacilityModel({required this.id, required this.name, @JsonKey(name: 'facility_type') required this.facilityType, @JsonKey(name: 'sub_district') this.subDistrict, @JsonKey(name: 'is_24x7') this.is24x7 = false, @JsonKey(name: 'is_fru') this.isFru = false, this.category, @JsonKey(name: 'is_selected') this.isSelected = false, @JsonKey(name: 'in_catchment') this.inCatchment = false});
+  const _BpcrFacilityModel({required this.id, required this.name, @JsonKey(name: 'facility_type') required this.facilityType, @JsonKey(name: 'sub_district') this.subDistrict, @JsonKey(name: 'is_24x7') this.is24x7 = false, @JsonKey(name: 'is_fru') this.isFru = false, this.category, @JsonKey(name: 'is_selected') this.isSelected = false, @JsonKey(name: 'in_catchment') this.inCatchment = false, this.latitude, this.longitude, @JsonKey(name: 'distance_km') this.distanceKm});
   factory _BpcrFacilityModel.fromJson(Map<String, dynamic> json) => _$BpcrFacilityModelFromJson(json);
 
 @override final  String id;
@@ -231,6 +235,10 @@ class _BpcrFacilityModel implements BpcrFacilityModel {
 @override final  String? category;
 @override@JsonKey(name: 'is_selected') final  bool isSelected;
 @override@JsonKey(name: 'in_catchment') final  bool inCatchment;
+// Only present on the "nearest" endpoint; null everywhere else.
+@override final  double? latitude;
+@override final  double? longitude;
+@override@JsonKey(name: 'distance_km') final  double? distanceKm;
 
 /// Create a copy of BpcrFacilityModel
 /// with the given fields replaced by the non-null parameter values.
@@ -245,16 +253,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _BpcrFacilityModel&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.facilityType, facilityType) || other.facilityType == facilityType)&&(identical(other.subDistrict, subDistrict) || other.subDistrict == subDistrict)&&(identical(other.is24x7, is24x7) || other.is24x7 == is24x7)&&(identical(other.isFru, isFru) || other.isFru == isFru)&&(identical(other.category, category) || other.category == category)&&(identical(other.isSelected, isSelected) || other.isSelected == isSelected)&&(identical(other.inCatchment, inCatchment) || other.inCatchment == inCatchment));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _BpcrFacilityModel&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.facilityType, facilityType) || other.facilityType == facilityType)&&(identical(other.subDistrict, subDistrict) || other.subDistrict == subDistrict)&&(identical(other.is24x7, is24x7) || other.is24x7 == is24x7)&&(identical(other.isFru, isFru) || other.isFru == isFru)&&(identical(other.category, category) || other.category == category)&&(identical(other.isSelected, isSelected) || other.isSelected == isSelected)&&(identical(other.inCatchment, inCatchment) || other.inCatchment == inCatchment)&&(identical(other.latitude, latitude) || other.latitude == latitude)&&(identical(other.longitude, longitude) || other.longitude == longitude)&&(identical(other.distanceKm, distanceKm) || other.distanceKm == distanceKm));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,name,facilityType,subDistrict,is24x7,isFru,category,isSelected,inCatchment);
+int get hashCode => Object.hash(runtimeType,id,name,facilityType,subDistrict,is24x7,isFru,category,isSelected,inCatchment,latitude,longitude,distanceKm);
 
 @override
 String toString() {
-  return 'BpcrFacilityModel(id: $id, name: $name, facilityType: $facilityType, subDistrict: $subDistrict, is24x7: $is24x7, isFru: $isFru, category: $category, isSelected: $isSelected, inCatchment: $inCatchment)';
+  return 'BpcrFacilityModel(id: $id, name: $name, facilityType: $facilityType, subDistrict: $subDistrict, is24x7: $is24x7, isFru: $isFru, category: $category, isSelected: $isSelected, inCatchment: $inCatchment, latitude: $latitude, longitude: $longitude, distanceKm: $distanceKm)';
 }
 
 
@@ -265,7 +273,7 @@ abstract mixin class _$BpcrFacilityModelCopyWith<$Res> implements $BpcrFacilityM
   factory _$BpcrFacilityModelCopyWith(_BpcrFacilityModel value, $Res Function(_BpcrFacilityModel) _then) = __$BpcrFacilityModelCopyWithImpl;
 @override @useResult
 $Res call({
- String id, String name,@JsonKey(name: 'facility_type') String facilityType,@JsonKey(name: 'sub_district') String? subDistrict,@JsonKey(name: 'is_24x7') bool is24x7,@JsonKey(name: 'is_fru') bool isFru, String? category,@JsonKey(name: 'is_selected') bool isSelected,@JsonKey(name: 'in_catchment') bool inCatchment
+ String id, String name,@JsonKey(name: 'facility_type') String facilityType,@JsonKey(name: 'sub_district') String? subDistrict,@JsonKey(name: 'is_24x7') bool is24x7,@JsonKey(name: 'is_fru') bool isFru, String? category,@JsonKey(name: 'is_selected') bool isSelected,@JsonKey(name: 'in_catchment') bool inCatchment, double? latitude, double? longitude,@JsonKey(name: 'distance_km') double? distanceKm
 });
 
 
@@ -282,7 +290,7 @@ class __$BpcrFacilityModelCopyWithImpl<$Res>
 
 /// Create a copy of BpcrFacilityModel
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? name = null,Object? facilityType = null,Object? subDistrict = freezed,Object? is24x7 = null,Object? isFru = null,Object? category = freezed,Object? isSelected = null,Object? inCatchment = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? name = null,Object? facilityType = null,Object? subDistrict = freezed,Object? is24x7 = null,Object? isFru = null,Object? category = freezed,Object? isSelected = null,Object? inCatchment = null,Object? latitude = freezed,Object? longitude = freezed,Object? distanceKm = freezed,}) {
   return _then(_BpcrFacilityModel(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
@@ -293,7 +301,10 @@ as bool,isFru: null == isFru ? _self.isFru : isFru // ignore: cast_nullable_to_n
 as bool,category: freezed == category ? _self.category : category // ignore: cast_nullable_to_non_nullable
 as String?,isSelected: null == isSelected ? _self.isSelected : isSelected // ignore: cast_nullable_to_non_nullable
 as bool,inCatchment: null == inCatchment ? _self.inCatchment : inCatchment // ignore: cast_nullable_to_non_nullable
-as bool,
+as bool,latitude: freezed == latitude ? _self.latitude : latitude // ignore: cast_nullable_to_non_nullable
+as double?,longitude: freezed == longitude ? _self.longitude : longitude // ignore: cast_nullable_to_non_nullable
+as double?,distanceKm: freezed == distanceKm ? _self.distanceKm : distanceKm // ignore: cast_nullable_to_non_nullable
+as double?,
   ));
 }
 

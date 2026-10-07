@@ -365,6 +365,97 @@ class AppLocalizationsEn extends AppLocalizations {
   String get bpcr_index_title => 'BPCR Index (10 components)';
 
   @override
+  String get bpcr_nearest_title => 'Nearest health facilities';
+
+  @override
+  String get bpcr_nearest_subtitle =>
+      'Tick the ones you prefer, then press Save';
+
+  @override
+  String get bpcr_nearest_use_address => 'My address';
+
+  @override
+  String get bpcr_nearest_use_location => 'Current location';
+
+  @override
+  String get bpcr_nearest_use_address_instead => 'Use my address';
+
+  @override
+  String get bpcr_nearest_locating => 'Finding your location…';
+
+  @override
+  String bpcr_nearest_distance_km(String km) {
+    return '$km km away';
+  }
+
+  @override
+  String get bpcr_nearest_no_village =>
+      'Your village is not set, so we can\'t use your address. Please choose current location.';
+
+  @override
+  String get bpcr_nearest_village_no_location =>
+      'We don\'t have a map location for your village yet. Please choose current location.';
+
+  @override
+  String get bpcr_nearest_none =>
+      'No nearby facility with a known location is available yet.';
+
+  @override
+  String get bpcr_nearest_permission_denied =>
+      'Location permission was not given.';
+
+  @override
+  String get bpcr_nearest_permission_forever =>
+      'Location is blocked for this app. Please turn it on in app settings.';
+
+  @override
+  String get bpcr_nearest_service_off =>
+      'Please turn on GPS / location on your phone.';
+
+  @override
+  String get bpcr_nearest_location_failed =>
+      'We could not get your location. Please try again.';
+
+  @override
+  String get bpcr_nearest_open_settings => 'Open settings';
+
+  @override
+  String get bpcr_nearest_try_again => 'Try again';
+
+  @override
+  String get bpcr_nearest_route_show => 'Show route';
+
+  @override
+  String get bpcr_nearest_route_hide => 'Hide route';
+
+  @override
+  String bpcr_nearest_route_summary(String km, String time) {
+    return 'By road: $km km · $time';
+  }
+
+  @override
+  String bpcr_nearest_route_min(String m) {
+    return '$m min';
+  }
+
+  @override
+  String bpcr_nearest_route_hr_min(String h, String m) {
+    return '$h hr $m min';
+  }
+
+  @override
+  String get bpcr_nearest_route_unavailable => 'Route not available right now';
+
+  @override
+  String get bpcr_nearest_recenter => 'Reset map view';
+
+  @override
+  String get bpcr_your_delivery_place => 'Your delivery place';
+
+  @override
+  String get bpcr_remove_facility => 'Remove';
+
+  @override
   String get ancServices => 'ANC Services';
 
   @override

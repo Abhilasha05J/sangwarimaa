@@ -20,6 +20,7 @@ class ApiEndpoints {
   static const String bpcr                 = '/api/v1/women/bpcr';
   static const String bpcrRespond          = '/api/v1/women/bpcr/respond';
   static const String bpcrFacilities          = '/api/v1/women/bpcr/facilities';
+  static const String bpcrNearestFacilities   = '/api/v1/women/bpcr/facilities/nearest';
   static const String bpcrFacilitySelection   = '/api/v1/women/bpcr/facilities/selection';
   static const String bpcrSba                 = '/api/v1/women/bpcr/sba';
   static const String bpcrAnswers             = '/api/v1/women/bpcr/answers'; // append '/$component'

@@ -788,6 +788,156 @@ abstract class AppLocalizations {
   /// **'BPCR Index (10 components)'**
   String get bpcr_index_title;
 
+  /// No description provided for @bpcr_nearest_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Nearest health facilities'**
+  String get bpcr_nearest_title;
+
+  /// No description provided for @bpcr_nearest_subtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Tick the ones you prefer, then press Save'**
+  String get bpcr_nearest_subtitle;
+
+  /// No description provided for @bpcr_nearest_use_address.
+  ///
+  /// In en, this message translates to:
+  /// **'My address'**
+  String get bpcr_nearest_use_address;
+
+  /// No description provided for @bpcr_nearest_use_location.
+  ///
+  /// In en, this message translates to:
+  /// **'Current location'**
+  String get bpcr_nearest_use_location;
+
+  /// No description provided for @bpcr_nearest_use_address_instead.
+  ///
+  /// In en, this message translates to:
+  /// **'Use my address'**
+  String get bpcr_nearest_use_address_instead;
+
+  /// No description provided for @bpcr_nearest_locating.
+  ///
+  /// In en, this message translates to:
+  /// **'Finding your location…'**
+  String get bpcr_nearest_locating;
+
+  /// No description provided for @bpcr_nearest_distance_km.
+  ///
+  /// In en, this message translates to:
+  /// **'{km} km away'**
+  String bpcr_nearest_distance_km(String km);
+
+  /// No description provided for @bpcr_nearest_no_village.
+  ///
+  /// In en, this message translates to:
+  /// **'Your village is not set, so we can\'t use your address. Please choose current location.'**
+  String get bpcr_nearest_no_village;
+
+  /// No description provided for @bpcr_nearest_village_no_location.
+  ///
+  /// In en, this message translates to:
+  /// **'We don\'t have a map location for your village yet. Please choose current location.'**
+  String get bpcr_nearest_village_no_location;
+
+  /// No description provided for @bpcr_nearest_none.
+  ///
+  /// In en, this message translates to:
+  /// **'No nearby facility with a known location is available yet.'**
+  String get bpcr_nearest_none;
+
+  /// No description provided for @bpcr_nearest_permission_denied.
+  ///
+  /// In en, this message translates to:
+  /// **'Location permission was not given.'**
+  String get bpcr_nearest_permission_denied;
+
+  /// No description provided for @bpcr_nearest_permission_forever.
+  ///
+  /// In en, this message translates to:
+  /// **'Location is blocked for this app. Please turn it on in app settings.'**
+  String get bpcr_nearest_permission_forever;
+
+  /// No description provided for @bpcr_nearest_service_off.
+  ///
+  /// In en, this message translates to:
+  /// **'Please turn on GPS / location on your phone.'**
+  String get bpcr_nearest_service_off;
+
+  /// No description provided for @bpcr_nearest_location_failed.
+  ///
+  /// In en, this message translates to:
+  /// **'We could not get your location. Please try again.'**
+  String get bpcr_nearest_location_failed;
+
+  /// No description provided for @bpcr_nearest_open_settings.
+  ///
+  /// In en, this message translates to:
+  /// **'Open settings'**
+  String get bpcr_nearest_open_settings;
+
+  /// No description provided for @bpcr_nearest_try_again.
+  ///
+  /// In en, this message translates to:
+  /// **'Try again'**
+  String get bpcr_nearest_try_again;
+
+  /// No description provided for @bpcr_nearest_route_show.
+  ///
+  /// In en, this message translates to:
+  /// **'Show route'**
+  String get bpcr_nearest_route_show;
+
+  /// No description provided for @bpcr_nearest_route_hide.
+  ///
+  /// In en, this message translates to:
+  /// **'Hide route'**
+  String get bpcr_nearest_route_hide;
+
+  /// No description provided for @bpcr_nearest_route_summary.
+  ///
+  /// In en, this message translates to:
+  /// **'By road: {km} km · {time}'**
+  String bpcr_nearest_route_summary(String km, String time);
+
+  /// No description provided for @bpcr_nearest_route_min.
+  ///
+  /// In en, this message translates to:
+  /// **'{m} min'**
+  String bpcr_nearest_route_min(String m);
+
+  /// No description provided for @bpcr_nearest_route_hr_min.
+  ///
+  /// In en, this message translates to:
+  /// **'{h} hr {m} min'**
+  String bpcr_nearest_route_hr_min(String h, String m);
+
+  /// No description provided for @bpcr_nearest_route_unavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Route not available right now'**
+  String get bpcr_nearest_route_unavailable;
+
+  /// No description provided for @bpcr_nearest_recenter.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset map view'**
+  String get bpcr_nearest_recenter;
+
+  /// No description provided for @bpcr_your_delivery_place.
+  ///
+  /// In en, this message translates to:
+  /// **'Your delivery place'**
+  String get bpcr_your_delivery_place;
+
+  /// No description provided for @bpcr_remove_facility.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove'**
+  String get bpcr_remove_facility;
+
   /// Antenatal Care Services
   ///
   /// In en, this message translates to:

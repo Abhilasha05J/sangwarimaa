@@ -110,9 +110,7 @@ class _VillageSearchSheetState extends ConsumerState<_VillageSearchSheet> {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
-    final searchAsync = _query.isEmpty
-        ? null
-        : ref.watch(villageSearchProvider(_query));
+    final searchAsync = ref.watch(villageSearchProvider(_query));
 
     return Padding(
       padding: EdgeInsets.only(bottom: MediaQuery.viewInsetsOf(context).bottom),
@@ -147,14 +145,7 @@ class _VillageSearchSheetState extends ConsumerState<_VillageSearchSheet> {
               ),
             ),
             Expanded(
-              child: _query.isEmpty
-                  ? Center(
-                      child: Padding(
-                        padding: const EdgeInsets.all(AppSpacing.md),
-                        child: Text(l10n.searchVillagePrompt, style: AppTypography.bodySmall),
-                      ),
-                    )
-                  : searchAsync!.when(
+              child: searchAsync!.when(
                       loading: () => const Center(child: CircularProgressIndicator(color: AppColors.pinkText)),
                       error: (e, _) => Center(
                         child: Text(l10n.villageSearchError, style: AppTypography.bodySmall),
