@@ -83,7 +83,7 @@ class _SangwariMaaAppState extends ConsumerState<SangwariMaaApp> {
       ScaffoldMessenger.of(ctx)
         ..hideCurrentSnackBar()
         ..showSnackBar(
-          SnackBar(content: Text(AppLocalizations.of(ctx)!.errorSessionExpired)),
+          SnackBar(content: Text(AppLocalizations.of(ctx).errorSessionExpired)),
         );
     });
   }

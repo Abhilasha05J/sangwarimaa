@@ -24,6 +24,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
 
+  flutter_native_splash: ^2.4.0
   # ── State Management ──────────────────────────────────────────────────
   flutter_riverpod: ^3.0.3
   riverpod_annotation: ^3.0.3
@@ -89,7 +90,6 @@ dependencies:
   google_maps_flutter: ^2.18.1
 
 dev_dependencies:
-  flutter_native_splash: ^2.4.0
   flutter_launcher_icons: ^0.14.0
   flutter_test:
     sdk: flutter

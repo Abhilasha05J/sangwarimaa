@@ -288,6 +288,7 @@ class _RegistrationPageState extends ConsumerState<RegistrationPage> {
 
         next.whenOrNull(
           error: (e, _) {
+            if (!_isSendingOtp && !_isVerifyingOtp) return;
             setState(() {
               _isSendingOtp = false;
               _isVerifyingOtp = false;

@@ -23,7 +23,8 @@ class LoginPage extends ConsumerStatefulWidget {
 class _LoginPageState extends ConsumerState<LoginPage> {
   final _formKey = GlobalKey<FormState>();
   final _mobileCtrl = TextEditingController();
-  bool _otpPushed = false;
+  // bool _otpPushed = false;
+  String? _pendingMobile;
 
   @override
   void dispose() {
@@ -31,12 +32,18 @@ class _LoginPageState extends ConsumerState<LoginPage> {
     super.dispose();
   }
 
+  // void _onGetOtp() {
+  //   if (!(_formKey.currentState?.validate() ?? false)) return;
+  //   _otpPushed = false;
+  //   ref
+  //       .read(authControllerProvider.notifier)
+  //       .sendOtp(_mobileCtrl.text.trim());
+  // }
   void _onGetOtp() {
     if (!(_formKey.currentState?.validate() ?? false)) return;
-    _otpPushed = false;
-    ref
-        .read(authControllerProvider.notifier)
-        .sendOtp(_mobileCtrl.text.trim());
+    final mobile = _mobileCtrl.text.trim();
+    _pendingMobile = mobile;
+    ref.read(authControllerProvider.notifier).sendOtp(mobile);
   }
 
   @override
@@ -50,24 +57,40 @@ class _LoginPageState extends ConsumerState<LoginPage> {
     final logoHeight = (screenH * 0.20).clamp(100.0, 180.0);
 
     // Listen for OTP sent success → navigate to OTP screen
+    // ref.listen<AsyncValue<void>>(authControllerProvider, (previous, next) {
+    //   final wasLoading = previous?.isLoading ?? false; // ADD
+    //   if (!wasLoading) return;
+    //   if (_otpPushed) return;
+    //   next.whenOrNull(
+    //     error: (e, _) => ScaffoldMessenger.of(context).showSnackBar(
+    //       SnackBar(content: Text(e.toString())),
+    //     ),
+    //     data: (_) {
+    //       _otpPushed = true;
+    //       context.pushNamed(
+    //         'otp',
+    //         extra: _mobileCtrl.text.trim(),
+    //       );
+    //     },
+    //   );
+    // });
     ref.listen<AsyncValue<void>>(authControllerProvider, (previous, next) {
-      final wasLoading = previous?.isLoading ?? false; // ADD
-      if (!wasLoading) return;
-      if (_otpPushed) return;
+      final mobile = _pendingMobile;
+      if (mobile == null) return;                      // not our request
+      if (!(previous?.isLoading ?? false)) return;
       next.whenOrNull(
-        error: (e, _) => ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(e.toString())),
-        ),
-        data: (_) {
-          _otpPushed = true;
-          context.pushNamed(
-            'otp',
-            extra: _mobileCtrl.text.trim(),
+        error: (e, _) {
+          _pendingMobile = null;
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text(e.toString())),
           );
+        },
+        data: (_) {
+          _pendingMobile = null;                       // also prevents a double push
+          context.pushNamed('otp', extra: mobile);     // number captured at request time
         },
       );
     });
-
     final isLoading = ref.watch(authControllerProvider).isLoading;
 
     return AppBackground(
