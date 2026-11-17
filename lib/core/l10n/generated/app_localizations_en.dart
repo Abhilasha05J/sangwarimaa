@@ -352,6 +352,84 @@ class AppLocalizationsEn extends AppLocalizations {
   String get homeDashboard => 'Home';
 
   @override
+  String get careTeamSelectHeader => 'Select care team';
+
+  @override
+  String get careTeamSwitchAnytime => 'Switch anytime';
+
+  @override
+  String get careTeamPrimaryLabel => 'Assigned ASHA / Mitanin';
+
+  @override
+  String get careTeamBackupLabel => 'Optional / Backup ASHA';
+
+  @override
+  String get careTeamSelectHint => 'Select';
+
+  @override
+  String get careTeamAssignedSubtitle => 'Your direct community health support';
+
+  @override
+  String get careTeamPrimaryChip => 'Primary';
+
+  @override
+  String get careTeamCallAsha => 'Call ASHA';
+
+  @override
+  String get careTeamBackupSectionTitle => 'Backup / alternate local ASHAs';
+
+  @override
+  String get careTeamMitanin => 'Mitanin';
+
+  @override
+  String careTeamMitaninVillage(String village) {
+    return 'Mitanin • Village $village';
+  }
+
+  @override
+  String careTeamMitaninShc(String shc) {
+    return 'Mitanin • $shc';
+  }
+
+  @override
+  String get careTeamPickerTitleAsha => 'Select your ASHA';
+
+  @override
+  String get careTeamPickerTitleBackup => 'Select a backup ASHA';
+
+  @override
+  String get careTeamSearchHint => 'Search ASHA by name';
+
+  @override
+  String get careTeamSectionVillage => 'In your village';
+
+  @override
+  String get careTeamSectionShc => 'In your health centre area';
+
+  @override
+  String get careTeamSectionResults => 'Search results';
+
+  @override
+  String get careTeamSearchPrompt => 'Search for your ASHA by name';
+
+  @override
+  String get careTeamNoResults => 'No ASHA found';
+
+  @override
+  String careTeamFatherHusband(String name) {
+    return 'Husband/Father: $name';
+  }
+
+  @override
+  String get careTeamLoadError => 'Couldn\'t load your care team';
+
+  @override
+  String get careTeamSaveError => 'Couldn\'t save. Please try again.';
+
+  @override
+  String get careTeamCallFailed => 'Couldn\'t open the phone dialer';
+
+  @override
   String get myProfile => 'Profile';
 
   @override
@@ -1086,7 +1164,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get pmsma_desc_1 =>
-      'A special ANC check-up day is held on the 9th of every month across the country at identified public health facilities.';
+      'A special ANC check-up day is held on the 9th and 24th of every month across the country at identified public health facilities.';
 
   @override
   String get pmsma_desc_2 =>
@@ -1184,7 +1262,7 @@ class AppLocalizationsEn extends AppLocalizations {
       'On registration of pregnancy and at least one Ante-natal check-up within 6 months from LMP date at the Anganwadi Centre (AWC) or approved health facility as identified by the respective State/UT.';
 
   @override
-  String get pmmvy_first_installment_amount => '₹ 3000/-';
+  String get pmmvy_first_installment_amount => '₹ 2500/-';
 
   @override
   String get pmmvy_second_installment_title => 'Second Installment';
@@ -1198,7 +1276,7 @@ class AppLocalizationsEn extends AppLocalizations {
       'Child has received first cycle of BCG, OPV, DPT and Hepatitis-B or its equivalent/substitute.';
 
   @override
-  String get pmmvy_second_installment_amount => '₹ 2000/-';
+  String get pmmvy_second_installment_amount => '₹ 2500/-';
 
   @override
   String get pmmvy_benefit_desc =>

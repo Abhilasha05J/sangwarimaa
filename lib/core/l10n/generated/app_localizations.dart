@@ -764,6 +764,150 @@ abstract class AppLocalizations {
   /// **'Home'**
   String get homeDashboard;
 
+  /// Dashboard care team section header (shown in capitals)
+  ///
+  /// In en, this message translates to:
+  /// **'Select care team'**
+  String get careTeamSelectHeader;
+
+  /// Dashboard care team: link to change the ASHA
+  ///
+  /// In en, this message translates to:
+  /// **'Switch anytime'**
+  String get careTeamSwitchAnytime;
+
+  /// Dashboard care team: primary ASHA label and card title
+  ///
+  /// In en, this message translates to:
+  /// **'Assigned ASHA / Mitanin'**
+  String get careTeamPrimaryLabel;
+
+  /// Dashboard care team: backup ASHA dropdown label
+  ///
+  /// In en, this message translates to:
+  /// **'Optional / Backup ASHA'**
+  String get careTeamBackupLabel;
+
+  /// Dashboard care team: empty dropdown text
+  ///
+  /// In en, this message translates to:
+  /// **'Select'**
+  String get careTeamSelectHint;
+
+  /// Dashboard care team: subtitle under the title
+  ///
+  /// In en, this message translates to:
+  /// **'Your direct community health support'**
+  String get careTeamAssignedSubtitle;
+
+  /// Dashboard care team: chip on the primary ASHA card
+  ///
+  /// In en, this message translates to:
+  /// **'Primary'**
+  String get careTeamPrimaryChip;
+
+  /// Dashboard care team: call button
+  ///
+  /// In en, this message translates to:
+  /// **'Call ASHA'**
+  String get careTeamCallAsha;
+
+  /// Dashboard care team: backup list heading (shown in capitals)
+  ///
+  /// In en, this message translates to:
+  /// **'Backup / alternate local ASHAs'**
+  String get careTeamBackupSectionTitle;
+
+  /// Dashboard care team: subtitle when village and health centre are unknown
+  ///
+  /// In en, this message translates to:
+  /// **'Mitanin'**
+  String get careTeamMitanin;
+
+  /// Dashboard care team: ASHA subtitle with her village
+  ///
+  /// In en, this message translates to:
+  /// **'Mitanin • Village {village}'**
+  String careTeamMitaninVillage(String village);
+
+  /// Dashboard care team: ASHA subtitle with her health centre when she has no village
+  ///
+  /// In en, this message translates to:
+  /// **'Mitanin • {shc}'**
+  String careTeamMitaninShc(String shc);
+
+  /// ASHA picker sheet title (primary)
+  ///
+  /// In en, this message translates to:
+  /// **'Select your ASHA'**
+  String get careTeamPickerTitleAsha;
+
+  /// ASHA picker sheet title (backup)
+  ///
+  /// In en, this message translates to:
+  /// **'Select a backup ASHA'**
+  String get careTeamPickerTitleBackup;
+
+  /// ASHA picker search box hint
+  ///
+  /// In en, this message translates to:
+  /// **'Search ASHA by name'**
+  String get careTeamSearchHint;
+
+  /// ASHA picker section (shown in capitals)
+  ///
+  /// In en, this message translates to:
+  /// **'In your village'**
+  String get careTeamSectionVillage;
+
+  /// ASHA picker section (shown in capitals)
+  ///
+  /// In en, this message translates to:
+  /// **'In your health centre area'**
+  String get careTeamSectionShc;
+
+  /// ASHA picker section (shown in capitals)
+  ///
+  /// In en, this message translates to:
+  /// **'Search results'**
+  String get careTeamSectionResults;
+
+  /// ASHA picker: shown when there is nothing in her village or health centre yet
+  ///
+  /// In en, this message translates to:
+  /// **'Search for your ASHA by name'**
+  String get careTeamSearchPrompt;
+
+  /// ASHA picker: search returned nothing
+  ///
+  /// In en, this message translates to:
+  /// **'No ASHA found'**
+  String get careTeamNoResults;
+
+  /// ASHA picker row: husband or father name, to tell apart ASHAs with the same name
+  ///
+  /// In en, this message translates to:
+  /// **'Husband/Father: {name}'**
+  String careTeamFatherHusband(String name);
+
+  /// Dashboard care team / picker: load failed
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t load your care team'**
+  String get careTeamLoadError;
+
+  /// Dashboard care team: save failed
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t save. Please try again.'**
+  String get careTeamSaveError;
+
+  /// Dashboard care team: call button failed
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t open the phone dialer'**
+  String get careTeamCallFailed;
+
   /// No description provided for @myProfile.
   ///
   /// In en, this message translates to:
@@ -2093,7 +2237,7 @@ abstract class AppLocalizations {
   /// No description provided for @pmsma_desc_1.
   ///
   /// In en, this message translates to:
-  /// **'A special ANC check-up day is held on the 9th of every month across the country at identified public health facilities.'**
+  /// **'A special ANC check-up day is held on the 9th and 24th of every month across the country at identified public health facilities.'**
   String get pmsma_desc_1;
 
   /// No description provided for @pmsma_desc_2.
@@ -2261,7 +2405,7 @@ abstract class AppLocalizations {
   /// No description provided for @pmmvy_first_installment_amount.
   ///
   /// In en, this message translates to:
-  /// **'₹ 3000/-'**
+  /// **'₹ 2500/-'**
   String get pmmvy_first_installment_amount;
 
   /// No description provided for @pmmvy_second_installment_title.
@@ -2285,7 +2429,7 @@ abstract class AppLocalizations {
   /// No description provided for @pmmvy_second_installment_amount.
   ///
   /// In en, this message translates to:
-  /// **'₹ 2000/-'**
+  /// **'₹ 2500/-'**
   String get pmmvy_second_installment_amount;
 
   /// No description provided for @pmmvy_benefit_desc.

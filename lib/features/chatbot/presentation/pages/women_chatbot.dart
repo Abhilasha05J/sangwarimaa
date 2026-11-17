@@ -300,9 +300,9 @@ class _MessageBubble extends StatelessWidget {
             children: [
               if (!isUser) ...[
                 Container(
-                  width: 32,
-                  height: 32,
-                  child: Image.asset('assets/icons/chatbotprofile.png'),
+                  width: 34,
+                  height: 36,
+                  child: Image.asset('assets/icons/chatbotw.png'),
                 ),
                 const SizedBox(width: AppSpacing.sm),
               ],
@@ -411,9 +411,9 @@ class _TypingIndicator extends StatelessWidget {
       child: Row(
         children: [
           Container(
-            width: 32,
-            height: 32,
-            child: Image.asset('assets/icons/chatbotprofile.png'),
+            width: 34,
+            height: 36,
+            child: Image.asset('assets/icons/chatbotw.png'),
           ),
           const SizedBox(width: AppSpacing.sm),
           Container(

@@ -354,6 +354,86 @@ class AppLocalizationsHi extends AppLocalizations {
   String get homeDashboard => 'होम';
 
   @override
+  String get careTeamSelectHeader => 'देखभाल टीम चुनें';
+
+  @override
+  String get careTeamSwitchAnytime => 'कभी भी बदलें';
+
+  @override
+  String get careTeamPrimaryLabel => 'नियुक्त आशा / मितानिन';
+
+  @override
+  String get careTeamBackupLabel => 'वैकल्पिक / बैकअप आशा';
+
+  @override
+  String get careTeamSelectHint => 'चुनें';
+
+  @override
+  String get careTeamAssignedSubtitle => 'आपके लिए सामुदायिक स्वास्थ्य सहायता';
+
+  @override
+  String get careTeamPrimaryChip => 'प्राथमिक';
+
+  @override
+  String get careTeamCallAsha => 'आशा को कॉल करें';
+
+  @override
+  String get careTeamBackupSectionTitle =>
+      'बैकअप / वैकल्पिक स्थानीय आशा कार्यकर्ता';
+
+  @override
+  String get careTeamMitanin => 'मितानिन';
+
+  @override
+  String careTeamMitaninVillage(String village) {
+    return 'मितानिन • गाँव $village';
+  }
+
+  @override
+  String careTeamMitaninShc(String shc) {
+    return 'मितानिन • $shc';
+  }
+
+  @override
+  String get careTeamPickerTitleAsha => 'अपनी आशा चुनें';
+
+  @override
+  String get careTeamPickerTitleBackup => 'बैकअप आशा चुनें';
+
+  @override
+  String get careTeamSearchHint => 'आशा का नाम खोजें';
+
+  @override
+  String get careTeamSectionVillage => 'आपके गाँव में';
+
+  @override
+  String get careTeamSectionShc => 'आपके स्वास्थ्य केंद्र के क्षेत्र में';
+
+  @override
+  String get careTeamSectionResults => 'खोज परिणाम';
+
+  @override
+  String get careTeamSearchPrompt => 'अपनी आशा का नाम खोजें';
+
+  @override
+  String get careTeamNoResults => 'कोई आशा कार्यकर्ता नहीं मिली';
+
+  @override
+  String careTeamFatherHusband(String name) {
+    return 'पति/पिता: $name';
+  }
+
+  @override
+  String get careTeamLoadError => 'आपकी देखभाल टीम की जानकारी लोड नहीं हो सकी';
+
+  @override
+  String get careTeamSaveError =>
+      'जानकारी सहेजी नहीं जा सकी। कृपया पुनः प्रयास करें।';
+
+  @override
+  String get careTeamCallFailed => 'फ़ोन डायलर नहीं खुल सका';
+
+  @override
   String get myProfile => 'प्रोफ़ाइल';
 
   @override
@@ -1094,7 +1174,7 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get pmsma_desc_1 =>
-      'देशभर में प्रत्येक माह की 9 तारीख को चिन्हित सरकारी स्वास्थ्य संस्थानों में विशेष एएनसी जांच दिवस आयोजित किया जाता है।';
+      'देशभर में प्रत्येक माह की 9 एवं 24 तारीख को चिन्हित सरकारी स्वास्थ्य संस्थानों में विशेष एएनसी जांच दिवस आयोजित किया जाता है।';
 
   @override
   String get pmsma_desc_2 =>
@@ -1192,7 +1272,7 @@ class AppLocalizationsHi extends AppLocalizations {
       'गर्भावस्था के पंजीकरण तथा LMP तिथि से 6 माह के भीतर कम से कम एक प्रसवपूर्व जांच (ANC) आंगनवाड़ी केन्द्र या राज्य/केंद्रशासित प्रदेश द्वारा अनुमोदित स्वास्थ्य संस्थान में करवाने पर।';
 
   @override
-  String get pmmvy_first_installment_amount => '₹ 3000/-';
+  String get pmmvy_first_installment_amount => '₹ 2500/-';
 
   @override
   String get pmmvy_second_installment_title => 'द्वितीय किश्त';
@@ -1206,7 +1286,7 @@ class AppLocalizationsHi extends AppLocalizations {
       'बच्चे को BCG, OPV, DPT तथा हेपेटाइटिस-B अथवा उसके समकक्ष टीकों का प्रथम चक्र प्राप्त हुआ हो।';
 
   @override
-  String get pmmvy_second_installment_amount => '₹ 2000/-';
+  String get pmmvy_second_installment_amount => '₹ 2500/-';
 
   @override
   String get pmmvy_benefit_desc =>

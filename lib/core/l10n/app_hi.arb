@@ -135,6 +135,54 @@
   "registrationSuccess": "पंजीकरण सफलतापूर्वक हो गया!",
 
   "homeDashboard": "होम",
+  "careTeamSelectHeader": "देखभाल टीम चुनें",
+
+  "careTeamSwitchAnytime": "कभी भी बदलें",
+
+  "careTeamPrimaryLabel": "नियुक्त आशा / मितानिन",
+
+  "careTeamBackupLabel": "वैकल्पिक / बैकअप आशा",
+
+  "careTeamSelectHint": "चुनें",
+
+  "careTeamAssignedSubtitle": "आपके लिए सामुदायिक स्वास्थ्य सहायता",
+
+  "careTeamPrimaryChip": "प्राथमिक",
+
+  "careTeamCallAsha": "आशा को कॉल करें",
+
+  "careTeamBackupSectionTitle": "बैकअप / वैकल्पिक स्थानीय आशा कार्यकर्ता",
+
+  "careTeamMitanin": "मितानिन",
+
+  "careTeamMitaninVillage": "मितानिन • गाँव {village}",
+
+  "careTeamMitaninShc": "मितानिन • {shc}",
+
+  "careTeamPickerTitleAsha": "अपनी आशा चुनें",
+
+  "careTeamPickerTitleBackup": "बैकअप आशा चुनें",
+
+  "careTeamSearchHint": "आशा का नाम खोजें",
+
+  "careTeamSectionVillage": "आपके गाँव में",
+
+  "careTeamSectionShc": "आपके स्वास्थ्य केंद्र के क्षेत्र में",
+
+  "careTeamSectionResults": "खोज परिणाम",
+
+  "careTeamSearchPrompt": "अपनी आशा का नाम खोजें",
+
+  "careTeamNoResults": "कोई आशा कार्यकर्ता नहीं मिली",
+
+  "careTeamFatherHusband": "पति/पिता: {name}",
+
+  "careTeamLoadError": "आपकी देखभाल टीम की जानकारी लोड नहीं हो सकी",
+
+  "careTeamSaveError": "जानकारी सहेजी नहीं जा सकी। कृपया पुनः प्रयास करें।",
+
+  "careTeamCallFailed": "फ़ोन डायलर नहीं खुल सका",
+
   "myProfile": "प्रोफ़ाइल",
   "bpcrModule": "BPCR",
   "bpcrdesc": "जन्म तैयारी एवं जटिलता तत्परता (BPCR) के महत्वपूर्ण चरणों की प्रगति को ट्रैक करें।",
@@ -482,7 +530,7 @@
 
 
   "schemePmsma": "प्रधानमंत्री सुरक्षित मातृत्व अभियान (PMSMA)",
-  "pmsma_desc_1": "देशभर में प्रत्येक माह की 9 तारीख को चिन्हित सरकारी स्वास्थ्य संस्थानों में विशेष एएनसी जांच दिवस आयोजित किया जाता है।",
+  "pmsma_desc_1": "देशभर में प्रत्येक माह की 9 एवं 24 तारीख को चिन्हित सरकारी स्वास्थ्य संस्थानों में विशेष एएनसी जांच दिवस आयोजित किया जाता है।",
   "pmsma_desc_2": "नियमित एएनसी के अतिरिक्त प्रधानमंत्री सुरक्षित मातृत्व क्लीनिकों में सेवाएँ प्रदान की जाती हैं।",
   "pmsma_desc_3": "प्रत्येक गर्भवती महिला को दूसरी या तीसरी तिमाही में कम से कम एक निःशुल्क चिकित्सकीय जांच प्राप्त होती है।",
   "pmsma_desc_4": "दूसरी या तीसरी तिमाही की सभी गर्भवती महिलाएँ पात्र हैं।",
@@ -511,11 +559,11 @@
   "pmmvy_table_amount": "राशि",
   "pmmvy_first_installment_title": "प्रथम किश्त",
   "pmmvy_first_installment_condition": "गर्भावस्था के पंजीकरण तथा LMP तिथि से 6 माह के भीतर कम से कम एक प्रसवपूर्व जांच (ANC) आंगनवाड़ी केन्द्र या राज्य/केंद्रशासित प्रदेश द्वारा अनुमोदित स्वास्थ्य संस्थान में करवाने पर।",
-  "pmmvy_first_installment_amount": "₹ 3000/-",
+  "pmmvy_first_installment_amount": "₹ 2500/-",
   "pmmvy_second_installment_title": "द्वितीय किश्त",
   "pmmvy_second_installment_condition_1": "बच्चे के जन्म का पंजीकरण किया गया हो।",
   "pmmvy_second_installment_condition_2": "बच्चे को BCG, OPV, DPT तथा हेपेटाइटिस-B अथवा उसके समकक्ष टीकों का प्रथम चक्र प्राप्त हुआ हो।",
-  "pmmvy_second_installment_amount": "₹ 2000/-",
+  "pmmvy_second_installment_amount": "₹ 2500/-",
   "pmmvy_benefit_desc":"यह फ़ायदा महिला को उसके पहले दो जीवित बच्चों के लिए मिलता है, बशर्ते दूसरा बच्चा लड़की हो। पहले बच्चे के लिए ₹5,000 की राशि दो किश्तों में दी जाती है, और दूसरे बच्चे के लिए ₹6,000 का फ़ायदा एक ही किश्त में दिया जाता है (बच्चे के जन्म के बाद), बशर्ते दूसरा बच्चा लड़की हो।",
 
   "anganwadi_name": "गर्भवती माताओं एवं बच्चों हेतु आंगनवाड़ी केन्द्र की सेवाएँ",

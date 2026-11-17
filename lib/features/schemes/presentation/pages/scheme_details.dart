@@ -492,9 +492,72 @@ class _JsyDetail extends StatelessWidget {
   }
 }
 
+// class _JsyCashTable extends StatelessWidget {
+//   final AppLocalizations l10n;
+//   const _JsyCashTable({required this.l10n});
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return Padding(
+//       padding: const EdgeInsets.all(AppSpacing.md),
+//       child: Table(
+//         border: TableBorder.all(color: AppColors.greyBorder, width: 1),
+//         columnWidths: const {
+//           0: FlexColumnWidth(1.2),
+//           1: FlexColumnWidth(1),
+//           2: FlexColumnWidth(1),
+//           3: FlexColumnWidth(0.8),
+//         },
+//         children: [
+//           // Header row
+//           TableRow(
+//             decoration:
+//             const BoxDecoration(color: Color(0xFFF5F5F5)),
+//             children: [
+//               _TableCell(text: '${l10n.jsy_table_category}', isHeader: true),
+//               _TableCell(text: '${l10n.area}', isHeader: true),
+//               _TableCell(text: '', isHeader: true),
+//               _TableCell(text: '${l10n.jsy_table_total}', isHeader: true),
+//             ],
+//           ),
+//           TableRow(
+//             decoration:
+//             const BoxDecoration(color: Color(0xFFF5F5F5)),
+//             children: [
+//               _TableCell(text: ''),
+//               _TableCell(text: '${l10n.jsy_table_rural}', isHeader: true),
+//               _TableCell(text: '${l10n.jsy_table_urban}', isHeader: true),
+//               _TableCell(text: ''),
+//             ],
+//           ),
+//           // Sub-header
+//           TableRow(children: [
+//             _TableCell(text: ''),
+//             _TableCell(
+//                 text: "${l10n.jsy_table_mother_package}     ${l10n.jsy_table_mitanin_package}",
+//                 small: true),
+//             _TableCell(
+//                 text: "${l10n.jsy_table_mother_package}     ${l10n.jsy_table_mitanin_package}",
+//                 small: true),
+//             _TableCell(text: 'Rs'),
+//           ]),
+//           // CG row
+//           TableRow(children: [
+//             _TableCell(text: 'CG'),
+//             _TableCell(text: '1400        600'),
+//             _TableCell(text: '1000        200'),
+//             _TableCell(text: '2000 / 1200', isHeader: true),
+//           ]),
+//         ],
+//       ),
+//     );
+//   }
+// }
 class _JsyCashTable extends StatelessWidget {
   final AppLocalizations l10n;
   const _JsyCashTable({required this.l10n});
+
+  static const Color _headerBg = Color(0xFFE0E0E0);
 
   @override
   Widget build(BuildContext context) {
@@ -502,58 +565,107 @@ class _JsyCashTable extends StatelessWidget {
       padding: const EdgeInsets.all(AppSpacing.md),
       child: Table(
         border: TableBorder.all(color: AppColors.greyBorder, width: 1),
+        defaultVerticalAlignment: TableCellVerticalAlignment.middle,
         columnWidths: const {
-          0: FlexColumnWidth(1.2),
-          1: FlexColumnWidth(1),
-          2: FlexColumnWidth(1),
-          3: FlexColumnWidth(0.8),
+          0: FlexColumnWidth(0.8),
+          1: FlexColumnWidth(1.3),
+          2: FlexColumnWidth(1.3),
+          3: FlexColumnWidth(0.9),
         },
         children: [
           // Header row
           TableRow(
-            decoration:
-            const BoxDecoration(color: Color(0xFFF5F5F5)),
+            decoration: const BoxDecoration(color: _headerBg),
             children: [
-              _TableCell(text: '${l10n.jsy_table_category}', isHeader: true),
-              _TableCell(text: '${l10n.area}', isHeader: true),
-              _TableCell(text: '', isHeader: true),
-              _TableCell(text: '${l10n.jsy_table_total}', isHeader: true),
+              _headerCell(l10n.area),
+              _headerCell(l10n.jsy_table_mother_package),
+              _headerCell(l10n.jsy_table_mitanin_package),
+              _headerCell(l10n.jsy_table_total),
             ],
           ),
-          TableRow(
-            decoration:
-            const BoxDecoration(color: Color(0xFFF5F5F5)),
-            children: [
-              _TableCell(text: ''),
-              _TableCell(text: '${l10n.jsy_table_rural}', isHeader: true),
-              _TableCell(text: '${l10n.jsy_table_urban}', isHeader: true),
-              _TableCell(text: ''),
-            ],
-          ),
-          // Sub-header
+          // Rural row
           TableRow(children: [
-            _TableCell(text: ''),
-            _TableCell(
-                text: "${l10n.jsy_table_mother_package}     ${l10n.jsy_table_mitanin_package}",
-                small: true),
-            _TableCell(
-                text: "${l10n.jsy_table_mother_package}     ${l10n.jsy_table_mitanin_package}",
-                small: true),
-            _TableCell(text: 'Rs'),
+            _labelCell(l10n.jsy_table_rural),
+            _amountCell('1400'),
+            _amountCell('600'),
+            _amountCell('2000'),
           ]),
-          // CG row
+          // Urban row
           TableRow(children: [
-            _TableCell(text: 'CG'),
-            _TableCell(text: '1400        600'),
-            _TableCell(text: '1000        200'),
-            _TableCell(text: '2000 / 1200', isHeader: true),
+            _labelCell(l10n.jsy_table_urban),
+            _amountCell('1000'),
+            _amountCell('200'),
+            _amountCell('1200'),
           ]),
         ],
       ),
     );
   }
-}
 
+  Widget _headerCell(String text) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+        vertical: AppSpacing.md,
+        horizontal: AppSpacing.sm,
+      ),
+      child: Text(
+        text,
+        textAlign: TextAlign.center,
+        style: const TextStyle(
+          fontSize: 14,
+          fontWeight: FontWeight.w500,
+          color: Colors.black87,
+        ),
+      ),
+    );
+  }
+
+  Widget _labelCell(String text) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+        vertical: AppSpacing.lg,
+        horizontal: AppSpacing.sm,
+      ),
+      child: Text(
+        text,
+        textAlign: TextAlign.center,
+        style: const TextStyle(fontSize: 14, color: Colors.black87),
+      ),
+    );
+  }
+
+  Widget _amountCell(String amount) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+        vertical: AppSpacing.lg,
+        horizontal: AppSpacing.sm,
+      ),
+      child: Text.rich(
+        TextSpan(
+          children: [
+            TextSpan(
+              text: amount,
+              style: const TextStyle(
+                fontSize: 14,
+                fontWeight: FontWeight.w700,
+                color: Colors.black87,
+              ),
+            ),
+            const TextSpan(
+              text: '  Rs',
+              style: TextStyle(
+                fontSize: 13,
+                fontWeight: FontWeight.w400,
+                color: Colors.black54,
+              ),
+            ),
+          ],
+        ),
+        textAlign: TextAlign.center,
+      ),
+    );
+  }
+}
 class _TableCell extends StatelessWidget {
   final String text;
   final bool isHeader;

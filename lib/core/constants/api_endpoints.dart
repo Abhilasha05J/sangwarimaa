@@ -48,6 +48,9 @@ class ApiEndpoints {
   static const String postnatal            = '/api/v1/women/postnatal';
   static const String newbornCare          = '/api/v1/women/newborn-care';
   static const String medicineReminders    = '/api/v1/women/reminders/medicine';
+  static const String asha          = '/api/v1/women/asha';
+  static const String ashaOptions   = '/api/v1/women/asha/options';
+  static const String ashaSelection = '/api/v1/women/asha/selection';
 
   // ── Mitanin (ASHA/ANM) ────────────────
   static const String mitaninRegister        = '/api/v1/mitanin/register';

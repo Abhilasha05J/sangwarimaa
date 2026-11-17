@@ -5,6 +5,7 @@ import 'package:sangwari_maa/core/constants/app_colors.dart';
 import 'package:sangwari_maa/core/constants/app_spacing.dart';
 import 'package:sangwari_maa/core/constants/app_typography.dart';
 import 'package:sangwari_maa/core/l10n/generated/app_localizations.dart';
+import 'package:sangwari_maa/features/careteam/presentation/widgets/care_team_section.dart';
 import 'package:sangwari_maa/shared/widgets/app_bar.dart';
 import 'package:sangwari_maa/shared/widgets/bottom_navbar.dart';
 
@@ -29,6 +30,10 @@ class WomensDashboard extends ConsumerWidget {
           ),
           child: Column(
             children: [
+              // ── Care team (primary + backup ASHA) ────────────────────────
+              const CareTeamSection(),
+              const SizedBox(height: AppSpacing.md),
+
               // ── BPCR Full-width card ────────────────────────────────────
               _BpcrCard(l10n: l10n),
               const SizedBox(height: AppSpacing.md),

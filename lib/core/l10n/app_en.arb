@@ -323,6 +323,87 @@
   "homeDashboard": "Home",
   "@homeDashboard": {},
 
+  "careTeamSelectHeader": "Select care team",
+  "@careTeamSelectHeader": { "description": "Dashboard care team section header (shown in capitals)" },
+
+  "careTeamSwitchAnytime": "Switch anytime",
+  "@careTeamSwitchAnytime": { "description": "Dashboard care team: link to change the ASHA" },
+
+  "careTeamPrimaryLabel": "Assigned ASHA / Mitanin",
+  "@careTeamPrimaryLabel": { "description": "Dashboard care team: primary ASHA label and card title" },
+
+  "careTeamBackupLabel": "Optional / Backup ASHA",
+  "@careTeamBackupLabel": { "description": "Dashboard care team: backup ASHA dropdown label" },
+
+  "careTeamSelectHint": "Select",
+  "@careTeamSelectHint": { "description": "Dashboard care team: empty dropdown text" },
+
+  "careTeamAssignedSubtitle": "Your direct community health support",
+  "@careTeamAssignedSubtitle": { "description": "Dashboard care team: subtitle under the title" },
+
+  "careTeamPrimaryChip": "Primary",
+  "@careTeamPrimaryChip": { "description": "Dashboard care team: chip on the primary ASHA card" },
+
+  "careTeamCallAsha": "Call ASHA",
+  "@careTeamCallAsha": { "description": "Dashboard care team: call button" },
+
+  "careTeamBackupSectionTitle": "Backup / alternate local ASHAs",
+  "@careTeamBackupSectionTitle": { "description": "Dashboard care team: backup list heading (shown in capitals)" },
+
+  "careTeamMitanin": "Mitanin",
+  "@careTeamMitanin": { "description": "Dashboard care team: subtitle when village and health centre are unknown" },
+
+  "careTeamMitaninVillage": "Mitanin • Village {village}",
+  "@careTeamMitaninVillage": {
+    "description": "Dashboard care team: ASHA subtitle with her village",
+    "placeholders": { "village": { "type": "String" } }
+  },
+
+  "careTeamMitaninShc": "Mitanin • {shc}",
+  "@careTeamMitaninShc": {
+    "description": "Dashboard care team: ASHA subtitle with her health centre when she has no village",
+    "placeholders": { "shc": { "type": "String" } }
+  },
+
+  "careTeamPickerTitleAsha": "Select your ASHA",
+  "@careTeamPickerTitleAsha": { "description": "ASHA picker sheet title (primary)" },
+
+  "careTeamPickerTitleBackup": "Select a backup ASHA",
+  "@careTeamPickerTitleBackup": { "description": "ASHA picker sheet title (backup)" },
+
+  "careTeamSearchHint": "Search ASHA by name",
+  "@careTeamSearchHint": { "description": "ASHA picker search box hint" },
+
+  "careTeamSectionVillage": "In your village",
+  "@careTeamSectionVillage": { "description": "ASHA picker section (shown in capitals)" },
+
+  "careTeamSectionShc": "In your health centre area",
+  "@careTeamSectionShc": { "description": "ASHA picker section (shown in capitals)" },
+
+  "careTeamSectionResults": "Search results",
+  "@careTeamSectionResults": { "description": "ASHA picker section (shown in capitals)" },
+
+  "careTeamSearchPrompt": "Search for your ASHA by name",
+  "@careTeamSearchPrompt": { "description": "ASHA picker: shown when there is nothing in her village or health centre yet" },
+
+  "careTeamNoResults": "No ASHA found",
+  "@careTeamNoResults": { "description": "ASHA picker: search returned nothing" },
+
+  "careTeamFatherHusband": "Husband/Father: {name}",
+  "@careTeamFatherHusband": {
+    "description": "ASHA picker row: husband or father name, to tell apart ASHAs with the same name",
+    "placeholders": { "name": { "type": "String" } }
+  },
+
+  "careTeamLoadError": "Couldn't load your care team",
+  "@careTeamLoadError": { "description": "Dashboard care team / picker: load failed" },
+
+  "careTeamSaveError": "Couldn't save. Please try again.",
+  "@careTeamSaveError": { "description": "Dashboard care team: save failed" },
+
+  "careTeamCallFailed": "Couldn't open the phone dialer",
+  "@careTeamCallFailed": { "description": "Dashboard care team: call button failed" },
+
   "myProfile": "Profile",
   "@myProfile": {},
 
@@ -811,7 +892,7 @@
   "schemePmsma": "Pradhan Mantri Surakshit Matritva Abhiyan (PMSMA)",
   "@schemePmsma": {},
 
-  "pmsma_desc_1": "A special ANC check-up day is held on the 9th of every month across the country at identified public health facilities.",
+  "pmsma_desc_1": "A special ANC check-up day is held on the 9th and 24th of every month across the country at identified public health facilities.",
   "@pmsma_desc_1": {},
 
   "pmsma_desc_2": "Services are provided at Pradhan Mantri Surakshit Matritva Clinics in addition to routine ANC.",
@@ -895,7 +976,7 @@
   "pmmvy_first_installment_condition": "On registration of pregnancy and at least one Ante-natal check-up within 6 months from LMP date at the Anganwadi Centre (AWC) or approved health facility as identified by the respective State/UT.",
   "@pmmvy_first_installment_condition": {},
 
-  "pmmvy_first_installment_amount": "₹ 3000/-",
+  "pmmvy_first_installment_amount": "₹ 2500/-",
   "@pmmvy_first_installment_amount": {},
 
   "pmmvy_second_installment_title": "Second Installment",
@@ -907,7 +988,7 @@
   "pmmvy_second_installment_condition_2": "Child has received first cycle of BCG, OPV, DPT and Hepatitis-B or its equivalent/substitute.",
   "@pmmvy_second_installment_condition_2": {},
 
-  "pmmvy_second_installment_amount": "₹ 2000/-",
+  "pmmvy_second_installment_amount": "₹ 2500/-",
   "@pmmvy_second_installment_amount": {},
 
   "pmmvy_benefit_desc": "Benefit is available to a woman for the first two living children provided the second child is a girl.In case of the first child the amount of ₹5000 in 2 installments and for the second child, the benefit of ₹6000 will be provided subject to second child is a girl child in one installment after the birth.",
